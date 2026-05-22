@@ -440,17 +440,41 @@ h2.section-title.light {
 
 .about-badge {
   position: absolute;
-  right: 24px;
-  bottom: 24px;
+  right: clamp(10px, 2vw, 24px);
+  bottom: clamp(10px, 2vw, 24px);
   z-index: 2;
-  min-width: 150px;
-  padding: 22px 24px;
+
+  min-width: clamp(105px, 14vw, 150px);
+  padding: clamp(14px, 2vw, 22px) clamp(16px, 2.2vw, 24px);
+
   text-align: center;
   color: var(--white);
+
   background: rgba(13, 31, 60, 0.96);
   border: 1px solid rgba(232, 201, 106, 0.35);
   border-radius: 5px;
   box-shadow: 0 12px 32px rgba(7, 15, 30, 0.22);
+}
+
+.about-badge strong {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(24px, 4vw, 38px);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--gold-light);
+}
+
+.about-badge span {
+  display: block;
+  margin-top: 6px;
+
+  font-size: clamp(8px, 1.2vw, 11px);
+  line-height: 1.35;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  color: rgba(255,255,255,0.62);
 }
 
 .about-badge strong {
