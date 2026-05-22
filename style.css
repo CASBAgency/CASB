@@ -1542,11 +1542,6 @@ footer {
   }
 }
 
-html.menu-open,
-body.menu-open {
-  overflow: hidden;
-}
-
 @media (max-width: 1024px) {
   .nav-links {
     width: min(340px, 82%);
