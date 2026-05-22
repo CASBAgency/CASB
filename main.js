@@ -149,17 +149,26 @@ const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
 
 if (hamburger && navLinks) {
+  function openMenu() {
+    hamburger.classList.add('active');
+    navLinks.classList.add('active');
+    document.body.classList.add('menu-open');
+    document.documentElement.classList.add('menu-open');
+  }
+
   function closeMenu() {
     hamburger.classList.remove('active');
     navLinks.classList.remove('active');
     document.body.classList.remove('menu-open');
+    document.documentElement.classList.remove('menu-open');
   }
 
   hamburger.addEventListener('click', () => {
-    const isOpen = navLinks.classList.toggle('active');
-
-    hamburger.classList.toggle('active', isOpen);
-    document.body.classList.toggle('menu-open', isOpen);
+    if (navLinks.classList.contains('active')) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
   });
 
   navLinks.querySelectorAll('a').forEach(link => {
