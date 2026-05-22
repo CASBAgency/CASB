@@ -800,6 +800,15 @@ h2.section-title.light {
   background: var(--navy);
 }
 
+.ach-featured-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+
+  margin-top: 52px;
+  margin-bottom: 24px;
+}
+
 .achievements-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -878,7 +887,14 @@ h2.section-title.light {
 
 .ach-poster {
   width: 100%;
-  height: 220px;
+  aspect-ratio: 3 / 4;
+
+  background: rgba(255,255,255,0.03);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   overflow: hidden;
   border-radius: 6px;
   margin-bottom: 24px;
@@ -889,7 +905,8 @@ h2.section-title.light {
 .ach-poster img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+
   display: block;
 
   transition: transform 0.4s ease;
@@ -1351,50 +1368,149 @@ h2.section-title.light {
 }
 
 /* ── FOOTER ── */
-footer {
+.site-footer {
   background: #070F1E;
-  border-top: 1px solid rgba(255,255,255,0.07);
+  color: var(--white);
+  border-top: 1px solid rgba(184,146,42,0.45);
+  padding: 64px 10% 28px;
+}
 
-  padding: 40px 10%;
+.footer-main {
+  display: grid;
+  grid-template-columns: 1.4fr 0.8fr 1.2fr;
+  gap: 64px;
+  padding-bottom: 42px;
+}
+
+.footer-brand img {
+  height: 82px;
+  margin-bottom: 22px;
+}
+
+.footer-brand p {
+  max-width: 420px;
+  color: rgba(255,255,255,0.55);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.footer-column h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  color: var(--gold-light);
+  margin-bottom: 22px;
+}
+
+.footer-column a {
+  display: block;
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  font-size: 14px;
+  margin-bottom: 12px;
+  transition: color 0.2s ease;
+}
+
+.footer-column a:hover {
+  color: var(--gold-light);
+}
+
+.footer-contact p {
+  color: rgba(255,255,255,0.55);
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 18px;
+}
+
+.footer-contact strong {
+  color: rgba(255,255,255,0.85);
+  font-weight: 500;
+}
+
+.footer-social {
+  margin-top: 8px;
+  color: var(--gold-light) !important;
+  letter-spacing: 0.04em;
+}
+
+.footer-socials {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.footer-social {
+  display: flex !important;
+  align-items: center;
+  gap: 12px;
+
+  color: rgba(255,255,255,0.65) !important;
+  text-decoration: none;
+
+  transition: color 0.2s ease,
+              transform 0.2s ease;
+}
+
+.footer-social:hover {
+  color: var(--gold-light) !important;
+  transform: translateX(3px);
+}
+
+.footer-social img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  opacity: 0.9;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 22px;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 20px;
 }
 
-.footer-logo {
-  font-family: 'Playfair Display', serif;
-  font-size: 20px;
-  font-weight: 700;
-
-  color: var(--white);
+.footer-bottom p {
+  color: rgba(255,255,255,0.35);
+  font-size: 13px;
 }
 
-.footer-logo span {
-  color: var(--gold-light);
-}
-
-.footer-links {
+.footer-legal {
   display: flex;
-  gap: 28px;
+  gap: 24px;
 }
 
-.footer-links a {
+.footer-legal a {
   color: rgba(255,255,255,0.45);
-
-  font-size: 13px;
   text-decoration: none;
-
-  transition: color 0.2s;
+  font-size: 13px;
 }
 
-.footer-links a:hover {
+.footer-legal a:hover {
   color: var(--gold-light);
 }
 
-.footer-copy {
-  color: rgba(255,255,255,0.3);
-  font-size: 13px;
+@media (max-width: 900px) {
+  .site-footer {
+    padding: 56px 6% 28px;
+  }
+
+  .footer-main {
+    grid-template-columns: 1fr;
+    gap: 38px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-legal {
+    flex-wrap: wrap;
+  }
 }
 
 /* ── SCROLL ANIMATION ── */
@@ -1445,10 +1561,11 @@ footer {
 .about-img-wrap {
   border: 2px solid var(--gold);
 }
-  .achievements-grid,
-  .events-grid {
-    grid-template-columns: 1fr;
-  }
+  .ach-featured-row,
+.achievements-grid,
+.events-grid {
+  grid-template-columns: 1fr;
+}
 
   .form-row {
     grid-template-columns: 1fr;
