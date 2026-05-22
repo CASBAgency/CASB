@@ -1119,6 +1119,18 @@ h2.section-title.light {
   transform: translateX(4px);
 }
 
+.event-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.events-more {
+  margin-top: 42px;
+  display: flex;
+  justify-content: center;
+}
+
 /* ── BRANCHES ── */
 #branches {
   background: var(--off-white);
