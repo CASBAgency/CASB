@@ -477,25 +477,6 @@ h2.section-title.light {
   color: rgba(255,255,255,0.62);
 }
 
-.about-badge strong {
-  display: block;
-  font-family: 'Playfair Display', serif;
-  font-size: 38px;
-  font-weight: 700;
-  line-height: 1;
-  color: var(--gold-light);
-}
-
-.about-badge span {
-  display: block;
-  margin-top: 6px;
-  font-size: 11px;
-  line-height: 1.4;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.62);
-}
-
 .about-side {
   display: flex;
   flex-direction: column;
