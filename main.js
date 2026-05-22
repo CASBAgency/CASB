@@ -152,14 +152,15 @@ if (hamburger && navLinks) {
   hamburger.addEventListener('click', () => {
     hamburger.classList.toggle('active');
     navLinks.classList.toggle('active');
+    document.body.classList.toggle('menu-open');
   });
 
   navLinks.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       hamburger.classList.remove('active');
       navLinks.classList.remove('active');
+      document.body.classList.remove('menu-open');
     });
   });
 }
 
-document.body.classList.toggle('menu-open');
