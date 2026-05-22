@@ -931,63 +931,6 @@ h2.section-title.light {
   text-transform: uppercase;
 }
 
-.ach-carousel {
-  position: relative;
-  overflow: hidden;
-}
-
-.ach-carousel img {
-  position: absolute;
-  inset: 0;
-
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-
-.ach-carousel img.active {
-  opacity: 1;
-}
-
-/* Arrow Buttons */
-.carousel-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-
-  width: 42px;
-  height: 42px;
-
-  border: none;
-  border-radius: 50%;
-
-  background: rgba(0,0,0,0.45);
-  color: white;
-
-  font-size: 22px;
-  cursor: pointer;
-
-  z-index: 5;
-
-  transition: all 0.25s ease;
-}
-
-.carousel-btn:hover {
-  background: rgba(184,146,42,0.9);
-  transform: translateY(-50%) scale(1.05);
-}
-
-.carousel-btn.prev {
-  left: 12px;
-}
-
-.carousel-btn.next {
-  right: 12px;
-}
-
 /* ── ACHIEVEMENT CAROUSEL ── */
 
 .ach-carousel {
