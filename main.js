@@ -77,3 +77,69 @@ window.addEventListener('scroll', () => {
     }
   });
 });
+
+// ── ACHIEVEMENT CAROUSEL ARROWS ──
+document.querySelectorAll(".ach-carousel").forEach(carousel => {
+  const images = carousel.querySelectorAll("img");
+  const prevBtn = carousel.querySelector(".prev");
+  const nextBtn = carousel.querySelector(".next");
+
+  if (!images.length || !prevBtn || !nextBtn) return;
+
+  let index = 0;
+
+  function showSlide(i) {
+    images.forEach(img => img.classList.remove("active"));
+    images[i].classList.add("active");
+  }
+
+  nextBtn.addEventListener("click", e => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    index = (index + 1) % images.length;
+    showSlide(index);
+  });
+
+  prevBtn.addEventListener("click", e => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    index = (index - 1 + images.length) % images.length;
+    showSlide(index);
+  });
+});
+
+// ── ACHIEVEMENT CARD CAROUSEL ──
+
+document.querySelectorAll('.ach-carousel').forEach(carousel => {
+  const slides = carousel.querySelectorAll('img');
+  const prevBtn = carousel.querySelector('.prev');
+  const nextBtn = carousel.querySelector('.next');
+
+  let index = 0;
+
+  function showSlide(i) {
+    slides.forEach(slide => slide.classList.remove('active'));
+    slides[i].classList.add('active');
+  }
+
+  nextBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    index = (index + 1) % slides.length;
+    showSlide(index);
+  });
+
+  prevBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    index = (index - 1 + slides.length) % slides.length;
+    showSlide(index);
+  });
+
+  setInterval(() => {
+    index = (index + 1) % slides.length;
+    showSlide(index);
+  }, 4500);
+});
