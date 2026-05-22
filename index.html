@@ -629,42 +629,109 @@
     <p class="section-sub" style="color: rgba(255,255,255,0.55);">Have a question or want to learn more about our services? Reach out and our team will be happy to assist.</p>
   </div>
   <div class="contact-grid fade-in">
-    <form class="contact-form" onsubmit="return false;">
-      <div class="form-row">
-        <div class="form-group">
-          <label>First Name</label>
-          <input type="text" placeholder="Ahmad">
-        </div>
-        <div class="form-group">
-          <label>Last Name</label>
-          <input type="text" placeholder="Razali">
-        </div>
-      </div>
-      <div class="form-group">
-        <label>Email Address</label>
-        <input type="email" placeholder="ahmad@email.com">
-      </div>
-      <div class="form-group">
-        <label>Phone Number</label>
-        <input type="tel" placeholder="+60 12-XXX XXXX">
-      </div>
-      <div class="form-group">
-        <label>Enquiry Type</label>
-        <select>
-          <option>Financial Planning</option>
-          <option>Insurance Coverage</option>
-          <option>Join Our Team</option>
-          <option>General Enquiry</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Message</label>
-        <textarea placeholder="Tell us how we can help..."></textarea>
-      </div>
-      <button type="submit" class="btn-primary" style="align-self: flex-start; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;">
-        Send Message →
-      </button>
-    </form>
+   <form 
+  class="contact-form"
+  action="https://formspree.io/f/mwvzbepz"
+  method="POST"
+>
+
+  <div class="form-row">
+
+    <div class="form-group">
+      <label>First Name</label>
+
+      <input
+        type="text"
+        name="first_name"
+        placeholder="John"
+        required
+      >
+    </div>
+
+    <div class="form-group">
+      <label>Last Name</label>
+
+      <input
+        type="text"
+        name="last_name"
+        placeholder="Smith"
+        required
+      >
+    </div>
+
+  </div>
+
+  <div class="form-group">
+    <label>Email Address</label>
+
+    <input
+      type="email"
+      name="email"
+      placeholder="john@email.com"
+      required
+    >
+  </div>
+
+  <div class="form-group">
+    <label>Phone Number</label>
+
+    <input
+      type="tel"
+      name="phone"
+      placeholder="+60 12-XXX XXXX"
+      required
+    >
+  </div>
+
+  <div class="form-group">
+    <label>Enquiry Type</label>
+
+    <select name="enquiry_type" required>
+      <option value="">Select enquiry type</option>
+
+      <option value="Financial Planning">
+        Financial Planning
+      </option>
+
+      <option value="Insurance Coverage">
+        Insurance Coverage
+      </option>
+
+      <option value="Join Our Team">
+        Join Our Team
+      </option>
+
+      <option value="General Enquiry">
+        General Enquiry
+      </option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label>Message</label>
+
+    <textarea
+      name="message"
+      placeholder="Tell us how we can help..."
+      required
+    ></textarea>
+  </div>
+
+  <input
+    type="hidden"
+    name="_subject"
+    value="New enquiry from CASB Website"
+  >
+
+  <button
+    type="submit"
+    class="btn-primary"
+    style="align-self: flex-start; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;"
+  >
+    Send Message →
+  </button>
+
+</form>
     <div class="contact-info">
       <div class="info-item">
         <div class="info-icon"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg></div>
