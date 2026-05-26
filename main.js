@@ -106,21 +106,21 @@ achievementCards.forEach((card, index) => {
 const eventCards = document.querySelectorAll('#events .event-card-link');
 const eventUpdates = [
   {
-    href: 'events/',
+    href: 'events/harbin-winter-il-incentive-trip.html',
     label: 'Incentive Trip',
     date: 'Recent Event',
     title: 'Harbin Winter IL Incentive Trip',
     body: 'A memorable winter incentive trip celebrating performance, teamwork, and shared milestones with the CASB agency family.'
   },
   {
-    href: 'events/',
+    href: 'events/sibu-business-conference-trip.html',
     label: 'Business Conference',
     date: 'Recent Event',
     title: 'Sibu Business Conference Trip',
     body: 'A business conference trip bringing advisors together for learning, connection, and renewed momentum across the team.'
   },
   {
-    href: 'events/',
+    href: 'events/agency-award-ceremony.html',
     label: 'Agency Awards',
     date: 'Recent Event',
     title: 'Agency Award Ceremony',
