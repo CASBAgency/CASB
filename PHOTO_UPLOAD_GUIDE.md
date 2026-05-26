@@ -44,6 +44,24 @@ Suggested filenames:
 
 These match the three reserved cards in `events/index.html`.
 
+## Insights content
+
+Page: `insights/index.html`
+
+Folders:
+- `assets/insights/articles/`
+- `assets/insights/case-studies/`
+- `assets/insights/testimonials/`
+
+Suggested filenames:
+- `article-01-cover.jpg`
+- `article-01.pdf`
+- `case-study-01-cover.jpg`
+- `case-study-01.pdf`
+- `testimonial-01.jpg`
+
+After upload, I can link these into the Insights page or create individual article and case study pages.
+
 ## MDRT poster
 
 Folder: `mdrt/mdrt/`
