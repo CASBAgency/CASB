@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MDRT Recognition | CASB Agency</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<style>
+body { background: var(--navy); }
+.gallery-page { min-height: 100vh; padding: 54px 6% 90px; background: radial-gradient(circle at top right, rgba(184,146,42,.16), transparent 34%), var(--navy); }
+.back-link { display: inline-block; color: rgba(255,255,255,.66); text-decoration: none; margin-bottom: 64px; font-size: 14px; }
+.back-link:hover { color: var(--gold-light); }
+.gallery-hero { max-width: 780px; margin: 0 auto 58px; text-align: center; }
+.gallery-hero h1 { font-family: 'Playfair Display', serif; color: white; font-size: clamp(42px, 6vw, 76px); line-height: 1.05; margin: 16px 0 18px; }
+.gallery-hero p { color: rgba(255,255,255,.62); font-size: 17px; line-height: 1.8; }
+.gallery-grid { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+.gallery-card { background: rgba(255,255,255,.045); border: 1px solid rgba(184,146,42,.28); border-radius: 6px; overflow: hidden; }
+.gallery-card img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; display: block; background: rgba(255,255,255,.04); }
+.gallery-info { padding: 22px 24px 26px; }
+.gallery-info span { color: var(--gold); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+.gallery-info h3 { margin-top: 10px; font-family: 'Playfair Display', serif; color: white; font-size: 22px; }
+.gallery-info p { margin-top: 8px; color: rgba(255,255,255,.56); font-size: 14px; line-height: 1.7; }
+@media (max-width: 900px) { .gallery-grid { grid-template-columns: 1fr; } .gallery-page { padding: 36px 5% 70px; } }
+</style>
+</head>
+<body>
+<section class="gallery-page">
+  <a href="../index.html#achievements" class="back-link">Back to Achievements</a>
+  <div class="gallery-hero"><div class="section-tag">MDRT Recognition</div><h1>Million Dollar Round Table</h1><div class="gold-line" style="margin-left:auto;margin-right:auto"></div><p>Celebrating CASB advisors who reached internationally recognised production and professionalism standards.</p></div>
+  <div class="gallery-grid">
+    <article class="gallery-card"><img src="mdrt/mdrt-1.jpg" alt="CASB MDRT recognition poster"><div class="gallery-info"><span>MDRT Achievement</span><h3>Advisor Recognition</h3><p>Acknowledging outstanding commitment, client service, and financial advisory excellence.</p></div></article>
+    <article class="gallery-card"><img src="mdrt/mdrt-2.jpg" alt="CASB MDRT recognition poster"><div class="gallery-info"><span>MDRT Achievement</span><h3>International Standard</h3><p>Recognising advisors whose performance reflects global MDRT benchmarks.</p></div></article>
+    <article class="gallery-card"><img src="../mdrt/mdrt-3.jpg" alt="CASB MDRT recognition poster"><div class="gallery-info"><span>MDRT Achievement</span><h3>CASB Pride</h3><p>Honouring the discipline and persistence behind every MDRT milestone.</p></div></article>
+  </div>
+</section>
+</body>
+</html>
