@@ -3,170 +3,47 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Coming Soon | CASB Agency</title>
-
+<title>CASB Directory | CASB Agency</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
 <link rel="stylesheet" href="style.css">
-
 <style>
-.coming-soon-page {
-  min-height: 100vh;
-  padding: 120px 10% 80px;
-
-  background:
-    radial-gradient(circle at top right, rgba(232,201,106,0.12), transparent 35%),
-    linear-gradient(135deg, #070F1E 0%, var(--navy) 55%, #102848 100%);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  color: var(--white);
-  text-align: center;
-  overflow: hidden;
-}
-
-.coming-soon-card {
-  max-width: 760px;
-  padding: 56px 48px;
-
-  border: 1px solid rgba(184,146,42,0.38);
-  background: rgba(255,255,255,0.045);
-  backdrop-filter: blur(14px);
-
-  box-shadow: 0 24px 80px rgba(0,0,0,0.28);
-  border-radius: 8px;
-}
-
-.coming-logo {
-  height: 92px;
-  margin-bottom: 28px;
-}
-
-.coming-tag {
-  color: var(--gold-light);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  margin-bottom: 18px;
-}
-
-.coming-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(42px, 6vw, 76px);
-  line-height: 1.05;
-  font-weight: 700;
-  margin-bottom: 24px;
-}
-
-.coming-title span {
-  color: var(--gold-light);
-}
-
-.coming-text {
-  max-width: 560px;
-  margin: 0 auto 36px;
-
-  color: rgba(255,255,255,0.65);
-  font-size: 16px;
-  line-height: 1.8;
-}
-
-.coming-actions {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-.coming-btn-primary,
-.coming-btn-outline {
-  padding: 14px 30px;
-  border-radius: 3px;
-
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  text-decoration: none;
-}
-
-.coming-btn-primary {
-  background: var(--gold);
-  color: var(--white);
-}
-
-.coming-btn-primary:hover {
-  background: var(--gold-light);
-  color: var(--navy);
-}
-
-.coming-btn-outline {
-  border: 1px solid rgba(255,255,255,0.3);
-  color: rgba(255,255,255,0.82);
-}
-
-.coming-btn-outline:hover {
-  border-color: var(--gold-light);
-  color: var(--gold-light);
-}
-
-.coming-note {
-  margin-top: 34px;
-  color: rgba(255,255,255,0.35);
-  font-size: 13px;
-}
-
-@media (max-width: 768px) {
-  .coming-soon-page {
-    padding: 100px 6% 60px;
-  }
-
-  .coming-soon-card {
-    padding: 42px 26px;
-  }
-
-  .coming-logo {
-    height: 76px;
-  }
-}
+.directory-page { min-height: 100vh; padding: 90px 7% 80px; background: radial-gradient(circle at top right, rgba(232,201,106,.13), transparent 34%), linear-gradient(135deg, #070F1E 0%, var(--navy) 58%, #102848 100%); color: white; }
+.directory-wrap { max-width: 1100px; margin: 0 auto; }
+.directory-logo { height: 92px; margin-bottom: 36px; }
+.directory-hero { max-width: 760px; margin-bottom: 48px; }
+.directory-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(42px, 6vw, 76px); line-height: 1.05; margin: 14px 0 20px; }
+.directory-hero p { color: rgba(255,255,255,.65); font-size: 17px; line-height: 1.8; }
+.directory-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.directory-card { display: block; min-height: 210px; padding: 26px; border-radius: 6px; border: 1px solid rgba(184,146,42,.32); background: rgba(255,255,255,.045); text-decoration: none; color: inherit; transition: transform .2s, background .2s, border-color .2s; }
+.directory-card:hover { transform: translateY(-4px); background: rgba(184,146,42,.08); border-color: rgba(184,146,42,.58); }
+.directory-card span { color: var(--gold-light); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+.directory-card h2 { font-family: 'Playfair Display', serif; font-size: 25px; margin: 12px 0 10px; }
+.directory-card p { color: rgba(255,255,255,.58); font-size: 14px; line-height: 1.7; }
+.directory-actions { margin-top: 42px; display: flex; gap: 14px; flex-wrap: wrap; }
+@media (max-width: 900px) { .directory-grid { grid-template-columns: 1fr; } .directory-page { padding: 64px 6% 70px; } }
 </style>
 </head>
-
 <body>
-
-<section class="coming-soon-page">
-  <div class="coming-soon-card">
-
-    <img src="assets/logo_casb.png" alt="CASB Agency Logo" class="coming-logo">
-
-    <div class="coming-tag">CASB Agency</div>
-
-    <h1 class="coming-title">
-      Coming <span>Soon</span>
-    </h1>
-
-    <p class="coming-text">
-      This page is currently under development. We are preparing updated content
-      to provide a better and more complete experience for our visitors.
-    </p>
-
-    <div class="coming-actions">
-      <a href="index.html" class="coming-btn-primary">Back to Homepage</a>
-      <a href="index.html#contact" class="coming-btn-outline">Contact Us</a>
+<section class="directory-page">
+  <div class="directory-wrap">
+    <img src="assets/logo_casb.png" alt="CASB Agency Logo" class="directory-logo">
+    <div class="directory-hero">
+      <div class="section-tag">CASB Agency</div>
+      <h1>Explore CASB</h1>
+      <p>Choose a section below to view CASB's team, recognitions, events, branch information, or contact details.</p>
     </div>
-
-    <div class="coming-note">
-      Care And Share Is Our Business
+    <div class="directory-grid">
+      <a href="team/" class="directory-card"><span>Our People</span><h2>Our Team</h2><p>Meet the leadership, advisory, and support structure behind CASB.</p></a>
+      <a href="mda-award/mda-award.html" class="directory-card"><span>Recognition</span><h2>MDA Awards</h2><p>View CASB's Million Dollar Agency recognition gallery.</p></a>
+      <a href="mdrt/mdrt.html" class="directory-card"><span>Recognition</span><h2>MDRT</h2><p>Celebrate advisors who reached Million Dollar Round Table standards.</p></a>
+      <a href="monthly-achievers/monthly.html" class="directory-card"><span>Recognition</span><h2>Monthly Achievers</h2><p>Browse the monthly achiever poster gallery.</p></a>
+      <a href="events/" class="directory-card"><span>Updates</span><h2>News & Events</h2><p>Read agency milestones, seminars, and recognition event summaries.</p></a>
+      <a href="index.html#contact" class="directory-card"><span>Contact</span><h2>Contact CASB</h2><p>Send an enquiry or find branch contact details.</p></a>
     </div>
-
+    <div class="directory-actions"><a href="index.html" class="btn-primary">Back to Homepage</a><a href="index.html#contact" class="btn-outline">Contact Us</a></div>
   </div>
 </section>
-
 </body>
 </html>
