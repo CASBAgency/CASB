@@ -38,6 +38,8 @@ document.querySelectorAll('a[href="coming-soon.html"]').forEach(link => {
     link.href = 'events/';
   } else if (label.includes('million dollar agency')) {
     link.href = 'mda-award/mda-award.html';
+  } else {
+    link.href = 'events/';
   }
 });
 
