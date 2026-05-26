@@ -3,59 +3,59 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Our Team | CASB Agency</title>
+<title>Agent Gallery | CASB Agency</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../style.css">
 <style>
-body { background: var(--off-white); }
-.team-page { padding: 120px 8% 88px; }
-.team-top { display: grid; grid-template-columns: 1fr 1.1fr; gap: 56px; align-items: center; margin-bottom: 72px; }
-.team-photo { border: 1px solid rgba(184,146,42,.45); border-radius: 6px; overflow: hidden; background: var(--navy); box-shadow: 0 18px 45px rgba(13,31,60,.16); }
-.team-photo img { width: 100%; display: block; }
-.team-kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 28px; }
-.team-kpi { background: white; border-left: 3px solid var(--gold); padding: 18px; border-radius: 5px; }
-.team-kpi strong { display: block; font-family: 'Playfair Display', serif; color: var(--navy); font-size: 28px; line-height: 1; }
-.team-kpi span { display: block; margin-top: 8px; color: var(--gray); font-size: 12px; text-transform: uppercase; letter-spacing: .08em; }
-.team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-.team-card { background: white; border: 1px solid var(--gray-light); border-radius: 6px; padding: 28px; min-height: 260px; transition: transform .2s, box-shadow .2s, border-color .2s; }
-.team-card:hover { transform: translateY(-4px); border-color: rgba(184,146,42,.5); box-shadow: 0 16px 36px rgba(13,31,60,.09); }
-.team-card h3 { font-family: 'Playfair Display', serif; color: var(--navy); font-size: 24px; margin-bottom: 12px; }
-.team-card p, .team-list li { color: var(--gray); font-size: 15px; line-height: 1.75; }
-.team-list { list-style: none; display: grid; gap: 10px; margin-top: 20px; }
-.team-list li { padding-left: 18px; position: relative; }
-.team-list li::before { content: ''; position: absolute; left: 0; top: 12px; width: 7px; height: 7px; border-radius: 50%; background: var(--gold); }
-.team-cta { margin-top: 52px; background: var(--navy); color: white; border-radius: 6px; padding: 34px; display: flex; justify-content: space-between; gap: 24px; align-items: center; }
-.team-cta h2 { font-family: 'Playfair Display', serif; font-size: 30px; margin-bottom: 8px; }
-.team-cta p { color: rgba(255,255,255,.62); max-width: 640px; }
-.back-link { display: inline-block; color: var(--gold); text-decoration: none; margin-bottom: 34px; font-size: 14px; letter-spacing: .04em; }
-@media (max-width: 900px) { .team-page { padding: 100px 6% 70px; } .team-top, .team-grid { grid-template-columns: 1fr; } .team-kpis { grid-template-columns: 1fr; } .team-cta { flex-direction: column; align-items: flex-start; } }
+body { background: #070F1E; }
+.gallery-page { min-height: 100vh; padding: 52px 6% 92px; color: white; background: radial-gradient(circle at top right, rgba(232,201,106,.14), transparent 34%), linear-gradient(135deg, #070F1E 0%, var(--navy) 58%, #102848 100%); }
+.back-link { display: inline-block; color: rgba(255,255,255,.68); text-decoration: none; margin-bottom: 62px; font-size: 14px; letter-spacing: .04em; }
+.back-link:hover { color: var(--gold-light); }
+.agent-hero { max-width: 880px; margin: 0 auto 58px; text-align: center; }
+.agent-logo { height: 86px; margin-bottom: 24px; }
+.agent-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(42px, 6vw, 78px); line-height: 1.05; margin: 16px 0 18px; }
+.agent-hero p { max-width: 680px; margin: 0 auto; color: rgba(255,255,255,.64); font-size: 17px; line-height: 1.8; }
+.agent-grid { max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.agent-card { background: rgba(255,255,255,.045); border: 1px solid rgba(184,146,42,.30); border-radius: 7px; overflow: hidden; box-shadow: 0 18px 42px rgba(0,0,0,.16); transition: transform .22s ease, border-color .22s ease, background .22s ease; }
+.agent-card:hover { transform: translateY(-5px); border-color: rgba(232,201,106,.62); background: rgba(184,146,42,.08); }
+.agent-photo { aspect-ratio: 4 / 5; display: grid; place-items: center; background: linear-gradient(145deg, rgba(255,255,255,.08), rgba(255,255,255,.02)); border-bottom: 1px solid rgba(184,146,42,.24); position: relative; overflow: hidden; }
+.agent-photo::before { content: ''; position: absolute; inset: 18px; border: 1px solid rgba(232,201,106,.28); border-radius: 4px; }
+.agent-photo span { position: relative; color: rgba(255,255,255,.42); font-size: 12px; letter-spacing: .16em; text-transform: uppercase; }
+.agent-info { padding: 20px 20px 22px; }
+.agent-info small { color: var(--gold-light); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
+.agent-info h2 { font-family: 'Playfair Display', serif; margin-top: 8px; font-size: 23px; color: white; }
+.agent-info p { margin-top: 8px; color: rgba(255,255,255,.56); font-size: 14px; line-height: 1.65; }
+.agent-note { max-width: 1240px; margin: 42px auto 0; background: rgba(255,255,255,.045); border: 1px solid rgba(184,146,42,.24); border-radius: 7px; padding: 28px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.agent-note h2 { font-family: 'Playfair Display', serif; font-size: 28px; margin-bottom: 6px; }
+.agent-note p { color: rgba(255,255,255,.6); }
+@media (max-width: 1100px) { .agent-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 760px) { .gallery-page { padding: 36px 5% 72px; } .agent-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; } .agent-note { flex-direction: column; align-items: flex-start; } }
+@media (max-width: 520px) { .agent-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
-<section class="team-page">
+<section class="gallery-page">
   <a href="../index.html" class="back-link">Back to Homepage</a>
-  <div class="team-top">
-    <div class="team-photo"><img src="../assets/Group001.jpg" alt="CASB Agency team"></div>
-    <div>
-      <div class="section-tag">Our People</div>
-      <h1 class="section-title">A team built on care, guidance, and long-term trust.</h1>
-      <div class="gold-line"></div>
-      <p class="section-sub">CASB brings together agency leaders, financial advisors, mentors, and support staff across Kuala Lumpur, Ipoh, and Sibu. The team works with a shared operating rhythm: professional advice, consistent client care, and practical development for every advisor.</p>
-      <div class="team-kpis">
-        <div class="team-kpi"><strong>2006</strong><span>Established</span></div>
-        <div class="team-kpi"><strong>3</strong><span>Branch offices</span></div>
-        <div class="team-kpi"><strong>10K+</strong><span>Clients served</span></div>
-      </div>
-    </div>
+  <div class="agent-hero">
+    <img src="../assets/logo_casb.png" alt="CASB Agency Logo" class="agent-logo">
+    <div class="section-tag">Our Team</div>
+    <h1>Agent Force Gallery</h1>
+    <div class="gold-line" style="margin-left:auto;margin-right:auto"></div>
+    <p>A polished gallery space for CASB advisor portraits. Replace each placeholder with an individual agent photo, name, title, branch, or achievement note.</p>
   </div>
-  <div class="team-grid">
-    <article class="team-card"><div class="section-tag">Leadership</div><h3>Agency Direction</h3><p>Senior leaders set the standard for production discipline, professional conduct, and the culture behind Care And Share Is Our Business.</p><ul class="team-list"><li>Business planning and performance reviews</li><li>Advisor coaching and recognition</li><li>Branch-level leadership alignment</li></ul></article>
-    <article class="team-card"><div class="section-tag">Advisory</div><h3>Client Advisors</h3><p>Advisors help clients understand protection, wealth planning, and long-term financial priorities through clear conversations and ongoing service.</p><ul class="team-list"><li>Needs discovery and solution matching</li><li>Policy servicing and client follow-up</li><li>Relationship-led financial guidance</li></ul></article>
-    <article class="team-card"><div class="section-tag">Support</div><h3>Operations Team</h3><p>Administrative and service support keeps the agency responsive, organized, and ready for client enquiries, events, and advisor development.</p><ul class="team-list"><li>Client enquiries and appointment support</li><li>Training and event coordination</li><li>Branch communication and documentation</li></ul></article>
+  <div class="agent-grid">
+    <article class="agent-card"><div class="agent-photo"><span>Agent Photo</span></div><div class="agent-info"><small>Kuala Lumpur HQ</small><h2>Agent Name</h2><p>Advisor profile, role, recognition, or short introduction.</p></div></article>
+    <article class="agent-card"><div class="agent-photo"><span>Agent Photo</span></div><div class="agent-info"><small>Ipoh Branch</small><h2>Agent Name</h2><p>Advisor profile, role, recognition, or short introduction.</p></div></article>
+    <article class="agent-card"><div class="agent-photo"><span>Agent Photo</span></div><div class="agent-info"><small>Sibu Branch</small><h2>Agent Name</h2><p>Advisor profile, role, recognition, or short introduction.</p></div></article>
+    <article class="agent-card"><div class="agent-photo"><span>Agent Photo</span></div><div class="agent-info"><small>CASB Agency</small><h2>Agent Name</h2><p>Advisor profile, role, recognition, or short introduction.</p></div></article>
+    <article class="agent-card"><div class="agent-photo"><span>Agent Photo</span></div><div class="agent-info"><small>CASB Agency</small><h2>Agent Name</h2><p>Advisor profile, role, recognition, or short introduction.</p></div></article>
+    <article class="agent-card"><div class="agent-photo"><span>Agent Photo</span></div><div class="agent-info"><small>CASB Agency</small><h2>Agent Name</h2><p>Advisor profile, role, recognition, or short introduction.</p></div></article>
+    <article class="agent-card"><div class="agent-photo"><span>Agent Photo</span></div><div class="agent-info"><small>CASB Agency</small><h2>Agent Name</h2><p>Advisor profile, role, recognition, or short introduction.</p></div></article>
+    <article class="agent-card"><div class="agent-photo"><span>Agent Photo</span></div><div class="agent-info"><small>CASB Agency</small><h2>Agent Name</h2><p>Advisor profile, role, recognition, or short introduction.</p></div></article>
   </div>
-  <div class="team-cta"><div><h2>Interested in joining CASB?</h2><p>Talk to us about advisor opportunities, training, and branch support.</p></div><a href="../index.html#contact" class="btn-primary">Contact Us</a></div>
+  <div class="agent-note"><div><h2>Ready for your real portraits</h2><p>The layout is already responsive and framed for individual advisor photos.</p></div><a href="../index.html#contact" class="btn-primary">Contact CASB</a></div>
 </section>
 </body>
 </html>
