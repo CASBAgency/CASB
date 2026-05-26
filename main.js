@@ -24,6 +24,32 @@ document.querySelectorAll('.branch-item').forEach(item => {
   });
 });
 
+// Add confidence-building content page to the existing navigation.
+const navLinksList = document.querySelector('.nav-links');
+if (navLinksList && !navLinksList.querySelector('a[href="insights/"]')) {
+  const branchesLink = navLinksList.querySelector('a[href="#branches"]');
+  const insightsItem = document.createElement('li');
+  insightsItem.innerHTML = '<a href="insights/">Insights</a>';
+  if (branchesLink && branchesLink.parentElement) {
+    navLinksList.insertBefore(insightsItem, branchesLink.parentElement);
+  } else {
+    navLinksList.appendChild(insightsItem);
+  }
+}
+
+const footerQuickLinks = document.querySelector('.footer-column');
+if (footerQuickLinks && !footerQuickLinks.querySelector('a[href="insights/"]')) {
+  const branchesFooterLink = footerQuickLinks.querySelector('a[href="#branches"]');
+  const insightsFooterLink = document.createElement('a');
+  insightsFooterLink.href = 'insights/';
+  insightsFooterLink.textContent = 'Insights';
+  if (branchesFooterLink) {
+    footerQuickLinks.insertBefore(insightsFooterLink, branchesFooterLink);
+  } else {
+    footerQuickLinks.appendChild(insightsFooterLink);
+  }
+}
+
 // Replace old placeholder links with completed pages.
 document.querySelectorAll('a[href="coming-soon.html"]').forEach(link => {
   const label = link.textContent.toLowerCase();
