@@ -60,7 +60,7 @@ document.querySelectorAll('a[href="coming-soon.html"]').forEach(link => {
     link.href = 'mdrt/mdrt.html';
   } else if (label.includes('monthly')) {
     link.href = 'monthly-achievers/monthly.html';
-  } else if (label.includes('event') || label.includes('gala') || label.includes('seminar') || label.includes('convention')) {
+  } else if (label.includes('event') || label.includes('gala') || label.includes('seminar') || label.includes('convention') || label.includes('trip') || label.includes('ceremony')) {
     link.href = 'events/';
   } else if (label.includes('million dollar agency')) {
     link.href = 'mda-award/mda-award.html';
@@ -104,14 +104,42 @@ achievementCards.forEach((card, index) => {
 });
 
 const eventCards = document.querySelectorAll('#events .event-card-link');
-const eventHrefs = [
-  'events/annual-recognition-night-2023.html',
-  'events/leadership-growth-seminar-klcc.html',
-  'events/ag-seminar-recognition-2022.html'
+const eventUpdates = [
+  {
+    href: 'events/',
+    label: 'Incentive Trip',
+    date: 'Recent Event',
+    title: 'Harbin Winter IL Incentive Trip',
+    body: 'A memorable winter incentive trip celebrating performance, teamwork, and shared milestones with the CASB agency family.'
+  },
+  {
+    href: 'events/',
+    label: 'Business Conference',
+    date: 'Recent Event',
+    title: 'Sibu Business Conference Trip',
+    body: 'A business conference trip bringing advisors together for learning, connection, and renewed momentum across the team.'
+  },
+  {
+    href: 'events/',
+    label: 'Agency Awards',
+    date: 'Recent Event',
+    title: 'Agency Award Ceremony',
+    body: 'Celebrating CASB achievers, leaders, and advisors whose commitment continues to strengthen the organisation.'
+  }
 ];
 
 eventCards.forEach((card, index) => {
-  if (eventHrefs[index]) card.href = eventHrefs[index];
+  const item = eventUpdates[index];
+  if (!item) return;
+  card.href = item.href;
+  const label = card.querySelector('.img-label');
+  const date = card.querySelector('.event-date-badge');
+  const title = card.querySelector('.event-body h3');
+  const body = card.querySelector('.event-body p');
+  if (label) label.textContent = item.label;
+  if (date) date.textContent = item.date;
+  if (title) title.textContent = item.title;
+  if (body) body.textContent = item.body;
 });
 
 const eventsMore = document.querySelector('.events-more');
@@ -121,6 +149,9 @@ if (eventsMore) {
   if (link) {
     link.href = 'events/';
     link.textContent = 'See More';
+    link.classList.remove('btn-outline');
+    link.classList.add('btn-primary');
+    link.style.color = '#fff';
   }
 }
 
