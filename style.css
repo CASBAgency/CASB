@@ -1050,6 +1050,13 @@ h2.section-title.light {
   overflow: hidden;
 }
 
+.event-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 .event-img .img-label {
   font-family: 'Playfair Display', serif;
   font-size: 15px;
