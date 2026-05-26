@@ -43,6 +43,61 @@ document.querySelectorAll('a[href="coming-soon.html"]').forEach(link => {
   }
 });
 
+const achievementCards = document.querySelectorAll('.achievements-grid .ach-card-link');
+const achievementUpdates = [
+  {
+    href: 'achievements/star-master-awards.html',
+    year: 'STAR MASTER AWARDS',
+    title: 'Star Master Awards',
+    body: 'A dedicated gallery for Star Master recognition photos, ceremony highlights, and award moments.'
+  },
+  {
+    href: 'achievements/a4cc-members.html',
+    year: 'A4CC MEMBERS',
+    title: 'A4CC Members',
+    body: 'Showcasing A4CC members, member portraits, group recognition, and qualification highlights.'
+  },
+  {
+    href: 'achievements/outstanding-performers.html',
+    year: 'OUTSTANDING PERFORMERS',
+    title: 'Outstanding Performers',
+    body: 'A gallery for top advisors, performance milestones, and standout CASB achievers.'
+  }
+];
+
+achievementCards.forEach((card, index) => {
+  const item = achievementUpdates[index];
+  if (!item) return;
+  card.href = item.href;
+  const year = card.querySelector('.ach-year');
+  const title = card.querySelector('.ach-title');
+  const body = card.querySelector('.ach-body');
+  if (year) year.textContent = item.year;
+  if (title) title.textContent = item.title;
+  if (body) body.textContent = item.body;
+});
+
+const eventCards = document.querySelectorAll('#events .event-card-link');
+const eventHrefs = [
+  'events/annual-recognition-night-2023.html',
+  'events/leadership-growth-seminar-klcc.html',
+  'events/ag-seminar-recognition-2022.html'
+];
+
+eventCards.forEach((card, index) => {
+  if (eventHrefs[index]) card.href = eventHrefs[index];
+});
+
+const eventsMore = document.querySelector('.events-more');
+if (eventsMore) {
+  eventsMore.style.justifyContent = 'flex-end';
+  const link = eventsMore.querySelector('a');
+  if (link) {
+    link.href = 'events/';
+    link.textContent = 'See More';
+  }
+}
+
 // Nav hide / show on scroll
 const nav = document.querySelector('nav');
 let lastScrollY = window.scrollY;
