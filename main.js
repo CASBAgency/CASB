@@ -1,4 +1,4 @@
-// ── SCROLL FADE-IN ──
+// Scroll fade-in
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -13,8 +13,7 @@ document.querySelectorAll('.fade-in').forEach(el => {
   observer.observe(el);
 });
 
-
-// ── BRANCH ITEM ACTIVE STATE ──
+// Branch item active state
 document.querySelectorAll('.branch-item').forEach(item => {
   item.addEventListener('click', () => {
     document.querySelectorAll('.branch-item').forEach(i => {
@@ -25,35 +24,50 @@ document.querySelectorAll('.branch-item').forEach(item => {
   });
 });
 
+// Replace old placeholder links with completed pages.
+document.querySelectorAll('a[href="coming-soon.html"]').forEach(link => {
+  const label = link.textContent.toLowerCase();
 
-// ── NAV HIDE / SHOW ON SCROLL ──
+  if (label.includes('our team')) {
+    link.href = 'team/';
+  } else if (label.includes('mdrt') || label.includes('million dollar round table')) {
+    link.href = 'mdrt/mdrt.html';
+  } else if (label.includes('monthly')) {
+    link.href = 'monthly-achievers/monthly.html';
+  } else if (label.includes('event') || label.includes('gala') || label.includes('seminar') || label.includes('convention')) {
+    link.href = 'events/';
+  } else if (label.includes('million dollar agency')) {
+    link.href = 'mda-award/mda-award.html';
+  }
+});
+
+// Nav hide / show on scroll
 const nav = document.querySelector('nav');
 let lastScrollY = window.scrollY;
 
-window.addEventListener('scroll', () => {
-  const currentScrollY = window.scrollY;
+if (nav) {
+  window.addEventListener('scroll', () => {
+    const currentScrollY = window.scrollY;
 
-  if (currentScrollY <= 20) {
-    nav.classList.remove('nav-hidden');
-  } else if (currentScrollY > lastScrollY) {
-    nav.classList.add('nav-hidden');
-  } else {
-    nav.classList.remove('nav-hidden');
-  }
+    if (currentScrollY <= 20) {
+      nav.classList.remove('nav-hidden');
+    } else if (currentScrollY > lastScrollY) {
+      nav.classList.add('nav-hidden');
+    } else {
+      nav.classList.remove('nav-hidden');
+    }
 
-  lastScrollY = currentScrollY;
-});
+    lastScrollY = currentScrollY;
+  });
 
+  window.addEventListener('mousemove', (e) => {
+    if (window.innerWidth > 900 && e.clientY <= 90) {
+      nav.classList.remove('nav-hidden');
+    }
+  });
+}
 
-// ── DESKTOP: SHOW NAV WHEN MOUSE NEAR TOP ──
-window.addEventListener('mousemove', (e) => {
-  if (window.innerWidth > 900 && e.clientY <= 90) {
-    nav.classList.remove('nav-hidden');
-  }
-});
-
-
-// ── NAV ACTIVE HIGHLIGHT ON SCROLL ──
+// Nav active highlight on scroll
 const sections = document.querySelectorAll('section[id]');
 
 window.addEventListener('scroll', () => {
@@ -78,44 +92,13 @@ window.addEventListener('scroll', () => {
   });
 });
 
-// ── ACHIEVEMENT CAROUSEL ARROWS ──
-document.querySelectorAll(".ach-carousel").forEach(carousel => {
-  const images = carousel.querySelectorAll("img");
-  const prevBtn = carousel.querySelector(".prev");
-  const nextBtn = carousel.querySelector(".next");
-
-  if (!images.length || !prevBtn || !nextBtn) return;
-
-  let index = 0;
-
-  function showSlide(i) {
-    images.forEach(img => img.classList.remove("active"));
-    images[i].classList.add("active");
-  }
-
-  nextBtn.addEventListener("click", e => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    index = (index + 1) % images.length;
-    showSlide(index);
-  });
-
-  prevBtn.addEventListener("click", e => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    index = (index - 1 + images.length) % images.length;
-    showSlide(index);
-  });
-});
-
-// ── ACHIEVEMENT CARD CAROUSEL ──
-
+// Achievement carousel arrows and autoplay
 document.querySelectorAll('.ach-carousel').forEach(carousel => {
   const slides = carousel.querySelectorAll('img');
   const prevBtn = carousel.querySelector('.prev');
   const nextBtn = carousel.querySelector('.next');
+
+  if (!slides.length || !prevBtn || !nextBtn) return;
 
   let index = 0;
 
@@ -126,14 +109,14 @@ document.querySelectorAll('.ach-carousel').forEach(carousel => {
 
   nextBtn.addEventListener('click', (e) => {
     e.preventDefault();
-
+    e.stopPropagation();
     index = (index + 1) % slides.length;
     showSlide(index);
   });
 
   prevBtn.addEventListener('click', (e) => {
     e.preventDefault();
-
+    e.stopPropagation();
     index = (index - 1 + slides.length) % slides.length;
     showSlide(index);
   });
@@ -144,7 +127,7 @@ document.querySelectorAll('.ach-carousel').forEach(carousel => {
   }, 4500);
 });
 
-/// ── HAMBURGER MENU ──
+// Hamburger menu
 const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
 
