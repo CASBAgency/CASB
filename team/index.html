@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Agent Gallery | CASB Agency</title>
+<title>Our Team | CASB Agency</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -20,12 +20,12 @@ body { background: #070F1E; }
 .agent-grid { max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
 .agent-card { background: rgba(255,255,255,.045); border: 1px solid rgba(184,146,42,.30); border-radius: 7px; overflow: hidden; box-shadow: 0 18px 42px rgba(0,0,0,.16); transition: transform .22s ease, border-color .22s ease, background .22s ease; }
 .agent-card:hover { transform: translateY(-5px); border-color: rgba(232,201,106,.62); background: rgba(184,146,42,.08); }
-.agent-photo { aspect-ratio: 4 / 5; display: grid; place-items: center; background: linear-gradient(145deg, rgba(255,255,255,.08), rgba(255,255,255,.02)); border-bottom: 1px solid rgba(184,146,42,.24); position: relative; overflow: hidden; }
-.agent-photo::before { content: ''; position: absolute; inset: 18px; border: 1px solid rgba(232,201,106,.28); border-radius: 4px; }
-.agent-photo span { position: relative; color: rgba(255,255,255,.42); font-size: 12px; letter-spacing: .16em; text-transform: uppercase; }
+.agent-photo { aspect-ratio: 4 / 5; background: rgba(255,255,255,.04); border-bottom: 1px solid rgba(184,146,42,.24); position: relative; overflow: hidden; }
+.agent-photo::before { content: ''; position: absolute; inset: 18px; border: 1px solid rgba(232,201,106,.28); border-radius: 4px; z-index: 2; pointer-events: none; }
+.agent-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .agent-info { padding: 20px 20px 22px; }
 .agent-info small { color: var(--gold-light); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
-.agent-info h2 { font-family: 'Playfair Display', serif; margin-top: 8px; font-size: 23px; color: white; }
+.agent-info h2 { font-family: 'Playfair Display', serif; margin-top: 8px; font-size: 23px; color: white; line-height: 1.2; }
 .agent-info p { margin-top: 8px; color: rgba(255,255,255,.56); font-size: 14px; line-height: 1.65; }
 .agent-note { max-width: 1240px; margin: 42px auto 0; background: rgba(255,255,255,.045); border: 1px solid rgba(184,146,42,.24); border-radius: 7px; padding: 28px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .agent-note h2 { font-family: 'Playfair Display', serif; font-size: 28px; margin-bottom: 6px; }
@@ -41,21 +41,42 @@ body { background: #070F1E; }
   <div class="agent-hero">
     <img src="../assets/logo_casb.png" alt="CASB Agency Logo" class="agent-logo">
     <div class="section-tag">Our Team</div>
-    <h1>Agent Force Gallery</h1>
+    <h1>CASB Agency Team</h1>
     <div class="gold-line" style="margin-left:auto;margin-right:auto"></div>
-    <p>A polished gallery space for CASB advisor portraits. Replace each placeholder with an individual agent photo, name, title, branch, or achievement note.</p>
+    <p>Meet the advisors and leaders behind CASB's agency culture, client care, and long-term growth.</p>
   </div>
   <div class="agent-grid">
-    <article class="agent-card"><div class="agent-photo"><span>Agent Photo</span></div><div class="agent-info"><small>Kuala Lumpur HQ</small><h2>Agent Name</h2><p>Advisor profile, role, recognition, or short introduction.</p></div></article>
-    <article class="agent-card"><div class="agent-photo"><span>Agent Photo</span></div><div class="agent-info"><small>Ipoh Branch</small><h2>Agent Name</h2><p>Advisor profile, role, recognition, or short introduction.</p></div></article>
-    <article class="agent-card"><div class="agent-photo"><span>Agent Photo</span></div><div class="agent-info"><small>Sibu Branch</small><h2>Agent Name</h2><p>Advisor profile, role, recognition, or short introduction.</p></div></article>
-    <article class="agent-card"><div class="agent-photo"><span>Agent Photo</span></div><div class="agent-info"><small>CASB Agency</small><h2>Agent Name</h2><p>Advisor profile, role, recognition, or short introduction.</p></div></article>
-    <article class="agent-card"><div class="agent-photo"><span>Agent Photo</span></div><div class="agent-info"><small>CASB Agency</small><h2>Agent Name</h2><p>Advisor profile, role, recognition, or short introduction.</p></div></article>
-    <article class="agent-card"><div class="agent-photo"><span>Agent Photo</span></div><div class="agent-info"><small>CASB Agency</small><h2>Agent Name</h2><p>Advisor profile, role, recognition, or short introduction.</p></div></article>
-    <article class="agent-card"><div class="agent-photo"><span>Agent Photo</span></div><div class="agent-info"><small>CASB Agency</small><h2>Agent Name</h2><p>Advisor profile, role, recognition, or short introduction.</p></div></article>
-    <article class="agent-card"><div class="agent-photo"><span>Agent Photo</span></div><div class="agent-info"><small>CASB Agency</small><h2>Agent Name</h2><p>Advisor profile, role, recognition, or short introduction.</p></div></article>
+    <article class="agent-card"><div class="agent-photo"><img src="../Alice_Chong%20Poh%20Chiang.jpg" alt="Alice Chong Poh Chiang"></div><div class="agent-info"><small>CASB Agency</small><h2>Alice Chong Poh Chiang</h2><p>Advisor profile and recognition details coming soon.</p></div></article>
+    <article class="agent-card"><div class="agent-photo"><img src="../Anna_Chow%20Mei%20Ying.jpg" alt="Anna Chow Mei Ying"></div><div class="agent-info"><small>CASB Agency</small><h2>Anna Chow Mei Ying</h2><p>Advisor profile and recognition details coming soon.</p></div></article>
+    <article class="agent-card"><div class="agent-photo"><img src="../Asher%20Chong_1.jpg" alt="Asher Chong"></div><div class="agent-info"><small>CASB Agency</small><h2>Asher Chong</h2><p>Advisor profile and recognition details coming soon.</p></div></article>
+    <article class="agent-card"><div class="agent-photo"><img src="../Asher%20Chong_2.jpg" alt="Asher Chong"></div><div class="agent-info"><small>CASB Agency</small><h2>Asher Chong</h2><p>Advisor profile and recognition details coming soon.</p></div></article>
+    <article class="agent-card"><div class="agent-photo"><img src="../Asher%20Chong_3.jpg" alt="Asher Chong"></div><div class="agent-info"><small>CASB Agency</small><h2>Asher Chong</h2><p>Advisor profile and recognition details coming soon.</p></div></article>
+    <article class="agent-card"><div class="agent-photo"><img src="../Esther%20Tan%20Pui%20Yen.jpg" alt="Esther Tan Pui Yen"></div><div class="agent-info"><small>CASB Agency</small><h2>Esther Tan Pui Yen</h2><p>Advisor profile and recognition details coming soon.</p></div></article>
+    <article class="agent-card"><div class="agent-photo"><img src="../Felix_Teoh%20Cee%20Hon.jpg" alt="Felix Teoh Cee Hon"></div><div class="agent-info"><small>CASB Agency</small><h2>Felix Teoh Cee Hon</h2><p>Advisor profile and recognition details coming soon.</p></div></article>
+    <article class="agent-card"><div class="agent-photo"><img src="../GALDYS_HENG%20HUI%20SHAN.jpg" alt="Gladys Heng Hui Shan"></div><div class="agent-info"><small>CASB Agency</small><h2>Gladys Heng Hui Shan</h2><p>Advisor profile and recognition details coming soon.</p></div></article>
+    <article class="agent-card"><div class="agent-photo"><img src="../Jess_Lau%20Siew%20Chin.jpg" alt="Jess Lau Siew Chin"></div><div class="agent-info"><small>CASB Agency</small><h2>Jess Lau Siew Chin</h2><p>Advisor profile and recognition details coming soon.</p></div></article>
+    <article class="agent-card"><div class="agent-photo"><img src="../Kelvin%20Chou.jpg" alt="Kelvin Chou"></div><div class="agent-info"><small>CASB Agency</small><h2>Kelvin Chou</h2><p>Advisor profile and recognition details coming soon.</p></div></article>
+    <article class="agent-card"><div class="agent-photo"><img src="../Ken_Ng%20Wui%20Lung.jpg" alt="Ken Ng Wui Lung"></div><div class="agent-info"><small>CASB Agency</small><h2>Ken Ng Wui Lung</h2><p>Advisor profile and recognition details coming soon.</p></div></article>
+    <article class="agent-card"><div class="agent-photo"><img src="../Kong%20Siaw%20Ling.jpg" alt="Kong Siaw Ling"></div><div class="agent-info"><small>CASB Agency</small><h2>Kong Siaw Ling</h2><p>Advisor profile and recognition details coming soon.</p></div></article>
+    <article class="agent-card"><div class="agent-photo"><img src="../Lai%20Siew%20Ching.jpg" alt="Lai Siew Ching"></div><div class="agent-info"><small>CASB Agency</small><h2>Lai Siew Ching</h2><p>Advisor profile and recognition details coming soon.</p></div></article>
+    <article class="agent-card"><div class="agent-photo"><img src="../Lau%20Jiayi.jpg" alt="Lau Jiayi"></div><div class="agent-info"><small>CASB Agency</small><h2>Lau Jiayi</h2><p>Advisor profile and recognition details coming soon.</p></div></article>
+    <article class="agent-card"><div class="agent-photo"><img src="../Lorraine_Kong%20Siew%20Feng.jpg" alt="Lorraine Kong Siew Feng"></div><div class="agent-info"><small>CASB Agency</small><h2>Lorraine Kong Siew Feng</h2><p>Advisor profile and recognition details coming soon.</p></div></article>
+    <article class="agent-card"><div class="agent-photo"><img src="../Low%20Kheng%20Leng_2.jpg" alt="Low Kheng Leng"></div><div class="agent-info"><small>CASB Agency</small><h2>Low Kheng Leng</h2><p>Advisor profile and recognition details coming soon.</p></div></article>
+    <article class="agent-card"><div class="agent-photo"><img src="../Ng%20Li%20Ching.jpg" alt="Ng Li Ching"></div><div class="agent-info"><small>CASB Agency</small><h2>Ng Li Ching</h2><p>Advisor profile and recognition details coming soon.</p></div></article>
+    <article class="agent-card"><div class="agent-photo"><img src="../Ong%20Chow%20Leng.jpg" alt="Ong Chow Leng"></div><div class="agent-info"><small>CASB Agency</small><h2>Ong Chow Leng</h2><p>Advisor profile and recognition details coming soon.</p></div></article>
+    <article class="agent-card"><div class="agent-photo"><img src="../Peri_Tan%20Pei%20Li.jpg" alt="Peri Tan Pei Li"></div><div class="agent-info"><small>CASB Agency</small><h2>Peri Tan Pei Li</h2><p>Advisor profile and recognition details coming soon.</p></div></article>
+    <article class="agent-card"><div class="agent-photo"><img src="../Rock%20Ng.jpg" alt="Rock Ng"></div><div class="agent-info"><small>CASB Agency</small><h2>Rock Ng</h2><p>Advisor profile and recognition details coming soon.</p></div></article>
+    <article class="agent-card"><div class="agent-photo"><img src="../Steve_Moh%20Hiong%20Ie.jpg" alt="Steve Moh Hiong Ie"></div><div class="agent-info"><small>CASB Agency</small><h2>Steve Moh Hiong Ie</h2><p>Advisor profile and recognition details coming soon.</p></div></article>
+    <article class="agent-card"><div class="agent-photo"><img src="../Tan%20Hwa%20Yong.jpg" alt="Tan Hwa Yong"></div><div class="agent-info"><small>CASB Agency</small><h2>Tan Hwa Yong</h2><p>Advisor profile and recognition details coming soon.</p></div></article>
+    <article class="agent-card"><div class="agent-photo"><img src="../Tang%20Hui%20Shian.jpg" alt="Tang Hui Shian"></div><div class="agent-info"><small>CASB Agency</small><h2>Tang Hui Shian</h2><p>Advisor profile and recognition details coming soon.</p></div></article>
+    <article class="agent-card"><div class="agent-photo"><img src="../Vincent%20Yang.jpg" alt="Vincent Yang"></div><div class="agent-info"><small>CASB Agency</small><h2>Vincent Yang</h2><p>Advisor profile and recognition details coming soon.</p></div></article>
+    <article class="agent-card"><div class="agent-photo"><img src="../William_Choong%20Kei%20Foong.jpg" alt="William Choong Kei Foong"></div><div class="agent-info"><small>CASB Agency</small><h2>William Choong Kei Foong</h2><p>Advisor profile and recognition details coming soon.</p></div></article>
+    <article class="agent-card"><div class="agent-photo"><img src="../Wong%20Kar%20Din.jpg" alt="Wong Kar Din"></div><div class="agent-info"><small>CASB Agency</small><h2>Wong Kar Din</h2><p>Advisor profile and recognition details coming soon.</p></div></article>
+    <article class="agent-card"><div class="agent-photo"><img src="../Wong%20Tieng%20Hock.jpg" alt="Wong Tieng Hock"></div><div class="agent-info"><small>CASB Agency</small><h2>Wong Tieng Hock</h2><p>Advisor profile and recognition details coming soon.</p></div></article>
+    <article class="agent-card"><div class="agent-photo"><img src="../Wong%20Yew%20Peng.jpg" alt="Wong Yew Peng"></div><div class="agent-info"><small>CASB Agency</small><h2>Wong Yew Peng</h2><p>Advisor profile and recognition details coming soon.</p></div></article>
+    <article class="agent-card"><div class="agent-photo"><img src="../Yew%20Fu%20Hui%20.jpg" alt="Yew Fu Hui"></div><div class="agent-info"><small>CASB Agency</small><h2>Yew Fu Hui</h2><p>Advisor profile and recognition details coming soon.</p></div></article>
   </div>
-  <div class="agent-note"><div><h2>Ready for your real portraits</h2><p>The layout is already responsive and framed for individual advisor photos.</p></div><a href="../index.html#contact" class="btn-primary">Contact CASB</a></div>
+  <div class="agent-note"><div><h2>Team profiles are now connected</h2><p>Share titles, branches, or short bios and I can polish each profile card.</p></div><a href="../index.html#contact" class="btn-primary">Contact CASB</a></div>
 </section>
 </body>
 </html>
