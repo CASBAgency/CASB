@@ -155,6 +155,16 @@ if (eventsMore) {
   }
 }
 
+const backToTop = document.querySelector('.back-to-top');
+if (backToTop) {
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+}
+
 // Nav hide / show on scroll
 const nav = document.querySelector('nav');
 let lastScrollY = window.scrollY;
