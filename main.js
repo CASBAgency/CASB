@@ -161,7 +161,7 @@ let lastScrollY = window.scrollY;
 
 if (nav) {
   window.addEventListener('scroll', () => {
-    if (window.innerWidth <= 1180 || navLinks?.classList.contains('active')) {
+    if (window.innerWidth <= 767 || navLinks?.classList.contains('active')) {
       nav.classList.remove('nav-hidden');
       lastScrollY = window.scrollY;
       return;
@@ -181,7 +181,7 @@ if (nav) {
   });
 
   window.addEventListener('mousemove', (e) => {
-    if (window.innerWidth > 1180 && e.clientY <= 90) {
+    if (window.innerWidth > 767 && e.clientY <= 90) {
       nav.classList.remove('nav-hidden');
     }
   });

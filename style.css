@@ -1611,8 +1611,41 @@ h2.section-title.light {
   transition: 0.3s ease;
 }
 
-/* Mobile and tablet nav */
-@media (max-width: 1180px) {
+@media (min-width: 768px) and (max-width: 1180px) {
+  nav {
+    height: 66px;
+    padding: 0 2.6%;
+  }
+
+  .nav-logo {
+    gap: 8px;
+  }
+
+  .nav-logo img {
+    height: 58px;
+  }
+
+  .logo-est {
+    padding-top: 6px;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+  }
+
+  .nav-links a {
+    padding: 0 7px;
+    font-size: 11px;
+    letter-spacing: 0.025em;
+    line-height: 66px;
+  }
+
+  .nav-cta {
+    padding: 9px 12px !important;
+    margin-left: 3px;
+  }
+}
+
+/* Mobile nav */
+@media (max-width: 767px) {
   nav {
     height: 66px;
     padding: 0 84px 0 24px;
@@ -1697,7 +1730,7 @@ h2.section-title.light {
   }
 }
 
-@media (max-width: 1180px) {
+@media (max-width: 767px) {
   .nav-links {
     width: min(360px, 86vw);
     background: rgba(13,31,60,0.94);
