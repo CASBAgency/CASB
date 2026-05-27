@@ -13,7 +13,16 @@ body { background: var(--off-white); }
 .event-detail { min-height: 100vh; padding: 54px 6% 88px; }
 .back { display: inline-block; color: var(--gold); text-decoration: none; margin-bottom: 42px; }
 .cover { max-width: 1120px; margin: 0 auto 42px; border: 1px solid rgba(184,146,42,.38); border-radius: 8px; background: var(--navy); padding: 18px; box-shadow: 0 18px 44px rgba(13,31,60,.14); }
-.cover img { width: 100%; aspect-ratio: 16/7; object-fit: cover; display: block; border-radius: 5px; }
+.cover-slideshow { position: relative; aspect-ratio: 16/7; overflow: hidden; border-radius: 5px; background: var(--navy); }
+.cover-slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0; transition: opacity .6s ease; }
+.cover-slide.active { opacity: 1; }
+.cover-control { position: absolute; top: 50%; z-index: 2; width: 42px; height: 42px; border: 1px solid rgba(232,201,106,.42); border-radius: 50%; background: rgba(13,31,60,.7); color: white; display: grid; place-items: center; font-size: 28px; line-height: 1; cursor: pointer; transform: translateY(-50%); }
+.cover-control:hover { background: rgba(184,146,42,.9); }
+.cover-prev { left: 18px; }
+.cover-next { right: 18px; }
+.cover-dots { position: absolute; left: 50%; bottom: 16px; z-index: 2; display: flex; gap: 8px; transform: translateX(-50%); }
+.cover-dot { width: 9px; height: 9px; padding: 0; border: 1px solid rgba(255,255,255,.72); border-radius: 999px; background: rgba(255,255,255,.35); cursor: pointer; }
+.cover-dot.active { width: 24px; background: var(--gold-light); border-color: var(--gold-light); }
 .intro { max-width: 900px; margin: 0 auto 46px; text-align: center; }
 .intro h1 { font-family: 'Playfair Display', serif; color: var(--navy); font-size: clamp(40px,5.5vw,70px); line-height: 1.08; margin: 14px 0 18px; }
 .intro p { color: var(--gray); font-size: 17px; line-height: 1.8; }
@@ -22,13 +31,38 @@ body { background: var(--off-white); }
 .photo img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
 .photo p { padding: 14px 16px; color: var(--gray); font-size: 14px; }
 @media (max-width: 900px) { .gallery { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 600px) { .event-detail { padding: 36px 5% 70px; } .cover img { aspect-ratio: 4/3; } .gallery { grid-template-columns: 1fr; } }
+@media (max-width: 600px) { .event-detail { padding: 36px 5% 70px; } .cover { padding: 12px; } .cover-slideshow { aspect-ratio: 4/3; } .cover-control { width: 36px; height: 36px; font-size: 24px; } .cover-prev { left: 12px; } .cover-next { right: 12px; } .gallery { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
 <section class="event-detail">
   <a href="index.html" class="back">Back to Events</a>
-  <div class="cover"><img src="../assets/photos/events/agency-award-ceremony/cover.jpg" alt="CASB Agency Award Ceremony cover"></div>
+  <div class="cover">
+    <div class="cover-slideshow" aria-label="Agency Award Ceremony cover slideshow">
+      <img class="cover-slide active" src="../assets/photos/events/agency-award-ceremony/cover.jpg" alt="CASB Agency Award Ceremony cover">
+      <img class="cover-slide" src="../assets/photos/events/agency-award-ceremony/stage-celebration.jpg" alt="CASB stage celebration">
+      <img class="cover-slide" src="../assets/photos/events/agency-award-ceremony/award-presentation.jpg" alt="CASB award presentation">
+      <img class="cover-slide" src="../assets/photos/events/agency-award-ceremony/ballroom-audience.jpg" alt="CASB ballroom audience">
+      <img class="cover-slide" src="../assets/photos/events/agency-award-ceremony/red-carpet-arrival.jpg" alt="CASB red carpet arrival">
+      <img class="cover-slide" src="../assets/photos/events/agency-award-ceremony/group-recognition.jpg" alt="CASB group recognition photo">
+      <img class="cover-slide" src="../assets/photos/events/agency-award-ceremony/award-recipient.jpg" alt="CASB award recipient">
+      <img class="cover-slide" src="../assets/photos/events/agency-award-ceremony/couple-recognition.jpg" alt="CASB couple recognition">
+      <img class="cover-slide" src="../assets/photos/events/agency-award-ceremony/advisor-recognition.jpg" alt="CASB advisor recognition">
+      <button class="cover-control cover-prev" type="button" aria-label="Previous cover photo">&lsaquo;</button>
+      <button class="cover-control cover-next" type="button" aria-label="Next cover photo">&rsaquo;</button>
+      <div class="cover-dots" aria-label="Cover photo navigation">
+        <button class="cover-dot active" type="button" aria-label="Show cover photo 1" aria-current="true"></button>
+        <button class="cover-dot" type="button" aria-label="Show cover photo 2"></button>
+        <button class="cover-dot" type="button" aria-label="Show cover photo 3"></button>
+        <button class="cover-dot" type="button" aria-label="Show cover photo 4"></button>
+        <button class="cover-dot" type="button" aria-label="Show cover photo 5"></button>
+        <button class="cover-dot" type="button" aria-label="Show cover photo 6"></button>
+        <button class="cover-dot" type="button" aria-label="Show cover photo 7"></button>
+        <button class="cover-dot" type="button" aria-label="Show cover photo 8"></button>
+        <button class="cover-dot" type="button" aria-label="Show cover photo 9"></button>
+      </div>
+    </div>
+  </div>
   <div class="intro">
     <div class="section-tag">Agency Awards</div>
     <h1>Agency Award Ceremony</h1>
@@ -46,5 +80,6 @@ body { background: var(--off-white); }
     <article class="photo"><img src="../assets/photos/events/agency-award-ceremony/advisor-recognition.jpg" alt="CASB advisor recognition"><p>Advisor recognition</p></article>
   </div>
 </section>
+<script src="../main.js"></script>
 </body>
 </html>

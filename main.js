@@ -106,25 +106,25 @@ achievementCards.forEach((card, index) => {
 const eventCards = document.querySelectorAll('#events .event-card-link');
 const eventUpdates = [
   {
-    href: 'events/harbin-winter-il-incentive-trip.html',
-    label: 'Incentive Trip',
-    date: 'Recent Event',
-    title: 'Harbin Winter IL Incentive Trip',
-    body: 'A memorable winter incentive trip celebrating performance, teamwork, and shared milestones with the CASB agency family.'
+    href: 'events/agency-award-ceremony.html',
+    label: 'Agency Awards',
+    date: '14 May 2026',
+    title: 'Agency Award Ceremony',
+    body: 'Celebrating CASB achievers, leaders, and advisors whose commitment continues to strengthen the organisation.'
+  },
+  {
+    href: 'events/aglc-action-group-leader-conference.html',
+    label: 'Leadership Conference',
+    date: '18 Apr 2026',
+    title: 'AGLC - Action Group Leader Conference',
+    body: 'A leadership conference reserved for future event photos, highlights, and team memories.'
   },
   {
     href: 'events/sibu-business-conference-trip.html',
     label: 'Business Conference',
-    date: 'Recent Event',
+    date: '13 Mar 2026',
     title: 'Sibu Business Conference Trip',
     body: 'A business conference trip bringing advisors together for learning, connection, and renewed momentum across the team.'
-  },
-  {
-    href: 'events/agency-award-ceremony.html',
-    label: 'Agency Awards',
-    date: 'Recent Event',
-    title: 'Agency Award Ceremony',
-    body: 'Celebrating CASB achievers, leaders, and advisors whose commitment continues to strengthen the organisation.'
   }
 ];
 
@@ -245,6 +245,61 @@ document.querySelectorAll('.ach-carousel').forEach(carousel => {
     index = (index + 1) % slides.length;
     showSlide(index);
   }, 4500);
+});
+
+// Event cover slideshows
+document.querySelectorAll('.cover-slideshow').forEach(slideshow => {
+  const slides = Array.from(slideshow.querySelectorAll('.cover-slide'));
+  const dots = Array.from(slideshow.querySelectorAll('.cover-dot'));
+  const prevBtn = slideshow.querySelector('.cover-prev');
+  const nextBtn = slideshow.querySelector('.cover-next');
+
+  if (slides.length <= 1) return;
+
+  let index = slides.findIndex(slide => slide.classList.contains('active'));
+  if (index < 0) index = 0;
+
+  function showSlide(nextIndex) {
+    index = (nextIndex + slides.length) % slides.length;
+    slides.forEach((slide, slideIndex) => {
+      const isActive = slideIndex === index;
+      slide.classList.toggle('active', isActive);
+      slide.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+    });
+    dots.forEach((dot, dotIndex) => {
+      const isActive = dotIndex === index;
+      dot.classList.toggle('active', isActive);
+      dot.setAttribute('aria-current', isActive ? 'true' : 'false');
+    });
+  }
+
+  function resetAutoplay() {
+    window.clearInterval(timer);
+    timer = window.setInterval(() => showSlide(index + 1), 4800);
+  }
+
+  prevBtn?.addEventListener('click', () => {
+    showSlide(index - 1);
+    resetAutoplay();
+  });
+
+  nextBtn?.addEventListener('click', () => {
+    showSlide(index + 1);
+    resetAutoplay();
+  });
+
+  dots.forEach((dot, dotIndex) => {
+    dot.addEventListener('click', () => {
+      showSlide(dotIndex);
+      resetAutoplay();
+    });
+  });
+
+  slideshow.addEventListener('mouseenter', () => window.clearInterval(timer));
+  slideshow.addEventListener('mouseleave', resetAutoplay);
+
+  showSlide(index);
+  let timer = window.setInterval(() => showSlide(index + 1), 4800);
 });
 
 // Hamburger menu
