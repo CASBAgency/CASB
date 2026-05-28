@@ -2103,3 +2103,121 @@ body.js-loaded .fade-in.visible {
   html { scroll-behavior: smooth; }
 }
 
+/* ── MONTHLY ACHIEVERS WIDGET (homepage) ── */
+.ach-card-monthly-widget {
+  display: flex !important;
+  flex-direction: row !important;
+  padding: 0 !important;
+  overflow: hidden;
+  gap: 0 !important;
+  cursor: default;
+}
+.ach-card-monthly-widget:hover {
+  transform: none !important;
+}
+
+/* Vertical year nav */
+.ma-year-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 20px 14px;
+  background: rgba(13,31,60,.06);
+  border-right: 1px solid rgba(184,146,42,.15);
+  flex-shrink: 0;
+}
+
+.ma-year-btn {
+  position: relative;
+  width: 52px; height: 52px;
+  background: none; border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  padding: 0;
+}
+/* Diamond shape via rotated square */
+.ma-year-btn::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: rgba(255,255,255,.08);
+  border: 1.5px solid rgba(232,201,106,.25);
+  border-radius: 4px;
+  transform: rotate(45deg);
+  transition: background .2s, border-color .2s, transform .2s;
+}
+.ma-year-btn:hover::before {
+  background: rgba(232,201,106,.12);
+  border-color: rgba(232,201,106,.6);
+  transform: rotate(45deg) scale(1.08);
+}
+.ma-year-btn.active::before {
+  background: var(--gold);
+  border-color: var(--gold-light);
+  transform: rotate(45deg);
+}
+.ma-year-btn span {
+  position: relative; z-index: 1;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .04em;
+  color: rgba(255,255,255,.55);
+  font-family: 'DM Sans', sans-serif;
+  transition: color .2s;
+}
+.ma-year-btn:hover span { color: var(--gold-light); }
+.ma-year-btn.active span { color: #fff; }
+
+/* Poster display area */
+.ma-display {
+  flex: 1; min-width: 0;
+  display: flex; flex-direction: column;
+}
+.ma-poster-wrap { flex: 1; min-height: 0; position: relative; overflow: hidden; }
+
+.ma-year-panel {
+  display: none;
+  height: 100%;
+}
+.ma-year-panel.active { display: flex; flex-direction: column; }
+
+.ma-poster-scroll {
+  display: flex;
+  gap: 8px;
+  padding: 14px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  flex: 1;
+  align-items: center;
+}
+.ma-poster-scroll::-webkit-scrollbar { display: none; }
+.ma-poster-scroll img {
+  height: 140px;
+  width: auto;
+  flex-shrink: 0;
+  border-radius: 4px;
+  object-fit: cover;
+  border: 1px solid rgba(255,255,255,.08);
+  transition: transform .2s, border-color .2s;
+  cursor: zoom-in;
+}
+.ma-poster-scroll img:hover {
+  transform: scale(1.04);
+  border-color: rgba(232,201,106,.4);
+}
+
+.ma-coming-soon {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 10px;
+  padding: 20px; text-align: center;
+}
+.ma-coming-soon svg { width: 28px; height: 28px; opacity: .25; }
+.ma-coming-soon p { font-size: 13px; color: rgba(255,255,255,.35); }
+
+.ma-footer {
+  padding: 14px 16px;
+  border-top: 1px solid rgba(255,255,255,.07);
+  display: flex; align-items: flex-end; justify-content: space-between;
+  gap: 12px;
+}
+.ma-footer .ach-year { margin-bottom: 4px; }
+.ma-footer .ach-link { flex-shrink: 0; margin-top: 0; }
