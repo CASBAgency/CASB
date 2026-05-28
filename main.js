@@ -363,17 +363,26 @@ if (contactForm) {
   });
 }
 
-// ── MONTHLY ACHIEVERS YEAR SWITCHER ──────────────────────────────────
-const YEAR_LABELS = { '2026': '2026 · APRIL', '2025': '2025', '2024': '2024' };
-function maSelectYear(year, btn) {
-  // Update buttons
-  document.querySelectorAll('.ma-year-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  // Update panels
-  document.querySelectorAll('.ma-year-panel').forEach(p => p.classList.remove('active'));
-  const panel = document.querySelector(`.ma-year-panel[data-year="${year}"]`);
-  if (panel) panel.classList.add('active');
-  // Update label
-  const label = document.getElementById('maYearLabel');
-  if (label) label.textContent = YEAR_LABELS[year] || year;
+// ── MONTHLY ACHIEVERS MODAL ──────────────────────────────────────────
+function openMAModal() {
+  document.getElementById('maModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
 }
+function closeMAModal(e) {
+  if (e && e.target !== document.getElementById('maModal') && !e.target.closest('.ma-modal-close')) return;
+  document.getElementById('maModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function maModalYear(year, btn) {
+  document.querySelectorAll('.ma-diamond-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.ma-panel').forEach(p => p.classList.remove('active'));
+  const panel = document.querySelector(`.ma-panel[data-year="${year}"]`);
+  if (panel) panel.classList.add('active');
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    document.getElementById('maModal')?.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
