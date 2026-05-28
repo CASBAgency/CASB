@@ -1,201 +1,804 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Insights | CASB Agency – Financial Planning Malaysia</title>
+<meta name="description" content="Practical financial planning insights, protection guides, and real case studies for Malaysians. By CASB Agency advisors.">
+<meta property="og:title" content="Insights | CASB Agency">
+<meta property="og:description" content="Practical financial insights for Malaysians — protection, medical, wealth planning and more.">
+<meta property="og:image" content="../assets/hero-bg.png">
+<link rel="icon" type="image/x-icon" href="../assets/favicon/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<style>
+/* ── INSIGHTS PAGE STYLES ── */
+:root {
+  --ink: #0D1F3C;
+  --ink-mid: #1A3358;
+  --gold: #B8922A;
+  --gold-light: #E8C96A;
+  --gold-pale: #FBF4E3;
+  --gray: #6B7280;
+  --gray-light: #F3F2EF;
+  --white: #fff;
+  --text: #1A1A1A;
+  --card-radius: 8px;
+}
 
-  <title>Insights | CASB</title>
+/* PAGE BG */
+body { background: #F7F6F3; }
 
-  <link rel="stylesheet" href="style.css" />
+/* ── HERO ── */
+.ins-hero {
+  background: linear-gradient(135deg, #0A1828 0%, #0D1F3C 55%, #1A3358 100%);
+  padding: 120px 10% 80px;
+  position: relative;
+  overflow: hidden;
+}
+.ins-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 80% 50%, rgba(232,201,106,.10) 0%, transparent 65%);
+  pointer-events: none;
+}
+.ins-hero-inner {
+  position: relative; z-index: 1;
+  max-width: 680px;
+}
+.ins-hero .kicker {
+  font-size: 11px; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--gold-light); margin-bottom: 16px; display: block;
+}
+.ins-hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 5vw, 60px);
+  line-height: 1.1; color: #fff;
+  margin-bottom: 20px;
+}
+.ins-hero h1 em { color: var(--gold-light); font-style: normal; }
+.ins-hero p {
+  font-size: 16px; color: rgba(255,255,255,.65);
+  line-height: 1.7; max-width: 520px; margin-bottom: 36px;
+}
+.ins-hero-stats {
+  display: flex; gap: 40px; flex-wrap: wrap;
+}
+.ins-stat { border-left: 2px solid rgba(232,201,106,.35); padding-left: 16px; }
+.ins-stat strong { display: block; font-size: 26px; color: var(--gold-light); font-family: 'Playfair Display', serif; line-height: 1; }
+.ins-stat span { font-size: 12px; color: rgba(255,255,255,.5); letter-spacing: .06em; text-transform: uppercase; }
+
+/* floating decorative element */
+.ins-hero-deco {
+  position: absolute; right: 8%; top: 50%; transform: translateY(-50%);
+  width: 320px; height: 320px; z-index: 0;
+  border: 1px solid rgba(232,201,106,.12); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.ins-hero-deco::before {
+  content: ''; position: absolute;
+  width: 220px; height: 220px;
+  border: 1px solid rgba(232,201,106,.08); border-radius: 50%;
+}
+.ins-hero-deco svg { width: 80px; height: 80px; opacity: .14; }
+
+/* ── FILTER BAR ── */
+.filter-bar {
+  background: var(--white);
+  border-bottom: 1px solid rgba(0,0,0,.07);
+  position: sticky; top: 0; z-index: 50;
+  box-shadow: 0 2px 12px rgba(0,0,0,.06);
+}
+.filter-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 5%; gap: 20px; flex-wrap: wrap;
+}
+.filter-tabs {
+  display: flex; gap: 0; overflow-x: auto; scrollbar-width: none;
+}
+.filter-tabs::-webkit-scrollbar { display: none; }
+.tab-btn {
+  padding: 18px 20px; border: none; background: none;
+  font-family: 'DM Sans', sans-serif; font-size: 12px;
+  font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--gray); cursor: pointer; white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  transition: color .2s, border-color .2s;
+}
+.tab-btn:hover { color: var(--ink); }
+.tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+.search-box {
+  display: flex; align-items: center; gap: 8px;
+  border: 1px solid rgba(0,0,0,.12); border-radius: 6px;
+  padding: 8px 14px; background: var(--gray-light);
+  flex-shrink: 0;
+}
+.search-box svg { width: 15px; height: 15px; opacity: .45; flex-shrink: 0; }
+.search-box input {
+  border: none; background: none; outline: none;
+  font-family: 'DM Sans', sans-serif; font-size: 13px;
+  color: var(--text); width: 180px;
+}
+.search-box input::placeholder { color: var(--gray); }
+
+/* ── MAIN LAYOUT ── */
+.ins-body {
+  max-width: 1200px; margin: 0 auto;
+  padding: 56px 5% 80px;
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 48px;
+  align-items: start;
+}
+
+/* ── FEATURED ── */
+.featured-wrap { margin-bottom: 48px; }
+.featured-label {
+  font-size: 10px; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--gold); font-weight: 600; margin-bottom: 14px;
+  display: flex; align-items: center; gap: 10px;
+}
+.featured-label::after {
+  content: ''; flex: 1; height: 1px; background: rgba(184,146,42,.25);
+}
+.featured-card {
+  display: grid; grid-template-columns: 1fr 1fr;
+  border-radius: var(--card-radius); overflow: hidden;
+  background: var(--white);
+  box-shadow: 0 4px 24px rgba(0,0,0,.08);
+  text-decoration: none; color: inherit;
+  transition: box-shadow .25s, transform .25s;
+}
+.featured-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,.13); transform: translateY(-2px); }
+.featured-img {
+  position: relative; overflow: hidden; min-height: 320px;
+  background: linear-gradient(135deg, #0D1F3C, #1A3358);
+  display: flex; align-items: center; justify-content: center;
+}
+.featured-img img { width: 100%; height: 100%; object-fit: cover; }
+.featured-img .feat-cat {
+  position: absolute; top: 18px; left: 18px;
+  background: var(--gold); color: #fff;
+  font-size: 10px; letter-spacing: .16em; text-transform: uppercase;
+  font-weight: 700; padding: 5px 12px; border-radius: 3px;
+}
+.featured-content {
+  padding: 40px 36px;
+  display: flex; flex-direction: column; justify-content: center; gap: 16px;
+}
+.featured-content h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(22px, 2.2vw, 28px); line-height: 1.3; color: var(--ink);
+}
+.featured-content p { font-size: 14px; color: var(--gray); line-height: 1.7; }
+.featured-content .meta { font-size: 12px; color: var(--gray); display: flex; gap: 8px; align-items: center; }
+.featured-content .meta span { color: var(--gold); }
+.read-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--gold);
+  text-decoration: none; margin-top: 6px;
+  transition: gap .2s;
+}
+.read-btn:hover { gap: 14px; }
+
+/* ── ARTICLE GRID ── */
+.section-heading {
+  font-size: 10px; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--gold); font-weight: 600; margin-bottom: 20px;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-heading::after { content: ''; flex: 1; height: 1px; background: rgba(184,146,42,.25); }
+
+.article-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+.art-card {
+  background: var(--white); border-radius: var(--card-radius);
+  overflow: hidden; text-decoration: none; color: inherit;
+  box-shadow: 0 2px 12px rgba(0,0,0,.06);
+  transition: box-shadow .25s, transform .25s;
+  display: flex; flex-direction: column;
+}
+.art-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,.12); transform: translateY(-3px); }
+.art-card[data-cat] { display: flex; } /* shown by default */
+.art-card.hidden { display: none; }
+.art-thumb {
+  height: 180px; overflow: hidden; position: relative;
+  background: linear-gradient(135deg, #0D1F3C 0%, #1A3358 100%);
+}
+.art-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+.art-card:hover .art-thumb img { transform: scale(1.04); }
+.art-thumb .art-cat {
+  position: absolute; bottom: 12px; left: 12px;
+  background: rgba(13,31,60,.85); backdrop-filter: blur(4px);
+  color: var(--gold-light); font-size: 9px; letter-spacing: .16em;
+  text-transform: uppercase; font-weight: 600; padding: 4px 10px; border-radius: 3px;
+}
+/* placeholder gradient when no image */
+.art-thumb.no-img {
+  display: flex; align-items: center; justify-content: center;
+}
+.art-thumb.no-img svg { width: 48px; height: 48px; opacity: .2; }
+.art-body { padding: 22px 22px 20px; display: flex; flex-direction: column; flex: 1; gap: 10px; }
+.art-body h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px; line-height: 1.35; color: var(--ink);
+  flex: 1;
+}
+.art-meta { font-size: 11px; color: var(--gray); display: flex; gap: 8px; }
+.art-meta .dot { opacity: .4; }
+.art-link {
+  font-size: 11px; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--gold);
+  display: inline-flex; align-items: center; gap: 6px;
+  transition: gap .2s;
+}
+.art-card:hover .art-link { gap: 10px; }
+
+/* no results */
+.no-results {
+  grid-column: 1/-1; text-align: center; padding: 60px 20px;
+  color: var(--gray); font-size: 15px; display: none;
+}
+.no-results.show { display: block; }
+
+/* ── SIDEBAR ── */
+.sidebar { display: flex; flex-direction: column; gap: 28px; }
+.sidebar-card {
+  background: var(--white); border-radius: var(--card-radius);
+  padding: 28px; box-shadow: 0 2px 12px rgba(0,0,0,.06);
+}
+.sidebar-title {
+  font-size: 10px; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--gold); font-weight: 600; margin-bottom: 18px;
+  padding-bottom: 10px; border-bottom: 1px solid rgba(184,146,42,.2);
+}
+
+/* AI Ask */
+.ai-card { background: linear-gradient(135deg, #0D1F3C 0%, #162d50 100%); color: #fff; }
+.ai-card .sidebar-title { color: var(--gold-light); border-color: rgba(232,201,106,.2); }
+.ai-card p { font-size: 13px; color: rgba(255,255,255,.6); line-height: 1.6; margin-bottom: 16px; }
+.ai-input-wrap { display: flex; flex-direction: column; gap: 10px; }
+.ai-input {
+  background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12);
+  border-radius: 6px; padding: 10px 14px; color: #fff;
+  font-family: 'DM Sans', sans-serif; font-size: 13px;
+  resize: none; outline: none; line-height: 1.5;
+  transition: border-color .2s;
+}
+.ai-input::placeholder { color: rgba(255,255,255,.35); }
+.ai-input:focus { border-color: rgba(232,201,106,.5); }
+.ai-btn {
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+  color: #fff; border: none; border-radius: 6px; padding: 11px 16px;
+  font-family: 'DM Sans', sans-serif; font-size: 12px;
+  font-weight: 700; letter-spacing: .08em; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  transition: filter .2s;
+}
+.ai-btn:hover { filter: brightness(1.1); }
+.ai-btn:disabled { opacity: .6; cursor: not-allowed; }
+.ai-response {
+  margin-top: 14px; font-size: 13px; color: rgba(255,255,255,.75);
+  line-height: 1.65; max-height: 260px; overflow-y: auto;
+  border-top: 1px solid rgba(255,255,255,.1); padding-top: 14px;
+  display: none;
+  scrollbar-width: thin; scrollbar-color: rgba(232,201,106,.3) transparent;
+}
+.ai-response.visible { display: block; }
+.ai-response strong { color: var(--gold-light); }
+.ai-thinking { display: flex; gap: 5px; align-items: center; padding: 8px 0; }
+.ai-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold-light); opacity: .4; animation: pulse 1.2s ease-in-out infinite; }
+.ai-dot:nth-child(2) { animation-delay: .2s; }
+.ai-dot:nth-child(3) { animation-delay: .4s; }
+@keyframes pulse { 0%,100%{opacity:.2;transform:scale(.8)} 50%{opacity:1;transform:scale(1)} }
+
+/* Popular topics */
+.topic-list { display: flex; flex-direction: column; gap: 0; }
+.topic-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 0; border-bottom: 1px solid var(--gray-light);
+  text-decoration: none; color: var(--ink);
+  font-size: 13px; transition: color .2s;
+}
+.topic-item:last-child { border-bottom: none; }
+.topic-item:hover { color: var(--gold); }
+.topic-num { font-size: 11px; color: var(--gray); font-weight: 600; width: 20px; flex-shrink: 0; }
+.topic-arrow { font-size: 14px; color: var(--gold); opacity: 0; transition: opacity .2s; }
+.topic-item:hover .topic-arrow { opacity: 1; }
+
+/* Newsletter */
+.newsletter-input {
+  width: 100%; padding: 10px 14px; border: 1px solid rgba(0,0,0,.12);
+  border-radius: 6px; font-family: 'DM Sans', sans-serif; font-size: 13px;
+  margin-bottom: 10px; outline: none; background: var(--gray-light);
+  transition: border-color .2s;
+}
+.newsletter-input:focus { border-color: var(--gold); background: #fff; }
+.newsletter-btn {
+  width: 100%; padding: 11px; border: none; border-radius: 6px;
+  background: var(--ink); color: #fff;
+  font-family: 'DM Sans', sans-serif; font-size: 12px;
+  font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  cursor: pointer; transition: background .2s;
+}
+.newsletter-btn:hover { background: var(--gold); }
+.newsletter-note { font-size: 11px; color: var(--gray); margin-top: 8px; text-align: center; }
+
+/* Quick links */
+.quick-links { display: flex; flex-direction: column; gap: 8px; }
+.quick-link {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 14px; border-radius: 6px; background: var(--gray-light);
+  text-decoration: none; color: var(--ink); font-size: 13px;
+  transition: background .2s, color .2s;
+}
+.quick-link:hover { background: var(--gold-pale); color: var(--gold); }
+.quick-link svg { width: 16px; height: 16px; opacity: .5; flex-shrink: 0; }
+
+/* ── DISCLAIMER ── */
+.disclaimer {
+  background: var(--gold-pale); border-top: 2px solid rgba(184,146,42,.25);
+  padding: 28px 10%; text-align: center;
+}
+.disclaimer p { font-size: 12px; color: var(--gray); line-height: 1.6; max-width: 760px; margin: 0 auto; }
+.disclaimer strong { color: var(--ink); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .ins-body { grid-template-columns: 1fr; }
+  .featured-card { grid-template-columns: 1fr; }
+  .featured-img { min-height: 220px; }
+  .ins-hero { padding: 100px 6% 60px; }
+  .ins-hero-deco { display: none; }
+  .filter-inner { padding: 0 4%; gap: 0; flex-direction: column; align-items: flex-start; }
+  .search-box { width: 100%; padding: 10px 4%; border-radius: 0; border-left: none; border-right: none; }
+  .search-box input { width: 100%; }
+}
+@media (max-width: 600px) {
+  .article-grid { grid-template-columns: 1fr; }
+  .ins-hero-stats { gap: 24px; }
+}
+</style>
 </head>
+<body class="js-loaded">
 
-<body>
+<!-- NAV (matches main site) -->
+<nav>
+  <a href="../index.html" class="nav-logo">
+    <img src="../assets/logo_casb.png" alt="CASB Agency">
+    <div class="logo-text"><span class="logo-est">EST. 2006</span></div>
+  </a>
+  <button class="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  <ul class="nav-links">
+    <li><a href="../index.html#about">About Us</a></li>
+    <li><a href="../team/">Our Team</a></li>
+    <li><a href="../index.html#achievements">Achievements</a></li>
+    <li><a href="../index.html#events">Events</a></li>
+    <li><a href="../index.html#branches">Branches</a></li>
+    <li><a href="index.html" style="color:var(--gold-light)">Insights</a></li>
+    <li><a href="../index.html#contact">Contact</a></li>
+    <li><a href="http://member.casb2u.com/" class="nav-cta">Agent Login</a></li>
+  </ul>
+</nav>
 
-  <!-- NAV -->
-  <nav>
-    <div class="nav-brand">
-      <img src="assets/logo.png" alt="CASB Logo">
-      <span>EST. 2006</span>
+<!-- FLOATING WA -->
+<div class="floating-actions">
+  <a class="floating-action whatsapp-action" href="https://wa.me/60362799388?text=Hi%20CASB%2C%20I%20would%20like%20to%20make%20an%20enquiry." target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.09.543 4.058 1.494 5.771L.044 23.956l6.335-1.44A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.898 0-3.68-.51-5.215-1.397l-.374-.22-3.759.855.882-3.665-.244-.382A9.95 9.95 0 0 1 2 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+  </a>
+  <button class="floating-action back-to-top" type="button" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})"><span>↑</span></button>
+</div>
+
+<!-- HERO -->
+<section class="ins-hero">
+  <div class="ins-hero-inner">
+    <span class="kicker">Knowledge &amp; Clarity</span>
+    <h1>Insights That<br><em>Build Confidence</em></h1>
+    <p>Practical guides, real case studies, and honest perspectives on financial planning — written for everyday Malaysians.</p>
+    <div class="ins-hero-stats">
+      <div class="ins-stat"><strong>20+</strong><span>Articles</span></div>
+      <div class="ins-stat"><strong>5</strong><span>Categories</span></div>
+      <div class="ins-stat"><strong>Free</strong><span>Always</span></div>
     </div>
+  </div>
+  <div class="ins-hero-deco">
+    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+  </div>
+</section>
 
-    <div class="nav-links">
-      <a href="index.html#about">ABOUT</a>
-      <a href="index.html#achievements">ACHIEVEMENTS</a>
-      <a href="index.html#events">EVENTS</a>
-      <a href="insights.html" class="active">INSIGHTS</a>
-      <a href="index.html#contact">CONTACT</a>
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <div class="filter-inner">
+    <div class="filter-tabs" role="tablist">
+      <button class="tab-btn active" data-filter="all" role="tab">All</button>
+      <button class="tab-btn" data-filter="planning" role="tab">Planning Basics</button>
+      <button class="tab-btn" data-filter="protection" role="tab">Protection</button>
+      <button class="tab-btn" data-filter="medical" role="tab">Medical &amp; Health</button>
+      <button class="tab-btn" data-filter="wealth" role="tab">Wealth</button>
+      <button class="tab-btn" data-filter="casestudy" role="tab">Case Studies</button>
     </div>
-  </nav>
-
-
-  <!-- INSIGHTS HERO -->
-  <section class="insights-hero">
-    <div class="insights-hero-text">
-      <p class="eyebrow">KNOWLEDGE & TRUST</p>
-
-      <h1>Insights That<br>Build Confidence</h1>
-
-      <div class="gold-line"></div>
-
-      <p>
-        Practical insights, real-life stories, and expert perspectives
-        to help you make better financial and protection decisions
-        for you and your loved ones.
-      </p>
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" id="searchInput" placeholder="Search articles…" aria-label="Search articles">
     </div>
+  </div>
+</div>
 
-    <div class="insights-hero-image">
-      <img src="assets/insights/insights-hero.jpg" alt="CASB financial planning insights">
-    </div>
-  </section>
+<!-- MAIN BODY -->
+<div class="ins-body">
 
+  <!-- LEFT: articles -->
+  <main>
 
-  <!-- FEATURED ARTICLE -->
-  <section class="featured-article-section">
-    <div class="featured-article-card">
-      <div class="featured-article-img">
-        <img src="assets/insights/cancer-critical-illness.jpg" alt="Critical illness planning">
-      </div>
-
-      <div class="featured-article-content">
-        <span class="article-badge">FEATURED ARTICLE</span>
-
-        <h2>What Happens If You Get Cancer Without Critical Illness Coverage?</h2>
-
-        <p>
-          Cancer treatment is expensive. But the real impact goes beyond
-          medical bills. Learn what most Malaysians overlook — and how
-          proper planning can protect your income, lifestyle, and family.
-        </p>
-
-        <div class="article-meta">
-          <span>8 MIN READ</span>
-          <span>•</span>
-          <span>MAY 20, 2026</span>
+    <!-- FEATURED -->
+    <div class="featured-wrap">
+      <div class="featured-label">Featured Article</div>
+      <a class="featured-card" href="#" data-article="featured">
+        <div class="featured-img">
+          <span class="feat-cat">Protection</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1" width="120" height="120"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
+        <div class="featured-content">
+          <h2>What Happens If You Get Cancer Without Critical Illness Coverage?</h2>
+          <p>Cancer treatment in Malaysia can exceed RM300,000. But the real damage isn't the hospital bill — it's the 2–5 years of lost income, unpaid loans, and family strain that follows. Most Malaysians are exposed and don't know it.</p>
+          <div class="meta"><span>Protection</span> · 8 min read · May 20, 2026</div>
+          <span class="read-btn">Read Article →</span>
+        </div>
+      </a>
+    </div>
 
-        <a href="articles/cancer-without-critical-illness.html" class="read-link">
-          READ ARTICLE →
+    <!-- ARTICLE GRID -->
+    <div class="section-heading">Latest Articles</div>
+    <div class="article-grid" id="articleGrid">
+
+      <a class="art-card" href="#" data-cat="protection" data-title="Medical Card vs Critical Illness: Malaysians Often Confuse These">
+        <div class="art-thumb no-img">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <div class="art-cat">Protection</div>
+        </div>
+        <div class="art-body">
+          <h3>Medical Card vs Critical Illness: Malaysians Often Confuse These</h3>
+          <div class="art-meta"><span>7 min read</span><span class="dot">·</span><span>May 18, 2026</span></div>
+          <span class="art-link">Read More →</span>
+        </div>
+      </a>
+
+      <a class="art-card" href="#" data-cat="medical" data-title="Can RM1 Million Medical Limit Still Be Enough in 2026?">
+        <div class="art-thumb no-img">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+          <div class="art-cat">Medical &amp; Health</div>
+        </div>
+        <div class="art-body">
+          <h3>Can RM1 Million Medical Limit Still Be Enough in 2026?</h3>
+          <div class="art-meta"><span>6 min read</span><span class="dot">·</span><span>May 15, 2026</span></div>
+          <span class="art-link">Read More →</span>
+        </div>
+      </a>
+
+      <a class="art-card" href="#" data-cat="planning" data-title="Why Young Malaysians Delay Insurance — And Regret It Later">
+        <div class="art-thumb no-img">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <div class="art-cat">Planning Basics</div>
+        </div>
+        <div class="art-body">
+          <h3>Why Young Malaysians Delay Insurance — And Regret It Later</h3>
+          <div class="art-meta"><span>6 min read</span><span class="dot">·</span><span>May 12, 2026</span></div>
+          <span class="art-link">Read More →</span>
+        </div>
+      </a>
+
+      <a class="art-card" href="#" data-cat="medical" data-title="Private Hospital Costs in Malaysia: Real Numbers, Real Shock">
+        <div class="art-thumb no-img">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <div class="art-cat">Medical &amp; Health</div>
+        </div>
+        <div class="art-body">
+          <h3>Private Hospital Costs in Malaysia: Real Numbers, Real Shock</h3>
+          <div class="art-meta"><span>9 min read</span><span class="dot">·</span><span>May 10, 2026</span></div>
+          <span class="art-link">Read More →</span>
+        </div>
+      </a>
+
+      <a class="art-card" href="#" data-cat="wealth" data-title="EPF Alone Won't Be Enough: What the Numbers Say">
+        <div class="art-thumb no-img">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+          <div class="art-cat">Wealth</div>
+        </div>
+        <div class="art-body">
+          <h3>EPF Alone Won't Be Enough: What the Numbers Say</h3>
+          <div class="art-meta"><span>7 min read</span><span class="dot">·</span><span>May 7, 2026</span></div>
+          <span class="art-link">Read More →</span>
+        </div>
+      </a>
+
+      <a class="art-card" href="#" data-cat="casestudy" data-title="Case Study: How One Family Avoided Financial Ruin After a Heart Attack">
+        <div class="art-thumb no-img">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M17 20h5V4H2v16h5m10 0v-6H7v6m10 0H7"/></svg>
+          <div class="art-cat">Case Study</div>
+        </div>
+        <div class="art-body">
+          <h3>Case Study: How One Family Avoided Financial Ruin After a Heart Attack</h3>
+          <div class="art-meta"><span>10 min read</span><span class="dot">·</span><span>May 3, 2026</span></div>
+          <span class="art-link">Read More →</span>
+        </div>
+      </a>
+
+      <a class="art-card" href="#" data-cat="planning" data-title="The 50-30-20 Rule Doesn't Work for Malaysians. Here's What Does">
+        <div class="art-thumb no-img">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          <div class="art-cat">Planning Basics</div>
+        </div>
+        <div class="art-body">
+          <h3>The 50-30-20 Rule Doesn't Work for Malaysians. Here's What Does</h3>
+          <div class="art-meta"><span>5 min read</span><span class="dot">·</span><span>Apr 28, 2026</span></div>
+          <span class="art-link">Read More →</span>
+        </div>
+      </a>
+
+      <a class="art-card" href="#" data-cat="protection" data-title="Rider vs Standalone Policy: Which Saves You More?">
+        <div class="art-thumb no-img">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+          <div class="art-cat">Protection</div>
+        </div>
+        <div class="art-body">
+          <h3>Rider vs Standalone Policy: Which Saves You More?</h3>
+          <div class="art-meta"><span>6 min read</span><span class="dot">·</span><span>Apr 22, 2026</span></div>
+          <span class="art-link">Read More →</span>
+        </div>
+      </a>
+
+      <a class="art-card" href="#" data-cat="wealth" data-title="Retirement at 55 vs 60: The RM400,000 Difference Nobody Talks About">
+        <div class="art-thumb no-img">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+          <div class="art-cat">Wealth</div>
+        </div>
+        <div class="art-body">
+          <h3>Retirement at 55 vs 60: The RM400,000 Difference Nobody Talks About</h3>
+          <div class="art-meta"><span>8 min read</span><span class="dot">·</span><span>Apr 17, 2026</span></div>
+          <span class="art-link">Read More →</span>
+        </div>
+      </a>
+
+    </div>
+    <div class="no-results" id="noResults">No articles match your search. Try a different keyword or category.</div>
+  </main>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <!-- AI ASK -->
+    <div class="sidebar-card ai-card">
+      <div class="sidebar-title">✦ Ask CASB AI</div>
+      <p>Ask anything about financial planning, insurance, or protection in Malaysia. Powered by Claude.</p>
+      <div class="ai-input-wrap">
+        <textarea class="ai-input" id="aiQuestion" rows="3" placeholder="e.g. Do I need critical illness if I already have a medical card?"></textarea>
+        <button class="ai-btn" id="aiAskBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+          Ask
+        </button>
+      </div>
+      <div class="ai-response" id="aiResponse"></div>
+    </div>
+
+    <!-- POPULAR TOPICS -->
+    <div class="sidebar-card">
+      <div class="sidebar-title">Popular Topics</div>
+      <div class="topic-list">
+        <a class="topic-item" href="#" onclick="filterBy('protection');return false;">
+          <span class="topic-num">01</span><span>Protection Planning</span><span class="topic-arrow">→</span>
+        </a>
+        <a class="topic-item" href="#" onclick="filterBy('medical');return false;">
+          <span class="topic-num">02</span><span>Medical &amp; Health</span><span class="topic-arrow">→</span>
+        </a>
+        <a class="topic-item" href="#" onclick="filterBy('wealth');return false;">
+          <span class="topic-num">03</span><span>Wealth &amp; Retirement</span><span class="topic-arrow">→</span>
+        </a>
+        <a class="topic-item" href="#" onclick="filterBy('planning');return false;">
+          <span class="topic-num">04</span><span>Planning Basics</span><span class="topic-arrow">→</span>
+        </a>
+        <a class="topic-item" href="#" onclick="filterBy('casestudy');return false;">
+          <span class="topic-num">05</span><span>Case Studies</span><span class="topic-arrow">→</span>
         </a>
       </div>
     </div>
-  </section>
 
-
-  <!-- ARTICLE FILTERS -->
-  <section class="article-filter-section">
-    <div class="article-tabs">
-      <button class="active">ALL ARTICLES</button>
-      <button>PLANNING BASICS</button>
-      <button>PROTECTION</button>
-      <button>MEDICAL & HEALTH</button>
-      <button>WEALTH</button>
-      <button>CASE STUDIES</button>
+    <!-- NEWSLETTER -->
+    <div class="sidebar-card">
+      <div class="sidebar-title">Stay Informed</div>
+      <p style="font-size:13px;color:var(--gray);line-height:1.6;margin-bottom:14px;">Get practical financial tips in your inbox. No spam, unsubscribe anytime.</p>
+      <input type="email" class="newsletter-input" placeholder="Your email address" id="newsletterEmail">
+      <button class="newsletter-btn" id="newsletterBtn">Subscribe</button>
+      <div class="newsletter-note" id="newsletterMsg"></div>
     </div>
 
-    <div class="article-search">
-      <input type="text" placeholder="Search articles...">
-    </div>
-  </section>
-
-
-  <!-- ARTICLE GRID -->
-  <section class="article-grid-section">
-    <div class="article-grid">
-
-      <article class="article-card">
-        <img src="assets/insights/medical-card-vs-ci.jpg" alt="Medical card vs critical illness">
-
-        <div class="article-card-content">
-          <span>PROTECTION</span>
-          <h3>Medical Card vs Critical Illness: Malaysians Often Confuse These</h3>
-
-          <div class="article-meta">
-            <span>7 MIN READ</span>
-            <span>•</span>
-            <span>MAY 18, 2026</span>
-          </div>
-
-          <a href="articles/medical-card-vs-critical-illness.html">READ MORE →</a>
-        </div>
-      </article>
-
-
-      <article class="article-card">
-        <img src="assets/insights/medical-limit.jpg" alt="Medical limit Malaysia">
-
-        <div class="article-card-content">
-          <span>MEDICAL & HEALTH</span>
-          <h3>Can RM1 Million Medical Limit Still Be Enough in 2026?</h3>
-
-          <div class="article-meta">
-            <span>6 MIN READ</span>
-            <span>•</span>
-            <span>MAY 15, 2026</span>
-          </div>
-
-          <a href="articles/rm1-million-medical-limit.html">READ MORE →</a>
-        </div>
-      </article>
-
-
-      <article class="article-card">
-        <img src="assets/insights/young-malaysians-insurance.jpg" alt="Young Malaysians insurance planning">
-
-        <div class="article-card-content">
-          <span>PLANNING BASICS</span>
-          <h3>Why Young Malaysians Delay Insurance — And Regret It Later</h3>
-
-          <div class="article-meta">
-            <span>6 MIN READ</span>
-            <span>•</span>
-            <span>MAY 12, 2026</span>
-          </div>
-
-          <a href="articles/young-malaysians-delay-insurance.html">READ MORE →</a>
-        </div>
-      </article>
-
-
-      <article class="article-card">
-        <img src="assets/insights/private-hospital-costs.jpg" alt="Private hospital costs Malaysia">
-
-        <div class="article-card-content">
-          <span>MEDICAL & HEALTH</span>
-          <h3>Private Hospital Costs in Malaysia: Real Examples</h3>
-
-          <div class="article-meta">
-            <span>9 MIN READ</span>
-            <span>•</span>
-            <span>MAY 10, 2026</span>
-          </div>
-
-          <a href="articles/private-hospital-costs-malaysia.html">READ MORE →</a>
-        </div>
-      </article>
-
-    </div>
-  </section>
-
-
-  <!-- NEWSLETTER CTA -->
-  <section class="insights-cta">
-    <div>
-      <h2>Stay informed. Make better decisions.</h2>
-      <p>Receive CASB insights and practical financial planning tips.</p>
+    <!-- QUICK LINKS -->
+    <div class="sidebar-card">
+      <div class="sidebar-title">Talk to an Advisor</div>
+      <div class="quick-links">
+        <a class="quick-link" href="https://wa.me/60362799388?text=Hi%20CASB%2C%20I%20have%20a%20question%20about%20financial%20planning." target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.09.543 4.058 1.494 5.771L.044 23.956l6.335-1.44A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.898 0-3.68-.51-5.215-1.397l-.374-.22-3.759.855.882-3.665-.244-.382A9.95 9.95 0 0 1 2 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+          WhatsApp Us
+        </a>
+        <a class="quick-link" href="../select-your-mentor/">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          Select a Mentor
+        </a>
+        <a class="quick-link" href="../index.html#contact">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+          Send an Enquiry
+        </a>
+      </div>
     </div>
 
-    <form>
-      <input type="email" placeholder="Enter your email">
-      <button type="submit">SUBSCRIBE</button>
-    </form>
-  </section>
+  </aside>
+</div>
 
+<!-- DISCLAIMER -->
+<div class="disclaimer">
+  <p><strong>Disclaimer:</strong> Articles on this page are for general informational purposes only and do not constitute financial, legal, or insurance advice. Every individual's situation is different. For advice tailored to your needs, please speak with a licensed CASB financial advisor.</p>
+</div>
 
-  <!-- FOOTER -->
-  <footer>
-    <p>© 2006 - 2026 CASB. All rights reserved.</p>
-  </footer>
+<!-- FOOTER (matches main site) -->
+<footer class="site-footer">
+  <div class="footer-main">
+    <div class="footer-brand">
+      <img src="../assets/logo_casb.png" alt="CASB Agency Logo">
+      <p>CASB Agency Sdn Bhd is a financial advisory agency established in 2006, committed to professional service, leadership development, and long-term client care.</p>
+    </div>
+    <div class="footer-column">
+      <h4>Quick Links</h4>
+      <a href="../index.html#about">About Us</a>
+      <a href="../team/">Our Team</a>
+      <a href="../index.html#achievements">Achievements</a>
+      <a href="../index.html#events">Events</a>
+      <a href="index.html">Insights</a>
+      <a href="../index.html#contact">Contact</a>
+    </div>
+    <div class="footer-column footer-contact">
+      <h4>Contact</h4>
+      <p><strong>Phone</strong><br><a href="tel:+60362799388">03-6279 9388</a></p>
+      <p><strong>Email</strong><br><a href="mailto:admin@casb2u.com">admin@casb2u.com</a></p>
+      <p><strong>Address</strong><br>B-5-32, Block B, Ativo Plaza,<br>Damansara Avenue, 52200 KL</p>
+    </div>
+    <div class="footer-column footer-contact">
+      <h4>Opening Hours</h4>
+      <p><strong>Monday - Friday</strong><br>08:30 - 17:30</p>
+      <p><strong>Saturday, Sunday &amp; Public Holidays</strong><br>Closed</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>©2026 CASB Agency Sdn Bhd. All rights reserved.</p>
+    <div class="footer-legal">
+      <a href="../privacy-notice.html">Privacy Notice</a>
+      <a href="../terms-of-use.html">Terms of Use</a>
+    </div>
+  </div>
+</footer>
 
+<script>
+// ── HAMBURGER ────────────────────────────────────────────────────────
+const hamburger = document.querySelector('.hamburger');
+const navLinks  = document.querySelector('.nav-links');
+if (hamburger && navLinks) {
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navLinks.classList.toggle('active');
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    navLinks.classList.remove('active');
+  }));
+}
+
+// ── FILTER + SEARCH ──────────────────────────────────────────────────
+let activeFilter = 'all';
+let searchTerm   = '';
+
+function applyFilters() {
+  const cards = document.querySelectorAll('.art-card');
+  let visible = 0;
+  cards.forEach(card => {
+    const cat   = card.dataset.cat || '';
+    const title = (card.dataset.title || '').toLowerCase();
+    const catMatch    = activeFilter === 'all' || cat === activeFilter;
+    const searchMatch = !searchTerm || title.includes(searchTerm);
+    const show = catMatch && searchMatch;
+    card.classList.toggle('hidden', !show);
+    if (show) visible++;
+  });
+  document.getElementById('noResults').classList.toggle('show', visible === 0);
+}
+
+function filterBy(cat) {
+  activeFilter = cat;
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.filter === cat));
+  applyFilters();
+  document.getElementById('articleGrid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => filterBy(btn.dataset.filter));
+});
+document.getElementById('searchInput').addEventListener('input', e => {
+  searchTerm = e.target.value.toLowerCase().trim();
+  applyFilters();
+});
+
+// ── NEWSLETTER ───────────────────────────────────────────────────────
+document.getElementById('newsletterBtn').addEventListener('click', () => {
+  const email = document.getElementById('newsletterEmail').value.trim();
+  const msg   = document.getElementById('newsletterMsg');
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    msg.textContent = 'Please enter a valid email.';
+    msg.style.color = '#e85d5d';
+    return;
+  }
+  msg.textContent = '✓ You\'re subscribed! Watch your inbox.';
+  msg.style.color = '#25D366';
+  document.getElementById('newsletterEmail').value = '';
+});
+
+// ── AI ASK (Claude API) ──────────────────────────────────────────────
+document.getElementById('aiAskBtn').addEventListener('click', async () => {
+  const question = document.getElementById('aiQuestion').value.trim();
+  if (!question) return;
+
+  const btn      = document.getElementById('aiAskBtn');
+  const response = document.getElementById('aiResponse');
+
+  btn.disabled = true;
+  btn.innerHTML = '<span>Thinking</span><span style="display:flex;gap:4px;align-items:center"><span class="ai-dot"></span><span class="ai-dot"></span><span class="ai-dot"></span></span>';
+  response.classList.add('visible');
+  response.innerHTML = '<div class="ai-thinking"><div class="ai-dot"></div><div class="ai-dot"></div><div class="ai-dot"></div></div>';
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: `You are a knowledgeable financial planning assistant for CASB Agency, a Malaysian financial advisory firm. 
+Answer questions about insurance, financial planning, protection, wealth, and retirement clearly and practically — focused on Malaysian context (EPF, Perkeso, private hospitals, ringgit costs, BNM regulations, Allianz products etc). 
+Keep answers concise (150-250 words), practical, and end with one specific actionable tip. 
+Never give specific product recommendations or claim to be giving personalised advice — always suggest speaking to a CASB advisor for personalised guidance.
+Format your response with short paragraphs. Use **bold** for key terms.`,
+        messages: [{ role: 'user', content: question }]
+      })
+    });
+
+    const data = await res.json();
+    const text = data.content?.[0]?.text || 'Sorry, I could not generate a response. Please try again.';
+
+    // Simple markdown bold
+    const formatted = text
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\n\n/g, '</p><p>')
+      .replace(/\n/g, '<br>');
+
+    response.innerHTML = `<p>${formatted}</p><p style="margin-top:12px;font-size:11px;opacity:.5;font-style:italic">This is general information only, not personalised advice. Speak to a CASB advisor for guidance tailored to your situation.</p>`;
+  } catch (e) {
+    response.innerHTML = '<p style="color:rgba(255,100,100,.8)">Unable to connect. Please check your connection and try again.</p>';
+  }
+
+  btn.disabled = false;
+  btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4 20-7z"/></svg> Ask';
+});
+
+// Allow Enter key to submit
+document.getElementById('aiQuestion').addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    document.getElementById('aiAskBtn').click();
+  }
+});
+</script>
 </body>
 </html>
