@@ -14,7 +14,7 @@
   --gold-light: #E8C96A;
   --cw: 230px;
   --ch: 360px;
-  --gap: 20px;
+  --gap: 24px;
 }
 html, body { height: 100%; overflow: hidden; background: #070D1A; color: #fff; font-family: 'DM Sans', sans-serif; }
 .page {
@@ -46,63 +46,31 @@ html, body { height: 100%; overflow: hidden; background: #070D1A; color: #fff; f
 .stage { flex:1; position:relative; display:flex; align-items:center; justify-content:center; min-height:0; overflow:hidden; }
 .stage::before {
   content:''; position:absolute; inset:0; z-index:5; pointer-events:none;
-  background:linear-gradient(90deg, rgba(4,8,16,.8) 0%, transparent 14%, transparent 86%, rgba(4,8,16,.8) 100%);
+  background:linear-gradient(90deg, rgba(4,8,16,.85) 0%, transparent 14%, transparent 86%, rgba(4,8,16,.85) 100%);
 }
-.spotlight {
-  position:absolute; top:-20%; left:50%; transform:translateX(-50%);
-  width:500px; height:500px;
-  background:radial-gradient(circle, rgba(232,201,106,.09) 0%, transparent 65%);
-  pointer-events:none; z-index:0;
-}
+.spotlight { position:absolute; top:-20%; left:50%; transform:translateX(-50%); width:500px; height:500px; background:radial-gradient(circle, rgba(232,201,106,.09) 0%, transparent 65%); pointer-events:none; z-index:0; }
 
-/* TRACK — native scroll, no JS transform needed */
-.track-wrap { position:relative; z-index:2; width:100%; overflow:hidden; }
-.track {
-  display:flex;
-  align-items:center;
-  gap:var(--gap);
-  /* enough padding so first/last cards can be centered */
-  padding: 30px calc(50% - var(--cw)/2);
-  overflow-x: scroll;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
-  /* NO scroll-behavior here — we set it per-action in JS */
+/* CANVAS — our custom physics scroll lives here */
+.carousel-wrap { position:relative; z-index:2; width:100%; height:calc(var(--ch) + 70px); overflow:hidden; touch-action:pan-y; }
+.carousel-belt {
+  display:flex; align-items:center; gap:var(--gap);
+  position:absolute; top:50%; transform:translateY(-50%);
+  will-change:transform; user-select:none;
+  /* left offset set by JS */
 }
-.track::-webkit-scrollbar { display:none; }
 
 /* ARROWS */
-.arrow {
-  position:absolute; top:50%; transform:translateY(-50%); z-index:10;
-  width:44px; height:64px; background:rgba(13,31,60,.7);
-  border:1px solid rgba(232,201,106,.28); border-radius:6px;
-  color:rgba(255,255,255,.7); font-size:28px; cursor:pointer;
-  display:flex; align-items:center; justify-content:center;
-  transition:background .2s,color .2s,border-color .2s; backdrop-filter:blur(4px);
-}
+.arrow { position:absolute; top:50%; transform:translateY(-50%); z-index:10; width:44px; height:64px; background:rgba(13,31,60,.7); border:1px solid rgba(232,201,106,.28); border-radius:6px; color:rgba(255,255,255,.7); font-size:28px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .2s,color .2s,border-color .2s; backdrop-filter:blur(4px); }
 .arrow:hover { background:rgba(184,146,42,.25); border-color:var(--gold-light); color:var(--gold-light); }
 .arrow-left { left:10px; }
 .arrow-right { right:10px; }
 
 /* CARD */
-.card {
-  flex-shrink:0;
-  width:var(--cw); height:var(--ch);
-  scroll-snap-align: center;
-  perspective:1000px; cursor:pointer;
-  transition:transform .3s ease, opacity .3s ease, filter .3s ease;
-  opacity:.6; filter:brightness(.72);
-}
+.card { flex-shrink:0; width:var(--cw); height:var(--ch); perspective:1000px; cursor:pointer; transition:transform .35s ease, opacity .35s ease, filter .35s ease; opacity:.58; filter:brightness(.7); }
 .card.is-center { transform:scale(1.08); opacity:1; filter:brightness(1); }
 .card-inner { width:100%; height:100%; transform-style:preserve-3d; transition:transform .65s cubic-bezier(.22,.8,.22,1); }
 .card.flipped .card-inner { transform:rotateY(180deg); }
-.card-face {
-  position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden;
-  border-radius:10px; overflow:hidden;
-  border:1px solid rgba(232,201,106,.38);
-  background:linear-gradient(180deg,#0F2244 0%,#060C1A 100%);
-  box-shadow:0 0 0 1px rgba(255,255,255,.05),0 20px 50px rgba(0,0,0,.55),inset 0 1px 0 rgba(232,201,106,.15);
-}
+.card-face { position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden; border-radius:10px; overflow:hidden; border:1px solid rgba(232,201,106,.38); background:linear-gradient(180deg,#0F2244 0%,#060C1A 100%); box-shadow:0 0 0 1px rgba(255,255,255,.05),0 20px 50px rgba(0,0,0,.55),inset 0 1px 0 rgba(232,201,106,.15); }
 .card-face::before { content:''; position:absolute; inset:8px; border:1px solid rgba(232,201,106,.12); border-radius:7px; pointer-events:none; z-index:1; }
 .card-face::after { content:''; position:absolute; top:0; left:15%; right:15%; height:2px; background:linear-gradient(90deg,transparent,var(--gold-light),transparent); border-radius:999px; }
 .card.is-center .card-face { border-color:rgba(232,201,106,.65); box-shadow:0 0 0 1px rgba(232,201,106,.18),0 0 30px rgba(232,201,106,.15),0 24px 60px rgba(0,0,0,.6); }
@@ -117,8 +85,12 @@ html, body { height: 100%; overflow: hidden; background: #070D1A; color: #fff; f
 .card-nameplate { padding:12px 16px 14px; background:linear-gradient(0deg,rgba(4,8,16,.95) 0%,rgba(6,12,26,.8) 100%); border-top:1px solid rgba(232,201,106,.2); position:relative; z-index:2; }
 .card-role { font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:var(--gold-light); margin-bottom:3px; }
 .card-name { font-family:'Playfair Display',serif; font-size:18px; line-height:1.15; font-weight:600; }
-.card-name.ghost { color:rgba(255,255,255,.35); font-style:italic; }
-.flip-hint { position:absolute; bottom:68px; right:12px; font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:rgba(232,201,106,.55); display:flex; align-items:center; gap:4px; z-index:3; pointer-events:none; }
+.card-name.ghost { color:rgba(255,255,255,.3); font-style:italic; }
+
+/* tap hint — only shows on center, un-flipped */
+.tap-hint { position:absolute; bottom:68px; right:10px; font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:rgba(232,201,106,0); display:flex; align-items:center; gap:4px; z-index:3; pointer-events:none; transition:color .3s; }
+.card.is-center:not(.flipped) .tap-hint { color:rgba(232,201,106,.6); }
+.tap-hint svg { width:12px; height:12px; }
 
 /* BACK */
 .card-back { transform:rotateY(180deg); display:flex; flex-direction:column; padding:18px 16px 16px; gap:10px; }
@@ -134,14 +106,7 @@ html, body { height: 100%; overflow: hidden; background: #070D1A; color: #fff; f
 .coming-soon-back { display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; gap:14px; padding:24px; text-align:center; }
 .coming-soon-back svg { width:40px; height:40px; opacity:.2; }
 .coming-soon-back p { font-size:12px; color:rgba(255,255,255,.35); line-height:1.5; }
-.wa-btn {
-  display:flex; align-items:center; justify-content:center; gap:8px;
-  width:100%; padding:10px 12px; border-radius:6px;
-  background:linear-gradient(135deg,#25D366,#1DA851);
-  color:#fff; font-size:12px; font-weight:600; letter-spacing:.06em;
-  text-decoration:none; margin-top:auto; flex-shrink:0;
-  transition:filter .2s,transform .15s; font-family:'DM Sans',sans-serif;
-}
+.wa-btn { display:flex; align-items:center; justify-content:center; gap:8px; width:100%; padding:10px 12px; border-radius:6px; background:linear-gradient(135deg,#25D366,#1DA851); color:#fff; font-size:12px; font-weight:600; letter-spacing:.06em; text-decoration:none; margin-top:auto; flex-shrink:0; transition:filter .2s,transform .15s; font-family:'DM Sans',sans-serif; }
 .wa-btn:hover { filter:brightness(1.1); transform:translateY(-1px); }
 .wa-btn svg { width:16px; height:16px; flex-shrink:0; }
 
@@ -178,56 +143,50 @@ html, body { height: 100%; overflow: hidden; background: #070D1A; color: #fff; f
   <div class="hero">
     <div class="kicker">Choose Your Path</div>
     <h1>Select Your Mentor</h1>
-    <p>Flip a card to reveal their profile. Choose the leader who matches your ambition.</p>
+    <p>Tap a card to select. Tap again to reveal their profile.</p>
   </div>
 
   <div class="stage">
     <div class="spotlight"></div>
-    <button class="arrow arrow-left" id="arrowL" aria-label="Previous">&#8249;</button>
-    <div class="track-wrap">
-      <div class="track" id="track"></div>
+    <button class="arrow arrow-left"  id="arrowL" aria-label="Previous">&#8249;</button>
+    <div class="carousel-wrap" id="wrap">
+      <div class="carousel-belt" id="belt"></div>
     </div>
     <button class="arrow arrow-right" id="arrowR" aria-label="Next">&#8250;</button>
   </div>
 
   <div class="dots" id="dots"></div>
-  <div class="hint-strip">Click a card to flip &nbsp;·&nbsp; Swipe or use arrows &nbsp;·&nbsp; Loops endlessly</div>
+  <div class="hint-strip">Tap to select &nbsp;·&nbsp; Tap again to flip &nbsp;·&nbsp; Drag &amp; fling to browse</div>
 </div>
 
 <script>
+// ── DATA ─────────────────────────────────────────────────────────────
 const WA_SVG = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.09.543 4.058 1.494 5.771L.044 23.956l6.335-1.44A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.898 0-3.68-.51-5.215-1.397l-.374-.22-3.759.855.882-3.665-.244-.382A9.95 9.95 0 0 1 2 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>`;
-
-const GHOST = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a7 7 0 0 1 7 7v7l2 2H3l2-2V9a7 7 0 0 1 7-7z"/><path d="M9 21a3 3 0 0 0 6 0"/></svg>`;
+const GHOST  = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a7 7 0 0 1 7 7v7l2 2H3l2-2V9a7 7 0 0 1 7-7z"/><path d="M9 21a3 3 0 0 0 6 0"/></svg>`;
+const TAP_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4v5h5M20 20v-5h-5M4 9a8 8 0 0 1 13.9-2.9M20 15a8 8 0 0 1-13.9 2.9"/></svg>`;
 
 const MENTORS = [
-  { name:"Vincent Yang", role:"Strategy Builder", photo:"../assets/photos/team/Vincent%20Yang.jpg", bio:"Structured growth, business discipline, and agency leadership direction.", attrs:[["Leadership",95],["Systems",92],["Growth",90]], wa:"60XXXXXXXXX", waName:"Vincent" },
-  { name:"Asher Chong",  role:"Momentum Coach",  photo:"../assets/photos/team/Asher%20Chong_1.jpg", bio:"Energy, practical field guidance, and a confident first step into the industry.", attrs:[["Field Skill",91],["Momentum",94],["Confidence",88]], wa:"60XXXXXXXXX", waName:"Asher" },
-  { name:"Alice Chong",  role:"Trust Builder",   photo:"../assets/photos/team/Alice_Chong%20Poh%20Chiang.jpg", bio:"Long-term client relationships, care-led planning, and steady sustainable habits.", attrs:[["Care",96],["Planning",89],["Trust",93]], wa:"60XXXXXXXXX", waName:"Alice" },
-  { name:"William Choong", role:"Performance Guide", photo:"../assets/photos/team/William_Choong%20Kei%20Foong.jpg", bio:"Measurable targets, consistency, and turning daily activity into real results.", attrs:[["Targets",93],["Discipline",90],["Results",92]], wa:"60XXXXXXXXX", waName:"William" },
-  { name:"Anna Chow",    role:"Culture Mentor",  photo:"../assets/photos/team/Anna_Chow%20Mei%20Ying.jpg", bio:"Encouragement, team connection, and a genuinely supportive learning environment.", attrs:[["Teamwork",94],["Support",95],["Learning",88]], wa:"60XXXXXXXXX", waName:"Anna" },
-  { name:"Steve Moh",    role:"Conversation Coach", photo:"../assets/photos/team/Steve_Moh%20Hiong%20Ie.jpg", bio:"Client conversations, presentation flow, and building real advisory confidence.", attrs:[["Speaking",91],["Advisory",89],["Presence",90]], wa:"60XXXXXXXXX", waName:"Steve" },
+  { name:"Vincent Yang",   role:"Strategy Builder",    photo:"../assets/photos/team/Vincent%20Yang.jpg",                    bio:"Structured growth, business discipline, and agency leadership direction.",              attrs:[["Leadership",95],["Systems",92],["Growth",90]],    wa:"60XXXXXXXXX", waName:"Vincent" },
+  { name:"Asher Chong",    role:"Momentum Coach",      photo:"../assets/photos/team/Asher%20Chong_1.jpg",                  bio:"Energy, practical field guidance, and a confident first step into the industry.",      attrs:[["Field Skill",91],["Momentum",94],["Confidence",88]], wa:"60XXXXXXXXX", waName:"Asher" },
+  { name:"Alice Chong",    role:"Trust Builder",       photo:"../assets/photos/team/Alice_Chong%20Poh%20Chiang.jpg",       bio:"Long-term client relationships, care-led planning, and steady sustainable habits.",      attrs:[["Care",96],["Planning",89],["Trust",93]],           wa:"60XXXXXXXXX", waName:"Alice" },
+  { name:"William Choong", role:"Performance Guide",   photo:"../assets/photos/team/William_Choong%20Kei%20Foong.jpg",     bio:"Measurable targets, consistency, and turning daily activity into real results.",        attrs:[["Targets",93],["Discipline",90],["Results",92]],    wa:"60XXXXXXXXX", waName:"William" },
+  { name:"Anna Chow",      role:"Culture Mentor",      photo:"../assets/photos/team/Anna_Chow%20Mei%20Ying.jpg",           bio:"Encouragement, team connection, and a genuinely supportive learning environment.",      attrs:[["Teamwork",94],["Support",95],["Learning",88]],     wa:"60XXXXXXXXX", waName:"Anna" },
+  { name:"Steve Moh",      role:"Conversation Coach",  photo:"../assets/photos/team/Steve_Moh%20Hiong%20Ie.jpg",           bio:"Client conversations, presentation flow, and building real advisory confidence.",       attrs:[["Speaking",91],["Advisory",89],["Presence",90]],    wa:"60XXXXXXXXX", waName:"Steve" },
   { placeholder:true },
   { placeholder:true },
 ];
-
 const N = MENTORS.length;
 
-function makeCard(m, absIdx) {
+// ── CARD BUILDER ─────────────────────────────────────────────────────
+function makeCard(m) {
   const el = document.createElement('div');
   el.className = 'card';
-  el.dataset.abs = absIdx;
-  el.dataset.real = ((absIdx % N) + N) % N;
-  el.tabIndex = 0;
-
   if (m.placeholder) {
     el.innerHTML = `
       <div class="card-inner">
         <div class="card-face card-front">
           <div class="card-photo empty"><div class="ghost-icon">${GHOST}</div></div>
-          <div class="card-nameplate">
-            <div class="card-role">Coming Soon</div>
-            <div class="card-name ghost">Future Mentor</div>
-          </div>
+          <div class="card-nameplate"><div class="card-role">Coming Soon</div><div class="card-name ghost">Future Mentor</div></div>
         </div>
         <div class="card-face card-back">
           <div class="coming-soon-back">${GHOST}<p>This mentor spot is reserved.<br>Stay tuned for the next addition to the CASB roster.</p></div>
@@ -237,18 +196,15 @@ function makeCard(m, absIdx) {
     const attrs = m.attrs.map(([l,s]) => `
       <div class="attr-row">
         <div class="attr-label"><span>${l}</span><b>${s}</b></div>
-        <div class="attr-bar"><div class="attr-fill" style="--s:${s/100}"></div></div>
+        <div class="attr-bar"><div class="attr-fill"></div></div>
       </div>`).join('');
     const msg = encodeURIComponent(`Hi ${m.waName}, I'd like to join under your mentorship!`);
     el.innerHTML = `
       <div class="card-inner">
         <div class="card-face card-front">
           <div class="card-photo"><img src="${m.photo}" alt="${m.name}" loading="lazy"></div>
-          <div class="flip-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4v5h5M20 20v-5h-5M4 9a8 8 0 0 1 13.9-2.9M20 15a8 8 0 0 1-13.9 2.9"/></svg>Flip</div>
-          <div class="card-nameplate">
-            <div class="card-role">${m.role}</div>
-            <div class="card-name">${m.name}</div>
-          </div>
+          <div class="tap-hint">${TAP_ICON}Flip</div>
+          <div class="card-nameplate"><div class="card-role">${m.role}</div><div class="card-name">${m.name}</div></div>
         </div>
         <div class="card-face card-back">
           <div class="back-name">${m.name}</div>
@@ -261,157 +217,273 @@ function makeCard(m, absIdx) {
   return el;
 }
 
-// ── INFINITE SCROLL via DOM recycling ────────────────────────────────
-// We keep a window of VISIBLE cards in the DOM. As the user scrolls,
-// we append/prepend clones and remove far-off ones — no jump, no snap-back.
+// ── PHYSICS ENGINE ───────────────────────────────────────────────────
+// Pure JS momentum scroll — no native scroll involved.
+// Position = offset of belt's left edge from wrap center.
+// centerOf(index) = the X that puts card[index] in the middle.
 
-const track   = document.getElementById('track');
-const dotsEl  = document.getElementById('dots');
-const arrowL  = document.getElementById('arrowL');
-const arrowR  = document.getElementById('arrowR');
+const wrap  = document.getElementById('wrap');
+const belt  = document.getElementById('belt');
+const dotsEl= document.getElementById('dots');
 
-// Build dots for real mentors
+// Build enough DOM cards: 3 full loops so we never run out
+const COPIES = 3;
+const domCards = [];
+for (let c = 0; c < COPIES; c++) {
+  MENTORS.forEach((m, i) => {
+    const el = makeCard(m);
+    el.dataset.real = i;
+    el.dataset.copy = c;
+    belt.appendChild(el);
+    domCards.push(el);
+  });
+}
+const TOTAL_CARDS = domCards.length; // N * COPIES
+
+// dots
 MENTORS.forEach((_, i) => {
   const d = document.createElement('div');
   d.className = 'dot';
-  d.addEventListener('click', () => goTo(i));
+  d.addEventListener('click', () => snapTo(i + N, true)); // middle copy
   dotsEl.appendChild(d);
 });
 
-// stride = card width + gap (read from CSS vars)
 function stride() {
   const s = getComputedStyle(document.documentElement);
-  return (parseInt(s.getPropertyValue('--cw')) || 230) + (parseInt(s.getPropertyValue('--gap')) || 20);
-}
-function cardW() { return parseInt(getComputedStyle(document.documentElement).getPropertyValue('--cw')) || 230; }
-
-// We maintain an absolute index counter. Cards are keyed by absIndex.
-// absIndex 0 = first mentor, can go negative.
-let centerAbs = 0;   // which absIndex is currently centered
-const BUFFER  = 4;   // cards to keep on each side
-
-let cardMap = new Map(); // absIdx -> DOM element
-
-function getOrCreate(absIdx) {
-  if (cardMap.has(absIdx)) return cardMap.get(absIdx);
-  const realIdx = ((absIdx % N) + N) % N;
-  const el = makeCard(MENTORS[realIdx], absIdx);
-  cardMap.set(absIdx, el);
-  return el;
+  return (parseFloat(s.getPropertyValue('--cw')) || 230) + (parseFloat(s.getPropertyValue('--gap')) || 24);
 }
 
-function renderWindow() {
-  const lo = centerAbs - BUFFER;
-  const hi = centerAbs + BUFFER;
+// absolute index of the center card (0 … TOTAL_CARDS-1)
+// start at middle copy, card 0
+let centerAbs = N; // middle copy starts at index N
 
-  // append/prepend needed cards
-  for (let i = lo; i <= hi; i++) {
-    if (!cardMap.has(i)) {
-      const el = getOrCreate(i);
-      // find position: insert before/after siblings
-      const existing = Array.from(track.children);
-      if (existing.length === 0) {
-        track.appendChild(el);
-      } else {
-        const firstAbs = parseInt(existing[0].dataset.abs);
-        if (i < firstAbs) {
-          track.insertBefore(el, existing[0]);
-        } else {
-          track.appendChild(el);
-        }
-      }
-    }
-  }
+// current belt X position (px, can be any float)
+let beltX = 0;
+let velX  = 0;       // px/frame velocity
+let rafId = null;
+let isAnimating = false;
 
-  // remove cards outside window
-  for (const [absIdx, el] of cardMap.entries()) {
-    if (absIdx < lo || absIdx > hi) {
-      el.remove();
-      cardMap.delete(absIdx);
-    }
-  }
-
-  updateCenter();
-  updateDots();
+function cardCenterX(absIdx) {
+  // X that centers card absIdx in the wrap
+  const wW = wrap.clientWidth;
+  const st = stride();
+  const cW = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--cw')) || 230;
+  // belt starts with left padding = wW/2 - cW/2 so card 0 is centered at beltX=0
+  return -(absIdx * st);
 }
 
-function scrollToCenter(animated) {
-  const target = cardMap.get(centerAbs);
-  if (!target) return;
-  // We want the card's center aligned with track's center
-  // track padding = 50% - cardW/2, so card offsetLeft already accounts for it
-  const scrollTarget = target.offsetLeft - (track.parentElement.clientWidth / 2) + (cardW() / 2);
-  track.style.scrollBehavior = animated ? 'smooth' : 'auto';
-  track.scrollLeft = scrollTarget;
+function setBelt(x, instant) {
+  beltX = x;
+  belt.style.transition = instant ? 'none' : '';
+  belt.style.left = (wrap.clientWidth / 2 - (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--cw')) || 230) / 2) + 'px';
+  belt.style.transform = `translateX(${x}px)`;
 }
 
 function updateCenter() {
-  for (const [absIdx, el] of cardMap.entries()) {
-    el.classList.toggle('is-center', absIdx === centerAbs);
-  }
-}
+  // figure out which absIdx is closest to center
+  const st = stride();
+  const closest = Math.round(-beltX / st);
+  const clamped = Math.max(0, Math.min(TOTAL_CARDS - 1, closest));
+  centerAbs = clamped;
 
-function updateDots() {
-  const realIdx = ((centerAbs % N) + N) % N;
+  domCards.forEach((el, i) => el.classList.toggle('is-center', i === centerAbs));
+
+  const realIdx = parseInt(domCards[centerAbs]?.dataset.real ?? 0);
   Array.from(dotsEl.children).forEach((d, i) => d.classList.toggle('active', i === realIdx));
 }
 
-// ── NAVIGATION ───────────────────────────────────────────────────────
-function go(dir) {
-  // un-flip any flipped card
-  for (const el of cardMap.values()) el.classList.remove('flipped');
-  centerAbs += dir;
-  renderWindow();
-  scrollToCenter(true);
+// ── LOOP WRAP ─────────────────────────────────────────────────────────
+// When the user drifts into the first or last copy, silently jump to middle copy
+function loopCheck() {
+  const st = stride();
+  if (centerAbs < N * 0.5) {
+    // too far left — jump right by one full set
+    beltX -= N * st;
+    centerAbs += N;
+    setBelt(beltX, true);
+  } else if (centerAbs > N * 1.5) {
+    // too far right — jump left by one full set
+    beltX += N * st;
+    centerAbs -= N;
+    setBelt(beltX, true);
+  }
 }
 
-function goTo(realIdx) {
-  // find nearest abs index to current center
-  const offset = realIdx - (((centerAbs % N) + N) % N);
-  let delta = offset;
-  if (delta > N / 2) delta -= N;
-  if (delta < -N / 2) delta += N;
-  centerAbs += delta;
-  renderWindow();
-  scrollToCenter(true);
+// ── SNAP TO CARD ──────────────────────────────────────────────────────
+function snapTo(absIdx, animated) {
+  stopPhysics();
+  centerAbs = absIdx;
+  const target = cardCenterX(absIdx);
+
+  if (animated) {
+    isAnimating = true;
+    const start  = beltX;
+    const dist   = target - start;
+    const dur    = Math.min(420, 180 + Math.abs(dist) * 0.3);
+    const t0     = performance.now();
+    function ease(t) { return t < .5 ? 2*t*t : -1+(4-2*t)*t; } // easeInOut
+
+    function step(now) {
+      const p = Math.min(1, (now - t0) / dur);
+      setBelt(start + dist * ease(p), true);
+      updateCenter();
+      if (p < 1) { rafId = requestAnimationFrame(step); }
+      else { isAnimating = false; loopCheck(); updateCenter(); }
+    }
+    rafId = requestAnimationFrame(step);
+  } else {
+    setBelt(target, true);
+    updateCenter();
+    loopCheck();
+  }
 }
 
-arrowL.addEventListener('click', () => go(-1));
-arrowR.addEventListener('click', () => go(1));
+function snapToNearest(animated) {
+  const st   = stride();
+  const near = Math.round(-beltX / st);
+  snapTo(Math.max(0, Math.min(TOTAL_CARDS - 1, near)), animated);
+}
 
-document.addEventListener('keydown', e => {
-  if (e.key === 'ArrowLeft')  go(-1);
-  if (e.key === 'ArrowRight') go(1);
-});
+// ── PHYSICS FLING ─────────────────────────────────────────────────────
+const FRICTION = 0.93;   // velocity multiplier per frame
+const MIN_VEL  = 0.3;    // px/frame below which we snap
 
-// ── FLIP ─────────────────────────────────────────────────────────────
-track.addEventListener('click', e => {
-  const card = e.target.closest('.card');
-  if (!card || e.target.closest('a')) return;
-  card.classList.toggle('flipped');
-});
-track.addEventListener('keydown', e => {
-  if (e.key !== 'Enter' && e.key !== ' ') return;
-  const card = e.target.closest('.card');
-  if (card) { e.preventDefault(); card.classList.toggle('flipped'); }
-});
+function stopPhysics() {
+  if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+  isAnimating = false;
+  velX = 0;
+}
 
-// ── TOUCH SWIPE ───────────────────────────────────────────────────────
-let tx = 0;
-track.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
-track.addEventListener('touchend',   e => {
-  const dx = e.changedTouches[0].clientX - tx;
-  if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
+function runPhysics() {
+  if (Math.abs(velX) < MIN_VEL) {
+    velX = 0;
+    snapToNearest(true);
+    return;
+  }
+  velX *= FRICTION;
+  beltX += velX;
+  setBelt(beltX, true);
+  updateCenter();
+  loopCheck();
+  rafId = requestAnimationFrame(runPhysics);
+}
+
+// ── POINTER / TOUCH INPUT ─────────────────────────────────────────────
+let dragStartX   = 0;
+let dragStartBeltX = 0;
+let lastDragX    = 0;
+let lastDragT    = 0;
+let isDragging   = false;
+let dragMoved    = false;  // true if pointer moved >4px (not a tap)
+
+function onDragStart(clientX) {
+  stopPhysics();
+  isDragging    = true;
+  dragMoved     = false;
+  dragStartX    = clientX;
+  dragStartBeltX = beltX;
+  lastDragX     = clientX;
+  lastDragT     = performance.now();
+}
+
+function onDragMove(clientX) {
+  if (!isDragging) return;
+  const dx = clientX - dragStartX;
+  if (Math.abs(dx) > 4) dragMoved = true;
+  if (!dragMoved) return;
+  setBelt(dragStartBeltX + dx, true);
+  // track velocity
+  const now = performance.now();
+  const dt  = now - lastDragT;
+  if (dt > 0) velX = (clientX - lastDragX) / dt * 16; // normalise to ~60fps frame
+  lastDragX = clientX;
+  lastDragT = now;
+  updateCenter();
+}
+
+function onDragEnd(clientX) {
+  if (!isDragging) return;
+  isDragging = false;
+  if (!dragMoved) return; // was a tap — handled by click
+  // fling if fast enough, else snap
+  if (Math.abs(velX) > 1.5) {
+    rafId = requestAnimationFrame(runPhysics);
+  } else {
+    snapToNearest(true);
+  }
+}
+
+// mouse
+wrap.addEventListener('mousedown',  e => { e.preventDefault(); onDragStart(e.clientX); });
+window.addEventListener('mousemove',e => onDragMove(e.clientX));
+window.addEventListener('mouseup',  e => onDragEnd(e.clientX));
+
+// touch
+wrap.addEventListener('touchstart', e => {
+  // if already moving (fling), stop immediately on touch
+  if (Math.abs(velX) > 0.5 || isAnimating) {
+    stopPhysics();
+    return; // don't start new drag — first touch just stops
+  }
+  onDragStart(e.touches[0].clientX);
 }, { passive: true });
+
+wrap.addEventListener('touchmove',  e => onDragMove(e.touches[0].clientX), { passive: true });
+wrap.addEventListener('touchend',   e => onDragEnd(e.changedTouches[0].clientX), { passive: true });
+
+// ── CLICK / TAP LOGIC ────────────────────────────────────────────────
+// Tap on non-center card  →  snap that card to center
+// Tap on center card      →  flip it
+// Never flip if tap was actually a drag
+
+wrap.addEventListener('click', e => {
+  if (dragMoved) return; // was a drag, not a tap
+  if (e.target.closest('a')) return;
+  const card = e.target.closest('.card');
+  if (!card) return;
+
+  const absIdx = domCards.indexOf(card);
+  if (absIdx === -1) return;
+
+  if (card.classList.contains('is-center')) {
+    // already center — flip
+    card.classList.toggle('flipped');
+  } else {
+    // bring to center, un-flip current center first
+    domCards.forEach(c => c.classList.remove('flipped'));
+    snapTo(absIdx, true);
+  }
+});
+
+// ── ARROWS ───────────────────────────────────────────────────────────
+document.getElementById('arrowL').addEventListener('click', () => {
+  domCards.forEach(c => c.classList.remove('flipped'));
+  snapTo(centerAbs - 1, true);
+});
+document.getElementById('arrowR').addEventListener('click', () => {
+  domCards.forEach(c => c.classList.remove('flipped'));
+  snapTo(centerAbs + 1, true);
+});
+
+// ── KEYBOARD ─────────────────────────────────────────────────────────
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowLeft')  { domCards.forEach(c=>c.classList.remove('flipped')); snapTo(centerAbs-1,true); }
+  if (e.key === 'ArrowRight') { domCards.forEach(c=>c.classList.remove('flipped')); snapTo(centerAbs+1,true); }
+  if (e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault();
+    const center = domCards[centerAbs];
+    if (center) center.classList.toggle('flipped');
+  }
+});
 
 // ── INIT ─────────────────────────────────────────────────────────────
 function init() {
-  renderWindow();
-  scrollToCenter(false);
+  setBelt(cardCenterX(centerAbs), true);
+  updateCenter();
 }
 if (document.readyState === 'complete') init();
 else window.addEventListener('load', init);
-window.addEventListener('resize', () => scrollToCenter(false));
+window.addEventListener('resize', () => { setBelt(cardCenterX(centerAbs), true); });
 </script>
 </body>
 </html>
