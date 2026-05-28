@@ -1,3 +1,6 @@
+// Mark JS as active — CSS uses this to enable fade-in animations safely
+document.body.classList.add('js-loaded');
+
 // Scroll fade-in
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -359,4 +362,5 @@ if (contactForm) {
     }
   });
 }
+
 
