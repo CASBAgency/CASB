@@ -260,44 +260,7 @@ body { background: #F7F6F3; }
   padding-bottom: 10px; border-bottom: 1px solid rgba(184,146,42,.2);
 }
 
-/* AI Ask */
-.ai-card { background: linear-gradient(135deg, #0D1F3C 0%, #162d50 100%); color: #fff; }
-.ai-card .sidebar-title { color: var(--gold-light); border-color: rgba(232,201,106,.2); }
-.ai-card p { font-size: 13px; color: rgba(255,255,255,.6); line-height: 1.6; margin-bottom: 16px; }
-.ai-input-wrap { display: flex; flex-direction: column; gap: 10px; }
-.ai-input {
-  background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12);
-  border-radius: 6px; padding: 10px 14px; color: #fff;
-  font-family: 'DM Sans', sans-serif; font-size: 13px;
-  resize: none; outline: none; line-height: 1.5;
-  transition: border-color .2s;
-}
-.ai-input::placeholder { color: rgba(255,255,255,.35); }
-.ai-input:focus { border-color: rgba(232,201,106,.5); }
-.ai-btn {
-  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
-  color: #fff; border: none; border-radius: 6px; padding: 11px 16px;
-  font-family: 'DM Sans', sans-serif; font-size: 12px;
-  font-weight: 700; letter-spacing: .08em; cursor: pointer;
-  display: flex; align-items: center; justify-content: center; gap: 8px;
-  transition: filter .2s;
-}
-.ai-btn:hover { filter: brightness(1.1); }
-.ai-btn:disabled { opacity: .6; cursor: not-allowed; }
-.ai-response {
-  margin-top: 14px; font-size: 13px; color: rgba(255,255,255,.75);
-  line-height: 1.65; max-height: 260px; overflow-y: auto;
-  border-top: 1px solid rgba(255,255,255,.1); padding-top: 14px;
-  display: none;
-  scrollbar-width: thin; scrollbar-color: rgba(232,201,106,.3) transparent;
-}
-.ai-response.visible { display: block; }
-.ai-response strong { color: var(--gold-light); }
-.ai-thinking { display: flex; gap: 5px; align-items: center; padding: 8px 0; }
-.ai-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold-light); opacity: .4; animation: pulse 1.2s ease-in-out infinite; }
-.ai-dot:nth-child(2) { animation-delay: .2s; }
-.ai-dot:nth-child(3) { animation-delay: .4s; }
-@keyframes pulse { 0%,100%{opacity:.2;transform:scale(.8)} 50%{opacity:1;transform:scale(1)} }
+
 
 /* Popular topics */
 .topic-list { display: flex; flex-direction: column; gap: 0; }
@@ -440,152 +403,17 @@ body { background: #F7F6F3; }
     <!-- FEATURED -->
     <div class="featured-wrap">
       <div class="featured-label">Featured Article</div>
-      <a class="featured-card" href="#" data-article="featured">
-        <div class="featured-img">
-          <span class="feat-cat">Protection</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1" width="120" height="120"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
-        <div class="featured-content">
-          <h2>What Happens If You Get Cancer Without Critical Illness Coverage?</h2>
-          <p>Cancer treatment in Malaysia can exceed RM300,000. But the real damage isn't the hospital bill — it's the 2–5 years of lost income, unpaid loans, and family strain that follows. Most Malaysians are exposed and don't know it.</p>
-          <div class="meta"><span>Protection</span> · 8 min read · May 20, 2026</div>
-          <span class="read-btn">Read Article →</span>
-        </div>
-      </a>
+      <a class="featured-card" id="featuredCard" href="#"></a>
     </div>
 
     <!-- ARTICLE GRID -->
     <div class="section-heading">Latest Articles</div>
-    <div class="article-grid" id="articleGrid">
-
-      <a class="art-card" href="#" data-cat="protection" data-title="Medical Card vs Critical Illness: Malaysians Often Confuse These">
-        <div class="art-thumb no-img">
-          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-          <div class="art-cat">Protection</div>
-        </div>
-        <div class="art-body">
-          <h3>Medical Card vs Critical Illness: Malaysians Often Confuse These</h3>
-          <div class="art-meta"><span>7 min read</span><span class="dot">·</span><span>May 18, 2026</span></div>
-          <span class="art-link">Read More →</span>
-        </div>
-      </a>
-
-      <a class="art-card" href="#" data-cat="medical" data-title="Can RM1 Million Medical Limit Still Be Enough in 2026?">
-        <div class="art-thumb no-img">
-          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
-          <div class="art-cat">Medical &amp; Health</div>
-        </div>
-        <div class="art-body">
-          <h3>Can RM1 Million Medical Limit Still Be Enough in 2026?</h3>
-          <div class="art-meta"><span>6 min read</span><span class="dot">·</span><span>May 15, 2026</span></div>
-          <span class="art-link">Read More →</span>
-        </div>
-      </a>
-
-      <a class="art-card" href="#" data-cat="planning" data-title="Why Young Malaysians Delay Insurance — And Regret It Later">
-        <div class="art-thumb no-img">
-          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-          <div class="art-cat">Planning Basics</div>
-        </div>
-        <div class="art-body">
-          <h3>Why Young Malaysians Delay Insurance — And Regret It Later</h3>
-          <div class="art-meta"><span>6 min read</span><span class="dot">·</span><span>May 12, 2026</span></div>
-          <span class="art-link">Read More →</span>
-        </div>
-      </a>
-
-      <a class="art-card" href="#" data-cat="medical" data-title="Private Hospital Costs in Malaysia: Real Numbers, Real Shock">
-        <div class="art-thumb no-img">
-          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-          <div class="art-cat">Medical &amp; Health</div>
-        </div>
-        <div class="art-body">
-          <h3>Private Hospital Costs in Malaysia: Real Numbers, Real Shock</h3>
-          <div class="art-meta"><span>9 min read</span><span class="dot">·</span><span>May 10, 2026</span></div>
-          <span class="art-link">Read More →</span>
-        </div>
-      </a>
-
-      <a class="art-card" href="#" data-cat="wealth" data-title="EPF Alone Won't Be Enough: What the Numbers Say">
-        <div class="art-thumb no-img">
-          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
-          <div class="art-cat">Wealth</div>
-        </div>
-        <div class="art-body">
-          <h3>EPF Alone Won't Be Enough: What the Numbers Say</h3>
-          <div class="art-meta"><span>7 min read</span><span class="dot">·</span><span>May 7, 2026</span></div>
-          <span class="art-link">Read More →</span>
-        </div>
-      </a>
-
-      <a class="art-card" href="#" data-cat="casestudy" data-title="Case Study: How One Family Avoided Financial Ruin After a Heart Attack">
-        <div class="art-thumb no-img">
-          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M17 20h5V4H2v16h5m10 0v-6H7v6m10 0H7"/></svg>
-          <div class="art-cat">Case Study</div>
-        </div>
-        <div class="art-body">
-          <h3>Case Study: How One Family Avoided Financial Ruin After a Heart Attack</h3>
-          <div class="art-meta"><span>10 min read</span><span class="dot">·</span><span>May 3, 2026</span></div>
-          <span class="art-link">Read More →</span>
-        </div>
-      </a>
-
-      <a class="art-card" href="#" data-cat="planning" data-title="The 50-30-20 Rule Doesn't Work for Malaysians. Here's What Does">
-        <div class="art-thumb no-img">
-          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-          <div class="art-cat">Planning Basics</div>
-        </div>
-        <div class="art-body">
-          <h3>The 50-30-20 Rule Doesn't Work for Malaysians. Here's What Does</h3>
-          <div class="art-meta"><span>5 min read</span><span class="dot">·</span><span>Apr 28, 2026</span></div>
-          <span class="art-link">Read More →</span>
-        </div>
-      </a>
-
-      <a class="art-card" href="#" data-cat="protection" data-title="Rider vs Standalone Policy: Which Saves You More?">
-        <div class="art-thumb no-img">
-          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
-          <div class="art-cat">Protection</div>
-        </div>
-        <div class="art-body">
-          <h3>Rider vs Standalone Policy: Which Saves You More?</h3>
-          <div class="art-meta"><span>6 min read</span><span class="dot">·</span><span>Apr 22, 2026</span></div>
-          <span class="art-link">Read More →</span>
-        </div>
-      </a>
-
-      <a class="art-card" href="#" data-cat="wealth" data-title="Retirement at 55 vs 60: The RM400,000 Difference Nobody Talks About">
-        <div class="art-thumb no-img">
-          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
-          <div class="art-cat">Wealth</div>
-        </div>
-        <div class="art-body">
-          <h3>Retirement at 55 vs 60: The RM400,000 Difference Nobody Talks About</h3>
-          <div class="art-meta"><span>8 min read</span><span class="dot">·</span><span>Apr 17, 2026</span></div>
-          <span class="art-link">Read More →</span>
-        </div>
-      </a>
-
-    </div>
+        <div class="article-grid" id="articleGrid"></div>
     <div class="no-results" id="noResults">No articles match your search. Try a different keyword or category.</div>
   </main>
 
   <!-- SIDEBAR -->
   <aside class="sidebar">
-
-    <!-- AI ASK -->
-    <div class="sidebar-card ai-card">
-      <div class="sidebar-title">✦ Ask CASB AI</div>
-      <p>Ask anything about financial planning, insurance, or protection in Malaysia. Powered by Claude.</p>
-      <div class="ai-input-wrap">
-        <textarea class="ai-input" id="aiQuestion" rows="3" placeholder="e.g. Do I need critical illness if I already have a medical card?"></textarea>
-        <button class="ai-btn" id="aiAskBtn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4 20-7z"/></svg>
-          Ask
-        </button>
-      </div>
-      <div class="ai-response" id="aiResponse"></div>
-    </div>
 
     <!-- POPULAR TOPICS -->
     <div class="sidebar-card">
@@ -697,23 +525,183 @@ if (hamburger && navLinks) {
   }));
 }
 
+
+// ── ARTICLES DATA ────────────────────────────────────────────────────
+// TO PUBLISH A NEW ARTICLE: add an object to the TOP of this array.
+// The first item is always auto-promoted to the Featured slot.
+const ARTICLES = [
+  {
+    title: "What Happens If You Get Cancer Without Critical Illness Coverage?",
+    cat: "protection",
+    catLabel: "Protection",
+    excerpt: "Cancer treatment in Malaysia can exceed RM300,000. But the real damage isn't the hospital bill — it's the 2–5 years of lost income, unpaid loans, and family strain that follows. Most Malaysians are exposed and don't know it.",
+    readTime: "8 min read",
+    date: "May 20, 2026",
+    href: "articles/cancer-without-critical-illness.html"
+  },
+  {
+    title: "Medical Card vs Critical Illness: Malaysians Often Confuse These",
+    cat: "protection",
+    catLabel: "Protection",
+    excerpt: "They sound similar but work completely differently. Knowing the gap could save your family from financial ruin.",
+    readTime: "7 min read",
+    date: "May 18, 2026",
+    href: "articles/medical-card-vs-critical-illness.html"
+  },
+  {
+    title: "Can RM1 Million Medical Limit Still Be Enough in 2026?",
+    cat: "medical",
+    catLabel: "Medical & Health",
+    excerpt: "With medical inflation running at 12–15% annually, a limit that felt generous five years ago may fall short when you need it most.",
+    readTime: "6 min read",
+    date: "May 15, 2026",
+    href: "articles/rm1-million-medical-limit.html"
+  },
+  {
+    title: "Why Young Malaysians Delay Insurance — And Regret It Later",
+    cat: "planning",
+    catLabel: "Planning Basics",
+    excerpt: "The single most common thing advisors hear from 40-year-olds: 'I wish I had started earlier.' Here's the real cost of waiting.",
+    readTime: "6 min read",
+    date: "May 12, 2026",
+    href: "articles/young-malaysians-delay-insurance.html"
+  },
+  {
+    title: "Private Hospital Costs in Malaysia: Real Numbers, Real Shock",
+    cat: "medical",
+    catLabel: "Medical & Health",
+    excerpt: "A three-day stay for dengue. A bypass surgery. A C-section. We break down what these actually cost at private hospitals in 2026.",
+    readTime: "9 min read",
+    date: "May 10, 2026",
+    href: "articles/private-hospital-costs-malaysia.html"
+  },
+  {
+    title: "EPF Alone Won't Be Enough: What the Numbers Say",
+    cat: "wealth",
+    catLabel: "Wealth",
+    excerpt: "The median Malaysian retires with less than RM240,000 in EPF. At RM3,000/month, that lasts 6.6 years. The math doesn't work.",
+    readTime: "7 min read",
+    date: "May 7, 2026",
+    href: "articles/epf-retirement-shortfall.html"
+  },
+  {
+    title: "Case Study: How One Family Avoided Financial Ruin After a Heart Attack",
+    cat: "casestudy",
+    catLabel: "Case Study",
+    excerpt: "Ahmad, 44, had a heart attack in March. He was hospitalised for 12 days. Here's exactly what happened financially — and why his family came out intact.",
+    readTime: "10 min read",
+    date: "May 3, 2026",
+    href: "articles/case-study-heart-attack-family.html"
+  },
+  {
+    title: "The 50-30-20 Rule Doesn't Work for Malaysians. Here's What Does",
+    cat: "planning",
+    catLabel: "Planning Basics",
+    excerpt: "Rent, PTPTN, car loan, EPF, parents' allowance — the classic budgeting rule ignores how most Malaysian adults actually live.",
+    readTime: "5 min read",
+    date: "Apr 28, 2026",
+    href: "articles/budgeting-for-malaysians.html"
+  },
+  {
+    title: "Rider vs Standalone Policy: Which Saves You More?",
+    cat: "protection",
+    catLabel: "Protection",
+    excerpt: "Riders are convenient. Standalone policies give you more control. The answer depends on your age, health, and how long you plan to hold the policy.",
+    readTime: "6 min read",
+    date: "Apr 22, 2026",
+    href: "articles/rider-vs-standalone-policy.html"
+  },
+  {
+    title: "Retirement at 55 vs 60: The RM400,000 Difference Nobody Talks About",
+    cat: "wealth",
+    catLabel: "Wealth",
+    excerpt: "Five extra years of compounding and contributions makes a staggering difference. We run the numbers so you don't have to.",
+    readTime: "8 min read",
+    date: "Apr 17, 2026",
+    href: "articles/retirement-55-vs-60.html"
+  }
+];
+
+// CAT ICON MAP
+const CAT_ICONS = {
+  protection: `<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+  medical:    `<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>`,
+  planning:   `<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`,
+  wealth:     `<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>`,
+  casestudy:  `<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M17 20h5V4H2v16h5m10 0v-6H7v6m10 0H7"/></svg>`
+};
+
+// ── RENDER ────────────────────────────────────────────────────────────
+function renderFeatured(article) {
+  const el = document.getElementById('featuredCard');
+  el.href = article.href;
+  el.innerHTML = `
+    <div class="featured-img">
+      <span class="feat-cat">${article.catLabel}</span>
+      ${CAT_ICONS[article.cat] || ''}
+    </div>
+    <div class="featured-content">
+      <h2>${article.title}</h2>
+      <p>${article.excerpt}</p>
+      <div class="meta"><span>${article.catLabel}</span> · ${article.readTime} · ${article.date}</div>
+      <span class="read-btn">Read Article →</span>
+    </div>`;
+}
+
+function renderGrid(articles) {
+  const grid = document.getElementById('articleGrid');
+  grid.innerHTML = articles.map((a, i) => {
+    if (i === 0) return ''; // skip featured (index 0)
+    return `
+    <a class="art-card" href="${a.href}" data-cat="${a.cat}" data-title="${a.title.toLowerCase()}">
+      <div class="art-thumb no-img">
+        ${CAT_ICONS[a.cat] || ''}
+        <div class="art-cat">${a.catLabel}</div>
+      </div>
+      <div class="art-body">
+        <h3>${a.title}</h3>
+        <div class="art-meta"><span>${a.readTime}</span><span class="dot">·</span><span>${a.date}</span></div>
+        <span class="art-link">Read More →</span>
+      </div>
+    </a>`;
+  }).join('');
+}
+
+// Init render
+renderFeatured(ARTICLES[0]);
+renderGrid(ARTICLES);
+
+
 // ── FILTER + SEARCH ──────────────────────────────────────────────────
 let activeFilter = 'all';
 let searchTerm   = '';
 
 function applyFilters() {
-  const cards = document.querySelectorAll('.art-card');
-  let visible = 0;
-  cards.forEach(card => {
-    const cat   = card.dataset.cat || '';
-    const title = (card.dataset.title || '').toLowerCase();
-    const catMatch    = activeFilter === 'all' || cat === activeFilter;
-    const searchMatch = !searchTerm || title.includes(searchTerm);
-    const show = catMatch && searchMatch;
-    card.classList.toggle('hidden', !show);
-    if (show) visible++;
+  // Re-render grid filtered from ARTICLES array (skip index 0 = featured)
+  const filtered = ARTICLES.slice(1).filter(a => {
+    const catMatch    = activeFilter === 'all' || a.cat === activeFilter;
+    const searchMatch = !searchTerm || a.title.toLowerCase().includes(searchTerm);
+    return catMatch && searchMatch;
   });
-  document.getElementById('noResults').classList.toggle('show', visible === 0);
+  const grid = document.getElementById('articleGrid');
+  if (filtered.length === 0) {
+    grid.innerHTML = '';
+    document.getElementById('noResults').classList.add('show');
+    return;
+  }
+  document.getElementById('noResults').classList.remove('show');
+  grid.innerHTML = filtered.map(a => `
+    <a class="art-card" href="${a.href}" data-cat="${a.cat}" data-title="${a.title.toLowerCase()}">
+      <div class="art-thumb no-img">
+        ${CAT_ICONS[a.cat] || ''}
+        <div class="art-cat">${a.catLabel}</div>
+      </div>
+      <div class="art-body">
+        <h3>${a.title}</h3>
+        <div class="art-meta"><span>${a.readTime}</span><span class="dot">·</span><span>${a.date}</span></div>
+        <span class="art-link">Read More →</span>
+      </div>
+    </a>`).join('');
 }
 
 function filterBy(cat) {
@@ -792,13 +780,6 @@ Format your response with short paragraphs. Use **bold** for key terms.`,
   btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4 20-7z"/></svg> Ask';
 });
 
-// Allow Enter key to submit
-document.getElementById('aiQuestion').addEventListener('keydown', e => {
-  if (e.key === 'Enter' && !e.shiftKey) {
-    e.preventDefault();
-    document.getElementById('aiAskBtn').click();
-  }
-});
 </script>
 </body>
 </html>
