@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Monthly Achievers | CASB Agency</title>
-<meta name="description" content="Browse CASB Monthly Achievers by year.">
+<meta name="description" content="CASB Monthly Achievers — recognising outstanding advisors every month, organised by year.">
 <link rel="icon" type="image/x-icon" href="../assets/favicon/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,109 +12,212 @@
 <link rel="stylesheet" href="../style.css">
 <style>
 
-body { background: #F7F6F3; }
+/* ── PAGE SHELL ── */
+body { background: #060c1a; color: #fff; min-height: 100vh; }
 nav { background: rgba(13,31,60,.97); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(232,201,106,.12); }
 
+/* ── HERO ── */
 .ma-hero {
-  background: linear-gradient(135deg, #0A1828 0%, #0D1F3C 60%, #162d50 100%);
-  padding: 120px 10% 64px; position: relative; overflow: hidden;
+  background: linear-gradient(160deg, #0a1828 0%, #0d1f3c 55%, #162d50 100%);
+  padding: 110px 10% 52px;
+  position: relative; overflow: hidden;
+  border-bottom: 1px solid rgba(232,201,106,.12);
 }
 .ma-hero::before {
   content: ''; position: absolute; inset: 0;
-  background: radial-gradient(ellipse 70% 60% at 80% 50%, rgba(232,201,106,.09), transparent 60%);
+  background: radial-gradient(ellipse 60% 80% at 85% 50%, rgba(232,201,106,.08), transparent 65%);
   pointer-events: none;
 }
-.ma-hero-inner { position: relative; z-index: 1; max-width: 700px; }
-.ma-hero .kicker { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 14px; display: block; }
-.ma-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(32px,5vw,58px); line-height: 1.1; color: #fff; margin-bottom: 16px; }
+.ma-hero-inner { position: relative; z-index: 1; max-width: 600px; }
+.ma-kicker { font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 12px; display: block; }
+.ma-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(32px,5vw,54px); line-height: 1.1; color: #fff; margin-bottom: 12px; }
 .ma-hero h1 em { color: var(--gold-light); font-style: normal; }
-.ma-hero p { font-size: 15px; color: rgba(255,255,255,.6); line-height: 1.7; max-width: 480px; }
+.ma-hero p { font-size: 14px; color: rgba(255,255,255,.55); line-height: 1.7; }
 
-.back-nav { max-width: 1100px; margin: 0 auto; padding: 24px 5% 0; }
-.back-link { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--gray); text-decoration: none; transition: color .2s; }
-.back-link:hover { color: var(--gold); }
-.back-link svg { width: 15px; height: 15px; }
+.back-nav { max-width: 1200px; margin: 0 auto; padding: 20px 5% 0; }
+.back-link { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; color: rgba(255,255,255,.4); text-decoration: none; transition: color .2s; }
+.back-link:hover { color: var(--gold-light); }
+.back-link svg { width: 14px; height: 14px; }
 
-.ma-body { max-width: 1100px; margin: 0 auto; padding: 40px 5% 80px; }
+/* ── MAIN LAYOUT ── */
+.ma-layout {
+  max-width: 1200px; margin: 0 auto;
+  padding: 36px 5% 80px;
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 0;
+  align-items: start;
+  min-height: calc(100vh - 280px);
+}
 
-/* Month accordion */
-.month-item { border-bottom: 1px solid #E8E6E1; }
-.month-item:last-child { border-bottom: none; }
-.month-summary {
+/* ── LEFT: DIAMOND YEAR NAV ── */
+.ma-year-nav {
+  display: flex; flex-direction: column;
+  align-items: center;
+  padding-top: 12px;
+  position: sticky; top: 90px;
+}
+.ma-connector {
+  width: 1px; height: 28px;
+  background: linear-gradient(180deg, rgba(232,201,106,.3), rgba(232,201,106,.08));
+}
+.ma-diamond-btn {
+  position: relative; width: 68px; height: 68px;
+  background: none; border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  padding: 0;
+}
+/* The diamond */
+.ma-diamond-btn::before {
+  content: '';
+  position: absolute; inset: 10px;
+  border: 1.5px solid rgba(232,201,106,.22);
+  border-radius: 4px;
+  transform: rotate(45deg);
+  transition: background .25s, border-color .25s, transform .25s, box-shadow .25s;
+}
+.ma-diamond-btn:hover::before {
+  background: rgba(232,201,106,.12);
+  border-color: rgba(232,201,106,.6);
+  transform: rotate(45deg) scale(1.1);
+}
+.ma-diamond-btn.active::before {
+  background: var(--gold);
+  border-color: var(--gold-light);
+  box-shadow: 0 0 18px rgba(184,146,42,.35);
+}
+.ma-diamond-btn span {
+  position: relative; z-index: 1;
+  font-size: 11px; font-weight: 700; letter-spacing: .04em;
+  color: rgba(255,255,255,.4); font-family: 'DM Sans', sans-serif;
+  transition: color .2s;
+}
+.ma-diamond-btn:hover span { color: var(--gold-light); }
+.ma-diamond-btn.active span { color: #fff; }
+
+/* ── CENTER: YEAR PANELS ── */
+.ma-panels {
+  border-left: 1px solid rgba(232,201,106,.1);
+  padding-left: 40px;
+  min-height: 400px;
+}
+.ma-panel { display: none; }
+.ma-panel.active { display: block; }
+
+.ma-panel-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: 38px; color: var(--gold-light);
+  line-height: 1; margin-bottom: 6px;
+}
+.ma-panel-sub {
+  font-size: 12px; color: rgba(255,255,255,.35);
+  letter-spacing: .08em; text-transform: uppercase;
+  margin-bottom: 32px;
+}
+
+/* ── MONTH ACCORDION ── */
+.ma-month {
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+.ma-month:last-child { border-bottom: none; }
+
+.ma-month-summary {
   display: flex; align-items: center; gap: 14px;
-  padding: 16px 6px; cursor: pointer; list-style: none; user-select: none;
-  transition: background .15s;
+  padding: 16px 4px; cursor: pointer; list-style: none; user-select: none;
+  border-radius: 4px; transition: background .15s;
 }
-.month-summary::-webkit-details-marker { display: none; }
-.month-summary:hover { background: rgba(184,146,42,.04); }
-.month-name { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--navy); flex: 1; }
-.month-count { font-size: 12px; color: var(--gray); letter-spacing: .06em; text-transform: uppercase; }
-.month-chevron {
-  width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;
-  border-radius: 50%; background: var(--gold-pale); flex-shrink: 0;
-  transition: transform .3s ease, background .2s;
-}
-.month-chevron svg { width: 14px; height: 14px; color: var(--gold); }
-.month-item[open] .month-chevron { transform: rotate(180deg); background: var(--gold); }
-.month-item[open] .month-chevron svg { color: #fff; }
+.ma-month-summary::-webkit-details-marker { display: none; }
+.ma-month-summary:hover { background: rgba(232,201,106,.04); padding-left: 10px; }
 
-.month-grid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
-  gap: 20px; padding: 16px 6px 28px;
+.ma-month-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px; color: #fff; flex: 1; transition: color .2s;
 }
-.poster-card {
-  background: #fff; border-radius: 8px; overflow: hidden;
-  border: 1px solid var(--gray-light); box-shadow: 0 2px 10px rgba(0,0,0,.06);
-  cursor: zoom-in; transition: transform .2s, box-shadow .2s, border-color .2s;
+.ma-month[open] .ma-month-name { color: var(--gold-light); }
+.ma-month-count {
+  font-size: 11px; color: rgba(255,255,255,.3);
+  letter-spacing: .08em; text-transform: uppercase;
 }
-.poster-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(13,31,60,.12); border-color: rgba(184,146,42,.45); }
-.poster-card img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; background: var(--gold-pale); }
-.poster-label { padding: 10px 14px 12px; font-size: 12px; color: var(--gray); letter-spacing: .06em; text-transform: uppercase; border-top: 1px solid var(--gray-light); }
+.ma-month-chevron {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: rgba(232,201,106,.08); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  transition: transform .3s, background .2s;
+}
+.ma-month-chevron svg { width: 13px; height: 13px; color: var(--gold-light); }
+.ma-month[open] .ma-month-chevron { transform: rotate(180deg); background: var(--gold); }
+.ma-month[open] .ma-month-chevron svg { color: #fff; }
 
-.month-empty { padding: 32px 6px; color: var(--gray); font-size: 14px; display: flex; align-items: center; gap: 10px; }
+/* Poster grid */
+.ma-month-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 12px;
+  padding: 14px 4px 24px;
+}
+.ma-poster {
+  aspect-ratio: 3/4; border-radius: 6px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,.08);
+  cursor: zoom-in;
+  transition: transform .2s, border-color .2s, box-shadow .2s;
+  background: rgba(13,31,60,.6);
+}
+.ma-poster:hover {
+  transform: translateY(-3px) scale(1.02);
+  border-color: rgba(232,201,106,.4);
+  box-shadow: 0 12px 28px rgba(0,0,0,.4);
+}
+.ma-poster img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.ma-month-empty {
+  padding: 18px 4px 24px;
+  font-size: 13px; color: rgba(255,255,255,.25);
+  display: flex; align-items: center; gap: 8px;
+}
+.ma-month-empty svg { width: 16px; height: 16px; opacity: .3; flex-shrink: 0; }
+
+/* Empty year panel */
+.ma-panel-empty {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  min-height: 300px; gap: 16px; text-align: center;
+  color: rgba(255,255,255,.25);
+}
+.ma-panel-empty svg { width: 40px; height: 40px; opacity: .2; }
+.ma-panel-empty p { font-size: 14px; line-height: 1.6; max-width: 280px; }
 
 /* Lightbox */
-.lightbox { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,.88); backdrop-filter: blur(6px); align-items: center; justify-content: center; padding: 24px; }
-.lightbox.open { display: flex; }
-.lightbox img { max-width: min(480px,90vw); max-height: 90vh; object-fit: contain; border-radius: 6px; box-shadow: 0 30px 80px rgba(0,0,0,.5); }
-.lightbox-close { position: absolute; top: 20px; right: 24px; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2); color: #fff; width: 40px; height: 40px; border-radius: 50%; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background .2s; }
-.lightbox-close:hover { background: rgba(255,255,255,.25); }
+.ma-lightbox {
+  display: none; position: fixed; inset: 0; z-index: 400;
+  background: rgba(0,0,0,.9); backdrop-filter: blur(8px);
+  align-items: center; justify-content: center; padding: 24px;
+  cursor: zoom-out;
+}
+.ma-lightbox.open { display: flex; }
+.ma-lightbox img {
+  max-width: min(500px, 90vw); max-height: 90vh;
+  object-fit: contain; border-radius: 8px;
+  box-shadow: 0 40px 100px rgba(0,0,0,.6);
+}
+.ma-lightbox-close {
+  position: absolute; top: 20px; right: 24px;
+  width: 40px; height: 40px; border-radius: 50%;
+  background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
+  color: #fff; font-size: 18px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .2s;
+}
+.ma-lightbox-close:hover { background: rgba(255,255,255,.22); }
 
-@media (max-width: 680px) {
-  .ma-hero { padding: 100px 6% 48px; }
-  .month-grid { grid-template-columns: repeat(2,1fr); gap: 12px; }
+/* ── RESPONSIVE ── */
+@media (max-width: 700px) {
+  .ma-layout { grid-template-columns: 70px 1fr; padding: 24px 4% 60px; }
+  .ma-panels { padding-left: 20px; }
+  .ma-diamond-btn { width: 54px; height: 54px; }
+  .ma-connector { height: 20px; }
+  .ma-month-grid { grid-template-columns: repeat(auto-fill, minmax(100px,1fr)); gap: 8px; }
+  .ma-panel-heading { font-size: 28px; }
 }
-
-
-.year-selector {
-  display: flex; flex-direction: column; gap: 16px;
-  max-width: 600px; margin: 0 auto;
-}
-.year-btn {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 28px 36px; border-radius: 10px; text-decoration: none;
-  background: #fff; border: 1px solid var(--gray-light);
-  box-shadow: 0 2px 12px rgba(0,0,0,.06);
-  transition: transform .2s, box-shadow .2s, border-color .2s, background .2s;
-}
-.year-btn:hover {
-  transform: translateX(6px);
-  border-color: rgba(184,146,42,.5);
-  box-shadow: 0 8px 32px rgba(13,31,60,.12);
-  background: var(--gold-pale);
-}
-.year-num {
-  font-family: 'Playfair Display', serif;
-  font-size: 36px; color: var(--navy); line-height: 1;
-}
-.year-btn:hover .year-num { color: var(--gold); }
-.year-arrow {
-  font-size: 22px; color: var(--gold);
-  opacity: 0; transform: translateX(-8px);
-  transition: opacity .2s, transform .2s;
-}
-.year-btn:hover .year-arrow { opacity: 1; transform: translateX(0); }
-
 </style>
 </head>
 <body class="js-loaded">
@@ -135,40 +238,130 @@ nav { background: rgba(13,31,60,.97); backdrop-filter: blur(8px); border-bottom:
     <li><a href="http://member.casb2u.com/" class="nav-cta">Agent Login</a></li>
   </ul>
 </nav>
+
 <div class="floating-actions">
   <a class="floating-action whatsapp-action" href="https://wa.me/60362799388?text=Hi%20CASB%2C%20I%20would%20like%20to%20make%20an%20enquiry." target="_blank" rel="noopener" aria-label="WhatsApp">
     <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.09.543 4.058 1.494 5.771L.044 23.956l6.335-1.44A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.898 0-3.68-.51-5.215-1.397l-.374-.22-3.759.855.882-3.665-.244-.382A9.95 9.95 0 0 1 2 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
   </a>
-  <button class="floating-action back-to-top" type="button" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top"><span>↑</span></button>
+  <button class="floating-action back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top"><span>↑</span></button>
 </div>
+
+<!-- HERO -->
 <div class="ma-hero">
   <div class="ma-hero-inner">
-    <span class="kicker">Recognition</span>
+    <span class="ma-kicker">Recognition</span>
     <h1>Monthly<br><em>Achievers</em></h1>
-    <p>Celebrating the CASB advisors and teams who raise the bar every month. Select a year to browse.</p>
+    <p>Celebrating the CASB advisors and teams who raise the bar every month.</p>
   </div>
 </div>
+
 <div class="back-nav">
   <a class="back-link" href="../index.html#achievements">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
     Back to Achievements
   </a>
 </div>
-<div class="ma-body">
-  <div class="year-selector">
-    <a class="year-btn" href="2026.html">
-      <span class="year-num">2026</span>
-      <span class="year-arrow">→</span>
-    </a>
-    <a class="year-btn" href="2025.html">
-      <span class="year-num">2025</span>
-      <span class="year-arrow">→</span>
-    </a>
-    <a class="year-btn" href="2024.html">
-      <span class="year-num">2024</span>
-      <span class="year-arrow">→</span>
-    </a>
+
+<!-- MAIN LAYOUT -->
+<div class="ma-layout">
+
+  <!-- LEFT: diamond year nav -->
+  <div class="ma-year-nav">
+    <button class="ma-diamond-btn active" onclick="maYear('2026',this)"><span>2026</span></button>
+    <div class="ma-connector"></div>
+    <button class="ma-diamond-btn" onclick="maYear('2025',this)"><span>2025</span></button>
+    <div class="ma-connector"></div>
+    <button class="ma-diamond-btn" onclick="maYear('2024',this)"><span>2024</span></button>
   </div>
+
+  <!-- CENTER: year panels -->
+  <div class="ma-panels">
+
+    <!-- ══ 2026 ══ -->
+    <div class="ma-panel active" data-year="2026">
+      <div class="ma-panel-heading">2026</div>
+      <div class="ma-panel-sub">Monthly recognition posters</div>
+
+      <details class="ma-month" open>
+        <summary class="ma-month-summary">
+          <span class="ma-month-name">April</span>
+          <span class="ma-month-count">15 posters</span>
+          <span class="ma-month-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span>
+        </summary>
+        <div class="ma-month-grid">
+          <div class="ma-poster" onclick="maLightbox('monthly-poster/monthly-1.png')"><img loading="lazy" src="monthly-poster/monthly-1.png" alt="Apr 2026 Achievers"></div>
+          <div class="ma-poster" onclick="maLightbox('monthly-poster/monthly-2.png')"><img loading="lazy" src="monthly-poster/monthly-2.png" alt="Apr 2026 Achievers"></div>
+          <div class="ma-poster" onclick="maLightbox('monthly-poster/monthly-3.png')"><img loading="lazy" src="monthly-poster/monthly-3.png" alt="Apr 2026 Achievers"></div>
+          <div class="ma-poster" onclick="maLightbox('monthly-poster/monthly-4.png')"><img loading="lazy" src="monthly-poster/monthly-4.png" alt="Apr 2026 Achievers"></div>
+          <div class="ma-poster" onclick="maLightbox('monthly-poster/monthly-5.png')"><img loading="lazy" src="monthly-poster/monthly-5.png" alt="Apr 2026 Achievers"></div>
+          <div class="ma-poster" onclick="maLightbox('monthly-poster/monthly-6.png')"><img loading="lazy" src="monthly-poster/monthly-6.png" alt="Apr 2026 Achievers"></div>
+          <div class="ma-poster" onclick="maLightbox('monthly-poster/monthly-7.png')"><img loading="lazy" src="monthly-poster/monthly-7.png" alt="Apr 2026 Achievers"></div>
+          <div class="ma-poster" onclick="maLightbox('monthly-poster/monthly-8.png')"><img loading="lazy" src="monthly-poster/monthly-8.png" alt="Apr 2026 Achievers"></div>
+          <div class="ma-poster" onclick="maLightbox('monthly-poster/monthly-9.png')"><img loading="lazy" src="monthly-poster/monthly-9.png" alt="Apr 2026 Achievers"></div>
+          <div class="ma-poster" onclick="maLightbox('monthly-poster/monthly-10.png')"><img loading="lazy" src="monthly-poster/monthly-10.png" alt="Apr 2026 Achievers"></div>
+          <div class="ma-poster" onclick="maLightbox('monthly-poster/monthly-11.png')"><img loading="lazy" src="monthly-poster/monthly-11.png" alt="Apr 2026 Achievers"></div>
+          <div class="ma-poster" onclick="maLightbox('monthly-poster/monthly-12.png')"><img loading="lazy" src="monthly-poster/monthly-12.png" alt="Apr 2026 Achievers"></div>
+          <div class="ma-poster" onclick="maLightbox('monthly-poster/monthly-13.png')"><img loading="lazy" src="monthly-poster/monthly-13.png" alt="Apr 2026 Achievers"></div>
+          <div class="ma-poster" onclick="maLightbox('monthly-poster/monthly-14.png')"><img loading="lazy" src="monthly-poster/monthly-14.png" alt="Apr 2026 Achievers"></div>
+          <div class="ma-poster" onclick="maLightbox('monthly-poster/monthly-15.png')"><img loading="lazy" src="monthly-poster/monthly-15.png" alt="Apr 2026 Achievers"></div>
+        </div>
+      </details>
+
+      <details class="ma-month">
+        <summary class="ma-month-summary">
+          <span class="ma-month-name">March</span>
+          <span class="ma-month-count">Coming soon</span>
+          <span class="ma-month-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span>
+        </summary>
+        <div class="ma-month-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>Posters will appear here once uploaded.</div>
+      </details>
+
+      <details class="ma-month">
+        <summary class="ma-month-summary">
+          <span class="ma-month-name">February</span>
+          <span class="ma-month-count">Coming soon</span>
+          <span class="ma-month-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span>
+        </summary>
+        <div class="ma-month-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>Posters will appear here once uploaded.</div>
+      </details>
+
+      <details class="ma-month">
+        <summary class="ma-month-summary">
+          <span class="ma-month-name">January</span>
+          <span class="ma-month-count">Coming soon</span>
+          <span class="ma-month-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span>
+        </summary>
+        <div class="ma-month-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>Posters will appear here once uploaded.</div>
+      </details>
+    </div>
+
+    <!-- ══ 2025 ══ -->
+    <div class="ma-panel" data-year="2025">
+      <div class="ma-panel-heading">2025</div>
+      <div class="ma-panel-sub">Monthly recognition posters</div>
+      <div class="ma-panel-empty">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+        <p>2025 achiever posters will appear here once uploaded.</p>
+      </div>
+    </div>
+
+    <!-- ══ 2024 ══ -->
+    <div class="ma-panel" data-year="2024">
+      <div class="ma-panel-heading">2024</div>
+      <div class="ma-panel-sub">Monthly recognition posters</div>
+      <div class="ma-panel-empty">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+        <p>2024 achiever posters will appear here once uploaded.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="ma-lightbox" id="maLightbox" onclick="closeLightbox()">
+  <button class="ma-lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="maLightboxImg" src="" alt="">
 </div>
 
 <footer class="site-footer">
@@ -198,6 +391,28 @@ nav { background: rgba(13,31,60,.97); backdrop-filter: blur(8px); border-bottom:
     </div>
   </div>
 </footer>
+
 <script src="../main.js"></script>
+<script>
+// Year switcher
+function maYear(year, btn) {
+  document.querySelectorAll('.ma-diamond-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.ma-panel').forEach(p => p.classList.remove('active'));
+  document.querySelector(`.ma-panel[data-year="${year}"]`).classList.add('active');
+  window.scrollTo({ top: document.querySelector('.ma-layout').offsetTop - 20, behavior: 'smooth' });
+}
+// Lightbox
+function maLightbox(src) {
+  document.getElementById('maLightboxImg').src = src;
+  document.getElementById('maLightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('maLightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+</script>
 </body>
 </html>
