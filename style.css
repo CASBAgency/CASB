@@ -125,12 +125,12 @@ nav.nav-hidden {
 .whatsapp-action {
   background: #25D366;
   border-color: #25D366;
+  color: white;
 }
-
-.whatsapp-action span {
-  font-weight: 700;
-  font-size: 13px;
-  letter-spacing: .04em;
+.whatsapp-action svg {
+  width: 22px;
+  height: 22px;
+  fill: white;
 }
 
 .back-to-top span {
@@ -2045,4 +2045,55 @@ h2.section-title.light {
   .event-upload-strip {
     grid-template-columns: 1fr;
   }
+}
+
+/* ── JOIN SECTION (replaces inline styles) ── */
+.join-section { padding-top: 52px; }
+.join-card {
+  background: var(--navy);
+  border-radius: 4px;
+  padding: 36px;
+  color: white;
+}
+.join-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+.join-body {
+  color: rgba(255,255,255,0.6);
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+.hotline-card {
+  background: var(--gold-pale);
+  border: 1px solid rgba(184,146,42,0.2);
+  border-radius: 4px;
+  padding: 28px;
+  margin-top: 20px;
+}
+.hotline-label {
+  font-size: 13px;
+  color: var(--gold);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+.hotline-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  color: var(--navy);
+  font-weight: 700;
+}
+.hotline-hours {
+  font-size: 14px;
+  color: var(--gray);
+  margin-top: 6px;
+}
+
+/* ── SMOOTH SCROLL POLYFILL FALLBACK ── */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
 }
