@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -8,32 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../style.css">
-<style>
-body { background: var(--off-white); }
-.event-detail { min-height: 100vh; padding: 54px 6% 88px; }
-.back { display: inline-block; color: var(--gold); text-decoration: none; margin-bottom: 42px; }
-.cover { max-width: 1120px; margin: 0 auto 42px; border: 1px solid rgba(184,146,42,.38); border-radius: 8px; background: var(--navy); padding: 18px; box-shadow: 0 18px 44px rgba(13,31,60,.14); }
-.cover-slideshow { position: relative; aspect-ratio: 16/7; overflow: hidden; border-radius: 5px; background: var(--navy); }
-.cover-slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0; transition: opacity .6s ease; }
-.cover-slide.active { opacity: 1; }
-.cover-control { position: absolute; top: 50%; z-index: 2; width: 42px; height: 42px; border: 1px solid rgba(232,201,106,.42); border-radius: 50%; background: rgba(13,31,60,.7); color: white; display: grid; place-items: center; font-size: 28px; line-height: 1; cursor: pointer; transform: translateY(-50%); }
-.cover-control:hover { background: rgba(184,146,42,.9); }
-.cover-prev { left: 18px; }
-.cover-next { right: 18px; }
-.cover-dots { position: absolute; left: 50%; bottom: 16px; z-index: 2; display: flex; gap: 8px; transform: translateX(-50%); }
-.cover-dot { width: 9px; height: 9px; padding: 0; border: 1px solid rgba(255,255,255,.72); border-radius: 999px; background: rgba(255,255,255,.35); cursor: pointer; }
-.cover-dot.active { width: 24px; background: var(--gold-light); border-color: var(--gold-light); }
-.intro { max-width: 900px; margin: 0 auto 46px; text-align: center; }
-.intro h1 { font-family: 'Playfair Display', serif; color: var(--navy); font-size: clamp(40px,5.5vw,70px); line-height: 1.08; margin: 14px 0 18px; }
-.intro p { color: var(--gray); font-size: 17px; line-height: 1.8; }
-.gallery { max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
-.photo { border-radius: 7px; overflow: hidden; background: white; border: 1px solid var(--gray-light); box-shadow: 0 10px 24px rgba(13,31,60,.06); }
-.photo img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
-.photo p { padding: 14px 16px; color: var(--gray); font-size: 14px; }
-@media (max-width: 900px) { .gallery { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 600px) { .event-detail { padding: 36px 5% 70px; } .cover { padding: 12px; } .cover-slideshow { aspect-ratio: 4/3; } .cover-control { width: 36px; height: 36px; font-size: 24px; } .cover-prev { left: 12px; } .cover-next { right: 12px; } .gallery { grid-template-columns: 1fr; } }
-</style>
-
+<link rel="stylesheet" href="event-gallery.css">
 <link rel="icon" type="image/x-icon" href="../assets/favicon/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/favicon-16x16.png">
@@ -41,51 +16,331 @@ body { background: var(--off-white); }
 <link rel="manifest" href="../assets/favicon/site.webmanifest">
 </head>
 <body>
-<section class="event-detail">
+<section class="event-gallery-page">
   <a href="index.html" class="back">Back to Events</a>
-  <div class="cover">
-    <div class="cover-slideshow" aria-label="Sibu Business Conference Trip cover slideshow">
-      <img class="cover-slide active" src="../assets/photos/events/sibu-business-conference-trip/cover.jpg" alt="CASB Sibu Business Conference Trip cover">
-      <img class="cover-slide" src="../assets/photos/events/sibu-business-conference-trip/arrival-group.jpg" alt="CASB team arriving in Sibu">
-      <img class="cover-slide" src="../assets/photos/events/sibu-business-conference-trip/business-sharing.jpg" alt="CASB business sharing session">
-      <img class="cover-slide" src="../assets/photos/events/sibu-business-conference-trip/conference-team.jpg" alt="CASB conference team photo">
-      <img class="cover-slide" src="../assets/photos/events/sibu-business-conference-trip/river-team.jpg" alt="CASB team by the river in Sibu">
-      <img class="cover-slide" src="../assets/photos/events/sibu-business-conference-trip/temple-team.jpg" alt="CASB temple group photo">
-      <img class="cover-slide" src="../assets/photos/events/sibu-business-conference-trip/temple-wide.jpg" alt="CASB wide team group photo">
-      <img class="cover-slide" src="../assets/photos/events/sibu-business-conference-trip/temple-close-group.jpg" alt="CASB close group photo in Sibu">
-      <img class="cover-slide" src="../assets/photos/events/sibu-business-conference-trip/temple-celebration.jpg" alt="CASB team celebration in Sibu">
-      <button class="cover-control cover-prev" type="button" aria-label="Previous cover photo">&lsaquo;</button>
-      <button class="cover-control cover-next" type="button" aria-label="Next cover photo">&rsaquo;</button>
-      <div class="cover-dots" aria-label="Cover photo navigation">
-        <button class="cover-dot active" type="button" aria-label="Show cover photo 1" aria-current="true"></button>
-        <button class="cover-dot" type="button" aria-label="Show cover photo 2"></button>
-        <button class="cover-dot" type="button" aria-label="Show cover photo 3"></button>
-        <button class="cover-dot" type="button" aria-label="Show cover photo 4"></button>
-        <button class="cover-dot" type="button" aria-label="Show cover photo 5"></button>
-        <button class="cover-dot" type="button" aria-label="Show cover photo 6"></button>
-        <button class="cover-dot" type="button" aria-label="Show cover photo 7"></button>
-        <button class="cover-dot" type="button" aria-label="Show cover photo 8"></button>
-        <button class="cover-dot" type="button" aria-label="Show cover photo 9"></button>
+  <div class="event-hero">
+    <div class="event-cover-slideshow" data-cover-slideshow aria-label="Sibu Business Conference Trip slideshow">
+      <div class="event-cover-track">
+        <img class="event-cover-slide active" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-001.jpg" alt="Sibu Business Conference Trip slideshow photo 1" loading="eager">
+        <img class="event-cover-slide" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-002.jpg" alt="Sibu Business Conference Trip slideshow photo 2" loading="lazy">
+        <img class="event-cover-slide" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-003.jpg" alt="Sibu Business Conference Trip slideshow photo 3" loading="lazy">
+        <img class="event-cover-slide" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-004.jpg" alt="Sibu Business Conference Trip slideshow photo 4" loading="lazy">
+        <img class="event-cover-slide" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-005.jpg" alt="Sibu Business Conference Trip slideshow photo 5" loading="lazy">
+        <img class="event-cover-slide" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-006.jpg" alt="Sibu Business Conference Trip slideshow photo 6" loading="lazy">
+        <img class="event-cover-slide" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-007.jpg" alt="Sibu Business Conference Trip slideshow photo 7" loading="lazy">
+        <img class="event-cover-slide" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-147.jpg" alt="Sibu Business Conference Trip slideshow photo 8" loading="lazy">
+        <img class="event-cover-slide" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-183.jpg" alt="Sibu Business Conference Trip slideshow photo 9" loading="lazy">
+        <img class="event-cover-slide" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-184.jpg" alt="Sibu Business Conference Trip slideshow photo 10" loading="lazy">
+      </div>
+      <div class="event-cover-count" data-cover-count>1 / 10</div>
+    </div>
+    <div class="event-gallery-intro">
+      <div class="section-tag">Business Conference</div>
+      <h1>Sibu Business Conference Trip</h1>
+      <div class="gold-line" style="margin-left:auto;margin-right:auto"></div>
+      <p>A business conference trip bringing advisors together for learning, connection, and renewed momentum across the team.</p>
+      <div class="event-tags"><span>Conference</span><span>Leadership</span><span>Development</span></div>
+      <p class="event-photo-count">69 photos</p>
+    </div>
+  </div>
+  <div class="event-gallery-shell">
+    <div class="event-gallery-head">
+      <h2>Event Gallery</h2>
+      <p>Scroll through the full event gallery. Tap or click any photo to view it larger and save it.</p>
+    </div>
+    <div class="event-gallery-loop" data-gallery-loop>
+      <div class="event-gallery-track">
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-001.jpg" data-caption="Sibu Business Conference Trip photo 1">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-001.jpg" alt="Sibu Business Conference Trip photo 1">
+            <span>Photo 1</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-002.jpg" data-caption="Sibu Business Conference Trip photo 2">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-002.jpg" alt="Sibu Business Conference Trip photo 2">
+            <span>Photo 2</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-003.jpg" data-caption="Sibu Business Conference Trip photo 3">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-003.jpg" alt="Sibu Business Conference Trip photo 3">
+            <span>Photo 3</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-004.jpg" data-caption="Sibu Business Conference Trip photo 4">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-004.jpg" alt="Sibu Business Conference Trip photo 4">
+            <span>Photo 4</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-005.jpg" data-caption="Sibu Business Conference Trip photo 5">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-005.jpg" alt="Sibu Business Conference Trip photo 5">
+            <span>Photo 5</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-006.jpg" data-caption="Sibu Business Conference Trip photo 6">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-006.jpg" alt="Sibu Business Conference Trip photo 6">
+            <span>Photo 6</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-007.jpg" data-caption="Sibu Business Conference Trip photo 7">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-007.jpg" alt="Sibu Business Conference Trip photo 7">
+            <span>Photo 7</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-147.jpg" data-caption="Sibu Business Conference Trip photo 8">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-147.jpg" alt="Sibu Business Conference Trip photo 8">
+            <span>Photo 8</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-183.jpg" data-caption="Sibu Business Conference Trip photo 9">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-183.jpg" alt="Sibu Business Conference Trip photo 9">
+            <span>Photo 9</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-184.jpg" data-caption="Sibu Business Conference Trip photo 10">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-184.jpg" alt="Sibu Business Conference Trip photo 10">
+            <span>Photo 10</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-185.jpg" data-caption="Sibu Business Conference Trip photo 11">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-185.jpg" alt="Sibu Business Conference Trip photo 11">
+            <span>Photo 11</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-186.jpg" data-caption="Sibu Business Conference Trip photo 12">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-186.jpg" alt="Sibu Business Conference Trip photo 12">
+            <span>Photo 12</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-187.jpg" data-caption="Sibu Business Conference Trip photo 13">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-187.jpg" alt="Sibu Business Conference Trip photo 13">
+            <span>Photo 13</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-188.jpg" data-caption="Sibu Business Conference Trip photo 14">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-188.jpg" alt="Sibu Business Conference Trip photo 14">
+            <span>Photo 14</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-189.jpg" data-caption="Sibu Business Conference Trip photo 15">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-189.jpg" alt="Sibu Business Conference Trip photo 15">
+            <span>Photo 15</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-190.jpg" data-caption="Sibu Business Conference Trip photo 16">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-190.jpg" alt="Sibu Business Conference Trip photo 16">
+            <span>Photo 16</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-191.jpg" data-caption="Sibu Business Conference Trip photo 17">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-191.jpg" alt="Sibu Business Conference Trip photo 17">
+            <span>Photo 17</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-192.jpg" data-caption="Sibu Business Conference Trip photo 18">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-192.jpg" alt="Sibu Business Conference Trip photo 18">
+            <span>Photo 18</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-193.jpg" data-caption="Sibu Business Conference Trip photo 19">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-193.jpg" alt="Sibu Business Conference Trip photo 19">
+            <span>Photo 19</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-194.jpg" data-caption="Sibu Business Conference Trip photo 20">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-194.jpg" alt="Sibu Business Conference Trip photo 20">
+            <span>Photo 20</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-221.jpg" data-caption="Sibu Business Conference Trip photo 21">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-221.jpg" alt="Sibu Business Conference Trip photo 21">
+            <span>Photo 21</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-222.jpg" data-caption="Sibu Business Conference Trip photo 22">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-222.jpg" alt="Sibu Business Conference Trip photo 22">
+            <span>Photo 22</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-318.jpg" data-caption="Sibu Business Conference Trip photo 23">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-318.jpg" alt="Sibu Business Conference Trip photo 23">
+            <span>Photo 23</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-319.jpg" data-caption="Sibu Business Conference Trip photo 24">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-319.jpg" alt="Sibu Business Conference Trip photo 24">
+            <span>Photo 24</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-320.jpg" data-caption="Sibu Business Conference Trip photo 25">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-320.jpg" alt="Sibu Business Conference Trip photo 25">
+            <span>Photo 25</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-321.jpg" data-caption="Sibu Business Conference Trip photo 26">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-321.jpg" alt="Sibu Business Conference Trip photo 26">
+            <span>Photo 26</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-322.jpg" data-caption="Sibu Business Conference Trip photo 27">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-322.jpg" alt="Sibu Business Conference Trip photo 27">
+            <span>Photo 27</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-323.jpg" data-caption="Sibu Business Conference Trip photo 28">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-323.jpg" alt="Sibu Business Conference Trip photo 28">
+            <span>Photo 28</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-324.jpg" data-caption="Sibu Business Conference Trip photo 29">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-324.jpg" alt="Sibu Business Conference Trip photo 29">
+            <span>Photo 29</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-325.jpg" data-caption="Sibu Business Conference Trip photo 30">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-325.jpg" alt="Sibu Business Conference Trip photo 30">
+            <span>Photo 30</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-326.jpg" data-caption="Sibu Business Conference Trip photo 31">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-326.jpg" alt="Sibu Business Conference Trip photo 31">
+            <span>Photo 31</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-327.jpg" data-caption="Sibu Business Conference Trip photo 32">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-327.jpg" alt="Sibu Business Conference Trip photo 32">
+            <span>Photo 32</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-328.jpg" data-caption="Sibu Business Conference Trip photo 33">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-328.jpg" alt="Sibu Business Conference Trip photo 33">
+            <span>Photo 33</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-329.jpg" data-caption="Sibu Business Conference Trip photo 34">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-329.jpg" alt="Sibu Business Conference Trip photo 34">
+            <span>Photo 34</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-330.jpg" data-caption="Sibu Business Conference Trip photo 35">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-330.jpg" alt="Sibu Business Conference Trip photo 35">
+            <span>Photo 35</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-331.jpg" data-caption="Sibu Business Conference Trip photo 36">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-331.jpg" alt="Sibu Business Conference Trip photo 36">
+            <span>Photo 36</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-332.jpg" data-caption="Sibu Business Conference Trip photo 37">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-332.jpg" alt="Sibu Business Conference Trip photo 37">
+            <span>Photo 37</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-333.jpg" data-caption="Sibu Business Conference Trip photo 38">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-333.jpg" alt="Sibu Business Conference Trip photo 38">
+            <span>Photo 38</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-334.jpg" data-caption="Sibu Business Conference Trip photo 39">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-334.jpg" alt="Sibu Business Conference Trip photo 39">
+            <span>Photo 39</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-335.jpg" data-caption="Sibu Business Conference Trip photo 40">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-335.jpg" alt="Sibu Business Conference Trip photo 40">
+            <span>Photo 40</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-336.jpg" data-caption="Sibu Business Conference Trip photo 41">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-336.jpg" alt="Sibu Business Conference Trip photo 41">
+            <span>Photo 41</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-337.jpg" data-caption="Sibu Business Conference Trip photo 42">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-337.jpg" alt="Sibu Business Conference Trip photo 42">
+            <span>Photo 42</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-338.jpg" data-caption="Sibu Business Conference Trip photo 43">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-338.jpg" alt="Sibu Business Conference Trip photo 43">
+            <span>Photo 43</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-339.jpg" data-caption="Sibu Business Conference Trip photo 44">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-339.jpg" alt="Sibu Business Conference Trip photo 44">
+            <span>Photo 44</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-340.jpg" data-caption="Sibu Business Conference Trip photo 45">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-340.jpg" alt="Sibu Business Conference Trip photo 45">
+            <span>Photo 45</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-341.jpg" data-caption="Sibu Business Conference Trip photo 46">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-341.jpg" alt="Sibu Business Conference Trip photo 46">
+            <span>Photo 46</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-342.jpg" data-caption="Sibu Business Conference Trip photo 47">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-342.jpg" alt="Sibu Business Conference Trip photo 47">
+            <span>Photo 47</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-343.jpg" data-caption="Sibu Business Conference Trip photo 48">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-343.jpg" alt="Sibu Business Conference Trip photo 48">
+            <span>Photo 48</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-344.jpg" data-caption="Sibu Business Conference Trip photo 49">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-344.jpg" alt="Sibu Business Conference Trip photo 49">
+            <span>Photo 49</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-345.jpg" data-caption="Sibu Business Conference Trip photo 50">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-345.jpg" alt="Sibu Business Conference Trip photo 50">
+            <span>Photo 50</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-346.jpg" data-caption="Sibu Business Conference Trip photo 51">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-346.jpg" alt="Sibu Business Conference Trip photo 51">
+            <span>Photo 51</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-347.jpg" data-caption="Sibu Business Conference Trip photo 52">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-347.jpg" alt="Sibu Business Conference Trip photo 52">
+            <span>Photo 52</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-348.jpg" data-caption="Sibu Business Conference Trip photo 53">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-348.jpg" alt="Sibu Business Conference Trip photo 53">
+            <span>Photo 53</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-349.jpg" data-caption="Sibu Business Conference Trip photo 54">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-349.jpg" alt="Sibu Business Conference Trip photo 54">
+            <span>Photo 54</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-350.jpg" data-caption="Sibu Business Conference Trip photo 55">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-350.jpg" alt="Sibu Business Conference Trip photo 55">
+            <span>Photo 55</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-351.jpg" data-caption="Sibu Business Conference Trip photo 56">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-351.jpg" alt="Sibu Business Conference Trip photo 56">
+            <span>Photo 56</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-352.jpg" data-caption="Sibu Business Conference Trip photo 57">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-352.jpg" alt="Sibu Business Conference Trip photo 57">
+            <span>Photo 57</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-353.jpg" data-caption="Sibu Business Conference Trip photo 58">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-353.jpg" alt="Sibu Business Conference Trip photo 58">
+            <span>Photo 58</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-354.jpg" data-caption="Sibu Business Conference Trip photo 59">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-354.jpg" alt="Sibu Business Conference Trip photo 59">
+            <span>Photo 59</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-355.jpg" data-caption="Sibu Business Conference Trip photo 60">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-355.jpg" alt="Sibu Business Conference Trip photo 60">
+            <span>Photo 60</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-356.jpg" data-caption="Sibu Business Conference Trip photo 61">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-356.jpg" alt="Sibu Business Conference Trip photo 61">
+            <span>Photo 61</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-357.jpg" data-caption="Sibu Business Conference Trip photo 62">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-357.jpg" alt="Sibu Business Conference Trip photo 62">
+            <span>Photo 62</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-358.jpg" data-caption="Sibu Business Conference Trip photo 63">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-358.jpg" alt="Sibu Business Conference Trip photo 63">
+            <span>Photo 63</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-359.jpg" data-caption="Sibu Business Conference Trip photo 64">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-359.jpg" alt="Sibu Business Conference Trip photo 64">
+            <span>Photo 64</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-360.jpg" data-caption="Sibu Business Conference Trip photo 65">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-360.jpg" alt="Sibu Business Conference Trip photo 65">
+            <span>Photo 65</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-361.jpg" data-caption="Sibu Business Conference Trip photo 66">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-361.jpg" alt="Sibu Business Conference Trip photo 66">
+            <span>Photo 66</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-362.jpg" data-caption="Sibu Business Conference Trip photo 67">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-362.jpg" alt="Sibu Business Conference Trip photo 67">
+            <span>Photo 67</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-363.jpg" data-caption="Sibu Business Conference Trip photo 68">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-363.jpg" alt="Sibu Business Conference Trip photo 68">
+            <span>Photo 68</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/sibu-business-conference-trip/gallery/photo-364.jpg" data-caption="Sibu Business Conference Trip photo 69">
+            <img loading="lazy" src="../assets/photos/events/sibu-business-conference-trip/gallery/photo-364.jpg" alt="Sibu Business Conference Trip photo 69">
+            <span>Photo 69</span>
+          </button>
       </div>
     </div>
   </div>
-  <div class="intro">
-    <div class="section-tag">Business Conference</div>
-    <h1>Sibu Business Conference Trip</h1>
-    <div class="gold-line" style="margin-left:auto;margin-right:auto"></div>
-    <p>A business conference trip bringing advisors together for learning, connection, and renewed momentum across the team.</p>
-  </div>
-  <div class="gallery">
-    <article class="photo"><img src="../assets/photos/events/sibu-business-conference-trip/arrival-group.jpg" alt="CASB team arriving in Sibu"><p>Arrival with the team</p></article>
-    <article class="photo"><img src="../assets/photos/events/sibu-business-conference-trip/business-sharing.jpg" alt="CASB business sharing session"><p>Business sharing session</p></article>
-    <article class="photo"><img src="../assets/photos/events/sibu-business-conference-trip/conference-team.jpg" alt="CASB conference team photo"><p>Conference team moment</p></article>
-    <article class="photo"><img src="../assets/photos/events/sibu-business-conference-trip/river-team.jpg" alt="CASB team by the river in Sibu"><p>Branch connection</p></article>
-    <article class="photo"><img src="../assets/photos/events/sibu-business-conference-trip/temple-team.jpg" alt="CASB temple group photo"><p>Team visit highlight</p></article>
-    <article class="photo"><img src="../assets/photos/events/sibu-business-conference-trip/temple-wide.jpg" alt="CASB wide team group photo"><p>Group memory</p></article>
-    <article class="photo"><img src="../assets/photos/events/sibu-business-conference-trip/temple-close-group.jpg" alt="CASB close group photo in Sibu"><p>Close group moment</p></article>
-    <article class="photo"><img src="../assets/photos/events/sibu-business-conference-trip/temple-celebration.jpg" alt="CASB team celebration in Sibu"><p>Shared celebration</p></article>
-  </div>
+  <button class="gallery-top-button" type="button" data-gallery-top aria-label="Return to top">&#8593;</button>
 </section>
-<script src="../main.js"></script>
+<div class="event-lightbox" data-event-lightbox aria-hidden="true">
+  <div class="event-lightbox-inner" role="dialog" aria-modal="true" aria-label="Event photo viewer">
+    <button class="event-lightbox-close" type="button" data-lightbox-close aria-label="Close photo">Close</button>
+    <img data-lightbox-image src="" alt="">
+    <div class="event-lightbox-caption" data-lightbox-caption></div>
+    <div class="event-lightbox-actions">
+      <a href="#" data-lightbox-download download>Save photo</a>
+    </div>
+  </div>
+</div>
+<script src="event-gallery.js"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -8,32 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../style.css">
-<style>
-body { background: var(--off-white); }
-.event-detail { min-height: 100vh; padding: 54px 6% 88px; }
-.back { display: inline-block; color: var(--gold); text-decoration: none; margin-bottom: 42px; }
-.cover { max-width: 1120px; margin: 0 auto 42px; border: 1px solid rgba(184,146,42,.38); border-radius: 8px; background: var(--navy); padding: 18px; box-shadow: 0 18px 44px rgba(13,31,60,.14); }
-.cover-slideshow { position: relative; aspect-ratio: 16/7; overflow: hidden; border-radius: 5px; background: var(--navy); }
-.cover-slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0; transition: opacity .6s ease; }
-.cover-slide.active { opacity: 1; }
-.cover-control { position: absolute; top: 50%; z-index: 2; width: 42px; height: 42px; border: 1px solid rgba(232,201,106,.42); border-radius: 50%; background: rgba(13,31,60,.7); color: white; display: grid; place-items: center; font-size: 28px; line-height: 1; cursor: pointer; transform: translateY(-50%); }
-.cover-control:hover { background: rgba(184,146,42,.9); }
-.cover-prev { left: 18px; }
-.cover-next { right: 18px; }
-.cover-dots { position: absolute; left: 50%; bottom: 16px; z-index: 2; display: flex; gap: 8px; transform: translateX(-50%); }
-.cover-dot { width: 9px; height: 9px; padding: 0; border: 1px solid rgba(255,255,255,.72); border-radius: 999px; background: rgba(255,255,255,.35); cursor: pointer; }
-.cover-dot.active { width: 24px; background: var(--gold-light); border-color: var(--gold-light); }
-.intro { max-width: 900px; margin: 0 auto 46px; text-align: center; }
-.intro h1 { font-family: 'Playfair Display', serif; color: var(--navy); font-size: clamp(40px,5.5vw,70px); line-height: 1.08; margin: 14px 0 18px; }
-.intro p { color: var(--gray); font-size: 17px; line-height: 1.8; }
-.gallery { max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
-.photo { border-radius: 7px; overflow: hidden; background: white; border: 1px solid var(--gray-light); box-shadow: 0 10px 24px rgba(13,31,60,.06); }
-.photo img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
-.photo p { padding: 14px 16px; color: var(--gray); font-size: 14px; }
-@media (max-width: 900px) { .gallery { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 600px) { .event-detail { padding: 36px 5% 70px; } .cover { padding: 12px; } .cover-slideshow { aspect-ratio: 4/3; } .cover-control { width: 36px; height: 36px; font-size: 24px; } .cover-prev { left: 12px; } .cover-next { right: 12px; } .gallery { grid-template-columns: 1fr; } }
-</style>
-
+<link rel="stylesheet" href="event-gallery.css">
 <link rel="icon" type="image/x-icon" href="../assets/favicon/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/favicon-16x16.png">
@@ -41,51 +16,139 @@ body { background: var(--off-white); }
 <link rel="manifest" href="../assets/favicon/site.webmanifest">
 </head>
 <body>
-<section class="event-detail">
+<section class="event-gallery-page">
   <a href="index.html" class="back">Back to Events</a>
-  <div class="cover">
-    <div class="cover-slideshow" aria-label="Harbin Winter IL Incentive Trip cover slideshow">
-      <img class="cover-slide active" src="../assets/photos/events/harbin-winter-il-incentive-trip/cover.jpg" alt="CASB Harbin Winter IL Incentive Trip cover">
-      <img class="cover-slide" src="../assets/photos/events/harbin-winter-il-incentive-trip/airport-group.jpg" alt="CASB team at the airport">
-      <img class="cover-slide" src="../assets/photos/events/harbin-winter-il-incentive-trip/arrival-group.jpg" alt="CASB Harbin arrival group">
-      <img class="cover-slide" src="../assets/photos/events/harbin-winter-il-incentive-trip/snow-team.jpg" alt="CASB team in Harbin snow">
-      <img class="cover-slide" src="../assets/photos/events/harbin-winter-il-incentive-trip/snow-fun.jpg" alt="CASB advisors enjoying snow activities">
-      <img class="cover-slide" src="../assets/photos/events/harbin-winter-il-incentive-trip/snowman-moment.jpg" alt="CASB Harbin snowman moment">
-      <img class="cover-slide" src="../assets/photos/events/harbin-winter-il-incentive-trip/welcome-backdrop.jpg" alt="CASB Harbin welcome backdrop">
-      <img class="cover-slide" src="../assets/photos/events/harbin-winter-il-incentive-trip/team-dinner.jpg" alt="CASB team dinner in Harbin">
-      <img class="cover-slide" src="../assets/photos/events/harbin-winter-il-incentive-trip/dinner-group.jpg" alt="CASB Harbin dinner group">
-      <button class="cover-control cover-prev" type="button" aria-label="Previous cover photo">&lsaquo;</button>
-      <button class="cover-control cover-next" type="button" aria-label="Next cover photo">&rsaquo;</button>
-      <div class="cover-dots" aria-label="Cover photo navigation">
-        <button class="cover-dot active" type="button" aria-label="Show cover photo 1" aria-current="true"></button>
-        <button class="cover-dot" type="button" aria-label="Show cover photo 2"></button>
-        <button class="cover-dot" type="button" aria-label="Show cover photo 3"></button>
-        <button class="cover-dot" type="button" aria-label="Show cover photo 4"></button>
-        <button class="cover-dot" type="button" aria-label="Show cover photo 5"></button>
-        <button class="cover-dot" type="button" aria-label="Show cover photo 6"></button>
-        <button class="cover-dot" type="button" aria-label="Show cover photo 7"></button>
-        <button class="cover-dot" type="button" aria-label="Show cover photo 8"></button>
-        <button class="cover-dot" type="button" aria-label="Show cover photo 9"></button>
+  <div class="event-hero">
+    <div class="event-cover-slideshow" data-cover-slideshow aria-label="Harbin Winter IL Incentive Trip slideshow">
+      <div class="event-cover-track">
+        <img class="event-cover-slide active" src="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-001.jpg" alt="Harbin Winter IL Incentive Trip slideshow photo 1" loading="eager">
+        <img class="event-cover-slide" src="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-002.jpg" alt="Harbin Winter IL Incentive Trip slideshow photo 2" loading="lazy">
+        <img class="event-cover-slide" src="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-003.jpg" alt="Harbin Winter IL Incentive Trip slideshow photo 3" loading="lazy">
+        <img class="event-cover-slide" src="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-004.jpg" alt="Harbin Winter IL Incentive Trip slideshow photo 4" loading="lazy">
+        <img class="event-cover-slide" src="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-005.jpg" alt="Harbin Winter IL Incentive Trip slideshow photo 5" loading="lazy">
+        <img class="event-cover-slide" src="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-006.jpg" alt="Harbin Winter IL Incentive Trip slideshow photo 6" loading="lazy">
+        <img class="event-cover-slide" src="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-007.jpg" alt="Harbin Winter IL Incentive Trip slideshow photo 7" loading="lazy">
+        <img class="event-cover-slide" src="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-008.jpg" alt="Harbin Winter IL Incentive Trip slideshow photo 8" loading="lazy">
+        <img class="event-cover-slide" src="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-009.jpg" alt="Harbin Winter IL Incentive Trip slideshow photo 9" loading="lazy">
+        <img class="event-cover-slide" src="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-010.jpg" alt="Harbin Winter IL Incentive Trip slideshow photo 10" loading="lazy">
+      </div>
+      <div class="event-cover-count" data-cover-count>1 / 10</div>
+    </div>
+    <div class="event-gallery-intro">
+      <div class="section-tag">Incentive Trip</div>
+      <h1>Harbin Winter IL Incentive Trip</h1>
+      <div class="gold-line" style="margin-left:auto;margin-right:auto"></div>
+      <p>A memorable winter incentive trip celebrating performance, teamwork, and shared milestones with the CASB agency family.</p>
+      <div class="event-tags"><span>Incentive Trip</span><span>Team Celebration</span><span>Recognition</span></div>
+      <p class="event-photo-count">21 photos</p>
+    </div>
+  </div>
+  <div class="event-gallery-shell">
+    <div class="event-gallery-head">
+      <h2>Event Gallery</h2>
+      <p>Scroll through the full event gallery. Tap or click any photo to view it larger and save it.</p>
+    </div>
+    <div class="event-gallery-loop" data-gallery-loop>
+      <div class="event-gallery-track">
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-001.jpg" data-caption="Harbin Winter IL Incentive Trip photo 1">
+            <img loading="lazy" src="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-001.jpg" alt="Harbin Winter IL Incentive Trip photo 1">
+            <span>Photo 1</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-002.jpg" data-caption="Harbin Winter IL Incentive Trip photo 2">
+            <img loading="lazy" src="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-002.jpg" alt="Harbin Winter IL Incentive Trip photo 2">
+            <span>Photo 2</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-003.jpg" data-caption="Harbin Winter IL Incentive Trip photo 3">
+            <img loading="lazy" src="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-003.jpg" alt="Harbin Winter IL Incentive Trip photo 3">
+            <span>Photo 3</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-004.jpg" data-caption="Harbin Winter IL Incentive Trip photo 4">
+            <img loading="lazy" src="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-004.jpg" alt="Harbin Winter IL Incentive Trip photo 4">
+            <span>Photo 4</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-005.jpg" data-caption="Harbin Winter IL Incentive Trip photo 5">
+            <img loading="lazy" src="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-005.jpg" alt="Harbin Winter IL Incentive Trip photo 5">
+            <span>Photo 5</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-006.jpg" data-caption="Harbin Winter IL Incentive Trip photo 6">
+            <img loading="lazy" src="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-006.jpg" alt="Harbin Winter IL Incentive Trip photo 6">
+            <span>Photo 6</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-007.jpg" data-caption="Harbin Winter IL Incentive Trip photo 7">
+            <img loading="lazy" src="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-007.jpg" alt="Harbin Winter IL Incentive Trip photo 7">
+            <span>Photo 7</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-008.jpg" data-caption="Harbin Winter IL Incentive Trip photo 8">
+            <img loading="lazy" src="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-008.jpg" alt="Harbin Winter IL Incentive Trip photo 8">
+            <span>Photo 8</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-009.jpg" data-caption="Harbin Winter IL Incentive Trip photo 9">
+            <img loading="lazy" src="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-009.jpg" alt="Harbin Winter IL Incentive Trip photo 9">
+            <span>Photo 9</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-010.jpg" data-caption="Harbin Winter IL Incentive Trip photo 10">
+            <img loading="lazy" src="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-010.jpg" alt="Harbin Winter IL Incentive Trip photo 10">
+            <span>Photo 10</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-011.jpg" data-caption="Harbin Winter IL Incentive Trip photo 11">
+            <img loading="lazy" src="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-011.jpg" alt="Harbin Winter IL Incentive Trip photo 11">
+            <span>Photo 11</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-012.jpg" data-caption="Harbin Winter IL Incentive Trip photo 12">
+            <img loading="lazy" src="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-012.jpg" alt="Harbin Winter IL Incentive Trip photo 12">
+            <span>Photo 12</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-013.jpg" data-caption="Harbin Winter IL Incentive Trip photo 13">
+            <img loading="lazy" src="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-013.jpg" alt="Harbin Winter IL Incentive Trip photo 13">
+            <span>Photo 13</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-014.jpg" data-caption="Harbin Winter IL Incentive Trip photo 14">
+            <img loading="lazy" src="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-014.jpg" alt="Harbin Winter IL Incentive Trip photo 14">
+            <span>Photo 14</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-015.jpg" data-caption="Harbin Winter IL Incentive Trip photo 15">
+            <img loading="lazy" src="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-015.jpg" alt="Harbin Winter IL Incentive Trip photo 15">
+            <span>Photo 15</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-016.jpg" data-caption="Harbin Winter IL Incentive Trip photo 16">
+            <img loading="lazy" src="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-016.jpg" alt="Harbin Winter IL Incentive Trip photo 16">
+            <span>Photo 16</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-017.jpg" data-caption="Harbin Winter IL Incentive Trip photo 17">
+            <img loading="lazy" src="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-017.jpg" alt="Harbin Winter IL Incentive Trip photo 17">
+            <span>Photo 17</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-018.jpg" data-caption="Harbin Winter IL Incentive Trip photo 18">
+            <img loading="lazy" src="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-018.jpg" alt="Harbin Winter IL Incentive Trip photo 18">
+            <span>Photo 18</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-019.jpg" data-caption="Harbin Winter IL Incentive Trip photo 19">
+            <img loading="lazy" src="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-019.jpg" alt="Harbin Winter IL Incentive Trip photo 19">
+            <span>Photo 19</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-020.jpg" data-caption="Harbin Winter IL Incentive Trip photo 20">
+            <img loading="lazy" src="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-020.jpg" alt="Harbin Winter IL Incentive Trip photo 20">
+            <span>Photo 20</span>
+          </button>
+          <button class="event-gallery-item" type="button" data-full="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-021.jpg" data-caption="Harbin Winter IL Incentive Trip photo 21">
+            <img loading="lazy" src="../assets/photos/events/harbin-winter-il-incentive-trip/gallery/photo-021.jpg" alt="Harbin Winter IL Incentive Trip photo 21">
+            <span>Photo 21</span>
+          </button>
       </div>
     </div>
   </div>
-  <div class="intro">
-    <div class="section-tag">Incentive Trip</div>
-    <h1>Harbin Winter IL Incentive Trip</h1>
-    <div class="gold-line" style="margin-left:auto;margin-right:auto"></div>
-    <p>A memorable winter incentive trip celebrating performance, teamwork, and shared milestones with the CASB agency family.</p>
-  </div>
-  <div class="gallery">
-    <article class="photo"><img src="../assets/photos/events/harbin-winter-il-incentive-trip/airport-group.jpg" alt="CASB team at the airport"><p>Travel day with the team</p></article>
-    <article class="photo"><img src="../assets/photos/events/harbin-winter-il-incentive-trip/arrival-group.jpg" alt="CASB Harbin arrival group"><p>Arrival group moment</p></article>
-    <article class="photo"><img src="../assets/photos/events/harbin-winter-il-incentive-trip/snow-team.jpg" alt="CASB team in Harbin snow"><p>Winter team highlight</p></article>
-    <article class="photo"><img src="../assets/photos/events/harbin-winter-il-incentive-trip/snow-fun.jpg" alt="CASB advisors enjoying snow activities"><p>Snow activity memory</p></article>
-    <article class="photo"><img src="../assets/photos/events/harbin-winter-il-incentive-trip/snowman-moment.jpg" alt="CASB Harbin snowman moment"><p>Destination highlight</p></article>
-    <article class="photo"><img src="../assets/photos/events/harbin-winter-il-incentive-trip/welcome-backdrop.jpg" alt="CASB Harbin welcome backdrop"><p>Group photo backdrop</p></article>
-    <article class="photo"><img src="../assets/photos/events/harbin-winter-il-incentive-trip/team-dinner.jpg" alt="CASB team dinner in Harbin"><p>Team dinner</p></article>
-    <article class="photo"><img src="../assets/photos/events/harbin-winter-il-incentive-trip/dinner-group.jpg" alt="CASB Harbin dinner group"><p>Celebration dinner</p></article>
-  </div>
+  <button class="gallery-top-button" type="button" data-gallery-top aria-label="Return to top">&#8593;</button>
 </section>
-<script src="../main.js"></script>
+<div class="event-lightbox" data-event-lightbox aria-hidden="true">
+  <div class="event-lightbox-inner" role="dialog" aria-modal="true" aria-label="Event photo viewer">
+    <button class="event-lightbox-close" type="button" data-lightbox-close aria-label="Close photo">Close</button>
+    <img data-lightbox-image src="" alt="">
+    <div class="event-lightbox-caption" data-lightbox-caption></div>
+    <div class="event-lightbox-actions">
+      <a href="#" data-lightbox-download download>Save photo</a>
+    </div>
+  </div>
+</div>
+<script src="event-gallery.js"></script>
 </body>
 </html>
