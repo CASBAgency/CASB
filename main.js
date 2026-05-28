@@ -1,6 +1,19 @@
 // Mark JS as active — CSS uses this to enable fade-in animations safely
 document.body.classList.add('js-loaded');
 
+// Remove malformed Monthly Achievers markup that was accidentally rendered after the footer.
+const footer = document.querySelector('.site-footer');
+if (footer) {
+  let nextElement = footer.nextElementSibling;
+  while (nextElement) {
+    const elementToCheck = nextElement;
+    nextElement = nextElement.nextElementSibling;
+    if (elementToCheck.matches('.ma-modal-title, .ma-modal-body')) {
+      elementToCheck.remove();
+    }
+  }
+}
+
 // Scroll fade-in
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
