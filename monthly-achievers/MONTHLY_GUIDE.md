@@ -1,14 +1,17 @@
 # Monthly Achievers — How to Add New Posters
 
-## Folder Structure
+## File Structure
 
 ```
 monthly-achievers/
-├── monthly.html              ← the main page (edit this to add new months)
-├── MONTHLY_GUIDE.md          ← this file
-└── monthly-poster/           ← all poster images live here
-    ├── monthly-1.png
-    ├── monthly-2.png
+├── monthly.html          ← Year selector landing page
+├── 2026.html             ← 2026 month accordion
+├── 2025.html             ← 2025 month accordion
+├── 2024.html             ← 2024 month accordion
+├── MONTHLY_GUIDE.md      ← This file
+└── monthly-poster/       ← All poster images
+    ├── monthly-1.png     ← (existing — April 2026)
+    ├── monthly-2.png     ← (existing — April 2026)
     └── ...
 ```
 
@@ -16,88 +19,63 @@ monthly-achievers/
 
 ## How to Add a New Month's Posters
 
-### Step 1 — Upload your image(s)
+### Step 1 — Upload the image
 
-Name your file clearly using this format:
-
+Name it clearly:
 ```
-YYYY-MM-monthname.png
+2026-05-may-achievers.png
+2026-05-may-achievers-2.png   ← if multiple posters
 ```
 
-Examples:
-- `2026-06-june.png`
-- `2026-06-june-2.png` (if there are multiple posters for the same month)
-
-Upload to the `monthly-poster/` folder.
+Upload to: `monthly-achievers/monthly-poster/`
 
 ---
 
-### Step 2 — Add the month to `monthly.html`
+### Step 2 — Add to the correct year page
 
-Open `monthly.html` and find the `MONTHS` list near the top of the `<script>` section. It looks like this:
+Open the matching year file (e.g. `2026.html` for May 2026).
 
+Find the month you want inside `YEAR_DATA`. Example for adding May 2026:
+
+**Before:**
 ```python
-MONTHS = [
-    (2026, 5,  "May",      ["monthly-poster/monthly-1.png"]),
-    (2026, 4,  "April",    ["monthly-poster/monthly-2.png"]),
-    ...
+(5, "May", []),
 ```
 
-**Add your new month as the FIRST item** (most recent first):
-
+**After:**
 ```python
-MONTHS = [
-    (2026, 6,  "June",     ["monthly-poster/2026-06-june.png"]),   # ← ADD HERE
-    (2026, 5,  "May",      ["monthly-poster/monthly-1.png"]),
-    ...
-```
-
-If a month has multiple posters, add them all in the list:
-
-```python
-(2026, 6, "June", [
-    "monthly-poster/2026-06-june.png",
-    "monthly-poster/2026-06-june-2.png"
+(5, "May", [
+    "monthly-poster/2026-05-may-achievers.png",
 ]),
 ```
+
+The month with posters will auto-expand on page load if it's the first one listed.
 
 ---
 
 ### Step 3 — Commit and push
 
-Using GitHub Desktop:
-1. You'll see the changed files
-2. Write commit message: `"Add June 2026 monthly achievers"`
-3. Click **Commit to main** → **Push origin**
-
-Done. The page updates within ~2 minutes.
+GitHub Desktop:
+1. See changed files listed
+2. Commit message: `"Add May 2026 monthly achievers"`
+3. Commit to main → Push origin
 
 ---
 
-## How It Works
+## Adding a New Year
 
-- **Years** are shown as large headings (2026, 2025, 2024…)
-- **Months** are accordion rows — click to expand and see posters
-- **Most recent month** is open by default when you land on the page
-- **Click any poster** to open it full-size in a lightbox
-- **New year is created automatically** when you add a month with a new year number
+When 2027 arrives:
 
----
-
-## Naming Convention (recommended going forward)
-
-| Old style | New style |
-|---|---|
-| `monthly-1.png` | `2026-05-may.png` |
-| `monthly-2.png` | `2026-04-april.png` |
-
-The old filenames still work — no need to rename existing files.
+1. Duplicate `2026.html`, rename to `2027.html`
+2. Update the year number and month data inside
+3. Add `2027` to the `YEARS` list in `monthly.html`
+4. Add a new `<a class="year-btn" href="2027.html">` button in `monthly.html`
 
 ---
 
 ## Quick Checklist
 
 - [ ] Image uploaded to `monthly-poster/`
-- [ ] New entry added as FIRST item in `MONTHS` list in `monthly.html`
-- [ ] Year and month number are correct
-- [ ] Committed and pushed to GitHub
+- [ ] Filename is clear and dated
+- [ ] Entry added to the correct month in the correct year `.html`
+- [ ] Committed and pushed
