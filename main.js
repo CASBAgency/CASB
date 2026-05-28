@@ -346,7 +346,7 @@ if (contactForm) {
         headers: { 'Accept': 'application/json' }
       });
       if (res.ok) {
-        contactForm.innerHTML = '<div style="padding:40px 0;text-align:center;"><div style="font-size:40px;margin-bottom:16px;">✓</div><h3 style="font-family:'Playfair Display',serif;font-size:22px;margin-bottom:10px;color:#fff;">Message Sent</h3><p style="color:rgba(255,255,255,0.6);">Thank you for reaching out. Our team will get back to you shortly.</p></div>';
+        contactForm.innerHTML = "<div style=\"text-align:center;padding:40px 0\"><p style=\"font-size:36px\">&#10003;</p><h3 style=\"color:#fff;font-size:20px;margin:12px 0 8px\">Message Sent</h3><p style=\"color:rgba(255,255,255,0.6)\">Thank you — our team will be in touch shortly.</p></div>";
       } else {
         submitBtn.textContent = 'Try Again';
         submitBtn.disabled = false;
@@ -359,3 +359,4 @@ if (contactForm) {
     }
   });
 }
+
