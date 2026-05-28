@@ -2103,121 +2103,155 @@ body.js-loaded .fade-in.visible {
   html { scroll-behavior: smooth; }
 }
 
-/* ── MONTHLY ACHIEVERS WIDGET (homepage) ── */
-.ach-card-monthly-widget {
-  display: flex !important;
-  flex-direction: row !important;
-  padding: 0 !important;
-  overflow: hidden;
-  gap: 0 !important;
-  cursor: default;
+/* ── MONTHLY ACHIEVERS MODAL ── */
+.ma-modal {
+  display: none;
+  position: fixed; inset: 0; z-index: 300;
+  background: rgba(4,8,20,.82);
+  backdrop-filter: blur(8px);
+  align-items: center; justify-content: center;
+  padding: 24px;
 }
-.ach-card-monthly-widget:hover {
-  transform: none !important;
+.ma-modal.open { display: flex; }
+
+.ma-modal-inner {
+  background: linear-gradient(160deg, #0d1f3c 0%, #060c1a 100%);
+  border: 1px solid rgba(232,201,106,.2);
+  border-radius: 12px;
+  width: min(960px, 96vw);
+  max-height: 88vh;
+  display: flex; flex-direction: column;
+  box-shadow: 0 40px 100px rgba(0,0,0,.6);
+  overflow: hidden;
+  position: relative;
 }
 
-/* Vertical year nav */
-.ma-year-nav {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  padding: 20px 14px;
-  background: rgba(13,31,60,.06);
-  border-right: 1px solid rgba(184,146,42,.15);
+.ma-modal-close {
+  position: absolute; top: 16px; right: 16px; z-index: 10;
+  width: 36px; height: 36px; border-radius: 50%;
+  background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12);
+  color: rgba(255,255,255,.7); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .2s, color .2s;
+}
+.ma-modal-close:hover { background: rgba(255,255,255,.18); color: #fff; }
+.ma-modal-close svg { width: 16px; height: 16px; }
+
+.ma-modal-header {
+  padding: 28px 32px 20px;
+  border-bottom: 1px solid rgba(232,201,106,.12);
   flex-shrink: 0;
 }
+.ma-modal-kicker {
+  font-size: 10px; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--gold-light); margin-bottom: 6px;
+}
+.ma-modal-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px; color: #fff; line-height: 1;
+}
 
-.ma-year-btn {
-  position: relative;
-  width: 52px; height: 52px;
+.ma-modal-body {
+  display: flex; flex: 1; min-height: 0; overflow: hidden;
+}
+
+/* Diamond year nav */
+.ma-modal-year-nav {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 0; padding: 24px 20px;
+  border-right: 1px solid rgba(232,201,106,.1);
+  flex-shrink: 0;
+}
+.ma-diamond-connector {
+  width: 1px; height: 24px;
+  background: linear-gradient(180deg, rgba(232,201,106,.3), rgba(232,201,106,.1));
+}
+.ma-diamond-btn {
+  position: relative; width: 64px; height: 64px;
   background: none; border: none; cursor: pointer;
   display: flex; align-items: center; justify-content: center;
-  padding: 0;
 }
-/* Diamond shape via rotated square */
-.ma-year-btn::before {
+.ma-diamond-btn::before {
   content: '';
-  position: absolute; inset: 0;
-  background: rgba(255,255,255,.08);
+  position: absolute; inset: 8px;
   border: 1.5px solid rgba(232,201,106,.25);
   border-radius: 4px;
   transform: rotate(45deg);
-  transition: background .2s, border-color .2s, transform .2s;
+  transition: background .2s, border-color .2s, transform .25s;
 }
-.ma-year-btn:hover::before {
-  background: rgba(232,201,106,.12);
-  border-color: rgba(232,201,106,.6);
-  transform: rotate(45deg) scale(1.08);
+.ma-diamond-btn:hover::before {
+  background: rgba(232,201,106,.1);
+  border-color: rgba(232,201,106,.55);
+  transform: rotate(45deg) scale(1.1);
 }
-.ma-year-btn.active::before {
+.ma-diamond-btn.active::before {
   background: var(--gold);
   border-color: var(--gold-light);
-  transform: rotate(45deg);
 }
-.ma-year-btn span {
+.ma-diamond-btn span {
   position: relative; z-index: 1;
-  font-size: 11px; font-weight: 700;
-  letter-spacing: .04em;
-  color: rgba(255,255,255,.55);
-  font-family: 'DM Sans', sans-serif;
+  font-size: 11px; font-weight: 700; letter-spacing: .05em;
+  color: rgba(255,255,255,.45); font-family: 'DM Sans', sans-serif;
   transition: color .2s;
 }
-.ma-year-btn:hover span { color: var(--gold-light); }
-.ma-year-btn.active span { color: #fff; }
+.ma-diamond-btn:hover span { color: var(--gold-light); }
+.ma-diamond-btn.active span { color: #fff; }
 
-/* Poster display area */
-.ma-display {
-  flex: 1; min-width: 0;
+/* Center content */
+.ma-modal-content {
+  flex: 1; min-width: 0; overflow-y: auto;
+  padding: 20px 28px 28px;
+  scrollbar-width: thin; scrollbar-color: rgba(232,201,106,.2) transparent;
+}
+.ma-panel { display: none; }
+.ma-panel.active { display: block; }
+
+/* Month accordion */
+.ma-month {
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.ma-month:last-child { border-bottom: none; }
+.ma-month-summary {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 4px; cursor: pointer; list-style: none; user-select: none;
+  transition: background .15s; border-radius: 4px;
+}
+.ma-month-summary::-webkit-details-marker { display: none; }
+.ma-month-summary:hover { background: rgba(232,201,106,.04); }
+.ma-month-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; color: #fff; flex: 1;
+}
+.ma-month-count { font-size: 11px; color: rgba(255,255,255,.35); letter-spacing: .06em; text-transform: uppercase; }
+.ma-month-chevron {
+  width: 24px; height: 24px; display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; background: rgba(232,201,106,.1); flex-shrink: 0;
+  transition: transform .3s, background .2s;
+}
+.ma-month-chevron svg { width: 12px; height: 12px; color: var(--gold-light); }
+.ma-month[open] .ma-month-chevron { transform: rotate(180deg); background: var(--gold); }
+.ma-month[open] .ma-month-chevron svg { color: #fff; }
+
+.ma-month-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(120px,1fr));
+  gap: 10px; padding: 12px 4px 20px;
+}
+.ma-month-grid img {
+  width: 100%; aspect-ratio: 3/4; object-fit: cover;
+  border-radius: 6px; border: 1px solid rgba(255,255,255,.08);
+  cursor: zoom-in; transition: transform .2s, border-color .2s;
+}
+.ma-month-grid img:hover { transform: scale(1.04); border-color: rgba(232,201,106,.4); }
+
+.ma-month-empty {
+  padding: 20px 4px; font-size: 13px; color: rgba(255,255,255,.3);
+}
+.ma-panel-empty {
   display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  min-height: 200px; gap: 12px; text-align: center;
+  color: rgba(255,255,255,.3);
 }
-.ma-poster-wrap { flex: 1; min-height: 0; position: relative; overflow: hidden; }
-
-.ma-year-panel {
-  display: none;
-  height: 100%;
-}
-.ma-year-panel.active { display: flex; flex-direction: column; }
-
-.ma-poster-scroll {
-  display: flex;
-  gap: 8px;
-  padding: 14px;
-  overflow-x: auto;
-  scrollbar-width: none;
-  flex: 1;
-  align-items: center;
-}
-.ma-poster-scroll::-webkit-scrollbar { display: none; }
-.ma-poster-scroll img {
-  height: 140px;
-  width: auto;
-  flex-shrink: 0;
-  border-radius: 4px;
-  object-fit: cover;
-  border: 1px solid rgba(255,255,255,.08);
-  transition: transform .2s, border-color .2s;
-  cursor: zoom-in;
-}
-.ma-poster-scroll img:hover {
-  transform: scale(1.04);
-  border-color: rgba(232,201,106,.4);
-}
-
-.ma-coming-soon {
-  flex: 1; display: flex; flex-direction: column;
-  align-items: center; justify-content: center; gap: 10px;
-  padding: 20px; text-align: center;
-}
-.ma-coming-soon svg { width: 28px; height: 28px; opacity: .25; }
-.ma-coming-soon p { font-size: 13px; color: rgba(255,255,255,.35); }
-
-.ma-footer {
-  padding: 14px 16px;
-  border-top: 1px solid rgba(255,255,255,.07);
-  display: flex; align-items: flex-end; justify-content: space-between;
-  gap: 12px;
-}
-.ma-footer .ach-year { margin-bottom: 4px; }
-.ma-footer .ach-link { flex-shrink: 0; margin-top: 0; }
+.ma-panel-empty svg { width: 32px; height: 32px; opacity: .25; }
+.ma-panel-empty p { font-size: 14px; }
