@@ -7,131 +7,781 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../style.css">
 <style>
-body { min-height: 100vh; overflow: hidden; background: #070F1E; color: white; }
-.mentor-page { min-height: 100vh; display: grid; grid-template-rows: auto auto 1fr auto; gap: 18px; padding: 28px 4% 26px; background: radial-gradient(circle at 50% -10%, rgba(232,201,106,.16), transparent 36%), linear-gradient(180deg, #102848 0%, #07101f 42%, #050914 100%); }
-.mentor-top { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
-.mentor-logo { display: inline-flex; align-items: center; gap: 12px; color: white; text-decoration: none; }
-.mentor-logo img { height: 58px; }
-.mentor-logo span, .mentor-kicker { color: var(--gold-light); font-size: 12px; letter-spacing: .16em; text-transform: uppercase; }
-.back-link { color: rgba(255,255,255,.68); text-decoration: none; font-size: 14px; }
+/* ── RESET & VARIABLES ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --gold: #B8922A;
+  --gold-light: #E8C96A;
+  --gold-pale: #FBF4E3;
+  --navy: #0D1F3C;
+  --navy-mid: #1A3358;
+  --navy-light: #2C4A72;
+  --card-w: 230px;
+  --card-h: 360px;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background: #070D1A;
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* ── PAGE LAYOUT ── */
+.page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(ellipse 80% 40% at 50% -10%, rgba(232,201,106,0.13) 0%, transparent 60%),
+    radial-gradient(ellipse 100% 60% at 50% 110%, rgba(13,31,60,0.8) 0%, transparent 70%),
+    linear-gradient(180deg, #0D1F3C 0%, #070D1A 50%, #040810 100%);
+}
+
+/* ── TOPBAR ── */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 5%;
+  flex-shrink: 0;
+  border-bottom: 1px solid rgba(232,201,106,0.1);
+}
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: white;
+}
+.logo-link img { height: 44px; }
+.logo-label {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+}
+.back-link {
+  font-size: 13px;
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.2s;
+}
 .back-link:hover { color: var(--gold-light); }
-.mentor-hero { max-width: 920px; margin: 0 auto; text-align: center; }
-.mentor-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(34px, 5vw, 62px); line-height: 1; margin: 8px 0 10px; }
-.mentor-hero p { max-width: 700px; margin: 0 auto; color: rgba(255,255,255,.62); font-size: 15px; line-height: 1.6; }
-.selection-stage { position: relative; min-height: 0; display: grid; place-items: center; border: 1px solid rgba(232,201,106,.18); background: linear-gradient(180deg, rgba(55,84,110,.72), rgba(7,16,31,.94) 48%, rgba(255,255,255,.055) 49%, rgba(9,14,23,.9) 100%); box-shadow: inset 0 0 80px rgba(0,0,0,.42), 0 28px 70px rgba(0,0,0,.34); overflow: hidden; }
-.selection-stage::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.45), transparent 20%, transparent 80%, rgba(0,0,0,.45)); pointer-events: none; }
-.mentor-carousel { width: min(1040px, 84vw); display: grid; grid-auto-flow: column; grid-auto-columns: clamp(190px, 22vw, 252px); gap: clamp(16px, 2vw, 28px); overflow-x: auto; padding: 42px 8px 48px; scroll-snap-type: x mandatory; scrollbar-width: none; perspective: 1200px; }
-.mentor-carousel::-webkit-scrollbar { display: none; }
-.mentor-card { scroll-snap-align: center; height: clamp(300px, 44vh, 390px); border: 0; padding: 0; background: transparent; color: inherit; cursor: pointer; perspective: 1200px; }
-.mentor-card:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 6px; }
-.mentor-card.is-flipped .mentor-inner { transform: rotateY(180deg); }
-.mentor-inner { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform .6s cubic-bezier(.2,.8,.2,1); }
-.mentor-face { position: absolute; inset: 0; backface-visibility: hidden; overflow: hidden; border: 1px solid rgba(232,201,106,.48); border-radius: 8px; background: linear-gradient(180deg, rgba(13,31,60,.94), rgba(5,9,20,.96)); box-shadow: 0 0 0 1px rgba(255,255,255,.06), 0 24px 44px rgba(0,0,0,.34); }
-.mentor-face::before, .mentor-face::after { content: ''; position: absolute; inset: 10px; border: 1px solid rgba(232,201,106,.18); border-radius: 5px; pointer-events: none; }
-.mentor-face::after { inset: auto 18px 18px; height: 1px; border: 0; background: linear-gradient(90deg, transparent, var(--gold-light), transparent); }
-.mentor-front { display: grid; grid-template-rows: 1fr auto; }
-.mentor-front.featured { border-color: var(--gold-light); box-shadow: 0 0 0 2px rgba(232,201,106,.24), 0 28px 58px rgba(0,0,0,.42); }
-.mentor-photo { min-height: 0; display: flex; align-items: flex-end; justify-content: center; background: radial-gradient(circle at 50% 18%, rgba(232,201,106,.2), transparent 34%); }
-.mentor-photo img { width: 100%; height: 100%; object-fit: contain; object-position: center bottom; padding: 32px 14px 0; filter: drop-shadow(0 20px 20px rgba(0,0,0,.46)); }
-.mentor-id { padding: 16px 18px 18px; background: linear-gradient(180deg, rgba(5,9,20,.1), rgba(5,9,20,.88)); }
-.mentor-id small { color: var(--gold-light); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; }
-.mentor-id h2 { font-family: 'Playfair Display', serif; font-size: 26px; line-height: 1; margin-top: 5px; }
-.mentor-back { transform: rotateY(180deg); padding: 22px; display: flex; flex-direction: column; justify-content: center; gap: 12px; }
-.mentor-back h2 { font-family: 'Playfair Display', serif; font-size: 28px; line-height: 1; color: var(--gold-light); }
-.mentor-back p { color: rgba(255,255,255,.66); font-size: 13px; line-height: 1.55; }
-.attribute { display: grid; gap: 5px; }
-.attribute span { display: flex; justify-content: space-between; color: rgba(255,255,255,.78); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
-.bar { height: 6px; border-radius: 999px; background: rgba(255,255,255,.1); overflow: hidden; }
-.bar i { display: block; height: 100%; width: var(--score); background: linear-gradient(90deg, var(--gold), var(--gold-light)); }
-.choose-mentor { margin-top: 4px; min-height: 42px; justify-content: center; }
-.stage-arrow { position: absolute; top: 50%; z-index: 3; width: 52px; height: 74px; border: 0; background: transparent; color: rgba(255,255,255,.82); font-size: 72px; line-height: 1; cursor: pointer; transform: translateY(-50%); transition: color .2s ease, transform .2s ease; }
-.stage-arrow:hover { color: var(--gold-light); transform: translateY(-50%) scale(1.08); }
-.mentor-prev { left: 16px; }
-.mentor-next { right: 16px; }
-.mentor-note { text-align: center; color: rgba(255,255,255,.52); font-size: 13px; }
-@media (max-width: 760px) { body { overflow: auto; } .mentor-page { min-height: 100vh; padding: 24px 4% 34px; grid-template-rows: auto auto minmax(520px, 1fr) auto; } .mentor-top { align-items: flex-start; flex-direction: column; } .mentor-logo img { height: 50px; } .mentor-carousel { width: 78vw; grid-auto-columns: minmax(220px, 78vw); padding: 36px 2px 42px; } .mentor-card { height: 430px; } .stage-arrow { width: 34px; font-size: 54px; } .mentor-prev { left: 4px; } .mentor-next { right: 4px; } }
+.back-link svg { width: 16px; height: 16px; }
+
+/* ── HERO ── */
+.hero {
+  text-align: center;
+  padding: 16px 5% 10px;
+  flex-shrink: 0;
+}
+.kicker {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-bottom: 6px;
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(26px, 3.5vw, 46px);
+  line-height: 1.1;
+  margin-bottom: 6px;
+  background: linear-gradient(135deg, #fff 30%, var(--gold-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero p {
+  font-size: 13px;
+  color: rgba(255,255,255,0.52);
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.55;
+}
+
+/* ── STAGE ── */
+.stage {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* floor reflection */
+.stage::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 38%;
+  background: linear-gradient(0deg, rgba(232,201,106,0.04) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+/* side fade */
+.stage::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg,
+    rgba(4,8,16,0.7) 0%,
+    transparent 18%,
+    transparent 82%,
+    rgba(4,8,16,0.7) 100%);
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* spotlight */
+.spotlight {
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(232,201,106,0.09) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── CAROUSEL ── */
+.carousel-track {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 30px 60px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+  z-index: 2;
+  max-width: 100%;
+}
+.carousel-track::-webkit-scrollbar { display: none; }
+
+/* ── ARROWS ── */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 44px;
+  height: 64px;
+  background: rgba(13,31,60,0.7);
+  border: 1px solid rgba(232,201,106,0.28);
+  border-radius: 6px;
+  color: rgba(255,255,255,0.7);
+  font-size: 28px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  backdrop-filter: blur(4px);
+}
+.arrow:hover {
+  background: rgba(184,146,42,0.25);
+  border-color: var(--gold-light);
+  color: var(--gold-light);
+}
+.arrow-left { left: 10px; }
+.arrow-right { right: 10px; }
+
+/* ── CARD ── */
+.card {
+  scroll-snap-align: center;
+  flex-shrink: 0;
+  width: var(--card-w);
+  height: var(--card-h);
+  perspective: 1000px;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.25s ease;
+}
+
+/* scale featured center card */
+.card.is-center {
+  transform: scale(1.08);
+  z-index: 3;
+}
+.card:not(.is-center) {
+  opacity: 0.72;
+  filter: brightness(0.82);
+}
+.card.is-center:not(.is-center) { opacity: 1; filter: none; }
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.65s cubic-bezier(0.22, 0.8, 0.22, 1);
+  position: relative;
+}
+.card.flipped .card-inner { transform: rotateY(180deg); }
+
+.card-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(232,201,106,0.38);
+  background: linear-gradient(180deg, #0F2244 0%, #060C1A 100%);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.05),
+    0 20px 50px rgba(0,0,0,0.55),
+    inset 0 1px 0 rgba(232,201,106,0.15);
+}
+
+/* corner bracket decorations */
+.card-face::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(232,201,106,0.14);
+  border-radius: 7px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* glowing top edge */
+.card-face::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 15%; right: 15%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+  border-radius: 999px;
+}
+
+.card.is-center .card-face {
+  border-color: rgba(232,201,106,0.65);
+  box-shadow:
+    0 0 0 1px rgba(232,201,106,0.18),
+    0 0 30px rgba(232,201,106,0.15),
+    0 24px 60px rgba(0,0,0,0.6);
+}
+
+/* FRONT */
+.card-front {
+  display: flex;
+  flex-direction: column;
+}
+.card-photo {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: radial-gradient(circle at 50% 20%, rgba(232,201,106,0.18) 0%, transparent 60%);
+  padding-top: 20px;
+  position: relative;
+  overflow: hidden;
+}
+.card-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+}
+.card-nameplate {
+  padding: 12px 16px 14px;
+  background: linear-gradient(0deg, rgba(4,8,16,0.95) 0%, rgba(6,12,26,0.8) 100%);
+  border-top: 1px solid rgba(232,201,106,0.2);
+  position: relative;
+  z-index: 2;
+}
+.card-role {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-bottom: 3px;
+}
+.card-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  line-height: 1.15;
+  font-weight: 600;
+}
+
+/* click hint */
+.flip-hint {
+  position: absolute;
+  bottom: 68px;
+  right: 12px;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(232,201,106,0.55);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  z-index: 3;
+  pointer-events: none;
+}
+.flip-hint svg { width: 12px; height: 12px; }
+
+/* BACK */
+.card-back {
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  padding: 18px 16px 16px;
+  gap: 10px;
+}
+.back-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  color: var(--gold-light);
+  font-weight: 600;
+  line-height: 1.1;
+  border-bottom: 1px solid rgba(232,201,106,0.2);
+  padding-bottom: 8px;
+}
+.back-bio {
+  font-size: 11px;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.5;
+  flex-shrink: 0;
+}
+.attrs {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  flex: 1;
+}
+.attr-row { display: flex; flex-direction: column; gap: 3px; }
+.attr-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
+}
+.attr-label b { color: var(--gold-light); font-weight: 600; }
+.attr-bar {
+  height: 5px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.1);
+  overflow: hidden;
+}
+.attr-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 100%);
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 0.7s cubic-bezier(0.22, 0.8, 0.22, 1);
+}
+.card.flipped .attr-fill { transform: scaleX(1); }
+
+/* WhatsApp CTA */
+.wa-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #25D366 0%, #1DA851 100%);
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  margin-top: auto;
+  transition: filter 0.2s, transform 0.15s;
+  font-family: 'DM Sans', sans-serif;
+  flex-shrink: 0;
+}
+.wa-btn:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+.wa-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+/* ── HINT STRIP ── */
+.hint-strip {
+  text-align: center;
+  font-size: 11.5px;
+  color: rgba(255,255,255,0.3);
+  padding: 8px 5% 14px;
+  flex-shrink: 0;
+  letter-spacing: 0.05em;
+}
+
+/* ── MOBILE ── */
+@media (max-width: 680px) {
+  html, body { overflow: auto; }
+  .page { height: auto; min-height: 100vh; overflow: auto; }
+  .stage { min-height: 480px; }
+  :root { --card-w: 200px; --card-h: 320px; }
+  .hero h1 { font-size: 28px; }
+  .hero { padding: 12px 5% 8px; }
+  .topbar { padding: 10px 4%; }
+  .logo-link img { height: 36px; }
+}
 </style>
 </head>
 <body>
-<main class="mentor-page">
-  <div class="mentor-top">
-    <a class="mentor-logo" href="../index.html"><img src="../assets/logo_casb.png" alt="CASB Agency"><span>Mentor Selection</span></a>
-    <a class="back-link" href="../index.html#contact">Back to Join Our Team</a>
+<div class="page">
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <a class="logo-link" href="../index.html">
+      <img src="../assets/logo_casb.png" alt="CASB">
+      <span class="logo-label">Mentor Selection</span>
+    </a>
+    <a class="back-link" href="../index.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Back
+    </a>
   </div>
 
-  <section class="mentor-hero">
-    <div class="mentor-kicker">Choose Your Path</div>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="kicker">Choose Your Path</div>
     <h1>Select Your Mentor</h1>
-    <p>Click a mentor card to reveal their attributes. Slide through the roster and choose the leader whose style fits your growth path.</p>
-  </section>
+    <p>Flip a card to reveal their profile. Choose the leader who matches your ambition.</p>
+  </div>
 
-  <section class="selection-stage" aria-label="Mentor selection cards">
-    <button class="stage-arrow mentor-prev" type="button" aria-label="Previous mentors">&lsaquo;</button>
-    <div class="mentor-carousel" id="mentorCarousel">
-      <article class="mentor-card" role="button" tabindex="0" aria-label="Flip Vincent Yang mentor card">
-        <span class="mentor-inner">
-          <span class="mentor-face mentor-front featured"><span class="mentor-photo"><img src="../assets/photos/team/Vincent%20Yang.jpg" alt="Vincent Yang"></span><span class="mentor-id"><small>Strategy Builder</small><h2>Vincent Yang</h2></span></span>
-          <span class="mentor-face mentor-back"><h2>Vincent Yang</h2><p>Structured growth, business discipline, and agency leadership direction.</p><span class="attribute"><span>Leadership <b>95</b></span><span class="bar"><i style="--score:95%"></i></span></span><span class="attribute"><span>Systems <b>92</b></span><span class="bar"><i style="--score:92%"></i></span></span><span class="attribute"><span>Growth <b>90</b></span><span class="bar"><i style="--score:90%"></i></span></span><a class="btn-primary choose-mentor" href="../index.html#contact">Choose Vincent</a></span>
-        </span>
-      </article>
-      <article class="mentor-card" role="button" tabindex="0" aria-label="Flip Asher Chong mentor card">
-        <span class="mentor-inner">
-          <span class="mentor-face mentor-front"><span class="mentor-photo"><img src="../assets/photos/team/Asher%20Chong_1.jpg" alt="Asher Chong"></span><span class="mentor-id"><small>Momentum Coach</small><h2>Asher Chong</h2></span></span>
-          <span class="mentor-face mentor-back"><h2>Asher Chong</h2><p>Energy, practical field guidance, and a confident first step.</p><span class="attribute"><span>Field Skill <b>91</b></span><span class="bar"><i style="--score:91%"></i></span></span><span class="attribute"><span>Momentum <b>94</b></span><span class="bar"><i style="--score:94%"></i></span></span><span class="attribute"><span>Confidence <b>88</b></span><span class="bar"><i style="--score:88%"></i></span></span><a class="btn-primary choose-mentor" href="../index.html#contact">Choose Asher</a></span>
-        </span>
-      </article>
-      <article class="mentor-card" role="button" tabindex="0" aria-label="Flip Alice Chong mentor card">
-        <span class="mentor-inner">
-          <span class="mentor-face mentor-front"><span class="mentor-photo"><img src="../assets/photos/team/Alice_Chong%20Poh%20Chiang.jpg" alt="Alice Chong Poh Chiang"></span><span class="mentor-id"><small>Trust Builder</small><h2>Alice Chong</h2></span></span>
-          <span class="mentor-face mentor-back"><h2>Alice Chong</h2><p>Long-term client relationships, care-led planning, and steady habits.</p><span class="attribute"><span>Care <b>96</b></span><span class="bar"><i style="--score:96%"></i></span></span><span class="attribute"><span>Planning <b>89</b></span><span class="bar"><i style="--score:89%"></i></span></span><span class="attribute"><span>Trust <b>93</b></span><span class="bar"><i style="--score:93%"></i></span></span><a class="btn-primary choose-mentor" href="../index.html#contact">Choose Alice</a></span>
-        </span>
-      </article>
-      <article class="mentor-card" role="button" tabindex="0" aria-label="Flip William Choong mentor card">
-        <span class="mentor-inner">
-          <span class="mentor-face mentor-front"><span class="mentor-photo"><img src="../assets/photos/team/William_Choong%20Kei%20Foong.jpg" alt="William Choong Kei Foong"></span><span class="mentor-id"><small>Performance Guide</small><h2>William Choong</h2></span></span>
-          <span class="mentor-face mentor-back"><h2>William Choong</h2><p>Measurable targets, consistency, and turning activity into results.</p><span class="attribute"><span>Targets <b>93</b></span><span class="bar"><i style="--score:93%"></i></span></span><span class="attribute"><span>Discipline <b>90</b></span><span class="bar"><i style="--score:90%"></i></span></span><span class="attribute"><span>Results <b>92</b></span><span class="bar"><i style="--score:92%"></i></span></span><a class="btn-primary choose-mentor" href="../index.html#contact">Choose William</a></span>
-        </span>
-      </article>
-      <article class="mentor-card" role="button" tabindex="0" aria-label="Flip Anna Chow mentor card">
-        <span class="mentor-inner">
-          <span class="mentor-face mentor-front"><span class="mentor-photo"><img src="../assets/photos/team/Anna_Chow%20Mei%20Ying.jpg" alt="Anna Chow Mei Ying"></span><span class="mentor-id"><small>Culture Mentor</small><h2>Anna Chow</h2></span></span>
-          <span class="mentor-face mentor-back"><h2>Anna Chow</h2><p>Encouragement, team connection, and a supportive learning environment.</p><span class="attribute"><span>Teamwork <b>94</b></span><span class="bar"><i style="--score:94%"></i></span></span><span class="attribute"><span>Support <b>95</b></span><span class="bar"><i style="--score:95%"></i></span></span><span class="attribute"><span>Learning <b>88</b></span><span class="bar"><i style="--score:88%"></i></span></span><a class="btn-primary choose-mentor" href="../index.html#contact">Choose Anna</a></span>
-        </span>
-      </article>
-      <article class="mentor-card" role="button" tabindex="0" aria-label="Flip Steve Moh mentor card">
-        <span class="mentor-inner">
-          <span class="mentor-face mentor-front"><span class="mentor-photo"><img src="../assets/photos/team/Steve_Moh%20Hiong%20Ie.jpg" alt="Steve Moh Hiong Ie"></span><span class="mentor-id"><small>Conversation Coach</small><h2>Steve Moh</h2></span></span>
-          <span class="mentor-face mentor-back"><h2>Steve Moh</h2><p>Client conversations, presentation flow, and advisory confidence.</p><span class="attribute"><span>Speaking <b>91</b></span><span class="bar"><i style="--score:91%"></i></span></span><span class="attribute"><span>Advisory <b>89</b></span><span class="bar"><i style="--score:89%"></i></span></span><span class="attribute"><span>Presence <b>90</b></span><span class="bar"><i style="--score:90%"></i></span></span><a class="btn-primary choose-mentor" href="../index.html#contact">Choose Steve</a></span>
-        </span>
-      </article>
-    </div>
-    <button class="stage-arrow mentor-next" type="button" aria-label="Next mentors">&rsaquo;</button>
-  </section>
+  <!-- STAGE -->
+  <div class="stage">
+    <div class="spotlight"></div>
 
-  <p class="mentor-note">Tip: click a card to flip it. Use the side arrows to browse the mentor roster.</p>
-</main>
+    <button class="arrow arrow-left" id="arrowLeft" aria-label="Previous">&#8249;</button>
+
+    <div class="carousel-track" id="carousel">
+
+      <!-- CARD: Vincent Yang -->
+      <div class="card" data-index="0" tabindex="0" role="button" aria-label="Vincent Yang - click to flip">
+        <div class="card-inner">
+          <div class="card-face card-front">
+            <div class="card-photo">
+              <img src="../assets/photos/team/Vincent%20Yang.jpg" alt="Vincent Yang" loading="lazy">
+            </div>
+            <div class="flip-hint">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4v5h5M20 20v-5h-5M4 9a8 8 0 0 1 13.9-2.9M20 15a8 8 0 0 1-13.9 2.9"/></svg>
+              Flip
+            </div>
+            <div class="card-nameplate">
+              <div class="card-role">Strategy Builder</div>
+              <div class="card-name">Vincent Yang</div>
+            </div>
+          </div>
+          <div class="card-face card-back">
+            <div class="back-name">Vincent Yang</div>
+            <div class="back-bio">Structured growth, business discipline, and agency leadership direction.</div>
+            <div class="attrs">
+              <div class="attr-row">
+                <div class="attr-label"><span>Leadership</span><b>95</b></div>
+                <div class="attr-bar"><div class="attr-fill" style="--s:0.95"></div></div>
+              </div>
+              <div class="attr-row">
+                <div class="attr-label"><span>Systems</span><b>92</b></div>
+                <div class="attr-bar"><div class="attr-fill" style="--s:0.92"></div></div>
+              </div>
+              <div class="attr-row">
+                <div class="attr-label"><span>Growth</span><b>90</b></div>
+                <div class="attr-bar"><div class="attr-fill" style="--s:0.90"></div></div>
+              </div>
+            </div>
+            <!-- REPLACE with actual WhatsApp number -->
+            <a class="wa-btn" href="https://wa.me/60XXXXXXXXX?text=Hi%20Vincent%2C%20I%27d%20like%20to%20join%20under%20your%20mentorship!" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.09.543 4.058 1.494 5.771L.044 23.956l6.335-1.44A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.898 0-3.68-.51-5.215-1.397l-.374-.22-3.759.855.882-3.665-.244-.382A9.95 9.95 0 0 1 2 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+              Choose Vincent
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD: Asher Chong -->
+      <div class="card" data-index="1" tabindex="0" role="button" aria-label="Asher Chong - click to flip">
+        <div class="card-inner">
+          <div class="card-face card-front">
+            <div class="card-photo">
+              <img src="../assets/photos/team/Asher%20Chong_1.jpg" alt="Asher Chong" loading="lazy">
+            </div>
+            <div class="flip-hint">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4v5h5M20 20v-5h-5M4 9a8 8 0 0 1 13.9-2.9M20 15a8 8 0 0 1-13.9 2.9"/></svg>
+              Flip
+            </div>
+            <div class="card-nameplate">
+              <div class="card-role">Momentum Coach</div>
+              <div class="card-name">Asher Chong</div>
+            </div>
+          </div>
+          <div class="card-face card-back">
+            <div class="back-name">Asher Chong</div>
+            <div class="back-bio">Energy, practical field guidance, and a confident first step into the industry.</div>
+            <div class="attrs">
+              <div class="attr-row">
+                <div class="attr-label"><span>Field Skill</span><b>91</b></div>
+                <div class="attr-bar"><div class="attr-fill" style="--s:0.91"></div></div>
+              </div>
+              <div class="attr-row">
+                <div class="attr-label"><span>Momentum</span><b>94</b></div>
+                <div class="attr-bar"><div class="attr-fill" style="--s:0.94"></div></div>
+              </div>
+              <div class="attr-row">
+                <div class="attr-label"><span>Confidence</span><b>88</b></div>
+                <div class="attr-bar"><div class="attr-fill" style="--s:0.88"></div></div>
+              </div>
+            </div>
+            <a class="wa-btn" href="https://wa.me/60XXXXXXXXX?text=Hi%20Asher%2C%20I%27d%20like%20to%20join%20under%20your%20mentorship!" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.09.543 4.058 1.494 5.771L.044 23.956l6.335-1.44A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.898 0-3.68-.51-5.215-1.397l-.374-.22-3.759.855.882-3.665-.244-.382A9.95 9.95 0 0 1 2 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+              Choose Asher
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD: Alice Chong -->
+      <div class="card" data-index="2" tabindex="0" role="button" aria-label="Alice Chong - click to flip">
+        <div class="card-inner">
+          <div class="card-face card-front">
+            <div class="card-photo">
+              <img src="../assets/photos/team/Alice_Chong%20Poh%20Chiang.jpg" alt="Alice Chong" loading="lazy">
+            </div>
+            <div class="flip-hint">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4v5h5M20 20v-5h-5M4 9a8 8 0 0 1 13.9-2.9M20 15a8 8 0 0 1-13.9 2.9"/></svg>
+              Flip
+            </div>
+            <div class="card-nameplate">
+              <div class="card-role">Trust Builder</div>
+              <div class="card-name">Alice Chong</div>
+            </div>
+          </div>
+          <div class="card-face card-back">
+            <div class="back-name">Alice Chong</div>
+            <div class="back-bio">Long-term client relationships, care-led planning, and steady, sustainable habits.</div>
+            <div class="attrs">
+              <div class="attr-row">
+                <div class="attr-label"><span>Care</span><b>96</b></div>
+                <div class="attr-bar"><div class="attr-fill" style="--s:0.96"></div></div>
+              </div>
+              <div class="attr-row">
+                <div class="attr-label"><span>Planning</span><b>89</b></div>
+                <div class="attr-bar"><div class="attr-fill" style="--s:0.89"></div></div>
+              </div>
+              <div class="attr-row">
+                <div class="attr-label"><span>Trust</span><b>93</b></div>
+                <div class="attr-bar"><div class="attr-fill" style="--s:0.93"></div></div>
+              </div>
+            </div>
+            <a class="wa-btn" href="https://wa.me/60XXXXXXXXX?text=Hi%20Alice%2C%20I%27d%20like%20to%20join%20under%20your%20mentorship!" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.09.543 4.058 1.494 5.771L.044 23.956l6.335-1.44A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.898 0-3.68-.51-5.215-1.397l-.374-.22-3.759.855.882-3.665-.244-.382A9.95 9.95 0 0 1 2 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+              Choose Alice
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD: William Choong -->
+      <div class="card" data-index="3" tabindex="0" role="button" aria-label="William Choong - click to flip">
+        <div class="card-inner">
+          <div class="card-face card-front">
+            <div class="card-photo">
+              <img src="../assets/photos/team/William_Choong%20Kei%20Foong.jpg" alt="William Choong" loading="lazy">
+            </div>
+            <div class="flip-hint">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4v5h5M20 20v-5h-5M4 9a8 8 0 0 1 13.9-2.9M20 15a8 8 0 0 1-13.9 2.9"/></svg>
+              Flip
+            </div>
+            <div class="card-nameplate">
+              <div class="card-role">Performance Guide</div>
+              <div class="card-name">William Choong</div>
+            </div>
+          </div>
+          <div class="card-face card-back">
+            <div class="back-name">William Choong</div>
+            <div class="back-bio">Measurable targets, consistency, and turning daily activity into real results.</div>
+            <div class="attrs">
+              <div class="attr-row">
+                <div class="attr-label"><span>Targets</span><b>93</b></div>
+                <div class="attr-bar"><div class="attr-fill" style="--s:0.93"></div></div>
+              </div>
+              <div class="attr-row">
+                <div class="attr-label"><span>Discipline</span><b>90</b></div>
+                <div class="attr-bar"><div class="attr-fill" style="--s:0.90"></div></div>
+              </div>
+              <div class="attr-row">
+                <div class="attr-label"><span>Results</span><b>92</b></div>
+                <div class="attr-bar"><div class="attr-fill" style="--s:0.92"></div></div>
+              </div>
+            </div>
+            <a class="wa-btn" href="https://wa.me/60XXXXXXXXX?text=Hi%20William%2C%20I%27d%20like%20to%20join%20under%20your%20mentorship!" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.09.543 4.058 1.494 5.771L.044 23.956l6.335-1.44A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.898 0-3.68-.51-5.215-1.397l-.374-.22-3.759.855.882-3.665-.244-.382A9.95 9.95 0 0 1 2 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+              Choose William
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD: Anna Chow -->
+      <div class="card" data-index="4" tabindex="0" role="button" aria-label="Anna Chow - click to flip">
+        <div class="card-inner">
+          <div class="card-face card-front">
+            <div class="card-photo">
+              <img src="../assets/photos/team/Anna_Chow%20Mei%20Ying.jpg" alt="Anna Chow" loading="lazy">
+            </div>
+            <div class="flip-hint">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4v5h5M20 20v-5h-5M4 9a8 8 0 0 1 13.9-2.9M20 15a8 8 0 0 1-13.9 2.9"/></svg>
+              Flip
+            </div>
+            <div class="card-nameplate">
+              <div class="card-role">Culture Mentor</div>
+              <div class="card-name">Anna Chow</div>
+            </div>
+          </div>
+          <div class="card-face card-back">
+            <div class="back-name">Anna Chow</div>
+            <div class="back-bio">Encouragement, team connection, and a genuinely supportive learning environment.</div>
+            <div class="attrs">
+              <div class="attr-row">
+                <div class="attr-label"><span>Teamwork</span><b>94</b></div>
+                <div class="attr-bar"><div class="attr-fill" style="--s:0.94"></div></div>
+              </div>
+              <div class="attr-row">
+                <div class="attr-label"><span>Support</span><b>95</b></div>
+                <div class="attr-bar"><div class="attr-fill" style="--s:0.95"></div></div>
+              </div>
+              <div class="attr-row">
+                <div class="attr-label"><span>Learning</span><b>88</b></div>
+                <div class="attr-bar"><div class="attr-fill" style="--s:0.88"></div></div>
+              </div>
+            </div>
+            <a class="wa-btn" href="https://wa.me/60XXXXXXXXX?text=Hi%20Anna%2C%20I%27d%20like%20to%20join%20under%20your%20mentorship!" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.09.543 4.058 1.494 5.771L.044 23.956l6.335-1.44A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.898 0-3.68-.51-5.215-1.397l-.374-.22-3.759.855.882-3.665-.244-.382A9.95 9.95 0 0 1 2 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+              Choose Anna
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD: Steve Moh -->
+      <div class="card" data-index="5" tabindex="0" role="button" aria-label="Steve Moh - click to flip">
+        <div class="card-inner">
+          <div class="card-face card-front">
+            <div class="card-photo">
+              <img src="../assets/photos/team/Steve_Moh%20Hiong%20Ie.jpg" alt="Steve Moh" loading="lazy">
+            </div>
+            <div class="flip-hint">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4v5h5M20 20v-5h-5M4 9a8 8 0 0 1 13.9-2.9M20 15a8 8 0 0 1-13.9 2.9"/></svg>
+              Flip
+            </div>
+            <div class="card-nameplate">
+              <div class="card-role">Conversation Coach</div>
+              <div class="card-name">Steve Moh</div>
+            </div>
+          </div>
+          <div class="card-face card-back">
+            <div class="back-name">Steve Moh</div>
+            <div class="back-bio">Client conversations, presentation flow, and building real advisory confidence.</div>
+            <div class="attrs">
+              <div class="attr-row">
+                <div class="attr-label"><span>Speaking</span><b>91</b></div>
+                <div class="attr-bar"><div class="attr-fill" style="--s:0.91"></div></div>
+              </div>
+              <div class="attr-row">
+                <div class="attr-label"><span>Advisory</span><b>89</b></div>
+                <div class="attr-bar"><div class="attr-fill" style="--s:0.89"></div></div>
+              </div>
+              <div class="attr-row">
+                <div class="attr-label"><span>Presence</span><b>90</b></div>
+                <div class="attr-bar"><div class="attr-fill" style="--s:0.90"></div></div>
+              </div>
+            </div>
+            <a class="wa-btn" href="https://wa.me/60XXXXXXXXX?text=Hi%20Steve%2C%20I%27d%20like%20to%20join%20under%20your%20mentorship!" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.09.543 4.058 1.494 5.771L.044 23.956l6.335-1.44A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.898 0-3.68-.51-5.215-1.397l-.374-.22-3.759.855.882-3.665-.244-.382A9.95 9.95 0 0 1 2 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+              Choose Steve
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end carousel-track -->
+
+    <button class="arrow arrow-right" id="arrowRight" aria-label="Next">&#8250;</button>
+  </div><!-- end stage -->
+
+  <div class="hint-strip">Click a card to flip &nbsp;·&nbsp; Use arrows or swipe to browse</div>
+
+</div><!-- end page -->
 
 <script>
-const mentorCarousel = document.querySelector('#mentorCarousel');
-document.querySelectorAll('.mentor-card').forEach(card => {
-  card.addEventListener('click', event => {
-    if (event.target.closest('a')) return;
-    card.classList.toggle('is-flipped');
+(function() {
+  const carousel = document.getElementById('carousel');
+  const cards = Array.from(carousel.querySelectorAll('.card'));
+  const arrowL = document.getElementById('arrowLeft');
+  const arrowR = document.getElementById('arrowRight');
+
+  // --- CENTER DETECTION ---
+  function updateCenter() {
+    const cx = carousel.scrollLeft + carousel.clientWidth / 2;
+    let closest = null, minD = Infinity;
+    cards.forEach(c => {
+      const d = Math.abs((c.offsetLeft + c.offsetWidth / 2) - cx);
+      if (d < minD) { minD = d; closest = c; }
+    });
+    cards.forEach(c => c.classList.toggle('is-center', c === closest));
+  }
+
+  carousel.addEventListener('scroll', updateCenter, { passive: true });
+
+  // --- FLIP ---
+  cards.forEach(card => {
+    function toggle(e) {
+      if (e.target.closest('a')) return;
+      card.classList.toggle('flipped');
+    }
+    card.addEventListener('click', toggle);
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(e); }
+    });
   });
-  card.addEventListener('keydown', event => {
-    if (event.key !== 'Enter' && event.key !== ' ') return;
-    event.preventDefault();
-    card.classList.toggle('is-flipped');
-  });
-});
-document.querySelector('.mentor-next')?.addEventListener('click', () => {
-  mentorCarousel.scrollBy({ left: mentorCarousel.clientWidth * 0.72, behavior: 'smooth' });
-});
-document.querySelector('.mentor-prev')?.addEventListener('click', () => {
-  mentorCarousel.scrollBy({ left: -mentorCarousel.clientWidth * 0.72, behavior: 'smooth' });
-});
+
+  // --- ARROWS ---
+  function scrollByCard(dir) {
+    const cardW = cards[0].offsetWidth + 20; // gap
+    carousel.scrollBy({ left: dir * cardW, behavior: 'smooth' });
+  }
+  arrowL.addEventListener('click', () => scrollByCard(-1));
+  arrowR.addEventListener('click', () => scrollByCard(1));
+
+  // --- INIT: scroll to center first card ---
+  function init() {
+    const mid = Math.floor(cards.length / 2);
+    const target = cards[mid];
+    carousel.scrollLeft = target.offsetLeft - carousel.clientWidth / 2 + target.offsetWidth / 2;
+    // start at card 0 (first card centered)
+    carousel.scrollLeft = cards[0].offsetLeft - (carousel.clientWidth / 2 - cards[0].offsetWidth / 2);
+    updateCenter();
+  }
+  // Wait for layout
+  if (document.readyState === 'complete') { init(); } else { window.addEventListener('load', init); }
+
+  // --- ATTR BAR animation uses CSS custom property --s ---
+  // already handled by .card.flipped .attr-fill transition
+})();
 </script>
 </body>
 </html>
