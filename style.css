@@ -1564,14 +1564,27 @@ h2.section-title.light {
   padding-top: 50px;
 }
 
+.legal-site-footer {
+  margin-top: 0;
+  padding-top: 50px;
+}
+
 .event-site-footer .footer-main,
+.legal-site-footer .footer-main,
 .event-site-footer .footer-bottom {
   max-width: 1120px;
   margin-left: auto;
   margin-right: auto;
 }
 
-.event-site-footer .footer-brand p {
+.legal-site-footer .footer-bottom {
+  max-width: 1120px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.event-site-footer .footer-brand p,
+.legal-site-footer .footer-brand p {
   max-width: 360px;
 }
 
@@ -1728,7 +1741,7 @@ body.js-loaded .fade-in.visible {
 
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
-  
+
   section {
     padding: 80px 6%;
   }
