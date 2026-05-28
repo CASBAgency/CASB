@@ -423,70 +423,31 @@
   <div class="ach-link">View Gallery →</div>
 </a>
 
-    <div class="ach-card ach-card-monthly ach-card-monthly-widget">
-
-      <!-- Year nav — vertical diamond buttons on left -->
-      <div class="ma-year-nav">
-        <button class="ma-year-btn active" data-year="2026" onclick="maSelectYear('2026',this)">
-          <span>2026</span>
-        </button>
-        <button class="ma-year-btn" data-year="2025" onclick="maSelectYear('2025',this)">
-          <span>2025</span>
-        </button>
-        <button class="ma-year-btn" data-year="2024" onclick="maSelectYear('2024',this)">
-          <span>2024</span>
-        </button>
-      </div>
-
-      <!-- Poster display -->
-      <div class="ma-display">
-        <div class="ma-poster-wrap" id="maPosterWrap">
-          <!-- 2026 posters — shown by default -->
-          <div class="ma-year-panel active" data-year="2026">
-            <div class="ma-poster-scroll">
-              <img loading="lazy" src="monthly-achievers/monthly-poster/monthly-1.png"  alt="Apr 2026 Achievers">
-              <img loading="lazy" src="monthly-achievers/monthly-poster/monthly-2.png"  alt="Apr 2026 Achievers">
-              <img loading="lazy" src="monthly-achievers/monthly-poster/monthly-3.png"  alt="Apr 2026 Achievers">
-              <img loading="lazy" src="monthly-achievers/monthly-poster/monthly-4.png"  alt="Apr 2026 Achievers">
-              <img loading="lazy" src="monthly-achievers/monthly-poster/monthly-5.png"  alt="Apr 2026 Achievers">
-              <img loading="lazy" src="monthly-achievers/monthly-poster/monthly-6.png"  alt="Apr 2026 Achievers">
-              <img loading="lazy" src="monthly-achievers/monthly-poster/monthly-7.png"  alt="Apr 2026 Achievers">
-              <img loading="lazy" src="monthly-achievers/monthly-poster/monthly-8.png"  alt="Apr 2026 Achievers">
-              <img loading="lazy" src="monthly-achievers/monthly-poster/monthly-9.png"  alt="Apr 2026 Achievers">
-              <img loading="lazy" src="monthly-achievers/monthly-poster/monthly-10.png" alt="Apr 2026 Achievers">
-              <img loading="lazy" src="monthly-achievers/monthly-poster/monthly-11.png" alt="Apr 2026 Achievers">
-              <img loading="lazy" src="monthly-achievers/monthly-poster/monthly-12.png" alt="Apr 2026 Achievers">
-              <img loading="lazy" src="monthly-achievers/monthly-poster/monthly-13.png" alt="Apr 2026 Achievers">
-              <img loading="lazy" src="monthly-achievers/monthly-poster/monthly-14.png" alt="Apr 2026 Achievers">
-              <img loading="lazy" src="monthly-achievers/monthly-poster/monthly-15.png" alt="Apr 2026 Achievers">
-            </div>
-          </div>
-          <!-- 2025 placeholder -->
-          <div class="ma-year-panel" data-year="2025">
-            <div class="ma-coming-soon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
-              <p>2025 posters coming soon</p>
-            </div>
-          </div>
-          <!-- 2024 placeholder -->
-          <div class="ma-year-panel" data-year="2024">
-            <div class="ma-coming-soon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
-              <p>2024 posters coming soon</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="ma-footer">
-          <div>
-            <div class="ach-year" id="maYearLabel">2026 · APRIL</div>
-            <div class="ach-title">Monthly Achievers</div>
-          </div>
-          <a class="ach-link" href="monthly-achievers/monthly.html">View All →</a>
-        </div>
-      </div>
-
-    </div>
+    <div class="ach-card ach-card-monthly" onclick="openMAModal()" style="cursor:pointer">
+  <div class="ach-poster ach-carousel monthly-carousel">
+    <img loading="lazy" src="monthly-achievers/monthly-poster/monthly-1.png" class="active" alt="CASB Monthly Achievers Poster 1">
+    <img loading="lazy" src="monthly-achievers/monthly-poster/monthly-2.png" alt="CASB Monthly Achievers Poster 2">
+    <img loading="lazy" src="monthly-achievers/monthly-poster/monthly-3.png" alt="CASB Monthly Achievers Poster 3">
+    <img loading="lazy" src="monthly-achievers/monthly-poster/monthly-4.png" alt="CASB Monthly Achievers Poster 4">
+    <img loading="lazy" src="monthly-achievers/monthly-poster/monthly-5.png" alt="CASB Monthly Achievers Poster 5">
+    <img loading="lazy" src="monthly-achievers/monthly-poster/monthly-6.png" alt="CASB Monthly Achievers Poster 6">
+    <img loading="lazy" src="monthly-achievers/monthly-poster/monthly-7.png" alt="CASB Monthly Achievers Poster 7">
+    <img loading="lazy" src="monthly-achievers/monthly-poster/monthly-8.png" alt="CASB Monthly Achievers Poster 8">
+    <img loading="lazy" src="monthly-achievers/monthly-poster/monthly-9.png" alt="CASB Monthly Achievers Poster 9">
+    <img loading="lazy" src="monthly-achievers/monthly-poster/monthly-10.png" alt="CASB Monthly Achievers Poster 10">
+    <img loading="lazy" src="monthly-achievers/monthly-poster/monthly-11.png" alt="CASB Monthly Achievers Poster 11">
+    <img loading="lazy" src="monthly-achievers/monthly-poster/monthly-12.png" alt="CASB Monthly Achievers Poster 12">
+    <img loading="lazy" src="monthly-achievers/monthly-poster/monthly-13.png" alt="CASB Monthly Achievers Poster 13">
+    <img loading="lazy" src="monthly-achievers/monthly-poster/monthly-14.png" alt="CASB Monthly Achievers Poster 14">
+    <img loading="lazy" src="monthly-achievers/monthly-poster/monthly-15.png" alt="CASB Monthly Achievers Poster 15">
+    <button type="button" class="carousel-btn prev">‹</button>
+    <button type="button" class="carousel-btn next">›</button>
+  </div>
+  <div class="ach-year">MONTHLY RECOGNITION</div>
+  <div class="ach-title">Monthly Achievers</div>
+  <div class="ach-body">Celebrating our monthly outstanding advisors and achievers.</div>
+  <div class="ach-link">View Gallery →</div>
+</div>
 </div>
 
 <div class="achievements-grid fade-in">
@@ -930,6 +891,97 @@
   </div>
 </footer>
 
+
+<!-- ── MONTHLY ACHIEVERS MODAL ── -->
+<div class="ma-modal" id="maModal" onclick="closeMAModal(event)">
+  <div class="ma-modal-inner">
+
+    <button class="ma-modal-close" onclick="closeMAModal()" aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+
+    <div class="ma-modal-header">
+      <div class="ma-modal-title-group">
+        <div class="ma-modal-kicker">Recognition</div>
+        <h2 class="ma-modal-title">Monthly Achievers</h2>
+      </div>
+    </div>
+
+    <div class="ma-modal-body">
+
+      <!-- LEFT: diamond year nav -->
+      <div class="ma-modal-year-nav">
+        <button class="ma-diamond-btn active" data-year="2026" onclick="maModalYear('2026',this)"><span>2026</span></button>
+        <div class="ma-diamond-connector"></div>
+        <button class="ma-diamond-btn" data-year="2025" onclick="maModalYear('2025',this)"><span>2025</span></button>
+        <div class="ma-diamond-connector"></div>
+        <button class="ma-diamond-btn" data-year="2024" onclick="maModalYear('2024',this)"><span>2024</span></button>
+      </div>
+
+      <!-- CENTER: month accordion panels -->
+      <div class="ma-modal-content">
+
+        <!-- 2026 panel -->
+        <div class="ma-panel active" data-year="2026">
+          <details class="ma-month" open>
+            <summary class="ma-month-summary">
+              <span class="ma-month-name">April 2026</span>
+              <span class="ma-month-count">15 posters</span>
+              <span class="ma-month-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span>
+            </summary>
+            <div class="ma-month-grid">
+              <img loading="lazy" src="monthly-achievers/monthly-poster/monthly-1.png"  alt="Apr 2026">
+              <img loading="lazy" src="monthly-achievers/monthly-poster/monthly-2.png"  alt="Apr 2026">
+              <img loading="lazy" src="monthly-achievers/monthly-poster/monthly-3.png"  alt="Apr 2026">
+              <img loading="lazy" src="monthly-achievers/monthly-poster/monthly-4.png"  alt="Apr 2026">
+              <img loading="lazy" src="monthly-achievers/monthly-poster/monthly-5.png"  alt="Apr 2026">
+              <img loading="lazy" src="monthly-achievers/monthly-poster/monthly-6.png"  alt="Apr 2026">
+              <img loading="lazy" src="monthly-achievers/monthly-poster/monthly-7.png"  alt="Apr 2026">
+              <img loading="lazy" src="monthly-achievers/monthly-poster/monthly-8.png"  alt="Apr 2026">
+              <img loading="lazy" src="monthly-achievers/monthly-poster/monthly-9.png"  alt="Apr 2026">
+              <img loading="lazy" src="monthly-achievers/monthly-poster/monthly-10.png" alt="Apr 2026">
+              <img loading="lazy" src="monthly-achievers/monthly-poster/monthly-11.png" alt="Apr 2026">
+              <img loading="lazy" src="monthly-achievers/monthly-poster/monthly-12.png" alt="Apr 2026">
+              <img loading="lazy" src="monthly-achievers/monthly-poster/monthly-13.png" alt="Apr 2026">
+              <img loading="lazy" src="monthly-achievers/monthly-poster/monthly-14.png" alt="Apr 2026">
+              <img loading="lazy" src="monthly-achievers/monthly-poster/monthly-15.png" alt="Apr 2026">
+            </div>
+          </details>
+          <details class="ma-month">
+            <summary class="ma-month-summary"><span class="ma-month-name">March 2026</span><span class="ma-month-count">Coming soon</span><span class="ma-month-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+            <div class="ma-month-empty">Posters will appear here once uploaded.</div>
+          </details>
+          <details class="ma-month">
+            <summary class="ma-month-summary"><span class="ma-month-name">February 2026</span><span class="ma-month-count">Coming soon</span><span class="ma-month-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+            <div class="ma-month-empty">Posters will appear here once uploaded.</div>
+          </details>
+          <details class="ma-month">
+            <summary class="ma-month-summary"><span class="ma-month-name">January 2026</span><span class="ma-month-count">Coming soon</span><span class="ma-month-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+            <div class="ma-month-empty">Posters will appear here once uploaded.</div>
+          </details>
+        </div>
+
+        <!-- 2025 panel -->
+        <div class="ma-panel" data-year="2025">
+          <div class="ma-panel-empty">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+            <p>2025 achievers will appear here once uploaded.</p>
+          </div>
+        </div>
+
+        <!-- 2024 panel -->
+        <div class="ma-panel" data-year="2024">
+          <div class="ma-panel-empty">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+            <p>2024 achievers will appear here once uploaded.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
 <script src="main.js"></script>
 </body>
 </html>
