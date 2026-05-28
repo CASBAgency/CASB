@@ -1236,6 +1236,23 @@ h2.section-title.light {
   justify-content: center;
 }
 
+.join-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.join-actions .btn-primary,
+.join-actions .btn-outline {
+  min-width: 198px;
+  text-align: center;
+}
+
+.mentor-btn {
+  border-color: rgba(232,201,106,.62);
+  color: var(--gold-light);
+}
+
 .event-upload-detail {
   min-height: 100vh;
   padding: 54px 6% 88px;

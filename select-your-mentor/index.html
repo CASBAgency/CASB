@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Select Your Mentor | CASB Agency</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<style>
+body { min-height: 100vh; background: #070F1E; color: white; overflow-x: hidden; }
+.mentor-page { min-height: 100vh; padding: 44px 5% 70px; background: radial-gradient(circle at 78% 14%, rgba(232,201,106,.16), transparent 32%), linear-gradient(135deg, #070F1E 0%, var(--navy) 58%, #102848 100%); }
+.mentor-top { display: flex; align-items: center; justify-content: space-between; gap: 22px; margin-bottom: 42px; }
+.mentor-logo { display: inline-flex; align-items: center; gap: 12px; color: white; text-decoration: none; }
+.mentor-logo img { height: 62px; }
+.mentor-logo span { color: var(--gold-light); font-size: 12px; letter-spacing: .16em; text-transform: uppercase; }
+.back-link { color: rgba(255,255,255,.68); text-decoration: none; font-size: 14px; }
+.back-link:hover { color: var(--gold-light); }
+.mentor-hero { max-width: 1040px; margin: 0 auto 36px; text-align: center; }
+.mentor-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(46px, 7vw, 92px); line-height: 1; margin: 14px 0 18px; }
+.mentor-hero p { max-width: 760px; margin: 0 auto; color: rgba(255,255,255,.64); font-size: 17px; line-height: 1.8; }
+.mentor-stage { max-width: 1280px; margin: 0 auto; position: relative; }
+.mentor-carousel { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(280px, 360px); gap: 22px; overflow-x: auto; padding: 22px 4px 28px; scroll-snap-type: x mandatory; scrollbar-width: thin; scrollbar-color: var(--gold) rgba(255,255,255,.08); }
+.mentor-card { scroll-snap-align: center; min-height: 610px; position: relative; overflow: hidden; border: 1px solid rgba(232,201,106,.36); border-radius: 8px; background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.025)); box-shadow: 0 22px 48px rgba(0,0,0,.22); transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; }
+.mentor-card:hover { transform: translateY(-7px); border-color: var(--gold-light); box-shadow: 0 30px 70px rgba(0,0,0,.34); }
+.mentor-card.featured { grid-column: span 1; border-color: rgba(255,77,91,.78); box-shadow: 0 0 0 2px rgba(255,77,91,.38), 0 32px 70px rgba(0,0,0,.32); }
+.mentor-rank { position: absolute; top: 18px; left: 18px; z-index: 3; color: var(--gold-light); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; }
+.mentor-photo { height: 390px; position: relative; display: flex; align-items: flex-end; justify-content: center; background: radial-gradient(circle at 50% 14%, rgba(232,201,106,.20), transparent 34%), linear-gradient(180deg, rgba(13,31,60,.1), rgba(13,31,60,.9)); }
+.mentor-photo::after { content: ''; position: absolute; inset: auto 22px 18px; height: 1px; background: linear-gradient(90deg, transparent, rgba(232,201,106,.8), transparent); }
+.mentor-photo img { width: 100%; height: 100%; object-fit: contain; object-position: center bottom; padding: 36px 20px 0; filter: drop-shadow(0 22px 24px rgba(0,0,0,.42)); }
+.mentor-info { padding: 22px; }
+.mentor-info small { color: var(--gold-light); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; }
+.mentor-info h2 { font-family: 'Playfair Display', serif; font-size: 31px; line-height: 1.05; margin: 8px 0 12px; }
+.mentor-info p { color: rgba(255,255,255,.62); font-size: 14px; line-height: 1.65; min-height: 70px; }
+.mentor-stats { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 20px; }
+.mentor-stats span { border: 1px solid rgba(232,201,106,.28); border-radius: 999px; color: rgba(255,255,255,.72); padding: 6px 10px; font-size: 12px; }
+.choose-mentor { width: 100%; justify-content: center; }
+.carousel-controls { display: flex; justify-content: center; gap: 12px; margin-top: 6px; }
+.mentor-arrow { width: 48px; height: 48px; border: 1px solid rgba(232,201,106,.38); border-radius: 50%; background: rgba(255,255,255,.04); color: white; font-size: 28px; cursor: pointer; transition: background .2s ease, transform .2s ease; }
+.mentor-arrow:hover { background: var(--gold); transform: translateY(-2px); }
+.mentor-note { max-width: 980px; margin: 34px auto 0; text-align: center; color: rgba(255,255,255,.58); font-size: 14px; line-height: 1.7; }
+@media (min-width: 980px) { .mentor-carousel { grid-auto-columns: minmax(320px, 390px); } .mentor-card.featured { min-height: 650px; } .mentor-card.featured .mentor-photo { height: 430px; } }
+@media (max-width: 680px) { .mentor-page { padding: 28px 5% 56px; } .mentor-top { align-items: flex-start; flex-direction: column; margin-bottom: 32px; } .mentor-carousel { grid-auto-columns: minmax(260px, 82vw); } .mentor-card { min-height: 580px; } .mentor-photo { height: 350px; } }
+</style>
+</head>
+<body>
+<main class="mentor-page">
+  <div class="mentor-top">
+    <a class="mentor-logo" href="../index.html"><img src="../assets/logo_casb.png" alt="CASB Agency"><span>Mentor Selection</span></a>
+    <a class="back-link" href="../index.html#contact">Back to Join Our Team</a>
+  </div>
+
+  <section class="mentor-hero">
+    <div class="section-tag">Choose Your Path</div>
+    <h1>Select Your Mentor</h1>
+    <div class="gold-line" style="margin-left:auto;margin-right:auto"></div>
+    <p>Every advisor journey feels different. Browse the mentor cards, choose the leader whose style fits you, and start your CASB path with someone to follow.</p>
+  </section>
+
+  <section class="mentor-stage" aria-label="Mentor cards">
+    <div class="mentor-carousel" id="mentorCarousel">
+      <article class="mentor-card featured">
+        <div class="mentor-rank">Featured Mentor</div>
+        <div class="mentor-photo"><img src="../assets/photos/team/Vincent%20Yang.jpg" alt="Vincent Yang"></div>
+        <div class="mentor-info"><small>Strategy Builder</small><h2>Vincent Yang</h2><p>For candidates who want structured growth, business discipline, and a clear path to agency leadership.</p><div class="mentor-stats"><span>Leadership</span><span>Systems</span><span>Growth</span></div><a class="btn-primary choose-mentor" href="../index.html#contact">Choose Vincent</a></div>
+      </article>
+      <article class="mentor-card">
+        <div class="mentor-rank">Pathfinder</div>
+        <div class="mentor-photo"><img src="../assets/photos/team/Asher%20Chong_1.jpg" alt="Asher Chong"></div>
+        <div class="mentor-info"><small>Momentum Coach</small><h2>Asher Chong</h2><p>For new joiners who want energy, practical field guidance, and a confident first step into advisory work.</p><div class="mentor-stats"><span>Starter Path</span><span>Field Skills</span><span>Confidence</span></div><a class="btn-primary choose-mentor" href="../index.html#contact">Choose Asher</a></div>
+      </article>
+      <article class="mentor-card">
+        <div class="mentor-rank">Client Care</div>
+        <div class="mentor-photo"><img src="../assets/photos/team/Alice_Chong%20Poh%20Chiang.jpg" alt="Alice Chong Poh Chiang"></div>
+        <div class="mentor-info"><small>Trust Builder</small><h2>Alice Chong</h2><p>For candidates drawn to long-term client relationships, care-led planning, and steady professional habits.</p><div class="mentor-stats"><span>Care</span><span>Planning</span><span>Trust</span></div><a class="btn-primary choose-mentor" href="../index.html#contact">Choose Alice</a></div>
+      </article>
+      <article class="mentor-card">
+        <div class="mentor-rank">Performance</div>
+        <div class="mentor-photo"><img src="../assets/photos/team/William_Choong%20Kei%20Foong.jpg" alt="William Choong Kei Foong"></div>
+        <div class="mentor-info"><small>Performance Guide</small><h2>William Choong</h2><p>For people who like measurable targets, consistency, and learning how to turn activity into results.</p><div class="mentor-stats"><span>Targets</span><span>Discipline</span><span>Results</span></div><a class="btn-primary choose-mentor" href="../index.html#contact">Choose William</a></div>
+      </article>
+      <article class="mentor-card">
+        <div class="mentor-rank">Team Culture</div>
+        <div class="mentor-photo"><img src="../assets/photos/team/Anna_Chow%20Mei%20Ying.jpg" alt="Anna Chow Mei Ying"></div>
+        <div class="mentor-info"><small>Culture Mentor</small><h2>Anna Chow</h2><p>For candidates who grow best with encouragement, team connection, and a supportive learning environment.</p><div class="mentor-stats"><span>Teamwork</span><span>Support</span><span>Learning</span></div><a class="btn-primary choose-mentor" href="../index.html#contact">Choose Anna</a></div>
+      </article>
+      <article class="mentor-card">
+        <div class="mentor-rank">Communication</div>
+        <div class="mentor-photo"><img src="../assets/photos/team/Steve_Moh%20Hiong%20Ie.jpg" alt="Steve Moh Hiong Ie"></div>
+        <div class="mentor-info"><small>Conversation Coach</small><h2>Steve Moh</h2><p>For candidates who want to sharpen client conversations, presentation flow, and advisory confidence.</p><div class="mentor-stats"><span>Speaking</span><span>Advisory</span><span>Presence</span></div><a class="btn-primary choose-mentor" href="../index.html#contact">Choose Steve</a></div>
+      </article>
+      <article class="mentor-card">
+        <div class="mentor-rank">Builder</div>
+        <div class="mentor-photo"><img src="../assets/photos/team/Tang%20Hui%20Shian.jpg" alt="Tang Hui Shian"></div>
+        <div class="mentor-info"><small>Growth Partner</small><h2>Tang Hui Shian</h2><p>For candidates who want patient guidance, resilient routines, and a practical foundation for growth.</p><div class="mentor-stats"><span>Routine</span><span>Resilience</span><span>Foundation</span></div><a class="btn-primary choose-mentor" href="../index.html#contact">Choose Hui Shian</a></div>
+      </article>
+    </div>
+
+    <div class="carousel-controls" aria-label="Mentor carousel controls">
+      <button class="mentor-arrow mentor-prev" type="button" aria-label="Previous mentors">&lsaquo;</button>
+      <button class="mentor-arrow mentor-next" type="button" aria-label="Next mentors">&rsaquo;</button>
+    </div>
+  </section>
+
+  <p class="mentor-note">Not sure yet? That is fine. Pick the mentor style that feels closest to how you want to grow, and CASB can help match you from there.</p>
+</main>
+
+<script>
+const mentorCarousel = document.querySelector('#mentorCarousel');
+document.querySelector('.mentor-next')?.addEventListener('click', () => {
+  mentorCarousel.scrollBy({ left: mentorCarousel.clientWidth * 0.82, behavior: 'smooth' });
+});
+document.querySelector('.mentor-prev')?.addEventListener('click', () => {
+  mentorCarousel.scrollBy({ left: -mentorCarousel.clientWidth * 0.82, behavior: 'smooth' });
+});
+</script>
+</body>
+</html>
