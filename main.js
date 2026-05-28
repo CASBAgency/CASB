@@ -329,3 +329,33 @@ if (hamburger && navLinks) {
     });
   });
 }
+
+// Contact form AJAX (stays on page, no redirect to Formspree)
+const contactForm = document.querySelector('.contact-form');
+if (contactForm) {
+  const submitBtn = contactForm.querySelector('[type="submit"]');
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Sending…';
+    submitBtn.disabled = true;
+    try {
+      const res = await fetch(contactForm.action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        contactForm.innerHTML = '<div style="padding:40px 0;text-align:center;"><div style="font-size:40px;margin-bottom:16px;">✓</div><h3 style="font-family:'Playfair Display',serif;font-size:22px;margin-bottom:10px;color:#fff;">Message Sent</h3><p style="color:rgba(255,255,255,0.6);">Thank you for reaching out. Our team will get back to you shortly.</p></div>';
+      } else {
+        submitBtn.textContent = 'Try Again';
+        submitBtn.disabled = false;
+        alert('Something went wrong. Please email us at admin@casb2u.com');
+      }
+    } catch {
+      submitBtn.textContent = 'Try Again';
+      submitBtn.disabled = false;
+      alert('Network error. Please try again or email admin@casb2u.com');
+    }
+  });
+}
