@@ -54,13 +54,13 @@ html, body { height: 100%; overflow: hidden; background: #070D1A; color: #fff; f
 .carousel-wrap { position:relative; z-index:2; width:100%; height:calc(var(--ch) + 70px); overflow:hidden; touch-action:pan-y; }
 .carousel-belt {
   display:flex; align-items:center; gap:var(--gap);
-  position:absolute; top:50%; transform:translateY(-50%);
+  position:absolute; top:50%;
   will-change:transform; user-select:none;
   /* left offset set by JS */
 }
 
 /* ARROWS */
-.arrow { position:absolute; top:50%; transform:translateY(-50%); z-index:10; width:44px; height:64px; background:rgba(13,31,60,.7); border:1px solid rgba(232,201,106,.28); border-radius:6px; color:rgba(255,255,255,.7); font-size:28px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .2s,color .2s,border-color .2s; backdrop-filter:blur(4px); }
+.arrow { position:absolute; top:50%; z-index:10; width:44px; height:64px; background:rgba(13,31,60,.7); border:1px solid rgba(232,201,106,.28); border-radius:6px; color:rgba(255,255,255,.7); font-size:28px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .2s,color .2s,border-color .2s; backdrop-filter:blur(4px); }
 .arrow:hover { background:rgba(184,146,42,.25); border-color:var(--gold-light); color:var(--gold-light); }
 .arrow-left { left:10px; }
 .arrow-right { right:10px; }
@@ -276,7 +276,7 @@ function setBelt(x, instant) {
   beltX = x;
   belt.style.transition = instant ? 'none' : '';
   belt.style.left = (wrap.clientWidth / 2 - (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--cw')) || 230) / 2) + 'px';
-  belt.style.transform = `translateX(${x}px)`;
+  belt.style.transform = `translateX(${x}px) translateY(-50%)`;
 }
 
 function updateCenter() {
