@@ -12,217 +12,152 @@
 :root {
   --gold: #B8922A;
   --gold-light: #E8C96A;
-  --navy: #0D1F3C;
-  --card-w: 230px;
-  --card-h: 360px;
+  --cw: 230px;
+  --ch: 360px;
   --gap: 20px;
 }
-html, body {
-  height: 100%;
-  overflow: hidden;
-  background: #070D1A;
-  color: #fff;
-  font-family: 'DM Sans', sans-serif;
-}
+html, body { height: 100%; overflow: hidden; background: #070D1A; color: #fff; font-family: 'DM Sans', sans-serif; }
 .page {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
+  height: 100vh; display: flex; flex-direction: column;
   background:
-    radial-gradient(ellipse 80% 40% at 50% -10%, rgba(232,201,106,0.13) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 40% at 50% -10%, rgba(232,201,106,.13) 0%, transparent 60%),
     linear-gradient(180deg, #0D1F3C 0%, #070D1A 50%, #040810 100%);
 }
 
 /* TOPBAR */
-.topbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px 5%;
-  flex-shrink: 0;
-  border-bottom: 1px solid rgba(232,201,106,0.1);
-}
-.logo-link { display: flex; align-items: center; gap: 10px; text-decoration: none; color: white; }
-.logo-link img { height: 44px; }
-.logo-label { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-light); }
-.back-link { font-size: 13px; color: rgba(255,255,255,0.55); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
-.back-link:hover { color: var(--gold-light); }
+.topbar { display:flex; align-items:center; justify-content:space-between; padding:14px 5%; flex-shrink:0; border-bottom:1px solid rgba(232,201,106,.1); }
+.logo-link { display:flex; align-items:center; gap:10px; text-decoration:none; color:#fff; }
+.logo-link img { height:44px; }
+.logo-label { font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--gold-light); }
+.back-link { font-size:13px; color:rgba(255,255,255,.55); text-decoration:none; display:flex; align-items:center; gap:6px; transition:color .2s; }
+.back-link:hover { color:var(--gold-light); }
 
 /* HERO */
-.hero { text-align: center; padding: 16px 5% 10px; flex-shrink: 0; }
-.kicker { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 6px; }
+.hero { text-align:center; padding:16px 5% 10px; flex-shrink:0; }
+.kicker { font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:var(--gold-light); margin-bottom:6px; }
 .hero h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(26px, 3.5vw, 46px);
-  line-height: 1.1; margin-bottom: 6px;
-  background: linear-gradient(135deg, #fff 30%, var(--gold-light));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  font-family:'Playfair Display',serif; font-size:clamp(26px,3.5vw,46px); line-height:1.1; margin-bottom:6px;
+  background:linear-gradient(135deg,#fff 30%,var(--gold-light));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
 }
-.hero p { font-size: 13px; color: rgba(255,255,255,0.52); max-width: 500px; margin: 0 auto; line-height: 1.55; }
+.hero p { font-size:13px; color:rgba(255,255,255,.52); max-width:500px; margin:0 auto; line-height:1.55; }
 
 /* STAGE */
-.stage {
-  flex: 1; position: relative; display: flex; align-items: center; justify-content: center;
-  min-height: 0; overflow: hidden;
-}
+.stage { flex:1; position:relative; display:flex; align-items:center; justify-content:center; min-height:0; overflow:hidden; }
 .stage::before {
-  content: ''; position: absolute; inset: 0; z-index: 5; pointer-events: none;
-  background: linear-gradient(90deg, rgba(4,8,16,0.75) 0%, transparent 15%, transparent 85%, rgba(4,8,16,0.75) 100%);
+  content:''; position:absolute; inset:0; z-index:5; pointer-events:none;
+  background:linear-gradient(90deg, rgba(4,8,16,.8) 0%, transparent 14%, transparent 86%, rgba(4,8,16,.8) 100%);
 }
 .spotlight {
-  position: absolute; top: -20%; left: 50%; transform: translateX(-50%);
-  width: 500px; height: 500px;
-  background: radial-gradient(circle, rgba(232,201,106,0.09) 0%, transparent 65%);
-  pointer-events: none; z-index: 0;
+  position:absolute; top:-20%; left:50%; transform:translateX(-50%);
+  width:500px; height:500px;
+  background:radial-gradient(circle, rgba(232,201,106,.09) 0%, transparent 65%);
+  pointer-events:none; z-index:0;
 }
 
-/* CAROUSEL — no scroll, JS-driven transform */
-.carousel-viewport {
-  position: relative; z-index: 2;
-  width: 100%; height: calc(var(--card-h) + 60px);
-  display: flex; align-items: center; justify-content: center;
-  overflow: hidden;
+/* TRACK — native scroll, no JS transform needed */
+.track-wrap { position:relative; z-index:2; width:100%; overflow:hidden; }
+.track {
+  display:flex;
+  align-items:center;
+  gap:var(--gap);
+  /* enough padding so first/last cards can be centered */
+  padding: 30px calc(50% - var(--cw)/2);
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  /* NO scroll-behavior here — we set it per-action in JS */
 }
-.carousel-track {
-  display: flex;
-  align-items: center;
-  gap: var(--gap);
-  position: absolute;
-  left: 50%;
-  transform: translateX(0);
-  transition: transform 0.45s cubic-bezier(0.22, 0.8, 0.22, 1);
-  will-change: transform;
-}
+.track::-webkit-scrollbar { display:none; }
 
 /* ARROWS */
 .arrow {
-  position: absolute; top: 50%; transform: translateY(-50%);
-  z-index: 10; width: 44px; height: 64px;
-  background: rgba(13,31,60,0.7); border: 1px solid rgba(232,201,106,0.28);
-  border-radius: 6px; color: rgba(255,255,255,0.7);
-  font-size: 28px; cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
-  backdrop-filter: blur(4px); user-select: none;
+  position:absolute; top:50%; transform:translateY(-50%); z-index:10;
+  width:44px; height:64px; background:rgba(13,31,60,.7);
+  border:1px solid rgba(232,201,106,.28); border-radius:6px;
+  color:rgba(255,255,255,.7); font-size:28px; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  transition:background .2s,color .2s,border-color .2s; backdrop-filter:blur(4px);
 }
-.arrow:hover { background: rgba(184,146,42,0.25); border-color: var(--gold-light); color: var(--gold-light); }
-.arrow-left { left: 10px; }
-.arrow-right { right: 10px; }
+.arrow:hover { background:rgba(184,146,42,.25); border-color:var(--gold-light); color:var(--gold-light); }
+.arrow-left { left:10px; }
+.arrow-right { right:10px; }
 
 /* CARD */
 .card {
-  flex-shrink: 0;
-  width: var(--card-w); height: var(--card-h);
-  perspective: 1000px; cursor: pointer;
-  transition: transform 0.3s ease, opacity 0.3s ease, filter 0.3s ease;
-  opacity: 0.65; filter: brightness(0.75) scale(0.97);
+  flex-shrink:0;
+  width:var(--cw); height:var(--ch);
+  scroll-snap-align: center;
+  perspective:1000px; cursor:pointer;
+  transition:transform .3s ease, opacity .3s ease, filter .3s ease;
+  opacity:.6; filter:brightness(.72);
 }
-.card.is-center { transform: scale(1.08); opacity: 1; filter: brightness(1); z-index: 3; }
-.card-inner {
-  width: 100%; height: 100%;
-  transform-style: preserve-3d;
-  transition: transform 0.65s cubic-bezier(0.22, 0.8, 0.22, 1);
-}
-.card.flipped .card-inner { transform: rotateY(180deg); }
+.card.is-center { transform:scale(1.08); opacity:1; filter:brightness(1); }
+.card-inner { width:100%; height:100%; transform-style:preserve-3d; transition:transform .65s cubic-bezier(.22,.8,.22,1); }
+.card.flipped .card-inner { transform:rotateY(180deg); }
 .card-face {
-  position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden;
-  border-radius: 10px; overflow: hidden;
-  border: 1px solid rgba(232,201,106,0.38);
-  background: linear-gradient(180deg, #0F2244 0%, #060C1A 100%);
-  box-shadow: 0 0 0 1px rgba(255,255,255,0.05), 0 20px 50px rgba(0,0,0,0.55), inset 0 1px 0 rgba(232,201,106,0.15);
+  position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden;
+  border-radius:10px; overflow:hidden;
+  border:1px solid rgba(232,201,106,.38);
+  background:linear-gradient(180deg,#0F2244 0%,#060C1A 100%);
+  box-shadow:0 0 0 1px rgba(255,255,255,.05),0 20px 50px rgba(0,0,0,.55),inset 0 1px 0 rgba(232,201,106,.15);
 }
-.card-face::before {
-  content: ''; position: absolute; inset: 8px;
-  border: 1px solid rgba(232,201,106,0.12); border-radius: 7px;
-  pointer-events: none; z-index: 1;
-}
-.card-face::after {
-  content: ''; position: absolute; top: 0; left: 15%; right: 15%; height: 2px;
-  background: linear-gradient(90deg, transparent, var(--gold-light), transparent); border-radius: 999px;
-}
-.card.is-center .card-face {
-  border-color: rgba(232,201,106,0.65);
-  box-shadow: 0 0 0 1px rgba(232,201,106,0.18), 0 0 30px rgba(232,201,106,0.15), 0 24px 60px rgba(0,0,0,0.6);
-}
+.card-face::before { content:''; position:absolute; inset:8px; border:1px solid rgba(232,201,106,.12); border-radius:7px; pointer-events:none; z-index:1; }
+.card-face::after { content:''; position:absolute; top:0; left:15%; right:15%; height:2px; background:linear-gradient(90deg,transparent,var(--gold-light),transparent); border-radius:999px; }
+.card.is-center .card-face { border-color:rgba(232,201,106,.65); box-shadow:0 0 0 1px rgba(232,201,106,.18),0 0 30px rgba(232,201,106,.15),0 24px 60px rgba(0,0,0,.6); }
 
 /* FRONT */
-.card-front { display: flex; flex-direction: column; }
-.card-photo {
-  flex: 1; min-height: 0; display: flex; align-items: flex-end; justify-content: center;
-  background: radial-gradient(circle at 50% 20%, rgba(232,201,106,0.18) 0%, transparent 60%);
-  overflow: hidden;
-}
-.card-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top center; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5)); }
-
-/* placeholder ghost */
-.card-photo.empty {
-  align-items: center; justify-content: center;
-  background: radial-gradient(circle at 50% 50%, rgba(232,201,106,0.06) 0%, transparent 70%);
-}
-.ghost-icon { opacity: 0.18; }
-.ghost-icon svg { width: 72px; height: 72px; }
-
-.card-nameplate {
-  padding: 12px 16px 14px;
-  background: linear-gradient(0deg, rgba(4,8,16,0.95) 0%, rgba(6,12,26,0.8) 100%);
-  border-top: 1px solid rgba(232,201,106,0.2); position: relative; z-index: 2;
-}
-.card-role { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 3px; }
-.card-name { font-family: 'Playfair Display', serif; font-size: 18px; line-height: 1.15; font-weight: 600; color: rgba(255,255,255,0.4); font-style: italic; }
-.card-name.real { color: #fff; font-style: normal; }
-.flip-hint {
-  position: absolute; bottom: 68px; right: 12px;
-  font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
-  color: rgba(232,201,106,0.55); display: flex; align-items: center; gap: 4px;
-  z-index: 3; pointer-events: none;
-}
+.card-front { display:flex; flex-direction:column; }
+.card-photo { flex:1; min-height:0; display:flex; align-items:flex-end; justify-content:center; background:radial-gradient(circle at 50% 20%,rgba(232,201,106,.18) 0%,transparent 60%); overflow:hidden; }
+.card-photo img { width:100%; height:100%; object-fit:cover; object-position:top center; }
+.card-photo.empty { align-items:center; justify-content:center; background:radial-gradient(circle at 50% 50%,rgba(232,201,106,.06) 0%,transparent 70%); }
+.ghost-icon { opacity:.18; }
+.ghost-icon svg { width:72px; height:72px; }
+.card-nameplate { padding:12px 16px 14px; background:linear-gradient(0deg,rgba(4,8,16,.95) 0%,rgba(6,12,26,.8) 100%); border-top:1px solid rgba(232,201,106,.2); position:relative; z-index:2; }
+.card-role { font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:var(--gold-light); margin-bottom:3px; }
+.card-name { font-family:'Playfair Display',serif; font-size:18px; line-height:1.15; font-weight:600; }
+.card-name.ghost { color:rgba(255,255,255,.35); font-style:italic; }
+.flip-hint { position:absolute; bottom:68px; right:12px; font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:rgba(232,201,106,.55); display:flex; align-items:center; gap:4px; z-index:3; pointer-events:none; }
 
 /* BACK */
-.card-back { transform: rotateY(180deg); display: flex; flex-direction: column; padding: 18px 16px 16px; gap: 10px; }
-.back-name { font-family: 'Playfair Display', serif; font-size: 17px; color: var(--gold-light); font-weight: 600; line-height: 1.1; border-bottom: 1px solid rgba(232,201,106,0.2); padding-bottom: 8px; }
-.back-bio { font-size: 11px; color: rgba(255,255,255,0.6); line-height: 1.5; flex-shrink: 0; }
-.attrs { display: flex; flex-direction: column; gap: 7px; flex: 1; }
-.attr-row { display: flex; flex-direction: column; gap: 3px; }
-.attr-label { display: flex; justify-content: space-between; font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.65); }
-.attr-label b { color: var(--gold-light); font-weight: 600; }
-.attr-bar { height: 5px; border-radius: 999px; background: rgba(255,255,255,0.1); overflow: hidden; }
-.attr-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 100%); transform-origin: left; transform: scaleX(0); transition: transform 0.7s cubic-bezier(0.22, 0.8, 0.22, 1) 0.1s; }
-.card.flipped .attr-fill { transform: scaleX(1); }
-
-/* placeholder back */
-.coming-soon-back {
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  height: 100%; gap: 14px; padding: 24px; text-align: center;
-}
-.coming-soon-back svg { width: 40px; height: 40px; opacity: 0.25; }
-.coming-soon-back p { font-size: 12px; color: rgba(255,255,255,0.35); line-height: 1.5; }
-
-/* WA button */
+.card-back { transform:rotateY(180deg); display:flex; flex-direction:column; padding:18px 16px 16px; gap:10px; }
+.back-name { font-family:'Playfair Display',serif; font-size:17px; color:var(--gold-light); font-weight:600; border-bottom:1px solid rgba(232,201,106,.2); padding-bottom:8px; }
+.back-bio { font-size:11px; color:rgba(255,255,255,.6); line-height:1.5; }
+.attrs { display:flex; flex-direction:column; gap:7px; flex:1; }
+.attr-row { display:flex; flex-direction:column; gap:3px; }
+.attr-label { display:flex; justify-content:space-between; font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.65); }
+.attr-label b { color:var(--gold-light); }
+.attr-bar { height:5px; border-radius:999px; background:rgba(255,255,255,.1); overflow:hidden; }
+.attr-fill { height:100%; border-radius:999px; background:linear-gradient(90deg,var(--gold),var(--gold-light)); transform-origin:left; transform:scaleX(0); transition:transform .7s cubic-bezier(.22,.8,.22,1) .1s; }
+.card.flipped .attr-fill { transform:scaleX(1); }
+.coming-soon-back { display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; gap:14px; padding:24px; text-align:center; }
+.coming-soon-back svg { width:40px; height:40px; opacity:.2; }
+.coming-soon-back p { font-size:12px; color:rgba(255,255,255,.35); line-height:1.5; }
 .wa-btn {
-  display: flex; align-items: center; justify-content: center; gap: 8px;
-  width: 100%; padding: 10px 12px; border-radius: 6px;
-  background: linear-gradient(135deg, #25D366 0%, #1DA851 100%);
-  color: white; font-size: 12px; font-weight: 600; letter-spacing: 0.06em;
-  text-decoration: none; border: none; cursor: pointer; margin-top: auto;
-  transition: filter 0.2s, transform 0.15s; font-family: 'DM Sans', sans-serif; flex-shrink: 0;
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  width:100%; padding:10px 12px; border-radius:6px;
+  background:linear-gradient(135deg,#25D366,#1DA851);
+  color:#fff; font-size:12px; font-weight:600; letter-spacing:.06em;
+  text-decoration:none; margin-top:auto; flex-shrink:0;
+  transition:filter .2s,transform .15s; font-family:'DM Sans',sans-serif;
 }
-.wa-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
-.wa-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+.wa-btn:hover { filter:brightness(1.1); transform:translateY(-1px); }
+.wa-btn svg { width:16px; height:16px; flex-shrink:0; }
 
-/* DOT INDICATORS */
-.dots { display: flex; justify-content: center; gap: 6px; padding: 10px 0 6px; flex-shrink: 0; }
-.dot { width: 5px; height: 5px; border-radius: 999px; background: rgba(255,255,255,0.2); transition: background 0.3s, width 0.3s; }
-.dot.active { background: var(--gold-light); width: 18px; }
+/* DOTS */
+.dots { display:flex; justify-content:center; gap:6px; padding:10px 0 6px; flex-shrink:0; }
+.dot { width:5px; height:5px; border-radius:999px; background:rgba(255,255,255,.2); transition:background .3s,width .3s; cursor:pointer; }
+.dot.active { background:var(--gold-light); width:18px; }
 
-.hint-strip { text-align: center; font-size: 11.5px; color: rgba(255,255,255,0.3); padding: 4px 5% 14px; flex-shrink: 0; letter-spacing: 0.05em; }
+.hint-strip { text-align:center; font-size:11.5px; color:rgba(255,255,255,.28); padding:4px 5% 14px; flex-shrink:0; letter-spacing:.05em; }
 
-/* MOBILE */
-@media (max-width: 680px) {
-  html, body { overflow: auto; }
-  .page { height: auto; min-height: 100vh; }
-  .stage { min-height: 460px; }
-  :root { --card-w: 200px; --card-h: 320px; }
-  .hero h1 { font-size: 28px; }
+@media (max-width:680px) {
+  html,body { overflow:auto; }
+  .page { height:auto; min-height:100vh; }
+  .stage { min-height:460px; }
+  :root { --cw:200px; --ch:320px; }
+  .hero h1 { font-size:28px; }
 }
 </style>
 </head>
@@ -248,223 +183,211 @@ html, body {
 
   <div class="stage">
     <div class="spotlight"></div>
-    <button class="arrow arrow-left" id="arrowLeft" aria-label="Previous">&#8249;</button>
-    <div class="carousel-viewport">
-      <div class="carousel-track" id="carousel">
-        <!-- cards injected by JS -->
-      </div>
+    <button class="arrow arrow-left" id="arrowL" aria-label="Previous">&#8249;</button>
+    <div class="track-wrap">
+      <div class="track" id="track"></div>
     </div>
-    <button class="arrow arrow-right" id="arrowRight" aria-label="Next">&#8250;</button>
+    <button class="arrow arrow-right" id="arrowR" aria-label="Next">&#8250;</button>
   </div>
 
   <div class="dots" id="dots"></div>
-  <div class="hint-strip">Click a card to flip &nbsp;·&nbsp; Arrows or swipe to browse &nbsp;·&nbsp; Loops infinitely</div>
-
+  <div class="hint-strip">Click a card to flip &nbsp;·&nbsp; Swipe or use arrows &nbsp;·&nbsp; Loops endlessly</div>
 </div>
 
 <script>
-// ── DATA ──────────────────────────────────────────────────────────────
 const WA_SVG = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.09.543 4.058 1.494 5.771L.044 23.956l6.335-1.44A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.898 0-3.68-.51-5.215-1.397l-.374-.22-3.759.855.882-3.665-.244-.382A9.95 9.95 0 0 1 2 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>`;
 
-const FLIP_HINT = `<div class="flip-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4v5h5M20 20v-5h-5M4 9a8 8 0 0 1 13.9-2.9M20 15a8 8 0 0 1-13.9 2.9"/></svg>Flip</div>`;
+const GHOST = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a7 7 0 0 1 7 7v7l2 2H3l2-2V9a7 7 0 0 1 7-7z"/><path d="M9 21a3 3 0 0 0 6 0"/></svg>`;
 
-const GHOST_SVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a7 7 0 0 1 7 7v7l2 2H3l2-2V9a7 7 0 0 1 7-7z"/><path d="M9 21a3 3 0 0 0 6 0"/></svg>`;
-
-const mentors = [
-  {
-    name: "Vincent Yang", role: "Strategy Builder",
-    photo: "../assets/photos/team/Vincent%20Yang.jpg",
-    bio: "Structured growth, business discipline, and agency leadership direction.",
-    attrs: [["Leadership", 95], ["Systems", 92], ["Growth", 90]],
-    wa: "60XXXXXXXXX", waName: "Vincent"
-  },
-  {
-    name: "Asher Chong", role: "Momentum Coach",
-    photo: "../assets/photos/team/Asher%20Chong_1.jpg",
-    bio: "Energy, practical field guidance, and a confident first step into the industry.",
-    attrs: [["Field Skill", 91], ["Momentum", 94], ["Confidence", 88]],
-    wa: "60XXXXXXXXX", waName: "Asher"
-  },
-  {
-    name: "Alice Chong", role: "Trust Builder",
-    photo: "../assets/photos/team/Alice_Chong%20Poh%20Chiang.jpg",
-    bio: "Long-term client relationships, care-led planning, and steady sustainable habits.",
-    attrs: [["Care", 96], ["Planning", 89], ["Trust", 93]],
-    wa: "60XXXXXXXXX", waName: "Alice"
-  },
-  {
-    name: "William Choong", role: "Performance Guide",
-    photo: "../assets/photos/team/William_Choong%20Kei%20Foong.jpg",
-    bio: "Measurable targets, consistency, and turning daily activity into real results.",
-    attrs: [["Targets", 93], ["Discipline", 90], ["Results", 92]],
-    wa: "60XXXXXXXXX", waName: "William"
-  },
-  {
-    name: "Anna Chow", role: "Culture Mentor",
-    photo: "../assets/photos/team/Anna_Chow%20Mei%20Ying.jpg",
-    bio: "Encouragement, team connection, and a genuinely supportive learning environment.",
-    attrs: [["Teamwork", 94], ["Support", 95], ["Learning", 88]],
-    wa: "60XXXXXXXXX", waName: "Anna"
-  },
-  {
-    name: "Steve Moh", role: "Conversation Coach",
-    photo: "../assets/photos/team/Steve_Moh%20Hiong%20Ie.jpg",
-    bio: "Client conversations, presentation flow, and building real advisory confidence.",
-    attrs: [["Speaking", 91], ["Advisory", 89], ["Presence", 90]],
-    wa: "60XXXXXXXXX", waName: "Steve"
-  },
-  { placeholder: true },
-  { placeholder: true },
+const MENTORS = [
+  { name:"Vincent Yang", role:"Strategy Builder", photo:"../assets/photos/team/Vincent%20Yang.jpg", bio:"Structured growth, business discipline, and agency leadership direction.", attrs:[["Leadership",95],["Systems",92],["Growth",90]], wa:"60XXXXXXXXX", waName:"Vincent" },
+  { name:"Asher Chong",  role:"Momentum Coach",  photo:"../assets/photos/team/Asher%20Chong_1.jpg", bio:"Energy, practical field guidance, and a confident first step into the industry.", attrs:[["Field Skill",91],["Momentum",94],["Confidence",88]], wa:"60XXXXXXXXX", waName:"Asher" },
+  { name:"Alice Chong",  role:"Trust Builder",   photo:"../assets/photos/team/Alice_Chong%20Poh%20Chiang.jpg", bio:"Long-term client relationships, care-led planning, and steady sustainable habits.", attrs:[["Care",96],["Planning",89],["Trust",93]], wa:"60XXXXXXXXX", waName:"Alice" },
+  { name:"William Choong", role:"Performance Guide", photo:"../assets/photos/team/William_Choong%20Kei%20Foong.jpg", bio:"Measurable targets, consistency, and turning daily activity into real results.", attrs:[["Targets",93],["Discipline",90],["Results",92]], wa:"60XXXXXXXXX", waName:"William" },
+  { name:"Anna Chow",    role:"Culture Mentor",  photo:"../assets/photos/team/Anna_Chow%20Mei%20Ying.jpg", bio:"Encouragement, team connection, and a genuinely supportive learning environment.", attrs:[["Teamwork",94],["Support",95],["Learning",88]], wa:"60XXXXXXXXX", waName:"Anna" },
+  { name:"Steve Moh",    role:"Conversation Coach", photo:"../assets/photos/team/Steve_Moh%20Hiong%20Ie.jpg", bio:"Client conversations, presentation flow, and building real advisory confidence.", attrs:[["Speaking",91],["Advisory",89],["Presence",90]], wa:"60XXXXXXXXX", waName:"Steve" },
+  { placeholder:true },
+  { placeholder:true },
 ];
 
-const TOTAL = mentors.length;
+const N = MENTORS.length;
 
-// ── BUILD CARD HTML ─────────────────────────────────────────────────
-function buildCard(m, idx) {
+function makeCard(m, absIdx) {
+  const el = document.createElement('div');
+  el.className = 'card';
+  el.dataset.abs = absIdx;
+  el.dataset.real = ((absIdx % N) + N) % N;
+  el.tabIndex = 0;
+
   if (m.placeholder) {
-    return `
-<div class="card" data-real-index="${idx}" tabindex="0" role="button" aria-label="Coming soon placeholder">
-  <div class="card-inner">
-    <div class="card-face card-front">
-      <div class="card-photo empty">
-        <div class="ghost-icon">${GHOST_SVG}</div>
-      </div>
-      <div class="card-nameplate">
-        <div class="card-role">Coming Soon</div>
-        <div class="card-name">Future Mentor</div>
-      </div>
-    </div>
-    <div class="card-face card-back">
-      <div class="coming-soon-back">
-        ${GHOST_SVG}
-        <p>This mentor spot is reserved.<br>Stay tuned for the next addition to the CASB roster.</p>
-      </div>
-    </div>
-  </div>
-</div>`;
+    el.innerHTML = `
+      <div class="card-inner">
+        <div class="card-face card-front">
+          <div class="card-photo empty"><div class="ghost-icon">${GHOST}</div></div>
+          <div class="card-nameplate">
+            <div class="card-role">Coming Soon</div>
+            <div class="card-name ghost">Future Mentor</div>
+          </div>
+        </div>
+        <div class="card-face card-back">
+          <div class="coming-soon-back">${GHOST}<p>This mentor spot is reserved.<br>Stay tuned for the next addition to the CASB roster.</p></div>
+        </div>
+      </div>`;
+  } else {
+    const attrs = m.attrs.map(([l,s]) => `
+      <div class="attr-row">
+        <div class="attr-label"><span>${l}</span><b>${s}</b></div>
+        <div class="attr-bar"><div class="attr-fill" style="--s:${s/100}"></div></div>
+      </div>`).join('');
+    const msg = encodeURIComponent(`Hi ${m.waName}, I'd like to join under your mentorship!`);
+    el.innerHTML = `
+      <div class="card-inner">
+        <div class="card-face card-front">
+          <div class="card-photo"><img src="${m.photo}" alt="${m.name}" loading="lazy"></div>
+          <div class="flip-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4v5h5M20 20v-5h-5M4 9a8 8 0 0 1 13.9-2.9M20 15a8 8 0 0 1-13.9 2.9"/></svg>Flip</div>
+          <div class="card-nameplate">
+            <div class="card-role">${m.role}</div>
+            <div class="card-name">${m.name}</div>
+          </div>
+        </div>
+        <div class="card-face card-back">
+          <div class="back-name">${m.name}</div>
+          <div class="back-bio">${m.bio}</div>
+          <div class="attrs">${attrs}</div>
+          <a class="wa-btn" href="https://wa.me/${m.wa}?text=${msg}" target="_blank" rel="noopener">${WA_SVG} Choose ${m.waName}</a>
+        </div>
+      </div>`;
   }
-  const attrsHtml = m.attrs.map(([label, score]) => `
-    <div class="attr-row">
-      <div class="attr-label"><span>${label}</span><b>${score}</b></div>
-      <div class="attr-bar"><div class="attr-fill" style="--s:${score/100}"></div></div>
-    </div>`).join('');
-
-  const waMsg = encodeURIComponent(`Hi ${m.waName}, I'd like to join under your mentorship!`);
-  return `
-<div class="card" data-real-index="${idx}" tabindex="0" role="button" aria-label="${m.name} - click to flip">
-  <div class="card-inner">
-    <div class="card-face card-front">
-      <div class="card-photo">
-        <img src="${m.photo}" alt="${m.name}" loading="lazy">
-      </div>
-      ${FLIP_HINT}
-      <div class="card-nameplate">
-        <div class="card-role">${m.role}</div>
-        <div class="card-name real">${m.name}</div>
-      </div>
-    </div>
-    <div class="card-face card-back">
-      <div class="back-name">${m.name}</div>
-      <div class="back-bio">${m.bio}</div>
-      <div class="attrs">${attrsHtml}</div>
-      <a class="wa-btn" href="https://wa.me/${m.wa}?text=${waMsg}" target="_blank" rel="noopener">
-        ${WA_SVG} Choose ${m.waName}
-      </a>
-    </div>
-  </div>
-</div>`;
+  return el;
 }
 
-// ── INFINITE LOOP SETUP ─────────────────────────────────────────────
-// Strategy: clone the array 3x [clone_a | real | clone_b]
-// Start position = middle set. On arrow, move index. When we hit clone edges, silently snap back.
+// ── INFINITE SCROLL via DOM recycling ────────────────────────────────
+// We keep a window of VISIBLE cards in the DOM. As the user scrolls,
+// we append/prepend clones and remove far-off ones — no jump, no snap-back.
 
-const track = document.getElementById('carousel');
-const dotsEl = document.getElementById('dots');
+const track   = document.getElementById('track');
+const dotsEl  = document.getElementById('dots');
+const arrowL  = document.getElementById('arrowL');
+const arrowR  = document.getElementById('arrowR');
 
-// Build 3 sets of cards
-const sets = [mentors, mentors, mentors];
-let allCards = [];
-sets.forEach((set, setIdx) => {
-  set.forEach((m, mIdx) => {
-    const globalIdx = setIdx * TOTAL + mIdx;
-    const div = document.createElement('div');
-    div.innerHTML = buildCard(m, mIdx).trim();
-    const card = div.firstElementChild;
-    card.dataset.globalIndex = globalIdx;
-    track.appendChild(card);
-    allCards.push(card);
-  });
-});
-
-const CARD_W = () => parseInt(getComputedStyle(document.documentElement).getPropertyValue('--card-w')) || 230;
-const GAP = () => parseInt(getComputedStyle(document.documentElement).getPropertyValue('--gap')) || 20;
-const stride = () => CARD_W() + GAP();
-
-// current logical index within real set (0 … TOTAL-1)
-let currentIndex = 0;
-// current absolute index in 3x array
-let absIndex = TOTAL + currentIndex; // start in middle set
-
-function getOffset(abs) {
-  // Center card abs in viewport
-  return -(abs * stride()) - CARD_W() / 2;
-}
-
-function updateTrack(animated) {
-  if (!animated) track.style.transition = 'none';
-  else track.style.transition = 'transform 0.45s cubic-bezier(0.22, 0.8, 0.22, 1)';
-  track.style.transform = `translateX(${getOffset(absIndex)}px)`;
-}
-
-function updateCenter() {
-  allCards.forEach(c => {
-    c.classList.toggle('is-center', parseInt(c.dataset.globalIndex) === absIndex);
-  });
-  // dots
-  Array.from(dotsEl.children).forEach((d, i) => d.classList.toggle('active', i === currentIndex));
-}
-
-function go(dir) {
-  absIndex += dir;
-  currentIndex = ((absIndex % TOTAL) + TOTAL) % TOTAL;
-  updateTrack(true);
-  updateCenter();
-
-  // After animation, if we're in a clone set, silently snap to middle set
-  setTimeout(() => {
-    if (absIndex < TOTAL || absIndex >= TOTAL * 2) {
-      absIndex = TOTAL + currentIndex;
-      updateTrack(false);
-      // force reflow
-      track.getBoundingClientRect();
-      track.style.transition = '';
-    }
-  }, 460);
-}
-
-// ── DOTS ────────────────────────────────────────────────────────────
-mentors.forEach((_, i) => {
+// Build dots for real mentors
+MENTORS.forEach((_, i) => {
   const d = document.createElement('div');
-  d.className = 'dot' + (i === 0 ? ' active' : '');
+  d.className = 'dot';
+  d.addEventListener('click', () => goTo(i));
   dotsEl.appendChild(d);
 });
 
-// ── ARROWS ──────────────────────────────────────────────────────────
-document.getElementById('arrowLeft').addEventListener('click', () => go(-1));
-document.getElementById('arrowRight').addEventListener('click', () => go(1));
+// stride = card width + gap (read from CSS vars)
+function stride() {
+  const s = getComputedStyle(document.documentElement);
+  return (parseInt(s.getPropertyValue('--cw')) || 230) + (parseInt(s.getPropertyValue('--gap')) || 20);
+}
+function cardW() { return parseInt(getComputedStyle(document.documentElement).getPropertyValue('--cw')) || 230; }
 
-// ── KEYBOARD ────────────────────────────────────────────────────────
+// We maintain an absolute index counter. Cards are keyed by absIndex.
+// absIndex 0 = first mentor, can go negative.
+let centerAbs = 0;   // which absIndex is currently centered
+const BUFFER  = 4;   // cards to keep on each side
+
+let cardMap = new Map(); // absIdx -> DOM element
+
+function getOrCreate(absIdx) {
+  if (cardMap.has(absIdx)) return cardMap.get(absIdx);
+  const realIdx = ((absIdx % N) + N) % N;
+  const el = makeCard(MENTORS[realIdx], absIdx);
+  cardMap.set(absIdx, el);
+  return el;
+}
+
+function renderWindow() {
+  const lo = centerAbs - BUFFER;
+  const hi = centerAbs + BUFFER;
+
+  // append/prepend needed cards
+  for (let i = lo; i <= hi; i++) {
+    if (!cardMap.has(i)) {
+      const el = getOrCreate(i);
+      // find position: insert before/after siblings
+      const existing = Array.from(track.children);
+      if (existing.length === 0) {
+        track.appendChild(el);
+      } else {
+        const firstAbs = parseInt(existing[0].dataset.abs);
+        if (i < firstAbs) {
+          track.insertBefore(el, existing[0]);
+        } else {
+          track.appendChild(el);
+        }
+      }
+    }
+  }
+
+  // remove cards outside window
+  for (const [absIdx, el] of cardMap.entries()) {
+    if (absIdx < lo || absIdx > hi) {
+      el.remove();
+      cardMap.delete(absIdx);
+    }
+  }
+
+  updateCenter();
+  updateDots();
+}
+
+function scrollToCenter(animated) {
+  const target = cardMap.get(centerAbs);
+  if (!target) return;
+  // We want the card's center aligned with track's center
+  // track padding = 50% - cardW/2, so card offsetLeft already accounts for it
+  const scrollTarget = target.offsetLeft - (track.parentElement.clientWidth / 2) + (cardW() / 2);
+  track.style.scrollBehavior = animated ? 'smooth' : 'auto';
+  track.scrollLeft = scrollTarget;
+}
+
+function updateCenter() {
+  for (const [absIdx, el] of cardMap.entries()) {
+    el.classList.toggle('is-center', absIdx === centerAbs);
+  }
+}
+
+function updateDots() {
+  const realIdx = ((centerAbs % N) + N) % N;
+  Array.from(dotsEl.children).forEach((d, i) => d.classList.toggle('active', i === realIdx));
+}
+
+// ── NAVIGATION ───────────────────────────────────────────────────────
+function go(dir) {
+  // un-flip any flipped card
+  for (const el of cardMap.values()) el.classList.remove('flipped');
+  centerAbs += dir;
+  renderWindow();
+  scrollToCenter(true);
+}
+
+function goTo(realIdx) {
+  // find nearest abs index to current center
+  const offset = realIdx - (((centerAbs % N) + N) % N);
+  let delta = offset;
+  if (delta > N / 2) delta -= N;
+  if (delta < -N / 2) delta += N;
+  centerAbs += delta;
+  renderWindow();
+  scrollToCenter(true);
+}
+
+arrowL.addEventListener('click', () => go(-1));
+arrowR.addEventListener('click', () => go(1));
+
 document.addEventListener('keydown', e => {
-  if (e.key === 'ArrowLeft') go(-1);
+  if (e.key === 'ArrowLeft')  go(-1);
   if (e.key === 'ArrowRight') go(1);
 });
 
-// ── FLIP ────────────────────────────────────────────────────────────
+// ── FLIP ─────────────────────────────────────────────────────────────
 track.addEventListener('click', e => {
   const card = e.target.closest('.card');
-  if (!card) return;
-  if (e.target.closest('a')) return;
+  if (!card || e.target.closest('a')) return;
   card.classList.toggle('flipped');
 });
 track.addEventListener('keydown', e => {
@@ -473,22 +396,22 @@ track.addEventListener('keydown', e => {
   if (card) { e.preventDefault(); card.classList.toggle('flipped'); }
 });
 
-// ── TOUCH SWIPE ─────────────────────────────────────────────────────
-let touchStartX = 0;
-track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
-track.addEventListener('touchend', e => {
-  const dx = e.changedTouches[0].clientX - touchStartX;
+// ── TOUCH SWIPE ───────────────────────────────────────────────────────
+let tx = 0;
+track.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+track.addEventListener('touchend',   e => {
+  const dx = e.changedTouches[0].clientX - tx;
   if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
 }, { passive: true });
 
-// ── INIT ────────────────────────────────────────────────────────────
+// ── INIT ─────────────────────────────────────────────────────────────
 function init() {
-  updateTrack(false);
-  updateCenter();
+  renderWindow();
+  scrollToCenter(false);
 }
 if (document.readyState === 'complete') init();
 else window.addEventListener('load', init);
-window.addEventListener('resize', () => { updateTrack(false); });
+window.addEventListener('resize', () => scrollToCenter(false));
 </script>
 </body>
 </html>
