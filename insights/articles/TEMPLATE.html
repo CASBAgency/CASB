@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ========================================================
+  SEO: EDIT THESE 4 LINES FOR EVERY ARTICLE
+  ======================================================== -->
+<title>YOUR ARTICLE TITLE HERE | CASB Agency</title>
+<meta name="description" content="One sentence summary of the article, around 150 characters. Make it compelling.">
+<meta property="og:title" content="YOUR ARTICLE TITLE HERE">
+<meta property="og:description" content="Same as meta description above.">
+<!-- ======================================================== -->
+
+<meta property="og:type" content="article">
+<meta property="og:image" content="../../assets/hero-bg.png">
+<meta property="og:site_name" content="CASB Agency">
+<link rel="canonical" href="https://oikosadvisory.github.io/CASB/insights/articles/YOUR-ARTICLE-SLUG.html">
+<link rel="icon" type="image/x-icon" href="../../assets/favicon/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../style.css">
+<style>
+/* ── ARTICLE PAGE STYLES ── */
+body { background: #F7F6F3; }
+
+/* NAV override for article pages */
+nav { background: rgba(13,31,60,.97); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(232,201,106,.12); }
+
+/* ── ARTICLE HERO ── */
+.art-hero {
+  background: linear-gradient(135deg, #0A1828 0%, #0D1F3C 60%, #162d50 100%);
+  padding: 120px 10% 64px;
+  position: relative; overflow: hidden;
+}
+.art-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 90% 50%, rgba(232,201,106,.08), transparent 65%);
+  pointer-events: none;
+}
+.art-hero-inner { position: relative; z-index: 1; max-width: 760px; }
+.art-breadcrumb {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 12px; color: rgba(255,255,255,.45);
+  margin-bottom: 20px; text-decoration: none;
+}
+.art-breadcrumb a { color: rgba(255,255,255,.45); text-decoration: none; transition: color .2s; }
+.art-breadcrumb a:hover { color: var(--gold-light); }
+.art-breadcrumb span { opacity: .4; }
+.art-cat-badge {
+  display: inline-block; background: var(--gold);
+  color: #fff; font-size: 10px; letter-spacing: .18em;
+  text-transform: uppercase; font-weight: 700;
+  padding: 5px 14px; border-radius: 3px; margin-bottom: 20px;
+}
+.art-hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 4vw, 48px);
+  line-height: 1.2; color: #fff; margin-bottom: 20px;
+}
+.art-hero-meta {
+  display: flex; align-items: center; gap: 16px;
+  flex-wrap: wrap; font-size: 13px; color: rgba(255,255,255,.5);
+}
+.art-hero-meta .dot { opacity: .35; }
+.art-hero-meta strong { color: rgba(255,255,255,.75); }
+
+/* ── ARTICLE LAYOUT ── */
+.art-layout {
+  max-width: 1100px; margin: 0 auto;
+  padding: 56px 5% 80px;
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 56px;
+  align-items: start;
+}
+
+/* ── ARTICLE BODY ── */
+.art-content {
+  background: #fff;
+  border-radius: 8px;
+  padding: 48px 52px;
+  box-shadow: 0 2px 16px rgba(0,0,0,.07);
+  font-size: 16px; line-height: 1.8; color: #2a2a2a;
+}
+
+/* Typography */
+.art-content h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px; color: #0D1F3C;
+  margin: 40px 0 16px; line-height: 1.3;
+  padding-top: 8px; border-top: 2px solid #F3F2EF;
+}
+.art-content h2:first-child { margin-top: 0; border-top: none; }
+.art-content h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px; color: #0D1F3C;
+  margin: 32px 0 12px; line-height: 1.3;
+}
+.art-content p { margin-bottom: 20px; }
+.art-content p:last-child { margin-bottom: 0; }
+.art-content strong { color: #0D1F3C; font-weight: 600; }
+.art-content em { color: #B8922A; font-style: normal; font-weight: 600; }
+.art-content a { color: #B8922A; text-decoration: underline; }
+.art-content a:hover { color: #0D1F3C; }
+
+/* Lists */
+.art-content ul, .art-content ol {
+  margin: 0 0 20px 0; padding-left: 0; list-style: none;
+}
+.art-content ul li, .art-content ol li {
+  padding: 6px 0 6px 28px; position: relative; border-bottom: 1px solid #f0f0f0;
+}
+.art-content ul li::before {
+  content: ''; position: absolute; left: 0; top: 16px;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--gold); flex-shrink: 0;
+}
+.art-content ol { counter-reset: ol-counter; }
+.art-content ol li { counter-increment: ol-counter; }
+.art-content ol li::before {
+  content: counter(ol-counter); position: absolute; left: 0; top: 8px;
+  width: 20px; height: 20px; border-radius: 50%;
+  background: #0D1F3C; color: #fff;
+  font-size: 10px; font-weight: 700; font-family: 'DM Sans', sans-serif;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* Callout boxes */
+.callout {
+  border-left: 3px solid var(--gold);
+  background: #FBF4E3;
+  padding: 18px 22px; border-radius: 0 6px 6px 0;
+  margin: 28px 0; font-size: 15px; color: #5a4010;
+}
+.callout strong { color: #3d2b08; }
+.callout.info { border-color: #3b82f6; background: #eff6ff; color: #1e40af; }
+.callout.info strong { color: #1e3a8a; }
+.callout.warning { border-color: #ef4444; background: #fef2f2; color: #991b1b; }
+.callout.warning strong { color: #7f1d1d; }
+
+/* Stat highlight */
+.stat-highlight {
+  background: linear-gradient(135deg, #0D1F3C 0%, #1A3358 100%);
+  color: #fff; padding: 28px 32px; border-radius: 8px;
+  margin: 28px 0; display: flex; align-items: center; gap: 24px;
+  flex-wrap: wrap;
+}
+.stat-highlight .big-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px; color: var(--gold-light); line-height: 1; flex-shrink: 0;
+}
+.stat-highlight .stat-text { font-size: 14px; color: rgba(255,255,255,.7); line-height: 1.6; }
+.stat-highlight .stat-text strong { color: #fff; display: block; font-size: 16px; margin-bottom: 4px; }
+
+/* Comparison table */
+.compare-table { width: 100%; border-collapse: collapse; margin: 28px 0; font-size: 14px; }
+.compare-table th {
+  background: #0D1F3C; color: #fff; padding: 12px 16px;
+  text-align: left; font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
+}
+.compare-table th:first-child { border-radius: 6px 0 0 0; }
+.compare-table th:last-child { border-radius: 0 6px 0 0; }
+.compare-table td { padding: 12px 16px; border-bottom: 1px solid #f0f0f0; vertical-align: top; }
+.compare-table tr:hover td { background: #FBF4E3; }
+.compare-table .tick { color: #25D366; font-weight: 700; }
+.compare-table .cross { color: #ef4444; font-weight: 700; }
+
+/* Article image */
+.art-img {
+  width: 100%; border-radius: 8px; margin: 28px 0;
+  overflow: hidden; background: linear-gradient(135deg, #0D1F3C, #1A3358);
+  min-height: 280px; display: flex; align-items: center; justify-content: center;
+}
+.art-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Divider */
+.art-divider { border: none; border-top: 2px solid #F3F2EF; margin: 36px 0; }
+
+/* CTA box at end of article */
+.art-cta {
+  background: linear-gradient(135deg, #0D1F3C, #1A3358);
+  color: #fff; padding: 32px; border-radius: 8px; margin-top: 40px;
+  text-align: center;
+}
+.art-cta h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px; margin-bottom: 10px; color: var(--gold-light);
+}
+.art-cta p { font-size: 14px; color: rgba(255,255,255,.65); margin-bottom: 20px; line-height: 1.6; }
+.art-cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.art-cta-btns a {
+  padding: 12px 24px; border-radius: 6px; font-size: 13px;
+  font-weight: 700; letter-spacing: .08em; text-decoration: none;
+  transition: filter .2s, transform .15s;
+}
+.art-cta-btns a:hover { filter: brightness(1.1); transform: translateY(-1px); }
+.art-cta-btns .cta-wa { background: #25D366; color: #fff; }
+.art-cta-btns .cta-mentor { background: rgba(255,255,255,.1); color: var(--gold-light); border: 1px solid rgba(232,201,106,.3); }
+
+/* ── SIDEBAR ── */
+.art-sidebar { display: flex; flex-direction: column; gap: 24px; position: sticky; top: 80px; }
+.aside-card {
+  background: #fff; border-radius: 8px; padding: 24px;
+  box-shadow: 0 2px 12px rgba(0,0,0,.06);
+}
+.aside-title {
+  font-size: 10px; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--gold); font-weight: 600; margin-bottom: 16px;
+  padding-bottom: 10px; border-bottom: 1px solid rgba(184,146,42,.2);
+}
+
+/* Table of contents */
+.toc-list { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+.toc-list a {
+  display: block; padding: 8px 10px; border-radius: 4px;
+  font-size: 13px; color: #6B7280; text-decoration: none;
+  transition: background .15s, color .15s;
+  border-left: 2px solid transparent;
+}
+.toc-list a:hover, .toc-list a.active {
+  background: #FBF4E3; color: var(--gold);
+  border-left-color: var(--gold);
+}
+
+/* Related articles */
+.related-list { display: flex; flex-direction: column; gap: 14px; }
+.related-item {
+  display: flex; gap: 12px; text-decoration: none; color: inherit;
+  align-items: flex-start; padding-bottom: 14px;
+  border-bottom: 1px solid #F3F2EF;
+}
+.related-item:last-child { border-bottom: none; padding-bottom: 0; }
+.related-icon {
+  width: 40px; height: 40px; border-radius: 6px; flex-shrink: 0;
+  background: linear-gradient(135deg, #0D1F3C, #1A3358);
+  display: flex; align-items: center; justify-content: center;
+}
+.related-icon svg { width: 18px; height: 18px; opacity: .6; }
+.related-item h4 { font-size: 13px; line-height: 1.4; color: #0D1F3C; margin-bottom: 3px; }
+.related-item h4:hover { color: var(--gold); }
+.related-item span { font-size: 11px; color: #6B7280; }
+
+/* Share */
+.share-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+.share-btn {
+  display: flex; align-items: center; gap: 7px;
+  padding: 9px 14px; border-radius: 6px; font-size: 12px;
+  font-weight: 600; text-decoration: none; cursor: pointer;
+  border: none; font-family: 'DM Sans', sans-serif;
+  transition: filter .2s;
+}
+.share-btn:hover { filter: brightness(.9); }
+.share-wa  { background: #25D366; color: #fff; }
+.share-copy { background: #F3F2EF; color: #0D1F3C; flex: 1; justify-content: center; }
+
+/* ── DISCLAIMER ── */
+.art-disclaimer {
+  background: #FBF4E3; border-top: 2px solid rgba(184,146,42,.2);
+  padding: 24px 10%; text-align: center;
+}
+.art-disclaimer p { font-size: 12px; color: #6B7280; max-width: 760px; margin: 0 auto; line-height: 1.6; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 860px) {
+  .art-layout { grid-template-columns: 1fr; gap: 32px; }
+  .art-sidebar { position: static; }
+  .art-content { padding: 28px 22px; }
+  .art-hero { padding: 100px 6% 48px; }
+  .stat-highlight { flex-direction: column; gap: 12px; }
+}
+</style>
+</head>
+<body class="js-loaded">
+
+<!-- NAV -->
+<nav>
+  <a href="../../index.html" class="nav-logo">
+    <img src="../../assets/logo_casb.png" alt="CASB Agency">
+    <div class="logo-text"><span class="logo-est">EST. 2006</span></div>
+  </a>
+  <button class="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  <ul class="nav-links">
+    <li><a href="../../index.html#about">About Us</a></li>
+    <li><a href="../../team/">Our Team</a></li>
+    <li><a href="../../index.html#achievements">Achievements</a></li>
+    <li><a href="../../index.html#events">Events</a></li>
+    <li><a href="../index.html" style="color:var(--gold-light)">Insights</a></li>
+    <li><a href="../../index.html#contact">Contact</a></li>
+    <li><a href="http://member.casb2u.com/" class="nav-cta">Agent Login</a></li>
+  </ul>
+</nav>
+
+<!-- FLOATING WA -->
+<div class="floating-actions">
+  <a class="floating-action whatsapp-action" href="https://wa.me/60362799388?text=Hi%20CASB%2C%20I%20read%20your%20article%20and%20have%20a%20question." target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.09.543 4.058 1.494 5.771L.044 23.956l6.335-1.44A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.898 0-3.68-.51-5.215-1.397l-.374-.22-3.759.855.882-3.665-.244-.382A9.95 9.95 0 0 1 2 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+  </a>
+  <button class="floating-action back-to-top" type="button" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})"><span>↑</span></button>
+</div>
+
+<!-- ============================================================
+  ARTICLE HERO — edit: category badge, title, author, date, read time
+  ============================================================ -->
+<div class="art-hero">
+  <div class="art-hero-inner">
+    <div class="art-breadcrumb">
+      <a href="../../index.html">Home</a>
+      <span>/</span>
+      <a href="../index.html">Insights</a>
+      <span>/</span>
+      <span>Article Title</span>
+    </div>
+    <span class="art-cat-badge">Protection</span><!-- EDIT CATEGORY -->
+    <h1>Your Full Article Title Goes Here</h1><!-- EDIT TITLE -->
+    <div class="art-hero-meta">
+      <strong>By CASB Advisory Team</strong><!-- EDIT AUTHOR if needed -->
+      <span class="dot">·</span>
+      <span>May 20, 2026</span><!-- EDIT DATE -->
+      <span class="dot">·</span>
+      <span>8 min read</span><!-- EDIT READ TIME -->
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+  ARTICLE LAYOUT
+  ============================================================ -->
+<div class="art-layout">
+
+  <!-- ── ARTICLE BODY ── -->
+  <article class="art-content">
+
+    <!-- ============================================================
+      WRITE YOUR ARTICLE BELOW.
+      Copy-paste any of the components below as needed.
+      ============================================================ -->
+
+    <h2>Your First Section Heading</h2>
+
+    <p>Write your opening paragraph here. Hook the reader with a relatable scenario, a surprising statistic, or a question they're already asking themselves.</p>
+
+    <p>Second paragraph. Keep paragraphs short — 3 to 5 sentences max. White space is your friend.</p>
+
+
+    <!-- CALLOUT BOX (gold — use for key tips or important notes) -->
+    <div class="callout">
+      <strong>Key Takeaway:</strong> Write a single important point here that you want readers to remember.
+    </div>
+
+    <!-- CALLOUT BOX (info — blue, for context or background) -->
+    <div class="callout info">
+      <strong>Did You Know?</strong> Supporting context or a background fact goes here.
+    </div>
+
+    <!-- CALLOUT BOX (warning — red, for risks or cautions) -->
+    <div class="callout warning">
+      <strong>Watch Out:</strong> Use this for risks, common mistakes, or things readers must not ignore.
+    </div>
+
+
+    <h2>Second Section Heading</h2>
+
+    <p>Continue your article here. Use short, direct sentences. Avoid jargon — write as if explaining to a smart friend who isn't in finance.</p>
+
+    <!-- BIG STAT HIGHLIGHT -->
+    <div class="stat-highlight">
+      <div class="big-num">RM300K</div>
+      <div class="stat-text">
+        <strong>Average cancer treatment cost in Malaysia</strong>
+        That's 300,000 ringgit. Most people can't absorb that from savings alone — and that's before accounting for lost income during recovery.
+      </div>
+    </div>
+
+
+    <h2>Third Section — Use a List</h2>
+
+    <!-- BULLET LIST -->
+    <ul>
+      <li>First point — keep each item to one clear idea</li>
+      <li>Second point — specific is better than vague</li>
+      <li>Third point — use real numbers where you can</li>
+      <li>Fourth point — end with the most important one</li>
+    </ul>
+
+    <!-- NUMBERED LIST -->
+    <ol>
+      <li>Step one — walk them through a process</li>
+      <li>Step two — be specific about what to do</li>
+      <li>Step three — anticipate their objections</li>
+    </ol>
+
+
+    <h2>Comparison or Data Section</h2>
+
+    <!-- COMPARISON TABLE -->
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Option A</th>
+          <th>Option B</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Covers hospitalisation</td>
+          <td class="tick">✓ Yes</td>
+          <td class="tick">✓ Yes</td>
+        </tr>
+        <tr>
+          <td>Pays out lump sum</td>
+          <td class="cross">✗ No</td>
+          <td class="tick">✓ Yes</td>
+        </tr>
+        <tr>
+          <td>Covers lost income</td>
+          <td class="cross">✗ No</td>
+          <td class="tick">✓ Yes</td>
+        </tr>
+        <tr>
+          <td>Typical premium (age 30)</td>
+          <td>RM150–RM300/mo</td>
+          <td>RM80–RM200/mo</td>
+        </tr>
+      </tbody>
+    </table>
+
+
+    <!-- IMAGE (optional — place between sections) -->
+    <!--
+    <div class="art-img">
+      <img src="../../assets/insights/your-image-filename.jpg" alt="Describe the image">
+    </div>
+    -->
+
+    <hr class="art-divider">
+
+    <h2>Conclusion</h2>
+
+    <p>Wrap up the article. Remind the reader of the key point. End with an action — what should they do now?</p>
+
+    <p>If you'd like to understand how this applies to your own situation, a CASB advisor can walk you through it at no obligation.</p>
+
+    <!-- END OF ARTICLE CTA -->
+    <div class="art-cta">
+      <h3>Not Sure Where You Stand?</h3>
+      <p>Our advisors can review your current coverage and show you exactly where the gaps are — no jargon, no pressure.</p>
+      <div class="art-cta-btns">
+        <a class="cta-wa" href="https://wa.me/60362799388?text=Hi%20CASB%2C%20I%20read%20your%20article%20and%20would%20like%20a%20coverage%20review." target="_blank" rel="noopener">WhatsApp Us Now</a>
+        <a class="cta-mentor" href="../../select-your-mentor/">Select a Mentor →</a>
+      </div>
+    </div>
+
+  </article>
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="art-sidebar">
+
+    <!-- TABLE OF CONTENTS — add one <a> per h2 in your article -->
+    <div class="aside-card">
+      <div class="aside-title">In This Article</div>
+      <ul class="toc-list" id="tocList">
+        <li><a href="#s1">Your First Section Heading</a></li>
+        <li><a href="#s2">Second Section Heading</a></li>
+        <li><a href="#s3">Third Section</a></li>
+        <li><a href="#s4">Comparison or Data</a></li>
+        <li><a href="#s5">Conclusion</a></li>
+      </ul>
+    </div>
+
+    <!-- RELATED ARTICLES — pick 3 from insights/index.html -->
+    <div class="aside-card">
+      <div class="aside-title">Related Articles</div>
+      <div class="related-list">
+        <a class="related-item" href="medical-card-vs-critical-illness.html">
+          <div class="related-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <div>
+            <h4>Medical Card vs Critical Illness</h4>
+            <span>7 min read</span>
+          </div>
+        </a>
+        <a class="related-item" href="rm1-million-medical-limit.html">
+          <div class="related-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16"/></svg>
+          </div>
+          <div>
+            <h4>Is RM1 Million Medical Limit Enough?</h4>
+            <span>6 min read</span>
+          </div>
+        </a>
+        <a class="related-item" href="young-malaysians-delay-insurance.html">
+          <div class="related-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <div>
+            <h4>Why Young Malaysians Delay Insurance</h4>
+            <span>6 min read</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- SHARE -->
+    <div class="aside-card">
+      <div class="aside-title">Share This Article</div>
+      <div class="share-btns">
+        <a class="share-btn share-wa" id="shareWa" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.09.543 4.058 1.494 5.771L.044 23.956l6.335-1.44A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.898 0-3.68-.51-5.215-1.397l-.374-.22-3.759.855.882-3.665-.244-.382A9.95 9.95 0 0 1 2 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+          Share
+        </a>
+        <button class="share-btn share-copy" id="copyLink">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
+          Copy Link
+        </button>
+      </div>
+    </div>
+
+  </aside>
+</div>
+
+<!-- DISCLAIMER -->
+<div class="art-disclaimer">
+  <p><strong>Disclaimer:</strong> This article is for general informational purposes only and does not constitute financial, insurance, or legal advice. Please consult a licensed CASB financial advisor for advice tailored to your personal circumstances.</p>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-main">
+    <div class="footer-brand">
+      <img src="../../assets/logo_casb.png" alt="CASB Agency Logo">
+      <p>CASB Agency Sdn Bhd — financial advisory since 2006.</p>
+    </div>
+    <div class="footer-column">
+      <h4>Quick Links</h4>
+      <a href="../../index.html#about">About Us</a>
+      <a href="../../team/">Our Team</a>
+      <a href="../index.html">Insights</a>
+      <a href="../../index.html#contact">Contact</a>
+    </div>
+    <div class="footer-column footer-contact">
+      <h4>Contact</h4>
+      <p><strong>Phone</strong><br><a href="tel:+60362799388">03-6279 9388</a></p>
+      <p><strong>Email</strong><br><a href="mailto:admin@casb2u.com">admin@casb2u.com</a></p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>©2026 CASB Agency Sdn Bhd. All rights reserved.</p>
+    <div class="footer-legal">
+      <a href="../../privacy-notice.html">Privacy Notice</a>
+      <a href="../../terms-of-use.html">Terms of Use</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../main.js"></script>
+<script>
+// Share buttons
+document.getElementById('shareWa').href =
+  'https://wa.me/?text=' + encodeURIComponent(document.title + ' ' + window.location.href);
+
+document.getElementById('copyLink').addEventListener('click', () => {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    const btn = document.getElementById('copyLink');
+    btn.textContent = '✓ Copied!';
+    setTimeout(() => btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg> Copy Link', 2000);
+  });
+});
+
+// Active TOC on scroll
+const headings = document.querySelectorAll('.art-content h2');
+const tocLinks = document.querySelectorAll('.toc-list a');
+if (headings.length && tocLinks.length) {
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        tocLinks.forEach(l => l.classList.remove('active'));
+        const idx = Array.from(headings).indexOf(e.target);
+        if (tocLinks[idx]) tocLinks[idx].classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  headings.forEach(h => obs.observe(h));
+}
+</script>
+</body>
+</html>
