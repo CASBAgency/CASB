@@ -1,143 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Insights | CASB Agency</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../style.css">
-<link rel="icon" type="image/x-icon" href="../assets/favicon/favicon.ico">
-<style>
-body { background: var(--off-white); }
-.insights-page { min-height: 100vh; padding: 46px 6% 88px; }
-.insights-top { max-width: 1180px; margin: 0 auto; }
-.insights-nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 76px; }
-.insights-logo { display: flex; align-items: center; gap: 14px; color: var(--navy); text-decoration: none; }
-.insights-logo img { height: 70px; }
-.insights-logo span { color: var(--gold); font-size: 12px; letter-spacing: .18em; font-weight: 700; }
-.insights-links { display: flex; align-items: center; gap: 24px; }
-.insights-links a { color: var(--navy); text-decoration: none; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; }
-.insights-links a:hover { color: var(--gold); }
-.insights-hero { display: grid; grid-template-columns: 1.05fr .95fr; gap: 56px; align-items: end; margin-bottom: 70px; }
-.insights-hero h1 { font-family: 'Playfair Display', serif; color: var(--navy); font-size: clamp(44px, 6vw, 84px); line-height: 1.02; margin: 14px 0 22px; }
-.insights-hero p { max-width: 620px; color: var(--gray); font-size: 17px; line-height: 1.8; }
-.trust-panel { background: var(--navy); color: white; border: 1px solid rgba(184,146,42,.42); border-radius: 7px; padding: 34px; box-shadow: 0 20px 46px rgba(13,31,60,.16); }
-.trust-panel h2 { font-family: 'Playfair Display', serif; font-size: 30px; margin-bottom: 18px; }
-.trust-list { display: grid; gap: 16px; }
-.trust-item { border-top: 1px solid rgba(255,255,255,.12); padding-top: 16px; }
-.trust-item strong { display: block; color: var(--gold-light); font-size: 13px; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 4px; }
-.trust-item span { color: rgba(255,255,255,.68); font-size: 14px; line-height: 1.7; }
-.content-section { max-width: 1180px; margin: 0 auto 64px; }
-.content-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 24px; }
-.content-head h2 { font-family: 'Playfair Display', serif; color: var(--navy); font-size: clamp(30px, 3vw, 44px); }
-.content-head p { max-width: 430px; color: var(--gray); font-size: 15px; line-height: 1.7; }
-.insight-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-.insight-card { background: white; border: 1px solid var(--gray-light); border-radius: 7px; overflow: hidden; text-decoration: none; color: inherit; transition: transform .2s, border-color .2s, box-shadow .2s; }
-.insight-card:hover { transform: translateY(-4px); border-color: rgba(184,146,42,.55); box-shadow: 0 16px 34px rgba(13,31,60,.1); }
-.insight-media { aspect-ratio: 16 / 10; display: grid; place-items: center; background: linear-gradient(135deg, var(--navy), var(--navy-light)); color: rgba(255,255,255,.5); font-size: 12px; letter-spacing: .16em; text-transform: uppercase; }
-.insight-body { padding: 24px; }
-.insight-type { color: var(--gold); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 10px; }
-.insight-body h3 { font-family: 'Playfair Display', serif; color: var(--navy); font-size: 23px; line-height: 1.24; margin-bottom: 12px; }
-.insight-body p { color: var(--gray); font-size: 14px; line-height: 1.7; }
-.testimonial-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-.testimonial-card { background: white; border: 1px solid rgba(184,146,42,.28); border-radius: 7px; padding: 30px; }
-.testimonial-card blockquote { color: var(--navy); font-family: 'Playfair Display', serif; font-size: 25px; line-height: 1.35; margin-bottom: 22px; }
-.testimonial-card p { color: var(--gray); font-size: 14px; line-height: 1.7; }
-.testimonial-card span { display: block; margin-top: 18px; color: var(--gold); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
-.insights-cta { max-width: 1180px; margin: 0 auto; background: var(--navy); color: white; border-radius: 7px; padding: 36px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-.insights-cta h2 { font-family: 'Playfair Display', serif; font-size: 31px; margin-bottom: 8px; }
-.insights-cta p { color: rgba(255,255,255,.64); }
-@media (max-width: 980px) { .insights-hero, .insight-grid, .testimonial-grid { grid-template-columns: 1fr; } .content-head, .insights-cta { flex-direction: column; align-items: flex-start; } .insights-links { flex-wrap: wrap; justify-content: flex-end; } }
-@media (max-width: 640px) { .insights-page { padding: 28px 5% 68px; } .insights-nav { align-items: flex-start; flex-direction: column; margin-bottom: 52px; } .insights-links { justify-content: flex-start; gap: 16px; } .trust-panel, .insights-cta { padding: 26px; } }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Insights | CASB</title>
+
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-<main class="insights-page">
-  <div class="insights-top">
-    <div class="insights-nav">
-      <a href="../index.html" class="insights-logo">
-        <img src="../assets/logo_casb.png" alt="CASB Agency">
-        <span>EST. 2006</span>
-      </a>
-      <div class="insights-links">
-        <a href="../index.html#about">About</a>
-        <a href="../index.html#achievements">Achievements</a>
-        <a href="../index.html#events">Events</a>
-        <a href="../index.html#contact">Contact</a>
-      </div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-brand">
+      <img src="assets/logo.png" alt="CASB Logo">
+      <span>EST. 2006</span>
     </div>
 
-    <section class="insights-hero">
-      <div>
-        <div class="section-tag">Knowledge & Trust</div>
-        <h1>Insights That Build Confidence</h1>
-        <div class="gold-line"></div>
-        <p>Articles, practical case studies, and client stories that show how CASB approaches protection planning, wealth conversations, leadership, and long-term client care.</p>
+    <div class="nav-links">
+      <a href="index.html#about">ABOUT</a>
+      <a href="index.html#achievements">ACHIEVEMENTS</a>
+      <a href="index.html#events">EVENTS</a>
+      <a href="insights.html" class="active">INSIGHTS</a>
+      <a href="index.html#contact">CONTACT</a>
+    </div>
+  </nav>
+
+
+  <!-- INSIGHTS HERO -->
+  <section class="insights-hero">
+    <div class="insights-hero-text">
+      <p class="eyebrow">KNOWLEDGE & TRUST</p>
+
+      <h1>Insights That<br>Build Confidence</h1>
+
+      <div class="gold-line"></div>
+
+      <p>
+        Practical insights, real-life stories, and expert perspectives
+        to help you make better financial and protection decisions
+        for you and your loved ones.
+      </p>
+    </div>
+
+    <div class="insights-hero-image">
+      <img src="assets/insights/insights-hero.jpg" alt="CASB financial planning insights">
+    </div>
+  </section>
+
+
+  <!-- FEATURED ARTICLE -->
+  <section class="featured-article-section">
+    <div class="featured-article-card">
+      <div class="featured-article-img">
+        <img src="assets/insights/cancer-critical-illness.jpg" alt="Critical illness planning">
       </div>
-      <aside class="trust-panel">
-        <h2>What this page can hold</h2>
-        <div class="trust-list">
-          <div class="trust-item"><strong>Articles</strong><span>Educational pieces that help clients understand planning decisions before they speak to an advisor.</span></div>
-          <div class="trust-item"><strong>Case Studies</strong><span>Scenario-based stories that explain the challenge, planning approach, and outcome in a clear way.</span></div>
-          <div class="trust-item"><strong>Testimonials</strong><span>Short client or agent quotes that add human proof and make the organisation feel more credible.</span></div>
+
+      <div class="featured-article-content">
+        <span class="article-badge">FEATURED ARTICLE</span>
+
+        <h2>What Happens If You Get Cancer Without Critical Illness Coverage?</h2>
+
+        <p>
+          Cancer treatment is expensive. But the real impact goes beyond
+          medical bills. Learn what most Malaysians overlook — and how
+          proper planning can protect your income, lifestyle, and family.
+        </p>
+
+        <div class="article-meta">
+          <span>8 MIN READ</span>
+          <span>•</span>
+          <span>MAY 20, 2026</span>
         </div>
-      </aside>
-    </section>
-  </div>
 
-  <section class="content-section">
-    <div class="content-head">
-      <div>
-        <div class="section-tag">Articles</div>
-        <h2>Financial Planning Reads</h2>
+        <a href="articles/cancer-without-critical-illness.html" class="read-link">
+          READ ARTICLE →
+        </a>
       </div>
-      <p>Use this area for helpful, plain-language articles that answer common client questions.</p>
-    </div>
-    <div class="insight-grid">
-      <a href="#" class="insight-card"><div class="insight-media">Article Image</div><div class="insight-body"><div class="insight-type">Article</div><h3>How to Review Your Protection Needs</h3><p>Placeholder summary for a future educational article about reviewing personal or family coverage.</p></div></a>
-      <a href="#" class="insight-card"><div class="insight-media">Article Image</div><div class="insight-body"><div class="insight-type">Article</div><h3>Planning for Different Life Stages</h3><p>Placeholder summary for guidance around protection, savings, and wealth conversations over time.</p></div></a>
-      <a href="#" class="insight-card"><div class="insight-media">Article Image</div><div class="insight-body"><div class="insight-type">Article</div><h3>Questions to Ask Your Advisor</h3><p>Placeholder summary for a confidence-building article that prepares clients for advisory meetings.</p></div></a>
     </div>
   </section>
 
-  <section class="content-section">
-    <div class="content-head">
-      <div>
-        <div class="section-tag">Case Studies</div>
-        <h2>Real Planning Scenarios</h2>
-      </div>
-      <p>Use these cards to explain a client's situation, the planning logic, and the value created.</p>
+
+  <!-- ARTICLE FILTERS -->
+  <section class="article-filter-section">
+    <div class="article-tabs">
+      <button class="active">ALL ARTICLES</button>
+      <button>PLANNING BASICS</button>
+      <button>PROTECTION</button>
+      <button>MEDICAL & HEALTH</button>
+      <button>WEALTH</button>
+      <button>CASE STUDIES</button>
     </div>
-    <div class="insight-grid">
-      <a href="#" class="insight-card"><div class="insight-media">Case Study Image</div><div class="insight-body"><div class="insight-type">Case Study</div><h3>Young Family Protection Review</h3><p>Placeholder for a story about identifying coverage gaps and building a practical planning roadmap.</p></div></a>
-      <a href="#" class="insight-card"><div class="insight-media">Case Study Image</div><div class="insight-body"><div class="insight-type">Case Study</div><h3>Business Owner Continuity Planning</h3><p>Placeholder for a business-focused case study around risk, continuity, and structured advice.</p></div></a>
-      <a href="#" class="insight-card"><div class="insight-media">Case Study Image</div><div class="insight-body"><div class="insight-type">Case Study</div><h3>Retirement Confidence Conversation</h3><p>Placeholder for a retirement planning example that shows process, care, and long-term thinking.</p></div></a>
+
+    <div class="article-search">
+      <input type="text" placeholder="Search articles...">
     </div>
   </section>
 
-  <section class="content-section">
-    <div class="content-head">
-      <div>
-        <div class="section-tag">Testimonials</div>
-        <h2>Stories From People We Serve</h2>
-      </div>
-      <p>Add client, agent, or partner testimonials here once the wording is approved.</p>
-    </div>
-    <div class="testimonial-grid">
-      <article class="testimonial-card"><blockquote>"CASB helped us understand our options clearly and make decisions with confidence."</blockquote><p>Replace this with an approved client quote, branch note, or advisor story.</p><span>Client Testimonial</span></article>
-      <article class="testimonial-card"><blockquote>"The team culture gave me guidance, discipline, and a clear path to grow."</blockquote><p>Replace this with an approved agent testimonial or leadership development story.</p><span>Agent Testimonial</span></article>
+
+  <!-- ARTICLE GRID -->
+  <section class="article-grid-section">
+    <div class="article-grid">
+
+      <article class="article-card">
+        <img src="assets/insights/medical-card-vs-ci.jpg" alt="Medical card vs critical illness">
+
+        <div class="article-card-content">
+          <span>PROTECTION</span>
+          <h3>Medical Card vs Critical Illness: Malaysians Often Confuse These</h3>
+
+          <div class="article-meta">
+            <span>7 MIN READ</span>
+            <span>•</span>
+            <span>MAY 18, 2026</span>
+          </div>
+
+          <a href="articles/medical-card-vs-critical-illness.html">READ MORE →</a>
+        </div>
+      </article>
+
+
+      <article class="article-card">
+        <img src="assets/insights/medical-limit.jpg" alt="Medical limit Malaysia">
+
+        <div class="article-card-content">
+          <span>MEDICAL & HEALTH</span>
+          <h3>Can RM1 Million Medical Limit Still Be Enough in 2026?</h3>
+
+          <div class="article-meta">
+            <span>6 MIN READ</span>
+            <span>•</span>
+            <span>MAY 15, 2026</span>
+          </div>
+
+          <a href="articles/rm1-million-medical-limit.html">READ MORE →</a>
+        </div>
+      </article>
+
+
+      <article class="article-card">
+        <img src="assets/insights/young-malaysians-insurance.jpg" alt="Young Malaysians insurance planning">
+
+        <div class="article-card-content">
+          <span>PLANNING BASICS</span>
+          <h3>Why Young Malaysians Delay Insurance — And Regret It Later</h3>
+
+          <div class="article-meta">
+            <span>6 MIN READ</span>
+            <span>•</span>
+            <span>MAY 12, 2026</span>
+          </div>
+
+          <a href="articles/young-malaysians-delay-insurance.html">READ MORE →</a>
+        </div>
+      </article>
+
+
+      <article class="article-card">
+        <img src="assets/insights/private-hospital-costs.jpg" alt="Private hospital costs Malaysia">
+
+        <div class="article-card-content">
+          <span>MEDICAL & HEALTH</span>
+          <h3>Private Hospital Costs in Malaysia: Real Examples</h3>
+
+          <div class="article-meta">
+            <span>9 MIN READ</span>
+            <span>•</span>
+            <span>MAY 10, 2026</span>
+          </div>
+
+          <a href="articles/private-hospital-costs-malaysia.html">READ MORE →</a>
+        </div>
+      </article>
+
     </div>
   </section>
 
+
+  <!-- NEWSLETTER CTA -->
   <section class="insights-cta">
     <div>
-      <h2>Ready for your real content</h2>
-      <p>Upload article images, case study visuals, PDFs, or approved testimonial text and I can connect them into this page.</p>
+      <h2>Stay informed. Make better decisions.</h2>
+      <p>Receive CASB insights and practical financial planning tips.</p>
     </div>
-    <a href="../index.html#contact" class="btn-primary">Contact CASB</a>
+
+    <form>
+      <input type="email" placeholder="Enter your email">
+      <button type="submit">SUBSCRIBE</button>
+    </form>
   </section>
-</main>
+
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2006 - 2026 CASB. All rights reserved.</p>
+  </footer>
+
 </body>
 </html>
