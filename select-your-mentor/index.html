@@ -9,39 +9,49 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../style.css">
 <style>
-body { min-height: 100vh; background: #070F1E; color: white; overflow-x: hidden; }
-.mentor-page { min-height: 100vh; padding: 44px 5% 70px; background: radial-gradient(circle at 78% 14%, rgba(232,201,106,.16), transparent 32%), linear-gradient(135deg, #070F1E 0%, var(--navy) 58%, #102848 100%); }
-.mentor-top { display: flex; align-items: center; justify-content: space-between; gap: 22px; margin-bottom: 42px; }
+body { min-height: 100vh; overflow: hidden; background: #070F1E; color: white; }
+.mentor-page { min-height: 100vh; display: grid; grid-template-rows: auto auto 1fr auto; gap: 18px; padding: 28px 4% 26px; background: radial-gradient(circle at 50% -10%, rgba(232,201,106,.16), transparent 36%), linear-gradient(180deg, #102848 0%, #07101f 42%, #050914 100%); }
+.mentor-top { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
 .mentor-logo { display: inline-flex; align-items: center; gap: 12px; color: white; text-decoration: none; }
-.mentor-logo img { height: 62px; }
-.mentor-logo span { color: var(--gold-light); font-size: 12px; letter-spacing: .16em; text-transform: uppercase; }
+.mentor-logo img { height: 58px; }
+.mentor-logo span, .mentor-kicker { color: var(--gold-light); font-size: 12px; letter-spacing: .16em; text-transform: uppercase; }
 .back-link { color: rgba(255,255,255,.68); text-decoration: none; font-size: 14px; }
 .back-link:hover { color: var(--gold-light); }
-.mentor-hero { max-width: 1040px; margin: 0 auto 36px; text-align: center; }
-.mentor-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(46px, 7vw, 92px); line-height: 1; margin: 14px 0 18px; }
-.mentor-hero p { max-width: 760px; margin: 0 auto; color: rgba(255,255,255,.64); font-size: 17px; line-height: 1.8; }
-.mentor-stage { max-width: 1280px; margin: 0 auto; position: relative; }
-.mentor-carousel { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(280px, 360px); gap: 22px; overflow-x: auto; padding: 22px 4px 28px; scroll-snap-type: x mandatory; scrollbar-width: thin; scrollbar-color: var(--gold) rgba(255,255,255,.08); }
-.mentor-card { scroll-snap-align: center; min-height: 610px; position: relative; overflow: hidden; border: 1px solid rgba(232,201,106,.36); border-radius: 8px; background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.025)); box-shadow: 0 22px 48px rgba(0,0,0,.22); transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; }
-.mentor-card:hover { transform: translateY(-7px); border-color: var(--gold-light); box-shadow: 0 30px 70px rgba(0,0,0,.34); }
-.mentor-card.featured { grid-column: span 1; border-color: rgba(255,77,91,.78); box-shadow: 0 0 0 2px rgba(255,77,91,.38), 0 32px 70px rgba(0,0,0,.32); }
-.mentor-rank { position: absolute; top: 18px; left: 18px; z-index: 3; color: var(--gold-light); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; }
-.mentor-photo { height: 390px; position: relative; display: flex; align-items: flex-end; justify-content: center; background: radial-gradient(circle at 50% 14%, rgba(232,201,106,.20), transparent 34%), linear-gradient(180deg, rgba(13,31,60,.1), rgba(13,31,60,.9)); }
-.mentor-photo::after { content: ''; position: absolute; inset: auto 22px 18px; height: 1px; background: linear-gradient(90deg, transparent, rgba(232,201,106,.8), transparent); }
-.mentor-photo img { width: 100%; height: 100%; object-fit: contain; object-position: center bottom; padding: 36px 20px 0; filter: drop-shadow(0 22px 24px rgba(0,0,0,.42)); }
-.mentor-info { padding: 22px; }
-.mentor-info small { color: var(--gold-light); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; }
-.mentor-info h2 { font-family: 'Playfair Display', serif; font-size: 31px; line-height: 1.05; margin: 8px 0 12px; }
-.mentor-info p { color: rgba(255,255,255,.62); font-size: 14px; line-height: 1.65; min-height: 70px; }
-.mentor-stats { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 20px; }
-.mentor-stats span { border: 1px solid rgba(232,201,106,.28); border-radius: 999px; color: rgba(255,255,255,.72); padding: 6px 10px; font-size: 12px; }
-.choose-mentor { width: 100%; justify-content: center; }
-.carousel-controls { display: flex; justify-content: center; gap: 12px; margin-top: 6px; }
-.mentor-arrow { width: 48px; height: 48px; border: 1px solid rgba(232,201,106,.38); border-radius: 50%; background: rgba(255,255,255,.04); color: white; font-size: 28px; cursor: pointer; transition: background .2s ease, transform .2s ease; }
-.mentor-arrow:hover { background: var(--gold); transform: translateY(-2px); }
-.mentor-note { max-width: 980px; margin: 34px auto 0; text-align: center; color: rgba(255,255,255,.58); font-size: 14px; line-height: 1.7; }
-@media (min-width: 980px) { .mentor-carousel { grid-auto-columns: minmax(320px, 390px); } .mentor-card.featured { min-height: 650px; } .mentor-card.featured .mentor-photo { height: 430px; } }
-@media (max-width: 680px) { .mentor-page { padding: 28px 5% 56px; } .mentor-top { align-items: flex-start; flex-direction: column; margin-bottom: 32px; } .mentor-carousel { grid-auto-columns: minmax(260px, 82vw); } .mentor-card { min-height: 580px; } .mentor-photo { height: 350px; } }
+.mentor-hero { max-width: 920px; margin: 0 auto; text-align: center; }
+.mentor-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(34px, 5vw, 62px); line-height: 1; margin: 8px 0 10px; }
+.mentor-hero p { max-width: 700px; margin: 0 auto; color: rgba(255,255,255,.62); font-size: 15px; line-height: 1.6; }
+.selection-stage { position: relative; min-height: 0; display: grid; place-items: center; border: 1px solid rgba(232,201,106,.18); background: linear-gradient(180deg, rgba(55,84,110,.72), rgba(7,16,31,.94) 48%, rgba(255,255,255,.055) 49%, rgba(9,14,23,.9) 100%); box-shadow: inset 0 0 80px rgba(0,0,0,.42), 0 28px 70px rgba(0,0,0,.34); overflow: hidden; }
+.selection-stage::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.45), transparent 20%, transparent 80%, rgba(0,0,0,.45)); pointer-events: none; }
+.mentor-carousel { width: min(1040px, 84vw); display: grid; grid-auto-flow: column; grid-auto-columns: clamp(190px, 22vw, 252px); gap: clamp(16px, 2vw, 28px); overflow-x: auto; padding: 42px 8px 48px; scroll-snap-type: x mandatory; scrollbar-width: none; perspective: 1200px; }
+.mentor-carousel::-webkit-scrollbar { display: none; }
+.mentor-card { scroll-snap-align: center; height: clamp(300px, 44vh, 390px); border: 0; padding: 0; background: transparent; color: inherit; cursor: pointer; perspective: 1200px; }
+.mentor-card:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 6px; }
+.mentor-card.is-flipped .mentor-inner { transform: rotateY(180deg); }
+.mentor-inner { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform .6s cubic-bezier(.2,.8,.2,1); }
+.mentor-face { position: absolute; inset: 0; backface-visibility: hidden; overflow: hidden; border: 1px solid rgba(232,201,106,.48); border-radius: 8px; background: linear-gradient(180deg, rgba(13,31,60,.94), rgba(5,9,20,.96)); box-shadow: 0 0 0 1px rgba(255,255,255,.06), 0 24px 44px rgba(0,0,0,.34); }
+.mentor-face::before, .mentor-face::after { content: ''; position: absolute; inset: 10px; border: 1px solid rgba(232,201,106,.18); border-radius: 5px; pointer-events: none; }
+.mentor-face::after { inset: auto 18px 18px; height: 1px; border: 0; background: linear-gradient(90deg, transparent, var(--gold-light), transparent); }
+.mentor-front { display: grid; grid-template-rows: 1fr auto; }
+.mentor-front.featured { border-color: var(--gold-light); box-shadow: 0 0 0 2px rgba(232,201,106,.24), 0 28px 58px rgba(0,0,0,.42); }
+.mentor-photo { min-height: 0; display: flex; align-items: flex-end; justify-content: center; background: radial-gradient(circle at 50% 18%, rgba(232,201,106,.2), transparent 34%); }
+.mentor-photo img { width: 100%; height: 100%; object-fit: contain; object-position: center bottom; padding: 32px 14px 0; filter: drop-shadow(0 20px 20px rgba(0,0,0,.46)); }
+.mentor-id { padding: 16px 18px 18px; background: linear-gradient(180deg, rgba(5,9,20,.1), rgba(5,9,20,.88)); }
+.mentor-id small { color: var(--gold-light); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; }
+.mentor-id h2 { font-family: 'Playfair Display', serif; font-size: 26px; line-height: 1; margin-top: 5px; }
+.mentor-back { transform: rotateY(180deg); padding: 22px; display: flex; flex-direction: column; justify-content: center; gap: 12px; }
+.mentor-back h2 { font-family: 'Playfair Display', serif; font-size: 28px; line-height: 1; color: var(--gold-light); }
+.mentor-back p { color: rgba(255,255,255,.66); font-size: 13px; line-height: 1.55; }
+.attribute { display: grid; gap: 5px; }
+.attribute span { display: flex; justify-content: space-between; color: rgba(255,255,255,.78); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+.bar { height: 6px; border-radius: 999px; background: rgba(255,255,255,.1); overflow: hidden; }
+.bar i { display: block; height: 100%; width: var(--score); background: linear-gradient(90deg, var(--gold), var(--gold-light)); }
+.choose-mentor { margin-top: 4px; min-height: 42px; justify-content: center; }
+.stage-arrow { position: absolute; top: 50%; z-index: 3; width: 52px; height: 74px; border: 0; background: transparent; color: rgba(255,255,255,.82); font-size: 72px; line-height: 1; cursor: pointer; transform: translateY(-50%); transition: color .2s ease, transform .2s ease; }
+.stage-arrow:hover { color: var(--gold-light); transform: translateY(-50%) scale(1.08); }
+.mentor-prev { left: 16px; }
+.mentor-next { right: 16px; }
+.mentor-note { text-align: center; color: rgba(255,255,255,.52); font-size: 13px; }
+@media (max-width: 760px) { body { overflow: auto; } .mentor-page { min-height: 100vh; padding: 24px 4% 34px; grid-template-rows: auto auto minmax(520px, 1fr) auto; } .mentor-top { align-items: flex-start; flex-direction: column; } .mentor-logo img { height: 50px; } .mentor-carousel { width: 78vw; grid-auto-columns: minmax(220px, 78vw); padding: 36px 2px 42px; } .mentor-card { height: 430px; } .stage-arrow { width: 34px; font-size: 54px; } .mentor-prev { left: 4px; } .mentor-next { right: 4px; } }
 </style>
 </head>
 <body>
@@ -52,67 +62,70 @@ body { min-height: 100vh; background: #070F1E; color: white; overflow-x: hidden;
   </div>
 
   <section class="mentor-hero">
-    <div class="section-tag">Choose Your Path</div>
+    <div class="mentor-kicker">Choose Your Path</div>
     <h1>Select Your Mentor</h1>
-    <div class="gold-line" style="margin-left:auto;margin-right:auto"></div>
-    <p>Every advisor journey feels different. Browse the mentor cards, choose the leader whose style fits you, and start your CASB path with someone to follow.</p>
+    <p>Click a mentor card to reveal their attributes. Slide through the roster and choose the leader whose style fits your growth path.</p>
   </section>
 
-  <section class="mentor-stage" aria-label="Mentor cards">
+  <section class="selection-stage" aria-label="Mentor selection cards">
+    <button class="stage-arrow mentor-prev" type="button" aria-label="Previous mentors">&lsaquo;</button>
     <div class="mentor-carousel" id="mentorCarousel">
-      <article class="mentor-card featured">
-        <div class="mentor-rank">Featured Mentor</div>
-        <div class="mentor-photo"><img src="../assets/photos/team/Vincent%20Yang.jpg" alt="Vincent Yang"></div>
-        <div class="mentor-info"><small>Strategy Builder</small><h2>Vincent Yang</h2><p>For candidates who want structured growth, business discipline, and a clear path to agency leadership.</p><div class="mentor-stats"><span>Leadership</span><span>Systems</span><span>Growth</span></div><a class="btn-primary choose-mentor" href="../index.html#contact">Choose Vincent</a></div>
-      </article>
-      <article class="mentor-card">
-        <div class="mentor-rank">Pathfinder</div>
-        <div class="mentor-photo"><img src="../assets/photos/team/Asher%20Chong_1.jpg" alt="Asher Chong"></div>
-        <div class="mentor-info"><small>Momentum Coach</small><h2>Asher Chong</h2><p>For new joiners who want energy, practical field guidance, and a confident first step into advisory work.</p><div class="mentor-stats"><span>Starter Path</span><span>Field Skills</span><span>Confidence</span></div><a class="btn-primary choose-mentor" href="../index.html#contact">Choose Asher</a></div>
-      </article>
-      <article class="mentor-card">
-        <div class="mentor-rank">Client Care</div>
-        <div class="mentor-photo"><img src="../assets/photos/team/Alice_Chong%20Poh%20Chiang.jpg" alt="Alice Chong Poh Chiang"></div>
-        <div class="mentor-info"><small>Trust Builder</small><h2>Alice Chong</h2><p>For candidates drawn to long-term client relationships, care-led planning, and steady professional habits.</p><div class="mentor-stats"><span>Care</span><span>Planning</span><span>Trust</span></div><a class="btn-primary choose-mentor" href="../index.html#contact">Choose Alice</a></div>
-      </article>
-      <article class="mentor-card">
-        <div class="mentor-rank">Performance</div>
-        <div class="mentor-photo"><img src="../assets/photos/team/William_Choong%20Kei%20Foong.jpg" alt="William Choong Kei Foong"></div>
-        <div class="mentor-info"><small>Performance Guide</small><h2>William Choong</h2><p>For people who like measurable targets, consistency, and learning how to turn activity into results.</p><div class="mentor-stats"><span>Targets</span><span>Discipline</span><span>Results</span></div><a class="btn-primary choose-mentor" href="../index.html#contact">Choose William</a></div>
-      </article>
-      <article class="mentor-card">
-        <div class="mentor-rank">Team Culture</div>
-        <div class="mentor-photo"><img src="../assets/photos/team/Anna_Chow%20Mei%20Ying.jpg" alt="Anna Chow Mei Ying"></div>
-        <div class="mentor-info"><small>Culture Mentor</small><h2>Anna Chow</h2><p>For candidates who grow best with encouragement, team connection, and a supportive learning environment.</p><div class="mentor-stats"><span>Teamwork</span><span>Support</span><span>Learning</span></div><a class="btn-primary choose-mentor" href="../index.html#contact">Choose Anna</a></div>
-      </article>
-      <article class="mentor-card">
-        <div class="mentor-rank">Communication</div>
-        <div class="mentor-photo"><img src="../assets/photos/team/Steve_Moh%20Hiong%20Ie.jpg" alt="Steve Moh Hiong Ie"></div>
-        <div class="mentor-info"><small>Conversation Coach</small><h2>Steve Moh</h2><p>For candidates who want to sharpen client conversations, presentation flow, and advisory confidence.</p><div class="mentor-stats"><span>Speaking</span><span>Advisory</span><span>Presence</span></div><a class="btn-primary choose-mentor" href="../index.html#contact">Choose Steve</a></div>
-      </article>
-      <article class="mentor-card">
-        <div class="mentor-rank">Builder</div>
-        <div class="mentor-photo"><img src="../assets/photos/team/Tang%20Hui%20Shian.jpg" alt="Tang Hui Shian"></div>
-        <div class="mentor-info"><small>Growth Partner</small><h2>Tang Hui Shian</h2><p>For candidates who want patient guidance, resilient routines, and a practical foundation for growth.</p><div class="mentor-stats"><span>Routine</span><span>Resilience</span><span>Foundation</span></div><a class="btn-primary choose-mentor" href="../index.html#contact">Choose Hui Shian</a></div>
-      </article>
+      <button class="mentor-card" type="button">
+        <span class="mentor-inner">
+          <span class="mentor-face mentor-front featured"><span class="mentor-photo"><img src="../assets/photos/team/Vincent%20Yang.jpg" alt="Vincent Yang"></span><span class="mentor-id"><small>Strategy Builder</small><h2>Vincent Yang</h2></span></span>
+          <span class="mentor-face mentor-back"><h2>Vincent Yang</h2><p>Structured growth, business discipline, and agency leadership direction.</p><span class="attribute"><span>Leadership <b>95</b></span><span class="bar"><i style="--score:95%"></i></span></span><span class="attribute"><span>Systems <b>92</b></span><span class="bar"><i style="--score:92%"></i></span></span><span class="attribute"><span>Growth <b>90</b></span><span class="bar"><i style="--score:90%"></i></span></span><a class="btn-primary choose-mentor" href="../index.html#contact">Choose Vincent</a></span>
+        </span>
+      </button>
+      <button class="mentor-card" type="button">
+        <span class="mentor-inner">
+          <span class="mentor-face mentor-front"><span class="mentor-photo"><img src="../assets/photos/team/Asher%20Chong_1.jpg" alt="Asher Chong"></span><span class="mentor-id"><small>Momentum Coach</small><h2>Asher Chong</h2></span></span>
+          <span class="mentor-face mentor-back"><h2>Asher Chong</h2><p>Energy, practical field guidance, and a confident first step.</p><span class="attribute"><span>Field Skill <b>91</b></span><span class="bar"><i style="--score:91%"></i></span></span><span class="attribute"><span>Momentum <b>94</b></span><span class="bar"><i style="--score:94%"></i></span></span><span class="attribute"><span>Confidence <b>88</b></span><span class="bar"><i style="--score:88%"></i></span></span><a class="btn-primary choose-mentor" href="../index.html#contact">Choose Asher</a></span>
+        </span>
+      </button>
+      <button class="mentor-card" type="button">
+        <span class="mentor-inner">
+          <span class="mentor-face mentor-front"><span class="mentor-photo"><img src="../assets/photos/team/Alice_Chong%20Poh%20Chiang.jpg" alt="Alice Chong Poh Chiang"></span><span class="mentor-id"><small>Trust Builder</small><h2>Alice Chong</h2></span></span>
+          <span class="mentor-face mentor-back"><h2>Alice Chong</h2><p>Long-term client relationships, care-led planning, and steady habits.</p><span class="attribute"><span>Care <b>96</b></span><span class="bar"><i style="--score:96%"></i></span></span><span class="attribute"><span>Planning <b>89</b></span><span class="bar"><i style="--score:89%"></i></span></span><span class="attribute"><span>Trust <b>93</b></span><span class="bar"><i style="--score:93%"></i></span></span><a class="btn-primary choose-mentor" href="../index.html#contact">Choose Alice</a></span>
+        </span>
+      </button>
+      <button class="mentor-card" type="button">
+        <span class="mentor-inner">
+          <span class="mentor-face mentor-front"><span class="mentor-photo"><img src="../assets/photos/team/William_Choong%20Kei%20Foong.jpg" alt="William Choong Kei Foong"></span><span class="mentor-id"><small>Performance Guide</small><h2>William Choong</h2></span></span>
+          <span class="mentor-face mentor-back"><h2>William Choong</h2><p>Measurable targets, consistency, and turning activity into results.</p><span class="attribute"><span>Targets <b>93</b></span><span class="bar"><i style="--score:93%"></i></span></span><span class="attribute"><span>Discipline <b>90</b></span><span class="bar"><i style="--score:90%"></i></span></span><span class="attribute"><span>Results <b>92</b></span><span class="bar"><i style="--score:92%"></i></span></span><a class="btn-primary choose-mentor" href="../index.html#contact">Choose William</a></span>
+        </span>
+      </button>
+      <button class="mentor-card" type="button">
+        <span class="mentor-inner">
+          <span class="mentor-face mentor-front"><span class="mentor-photo"><img src="../assets/photos/team/Anna_Chow%20Mei%20Ying.jpg" alt="Anna Chow Mei Ying"></span><span class="mentor-id"><small>Culture Mentor</small><h2>Anna Chow</h2></span></span>
+          <span class="mentor-face mentor-back"><h2>Anna Chow</h2><p>Encouragement, team connection, and a supportive learning environment.</p><span class="attribute"><span>Teamwork <b>94</b></span><span class="bar"><i style="--score:94%"></i></span></span><span class="attribute"><span>Support <b>95</b></span><span class="bar"><i style="--score:95%"></i></span></span><span class="attribute"><span>Learning <b>88</b></span><span class="bar"><i style="--score:88%"></i></span></span><a class="btn-primary choose-mentor" href="../index.html#contact">Choose Anna</a></span>
+        </span>
+      </button>
+      <button class="mentor-card" type="button">
+        <span class="mentor-inner">
+          <span class="mentor-face mentor-front"><span class="mentor-photo"><img src="../assets/photos/team/Steve_Moh%20Hiong%20Ie.jpg" alt="Steve Moh Hiong Ie"></span><span class="mentor-id"><small>Conversation Coach</small><h2>Steve Moh</h2></span></span>
+          <span class="mentor-face mentor-back"><h2>Steve Moh</h2><p>Client conversations, presentation flow, and advisory confidence.</p><span class="attribute"><span>Speaking <b>91</b></span><span class="bar"><i style="--score:91%"></i></span></span><span class="attribute"><span>Advisory <b>89</b></span><span class="bar"><i style="--score:89%"></i></span></span><span class="attribute"><span>Presence <b>90</b></span><span class="bar"><i style="--score:90%"></i></span></span><a class="btn-primary choose-mentor" href="../index.html#contact">Choose Steve</a></span>
+        </span>
+      </button>
     </div>
-
-    <div class="carousel-controls" aria-label="Mentor carousel controls">
-      <button class="mentor-arrow mentor-prev" type="button" aria-label="Previous mentors">&lsaquo;</button>
-      <button class="mentor-arrow mentor-next" type="button" aria-label="Next mentors">&rsaquo;</button>
-    </div>
+    <button class="stage-arrow mentor-next" type="button" aria-label="Next mentors">&rsaquo;</button>
   </section>
 
-  <p class="mentor-note">Not sure yet? That is fine. Pick the mentor style that feels closest to how you want to grow, and CASB can help match you from there.</p>
+  <p class="mentor-note">Tip: click a card to flip it. Use the side arrows to browse the mentor roster.</p>
 </main>
 
 <script>
 const mentorCarousel = document.querySelector('#mentorCarousel');
+document.querySelectorAll('.mentor-card').forEach(card => {
+  card.addEventListener('click', event => {
+    if (event.target.closest('a')) return;
+    card.classList.toggle('is-flipped');
+  });
+});
 document.querySelector('.mentor-next')?.addEventListener('click', () => {
-  mentorCarousel.scrollBy({ left: mentorCarousel.clientWidth * 0.82, behavior: 'smooth' });
+  mentorCarousel.scrollBy({ left: mentorCarousel.clientWidth * 0.72, behavior: 'smooth' });
 });
 document.querySelector('.mentor-prev')?.addEventListener('click', () => {
-  mentorCarousel.scrollBy({ left: -mentorCarousel.clientWidth * 0.82, behavior: 'smooth' });
+  mentorCarousel.scrollBy({ left: -mentorCarousel.clientWidth * 0.72, behavior: 'smooth' });
 });
 </script>
 </body>
