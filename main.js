@@ -362,27 +362,3 @@ if (contactForm) {
     }
   });
 }
-
-// ── MONTHLY ACHIEVERS MODAL ──────────────────────────────────────────
-function openMAModal() {
-  document.getElementById('maModal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closeMAModal(e) {
-  if (e && e.target !== document.getElementById('maModal') && !e.target.closest('.ma-modal-close')) return;
-  document.getElementById('maModal').classList.remove('open');
-  document.body.style.overflow = '';
-}
-function maModalYear(year, btn) {
-  document.querySelectorAll('.ma-diamond-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('.ma-panel').forEach(p => p.classList.remove('active'));
-  const panel = document.querySelector(`.ma-panel[data-year="${year}"]`);
-  if (panel) panel.classList.add('active');
-}
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') {
-    document.getElementById('maModal')?.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-});
