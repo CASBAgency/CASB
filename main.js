@@ -133,7 +133,7 @@ const eventUpdates = [
     label: 'Leadership Conference',
     date: '18 Apr 2026',
     title: 'AGLC - Action Group Leader Conference',
-    body: 'A leadership conference reserved for future event photos, highlights, and team memories.'
+    body: 'A leadership conference highlighting agency leadership, advisor development, and shared learning moments.'
   },
   {
     href: 'events/sibu-business-conference-trip.html',
