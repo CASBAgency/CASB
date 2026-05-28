@@ -8,19 +8,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* ── RESET & VARIABLES ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
   --gold: #B8922A;
   --gold-light: #E8C96A;
-  --gold-pale: #FBF4E3;
   --navy: #0D1F3C;
-  --navy-mid: #1A3358;
-  --navy-light: #2C4A72;
   --card-w: 230px;
   --card-h: 360px;
+  --gap: 20px;
 }
-
 html, body {
   height: 100%;
   overflow: hidden;
@@ -28,19 +24,16 @@ html, body {
   color: #fff;
   font-family: 'DM Sans', sans-serif;
 }
-
-/* ── PAGE LAYOUT ── */
 .page {
   height: 100vh;
   display: flex;
   flex-direction: column;
   background:
     radial-gradient(ellipse 80% 40% at 50% -10%, rgba(232,201,106,0.13) 0%, transparent 60%),
-    radial-gradient(ellipse 100% 60% at 50% 110%, rgba(13,31,60,0.8) 0%, transparent 70%),
     linear-gradient(180deg, #0D1F3C 0%, #070D1A 50%, #040810 100%);
 }
 
-/* ── TOPBAR ── */
+/* TOPBAR */
 .topbar {
   display: flex;
   align-items: center;
@@ -49,739 +42,453 @@ html, body {
   flex-shrink: 0;
   border-bottom: 1px solid rgba(232,201,106,0.1);
 }
-.logo-link {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  color: white;
-}
+.logo-link { display: flex; align-items: center; gap: 10px; text-decoration: none; color: white; }
 .logo-link img { height: 44px; }
-.logo-label {
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--gold-light);
-}
-.back-link {
-  font-size: 13px;
-  color: rgba(255,255,255,0.55);
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  transition: color 0.2s;
-}
+.logo-label { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-light); }
+.back-link { font-size: 13px; color: rgba(255,255,255,0.55); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
 .back-link:hover { color: var(--gold-light); }
-.back-link svg { width: 16px; height: 16px; }
 
-/* ── HERO ── */
-.hero {
-  text-align: center;
-  padding: 16px 5% 10px;
-  flex-shrink: 0;
-}
-.kicker {
-  font-size: 10px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--gold-light);
-  margin-bottom: 6px;
-}
+/* HERO */
+.hero { text-align: center; padding: 16px 5% 10px; flex-shrink: 0; }
+.kicker { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 6px; }
 .hero h1 {
   font-family: 'Playfair Display', serif;
   font-size: clamp(26px, 3.5vw, 46px);
-  line-height: 1.1;
-  margin-bottom: 6px;
+  line-height: 1.1; margin-bottom: 6px;
   background: linear-gradient(135deg, #fff 30%, var(--gold-light));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
-.hero p {
-  font-size: 13px;
-  color: rgba(255,255,255,0.52);
-  max-width: 500px;
-  margin: 0 auto;
-  line-height: 1.55;
+.hero p { font-size: 13px; color: rgba(255,255,255,0.52); max-width: 500px; margin: 0 auto; line-height: 1.55; }
+
+/* STAGE */
+.stage {
+  flex: 1; position: relative; display: flex; align-items: center; justify-content: center;
+  min-height: 0; overflow: hidden;
+}
+.stage::before {
+  content: ''; position: absolute; inset: 0; z-index: 5; pointer-events: none;
+  background: linear-gradient(90deg, rgba(4,8,16,0.75) 0%, transparent 15%, transparent 85%, rgba(4,8,16,0.75) 100%);
+}
+.spotlight {
+  position: absolute; top: -20%; left: 50%; transform: translateX(-50%);
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(232,201,106,0.09) 0%, transparent 65%);
+  pointer-events: none; z-index: 0;
 }
 
-/* ── STAGE ── */
-.stage {
-  flex: 1;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 0;
+/* CAROUSEL — no scroll, JS-driven transform */
+.carousel-viewport {
+  position: relative; z-index: 2;
+  width: 100%; height: calc(var(--card-h) + 60px);
+  display: flex; align-items: center; justify-content: center;
   overflow: hidden;
 }
-
-/* floor reflection */
-.stage::after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 38%;
-  background: linear-gradient(0deg, rgba(232,201,106,0.04) 0%, transparent 100%);
-  pointer-events: none;
-}
-
-/* side fade */
-.stage::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg,
-    rgba(4,8,16,0.7) 0%,
-    transparent 18%,
-    transparent 82%,
-    rgba(4,8,16,0.7) 100%);
-  pointer-events: none;
-  z-index: 5;
-}
-
-/* spotlight */
-.spotlight {
-  position: absolute;
-  top: -20%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(232,201,106,0.09) 0%, transparent 65%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* ── CAROUSEL ── */
 .carousel-track {
   display: flex;
   align-items: center;
-  gap: 20px;
-  padding: 30px 60px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
-  position: relative;
-  z-index: 2;
-  max-width: 100%;
-}
-.carousel-track::-webkit-scrollbar { display: none; }
-
-/* ── ARROWS ── */
-.arrow {
+  gap: var(--gap);
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-  width: 44px;
-  height: 64px;
-  background: rgba(13,31,60,0.7);
-  border: 1px solid rgba(232,201,106,0.28);
-  border-radius: 6px;
-  color: rgba(255,255,255,0.7);
-  font-size: 28px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  left: 50%;
+  transform: translateX(0);
+  transition: transform 0.45s cubic-bezier(0.22, 0.8, 0.22, 1);
+  will-change: transform;
+}
+
+/* ARROWS */
+.arrow {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  z-index: 10; width: 44px; height: 64px;
+  background: rgba(13,31,60,0.7); border: 1px solid rgba(232,201,106,0.28);
+  border-radius: 6px; color: rgba(255,255,255,0.7);
+  font-size: 28px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
   transition: background 0.2s, color 0.2s, border-color 0.2s;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px); user-select: none;
 }
-.arrow:hover {
-  background: rgba(184,146,42,0.25);
-  border-color: var(--gold-light);
-  color: var(--gold-light);
-}
+.arrow:hover { background: rgba(184,146,42,0.25); border-color: var(--gold-light); color: var(--gold-light); }
 .arrow-left { left: 10px; }
 .arrow-right { right: 10px; }
 
-/* ── CARD ── */
+/* CARD */
 .card {
-  scroll-snap-align: center;
   flex-shrink: 0;
-  width: var(--card-w);
-  height: var(--card-h);
-  perspective: 1000px;
-  cursor: pointer;
-  position: relative;
-  transition: transform 0.25s ease;
+  width: var(--card-w); height: var(--card-h);
+  perspective: 1000px; cursor: pointer;
+  transition: transform 0.3s ease, opacity 0.3s ease, filter 0.3s ease;
+  opacity: 0.65; filter: brightness(0.75) scale(0.97);
 }
-
-/* scale featured center card */
-.card.is-center {
-  transform: scale(1.08);
-  z-index: 3;
-}
-.card:not(.is-center) {
-  opacity: 0.72;
-  filter: brightness(0.82);
-}
-.card.is-center:not(.is-center) { opacity: 1; filter: none; }
-
+.card.is-center { transform: scale(1.08); opacity: 1; filter: brightness(1); z-index: 3; }
 .card-inner {
-  width: 100%;
-  height: 100%;
+  width: 100%; height: 100%;
   transform-style: preserve-3d;
   transition: transform 0.65s cubic-bezier(0.22, 0.8, 0.22, 1);
-  position: relative;
 }
 .card.flipped .card-inner { transform: rotateY(180deg); }
-
 .card-face {
-  position: absolute;
-  inset: 0;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  border-radius: 10px;
-  overflow: hidden;
+  position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  border-radius: 10px; overflow: hidden;
   border: 1px solid rgba(232,201,106,0.38);
   background: linear-gradient(180deg, #0F2244 0%, #060C1A 100%);
-  box-shadow:
-    0 0 0 1px rgba(255,255,255,0.05),
-    0 20px 50px rgba(0,0,0,0.55),
-    inset 0 1px 0 rgba(232,201,106,0.15);
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.05), 0 20px 50px rgba(0,0,0,0.55), inset 0 1px 0 rgba(232,201,106,0.15);
 }
-
-/* corner bracket decorations */
 .card-face::before {
-  content: '';
-  position: absolute;
-  inset: 8px;
-  border: 1px solid rgba(232,201,106,0.14);
-  border-radius: 7px;
-  pointer-events: none;
-  z-index: 1;
+  content: ''; position: absolute; inset: 8px;
+  border: 1px solid rgba(232,201,106,0.12); border-radius: 7px;
+  pointer-events: none; z-index: 1;
 }
-
-/* glowing top edge */
 .card-face::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 15%; right: 15%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
-  border-radius: 999px;
+  content: ''; position: absolute; top: 0; left: 15%; right: 15%; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold-light), transparent); border-radius: 999px;
 }
-
 .card.is-center .card-face {
   border-color: rgba(232,201,106,0.65);
-  box-shadow:
-    0 0 0 1px rgba(232,201,106,0.18),
-    0 0 30px rgba(232,201,106,0.15),
-    0 24px 60px rgba(0,0,0,0.6);
+  box-shadow: 0 0 0 1px rgba(232,201,106,0.18), 0 0 30px rgba(232,201,106,0.15), 0 24px 60px rgba(0,0,0,0.6);
 }
 
 /* FRONT */
-.card-front {
-  display: flex;
-  flex-direction: column;
-}
+.card-front { display: flex; flex-direction: column; }
 .card-photo {
-  flex: 1;
-  min-height: 0;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
+  flex: 1; min-height: 0; display: flex; align-items: flex-end; justify-content: center;
   background: radial-gradient(circle at 50% 20%, rgba(232,201,106,0.18) 0%, transparent 60%);
-  padding-top: 20px;
-  position: relative;
   overflow: hidden;
 }
-.card-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+.card-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top center; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5)); }
+
+/* placeholder ghost */
+.card-photo.empty {
+  align-items: center; justify-content: center;
+  background: radial-gradient(circle at 50% 50%, rgba(232,201,106,0.06) 0%, transparent 70%);
 }
+.ghost-icon { opacity: 0.18; }
+.ghost-icon svg { width: 72px; height: 72px; }
+
 .card-nameplate {
   padding: 12px 16px 14px;
   background: linear-gradient(0deg, rgba(4,8,16,0.95) 0%, rgba(6,12,26,0.8) 100%);
-  border-top: 1px solid rgba(232,201,106,0.2);
-  position: relative;
-  z-index: 2;
+  border-top: 1px solid rgba(232,201,106,0.2); position: relative; z-index: 2;
 }
-.card-role {
-  font-size: 9px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--gold-light);
-  margin-bottom: 3px;
-}
-.card-name {
-  font-family: 'Playfair Display', serif;
-  font-size: 18px;
-  line-height: 1.15;
-  font-weight: 600;
-}
-
-/* click hint */
+.card-role { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 3px; }
+.card-name { font-family: 'Playfair Display', serif; font-size: 18px; line-height: 1.15; font-weight: 600; color: rgba(255,255,255,0.4); font-style: italic; }
+.card-name.real { color: #fff; font-style: normal; }
 .flip-hint {
-  position: absolute;
-  bottom: 68px;
-  right: 12px;
-  font-size: 9px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(232,201,106,0.55);
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  z-index: 3;
-  pointer-events: none;
+  position: absolute; bottom: 68px; right: 12px;
+  font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(232,201,106,0.55); display: flex; align-items: center; gap: 4px;
+  z-index: 3; pointer-events: none;
 }
-.flip-hint svg { width: 12px; height: 12px; }
 
 /* BACK */
-.card-back {
-  transform: rotateY(180deg);
-  display: flex;
-  flex-direction: column;
-  padding: 18px 16px 16px;
-  gap: 10px;
-}
-.back-name {
-  font-family: 'Playfair Display', serif;
-  font-size: 17px;
-  color: var(--gold-light);
-  font-weight: 600;
-  line-height: 1.1;
-  border-bottom: 1px solid rgba(232,201,106,0.2);
-  padding-bottom: 8px;
-}
-.back-bio {
-  font-size: 11px;
-  color: rgba(255,255,255,0.6);
-  line-height: 1.5;
-  flex-shrink: 0;
-}
-.attrs {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-  flex: 1;
-}
+.card-back { transform: rotateY(180deg); display: flex; flex-direction: column; padding: 18px 16px 16px; gap: 10px; }
+.back-name { font-family: 'Playfair Display', serif; font-size: 17px; color: var(--gold-light); font-weight: 600; line-height: 1.1; border-bottom: 1px solid rgba(232,201,106,0.2); padding-bottom: 8px; }
+.back-bio { font-size: 11px; color: rgba(255,255,255,0.6); line-height: 1.5; flex-shrink: 0; }
+.attrs { display: flex; flex-direction: column; gap: 7px; flex: 1; }
 .attr-row { display: flex; flex-direction: column; gap: 3px; }
-.attr-label {
-  display: flex;
-  justify-content: space-between;
-  font-size: 9.5px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.65);
-}
+.attr-label { display: flex; justify-content: space-between; font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.65); }
 .attr-label b { color: var(--gold-light); font-weight: 600; }
-.attr-bar {
-  height: 5px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.1);
-  overflow: hidden;
-}
-.attr-fill {
-  height: 100%;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 100%);
-  transform-origin: left;
-  transform: scaleX(0);
-  transition: transform 0.7s cubic-bezier(0.22, 0.8, 0.22, 1);
-}
+.attr-bar { height: 5px; border-radius: 999px; background: rgba(255,255,255,0.1); overflow: hidden; }
+.attr-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 100%); transform-origin: left; transform: scaleX(0); transition: transform 0.7s cubic-bezier(0.22, 0.8, 0.22, 1) 0.1s; }
 .card.flipped .attr-fill { transform: scaleX(1); }
 
-/* WhatsApp CTA */
+/* placeholder back */
+.coming-soon-back {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  height: 100%; gap: 14px; padding: 24px; text-align: center;
+}
+.coming-soon-back svg { width: 40px; height: 40px; opacity: 0.25; }
+.coming-soon-back p { font-size: 12px; color: rgba(255,255,255,0.35); line-height: 1.5; }
+
+/* WA button */
 .wa-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: 100%;
-  padding: 10px 12px;
-  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%; padding: 10px 12px; border-radius: 6px;
   background: linear-gradient(135deg, #25D366 0%, #1DA851 100%);
-  color: white;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-decoration: none;
-  border: none;
-  cursor: pointer;
-  margin-top: auto;
-  transition: filter 0.2s, transform 0.15s;
-  font-family: 'DM Sans', sans-serif;
-  flex-shrink: 0;
+  color: white; font-size: 12px; font-weight: 600; letter-spacing: 0.06em;
+  text-decoration: none; border: none; cursor: pointer; margin-top: auto;
+  transition: filter 0.2s, transform 0.15s; font-family: 'DM Sans', sans-serif; flex-shrink: 0;
 }
-.wa-btn:hover {
-  filter: brightness(1.1);
-  transform: translateY(-1px);
-}
+.wa-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
 .wa-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
 
-/* ── HINT STRIP ── */
-.hint-strip {
-  text-align: center;
-  font-size: 11.5px;
-  color: rgba(255,255,255,0.3);
-  padding: 8px 5% 14px;
-  flex-shrink: 0;
-  letter-spacing: 0.05em;
-}
+/* DOT INDICATORS */
+.dots { display: flex; justify-content: center; gap: 6px; padding: 10px 0 6px; flex-shrink: 0; }
+.dot { width: 5px; height: 5px; border-radius: 999px; background: rgba(255,255,255,0.2); transition: background 0.3s, width 0.3s; }
+.dot.active { background: var(--gold-light); width: 18px; }
 
-/* ── MOBILE ── */
+.hint-strip { text-align: center; font-size: 11.5px; color: rgba(255,255,255,0.3); padding: 4px 5% 14px; flex-shrink: 0; letter-spacing: 0.05em; }
+
+/* MOBILE */
 @media (max-width: 680px) {
   html, body { overflow: auto; }
-  .page { height: auto; min-height: 100vh; overflow: auto; }
-  .stage { min-height: 480px; }
+  .page { height: auto; min-height: 100vh; }
+  .stage { min-height: 460px; }
   :root { --card-w: 200px; --card-h: 320px; }
   .hero h1 { font-size: 28px; }
-  .hero { padding: 12px 5% 8px; }
-  .topbar { padding: 10px 4%; }
-  .logo-link img { height: 36px; }
 }
 </style>
 </head>
 <body>
 <div class="page">
 
-  <!-- TOP BAR -->
   <div class="topbar">
     <a class="logo-link" href="../index.html">
       <img src="../assets/logo_casb.png" alt="CASB">
       <span class="logo-label">Mentor Selection</span>
     </a>
     <a class="back-link" href="../index.html">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
       Back
     </a>
   </div>
 
-  <!-- HERO -->
   <div class="hero">
     <div class="kicker">Choose Your Path</div>
     <h1>Select Your Mentor</h1>
     <p>Flip a card to reveal their profile. Choose the leader who matches your ambition.</p>
   </div>
 
-  <!-- STAGE -->
   <div class="stage">
     <div class="spotlight"></div>
-
     <button class="arrow arrow-left" id="arrowLeft" aria-label="Previous">&#8249;</button>
-
-    <div class="carousel-track" id="carousel">
-
-      <!-- CARD: Vincent Yang -->
-      <div class="card" data-index="0" tabindex="0" role="button" aria-label="Vincent Yang - click to flip">
-        <div class="card-inner">
-          <div class="card-face card-front">
-            <div class="card-photo">
-              <img src="../assets/photos/team/Vincent%20Yang.jpg" alt="Vincent Yang" loading="lazy">
-            </div>
-            <div class="flip-hint">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4v5h5M20 20v-5h-5M4 9a8 8 0 0 1 13.9-2.9M20 15a8 8 0 0 1-13.9 2.9"/></svg>
-              Flip
-            </div>
-            <div class="card-nameplate">
-              <div class="card-role">Strategy Builder</div>
-              <div class="card-name">Vincent Yang</div>
-            </div>
-          </div>
-          <div class="card-face card-back">
-            <div class="back-name">Vincent Yang</div>
-            <div class="back-bio">Structured growth, business discipline, and agency leadership direction.</div>
-            <div class="attrs">
-              <div class="attr-row">
-                <div class="attr-label"><span>Leadership</span><b>95</b></div>
-                <div class="attr-bar"><div class="attr-fill" style="--s:0.95"></div></div>
-              </div>
-              <div class="attr-row">
-                <div class="attr-label"><span>Systems</span><b>92</b></div>
-                <div class="attr-bar"><div class="attr-fill" style="--s:0.92"></div></div>
-              </div>
-              <div class="attr-row">
-                <div class="attr-label"><span>Growth</span><b>90</b></div>
-                <div class="attr-bar"><div class="attr-fill" style="--s:0.90"></div></div>
-              </div>
-            </div>
-            <!-- REPLACE with actual WhatsApp number -->
-            <a class="wa-btn" href="https://wa.me/60XXXXXXXXX?text=Hi%20Vincent%2C%20I%27d%20like%20to%20join%20under%20your%20mentorship!" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.09.543 4.058 1.494 5.771L.044 23.956l6.335-1.44A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.898 0-3.68-.51-5.215-1.397l-.374-.22-3.759.855.882-3.665-.244-.382A9.95 9.95 0 0 1 2 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
-              Choose Vincent
-            </a>
-          </div>
-        </div>
+    <div class="carousel-viewport">
+      <div class="carousel-track" id="carousel">
+        <!-- cards injected by JS -->
       </div>
-
-      <!-- CARD: Asher Chong -->
-      <div class="card" data-index="1" tabindex="0" role="button" aria-label="Asher Chong - click to flip">
-        <div class="card-inner">
-          <div class="card-face card-front">
-            <div class="card-photo">
-              <img src="../assets/photos/team/Asher%20Chong_1.jpg" alt="Asher Chong" loading="lazy">
-            </div>
-            <div class="flip-hint">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4v5h5M20 20v-5h-5M4 9a8 8 0 0 1 13.9-2.9M20 15a8 8 0 0 1-13.9 2.9"/></svg>
-              Flip
-            </div>
-            <div class="card-nameplate">
-              <div class="card-role">Momentum Coach</div>
-              <div class="card-name">Asher Chong</div>
-            </div>
-          </div>
-          <div class="card-face card-back">
-            <div class="back-name">Asher Chong</div>
-            <div class="back-bio">Energy, practical field guidance, and a confident first step into the industry.</div>
-            <div class="attrs">
-              <div class="attr-row">
-                <div class="attr-label"><span>Field Skill</span><b>91</b></div>
-                <div class="attr-bar"><div class="attr-fill" style="--s:0.91"></div></div>
-              </div>
-              <div class="attr-row">
-                <div class="attr-label"><span>Momentum</span><b>94</b></div>
-                <div class="attr-bar"><div class="attr-fill" style="--s:0.94"></div></div>
-              </div>
-              <div class="attr-row">
-                <div class="attr-label"><span>Confidence</span><b>88</b></div>
-                <div class="attr-bar"><div class="attr-fill" style="--s:0.88"></div></div>
-              </div>
-            </div>
-            <a class="wa-btn" href="https://wa.me/60XXXXXXXXX?text=Hi%20Asher%2C%20I%27d%20like%20to%20join%20under%20your%20mentorship!" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.09.543 4.058 1.494 5.771L.044 23.956l6.335-1.44A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.898 0-3.68-.51-5.215-1.397l-.374-.22-3.759.855.882-3.665-.244-.382A9.95 9.95 0 0 1 2 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
-              Choose Asher
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- CARD: Alice Chong -->
-      <div class="card" data-index="2" tabindex="0" role="button" aria-label="Alice Chong - click to flip">
-        <div class="card-inner">
-          <div class="card-face card-front">
-            <div class="card-photo">
-              <img src="../assets/photos/team/Alice_Chong%20Poh%20Chiang.jpg" alt="Alice Chong" loading="lazy">
-            </div>
-            <div class="flip-hint">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4v5h5M20 20v-5h-5M4 9a8 8 0 0 1 13.9-2.9M20 15a8 8 0 0 1-13.9 2.9"/></svg>
-              Flip
-            </div>
-            <div class="card-nameplate">
-              <div class="card-role">Trust Builder</div>
-              <div class="card-name">Alice Chong</div>
-            </div>
-          </div>
-          <div class="card-face card-back">
-            <div class="back-name">Alice Chong</div>
-            <div class="back-bio">Long-term client relationships, care-led planning, and steady, sustainable habits.</div>
-            <div class="attrs">
-              <div class="attr-row">
-                <div class="attr-label"><span>Care</span><b>96</b></div>
-                <div class="attr-bar"><div class="attr-fill" style="--s:0.96"></div></div>
-              </div>
-              <div class="attr-row">
-                <div class="attr-label"><span>Planning</span><b>89</b></div>
-                <div class="attr-bar"><div class="attr-fill" style="--s:0.89"></div></div>
-              </div>
-              <div class="attr-row">
-                <div class="attr-label"><span>Trust</span><b>93</b></div>
-                <div class="attr-bar"><div class="attr-fill" style="--s:0.93"></div></div>
-              </div>
-            </div>
-            <a class="wa-btn" href="https://wa.me/60XXXXXXXXX?text=Hi%20Alice%2C%20I%27d%20like%20to%20join%20under%20your%20mentorship!" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.09.543 4.058 1.494 5.771L.044 23.956l6.335-1.44A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.898 0-3.68-.51-5.215-1.397l-.374-.22-3.759.855.882-3.665-.244-.382A9.95 9.95 0 0 1 2 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
-              Choose Alice
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- CARD: William Choong -->
-      <div class="card" data-index="3" tabindex="0" role="button" aria-label="William Choong - click to flip">
-        <div class="card-inner">
-          <div class="card-face card-front">
-            <div class="card-photo">
-              <img src="../assets/photos/team/William_Choong%20Kei%20Foong.jpg" alt="William Choong" loading="lazy">
-            </div>
-            <div class="flip-hint">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4v5h5M20 20v-5h-5M4 9a8 8 0 0 1 13.9-2.9M20 15a8 8 0 0 1-13.9 2.9"/></svg>
-              Flip
-            </div>
-            <div class="card-nameplate">
-              <div class="card-role">Performance Guide</div>
-              <div class="card-name">William Choong</div>
-            </div>
-          </div>
-          <div class="card-face card-back">
-            <div class="back-name">William Choong</div>
-            <div class="back-bio">Measurable targets, consistency, and turning daily activity into real results.</div>
-            <div class="attrs">
-              <div class="attr-row">
-                <div class="attr-label"><span>Targets</span><b>93</b></div>
-                <div class="attr-bar"><div class="attr-fill" style="--s:0.93"></div></div>
-              </div>
-              <div class="attr-row">
-                <div class="attr-label"><span>Discipline</span><b>90</b></div>
-                <div class="attr-bar"><div class="attr-fill" style="--s:0.90"></div></div>
-              </div>
-              <div class="attr-row">
-                <div class="attr-label"><span>Results</span><b>92</b></div>
-                <div class="attr-bar"><div class="attr-fill" style="--s:0.92"></div></div>
-              </div>
-            </div>
-            <a class="wa-btn" href="https://wa.me/60XXXXXXXXX?text=Hi%20William%2C%20I%27d%20like%20to%20join%20under%20your%20mentorship!" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.09.543 4.058 1.494 5.771L.044 23.956l6.335-1.44A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.898 0-3.68-.51-5.215-1.397l-.374-.22-3.759.855.882-3.665-.244-.382A9.95 9.95 0 0 1 2 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
-              Choose William
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- CARD: Anna Chow -->
-      <div class="card" data-index="4" tabindex="0" role="button" aria-label="Anna Chow - click to flip">
-        <div class="card-inner">
-          <div class="card-face card-front">
-            <div class="card-photo">
-              <img src="../assets/photos/team/Anna_Chow%20Mei%20Ying.jpg" alt="Anna Chow" loading="lazy">
-            </div>
-            <div class="flip-hint">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4v5h5M20 20v-5h-5M4 9a8 8 0 0 1 13.9-2.9M20 15a8 8 0 0 1-13.9 2.9"/></svg>
-              Flip
-            </div>
-            <div class="card-nameplate">
-              <div class="card-role">Culture Mentor</div>
-              <div class="card-name">Anna Chow</div>
-            </div>
-          </div>
-          <div class="card-face card-back">
-            <div class="back-name">Anna Chow</div>
-            <div class="back-bio">Encouragement, team connection, and a genuinely supportive learning environment.</div>
-            <div class="attrs">
-              <div class="attr-row">
-                <div class="attr-label"><span>Teamwork</span><b>94</b></div>
-                <div class="attr-bar"><div class="attr-fill" style="--s:0.94"></div></div>
-              </div>
-              <div class="attr-row">
-                <div class="attr-label"><span>Support</span><b>95</b></div>
-                <div class="attr-bar"><div class="attr-fill" style="--s:0.95"></div></div>
-              </div>
-              <div class="attr-row">
-                <div class="attr-label"><span>Learning</span><b>88</b></div>
-                <div class="attr-bar"><div class="attr-fill" style="--s:0.88"></div></div>
-              </div>
-            </div>
-            <a class="wa-btn" href="https://wa.me/60XXXXXXXXX?text=Hi%20Anna%2C%20I%27d%20like%20to%20join%20under%20your%20mentorship!" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.09.543 4.058 1.494 5.771L.044 23.956l6.335-1.44A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.898 0-3.68-.51-5.215-1.397l-.374-.22-3.759.855.882-3.665-.244-.382A9.95 9.95 0 0 1 2 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
-              Choose Anna
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- CARD: Steve Moh -->
-      <div class="card" data-index="5" tabindex="0" role="button" aria-label="Steve Moh - click to flip">
-        <div class="card-inner">
-          <div class="card-face card-front">
-            <div class="card-photo">
-              <img src="../assets/photos/team/Steve_Moh%20Hiong%20Ie.jpg" alt="Steve Moh" loading="lazy">
-            </div>
-            <div class="flip-hint">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4v5h5M20 20v-5h-5M4 9a8 8 0 0 1 13.9-2.9M20 15a8 8 0 0 1-13.9 2.9"/></svg>
-              Flip
-            </div>
-            <div class="card-nameplate">
-              <div class="card-role">Conversation Coach</div>
-              <div class="card-name">Steve Moh</div>
-            </div>
-          </div>
-          <div class="card-face card-back">
-            <div class="back-name">Steve Moh</div>
-            <div class="back-bio">Client conversations, presentation flow, and building real advisory confidence.</div>
-            <div class="attrs">
-              <div class="attr-row">
-                <div class="attr-label"><span>Speaking</span><b>91</b></div>
-                <div class="attr-bar"><div class="attr-fill" style="--s:0.91"></div></div>
-              </div>
-              <div class="attr-row">
-                <div class="attr-label"><span>Advisory</span><b>89</b></div>
-                <div class="attr-bar"><div class="attr-fill" style="--s:0.89"></div></div>
-              </div>
-              <div class="attr-row">
-                <div class="attr-label"><span>Presence</span><b>90</b></div>
-                <div class="attr-bar"><div class="attr-fill" style="--s:0.90"></div></div>
-              </div>
-            </div>
-            <a class="wa-btn" href="https://wa.me/60XXXXXXXXX?text=Hi%20Steve%2C%20I%27d%20like%20to%20join%20under%20your%20mentorship!" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.09.543 4.058 1.494 5.771L.044 23.956l6.335-1.44A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.898 0-3.68-.51-5.215-1.397l-.374-.22-3.759.855.882-3.665-.244-.382A9.95 9.95 0 0 1 2 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
-              Choose Steve
-            </a>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- end carousel-track -->
-
+    </div>
     <button class="arrow arrow-right" id="arrowRight" aria-label="Next">&#8250;</button>
-  </div><!-- end stage -->
+  </div>
 
-  <div class="hint-strip">Click a card to flip &nbsp;·&nbsp; Use arrows or swipe to browse</div>
+  <div class="dots" id="dots"></div>
+  <div class="hint-strip">Click a card to flip &nbsp;·&nbsp; Arrows or swipe to browse &nbsp;·&nbsp; Loops infinitely</div>
 
-</div><!-- end page -->
+</div>
 
 <script>
-(function() {
-  const carousel = document.getElementById('carousel');
-  const cards = Array.from(carousel.querySelectorAll('.card'));
-  const arrowL = document.getElementById('arrowLeft');
-  const arrowR = document.getElementById('arrowRight');
+// ── DATA ──────────────────────────────────────────────────────────────
+const WA_SVG = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.09.543 4.058 1.494 5.771L.044 23.956l6.335-1.44A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.898 0-3.68-.51-5.215-1.397l-.374-.22-3.759.855.882-3.665-.244-.382A9.95 9.95 0 0 1 2 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>`;
 
-  // --- CENTER DETECTION ---
-  function updateCenter() {
-    const cx = carousel.scrollLeft + carousel.clientWidth / 2;
-    let closest = null, minD = Infinity;
-    cards.forEach(c => {
-      const d = Math.abs((c.offsetLeft + c.offsetWidth / 2) - cx);
-      if (d < minD) { minD = d; closest = c; }
-    });
-    cards.forEach(c => c.classList.toggle('is-center', c === closest));
+const FLIP_HINT = `<div class="flip-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4v5h5M20 20v-5h-5M4 9a8 8 0 0 1 13.9-2.9M20 15a8 8 0 0 1-13.9 2.9"/></svg>Flip</div>`;
+
+const GHOST_SVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a7 7 0 0 1 7 7v7l2 2H3l2-2V9a7 7 0 0 1 7-7z"/><path d="M9 21a3 3 0 0 0 6 0"/></svg>`;
+
+const mentors = [
+  {
+    name: "Vincent Yang", role: "Strategy Builder",
+    photo: "../assets/photos/team/Vincent%20Yang.jpg",
+    bio: "Structured growth, business discipline, and agency leadership direction.",
+    attrs: [["Leadership", 95], ["Systems", 92], ["Growth", 90]],
+    wa: "60XXXXXXXXX", waName: "Vincent"
+  },
+  {
+    name: "Asher Chong", role: "Momentum Coach",
+    photo: "../assets/photos/team/Asher%20Chong_1.jpg",
+    bio: "Energy, practical field guidance, and a confident first step into the industry.",
+    attrs: [["Field Skill", 91], ["Momentum", 94], ["Confidence", 88]],
+    wa: "60XXXXXXXXX", waName: "Asher"
+  },
+  {
+    name: "Alice Chong", role: "Trust Builder",
+    photo: "../assets/photos/team/Alice_Chong%20Poh%20Chiang.jpg",
+    bio: "Long-term client relationships, care-led planning, and steady sustainable habits.",
+    attrs: [["Care", 96], ["Planning", 89], ["Trust", 93]],
+    wa: "60XXXXXXXXX", waName: "Alice"
+  },
+  {
+    name: "William Choong", role: "Performance Guide",
+    photo: "../assets/photos/team/William_Choong%20Kei%20Foong.jpg",
+    bio: "Measurable targets, consistency, and turning daily activity into real results.",
+    attrs: [["Targets", 93], ["Discipline", 90], ["Results", 92]],
+    wa: "60XXXXXXXXX", waName: "William"
+  },
+  {
+    name: "Anna Chow", role: "Culture Mentor",
+    photo: "../assets/photos/team/Anna_Chow%20Mei%20Ying.jpg",
+    bio: "Encouragement, team connection, and a genuinely supportive learning environment.",
+    attrs: [["Teamwork", 94], ["Support", 95], ["Learning", 88]],
+    wa: "60XXXXXXXXX", waName: "Anna"
+  },
+  {
+    name: "Steve Moh", role: "Conversation Coach",
+    photo: "../assets/photos/team/Steve_Moh%20Hiong%20Ie.jpg",
+    bio: "Client conversations, presentation flow, and building real advisory confidence.",
+    attrs: [["Speaking", 91], ["Advisory", 89], ["Presence", 90]],
+    wa: "60XXXXXXXXX", waName: "Steve"
+  },
+  { placeholder: true },
+  { placeholder: true },
+];
+
+const TOTAL = mentors.length;
+
+// ── BUILD CARD HTML ─────────────────────────────────────────────────
+function buildCard(m, idx) {
+  if (m.placeholder) {
+    return `
+<div class="card" data-real-index="${idx}" tabindex="0" role="button" aria-label="Coming soon placeholder">
+  <div class="card-inner">
+    <div class="card-face card-front">
+      <div class="card-photo empty">
+        <div class="ghost-icon">${GHOST_SVG}</div>
+      </div>
+      <div class="card-nameplate">
+        <div class="card-role">Coming Soon</div>
+        <div class="card-name">Future Mentor</div>
+      </div>
+    </div>
+    <div class="card-face card-back">
+      <div class="coming-soon-back">
+        ${GHOST_SVG}
+        <p>This mentor spot is reserved.<br>Stay tuned for the next addition to the CASB roster.</p>
+      </div>
+    </div>
+  </div>
+</div>`;
   }
+  const attrsHtml = m.attrs.map(([label, score]) => `
+    <div class="attr-row">
+      <div class="attr-label"><span>${label}</span><b>${score}</b></div>
+      <div class="attr-bar"><div class="attr-fill" style="--s:${score/100}"></div></div>
+    </div>`).join('');
 
-  carousel.addEventListener('scroll', updateCenter, { passive: true });
+  const waMsg = encodeURIComponent(`Hi ${m.waName}, I'd like to join under your mentorship!`);
+  return `
+<div class="card" data-real-index="${idx}" tabindex="0" role="button" aria-label="${m.name} - click to flip">
+  <div class="card-inner">
+    <div class="card-face card-front">
+      <div class="card-photo">
+        <img src="${m.photo}" alt="${m.name}" loading="lazy">
+      </div>
+      ${FLIP_HINT}
+      <div class="card-nameplate">
+        <div class="card-role">${m.role}</div>
+        <div class="card-name real">${m.name}</div>
+      </div>
+    </div>
+    <div class="card-face card-back">
+      <div class="back-name">${m.name}</div>
+      <div class="back-bio">${m.bio}</div>
+      <div class="attrs">${attrsHtml}</div>
+      <a class="wa-btn" href="https://wa.me/${m.wa}?text=${waMsg}" target="_blank" rel="noopener">
+        ${WA_SVG} Choose ${m.waName}
+      </a>
+    </div>
+  </div>
+</div>`;
+}
 
-  // --- FLIP ---
-  cards.forEach(card => {
-    function toggle(e) {
-      if (e.target.closest('a')) return;
-      card.classList.toggle('flipped');
-    }
-    card.addEventListener('click', toggle);
-    card.addEventListener('keydown', e => {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(e); }
-    });
+// ── INFINITE LOOP SETUP ─────────────────────────────────────────────
+// Strategy: clone the array 3x [clone_a | real | clone_b]
+// Start position = middle set. On arrow, move index. When we hit clone edges, silently snap back.
+
+const track = document.getElementById('carousel');
+const dotsEl = document.getElementById('dots');
+
+// Build 3 sets of cards
+const sets = [mentors, mentors, mentors];
+let allCards = [];
+sets.forEach((set, setIdx) => {
+  set.forEach((m, mIdx) => {
+    const globalIdx = setIdx * TOTAL + mIdx;
+    const div = document.createElement('div');
+    div.innerHTML = buildCard(m, mIdx).trim();
+    const card = div.firstElementChild;
+    card.dataset.globalIndex = globalIdx;
+    track.appendChild(card);
+    allCards.push(card);
   });
+});
 
-  // --- ARROWS ---
-  function scrollByCard(dir) {
-    const cardW = cards[0].offsetWidth + 20; // gap
-    carousel.scrollBy({ left: dir * cardW, behavior: 'smooth' });
-  }
-  arrowL.addEventListener('click', () => scrollByCard(-1));
-  arrowR.addEventListener('click', () => scrollByCard(1));
+const CARD_W = () => parseInt(getComputedStyle(document.documentElement).getPropertyValue('--card-w')) || 230;
+const GAP = () => parseInt(getComputedStyle(document.documentElement).getPropertyValue('--gap')) || 20;
+const stride = () => CARD_W() + GAP();
 
-  // --- INIT: scroll to center first card ---
-  function init() {
-    const mid = Math.floor(cards.length / 2);
-    const target = cards[mid];
-    carousel.scrollLeft = target.offsetLeft - carousel.clientWidth / 2 + target.offsetWidth / 2;
-    // start at card 0 (first card centered)
-    carousel.scrollLeft = cards[0].offsetLeft - (carousel.clientWidth / 2 - cards[0].offsetWidth / 2);
-    updateCenter();
-  }
-  // Wait for layout
-  if (document.readyState === 'complete') { init(); } else { window.addEventListener('load', init); }
+// current logical index within real set (0 … TOTAL-1)
+let currentIndex = 0;
+// current absolute index in 3x array
+let absIndex = TOTAL + currentIndex; // start in middle set
 
-  // --- ATTR BAR animation uses CSS custom property --s ---
-  // already handled by .card.flipped .attr-fill transition
-})();
+function getOffset(abs) {
+  // Center card abs in viewport
+  return -(abs * stride()) - CARD_W() / 2;
+}
+
+function updateTrack(animated) {
+  if (!animated) track.style.transition = 'none';
+  else track.style.transition = 'transform 0.45s cubic-bezier(0.22, 0.8, 0.22, 1)';
+  track.style.transform = `translateX(${getOffset(absIndex)}px)`;
+}
+
+function updateCenter() {
+  allCards.forEach(c => {
+    c.classList.toggle('is-center', parseInt(c.dataset.globalIndex) === absIndex);
+  });
+  // dots
+  Array.from(dotsEl.children).forEach((d, i) => d.classList.toggle('active', i === currentIndex));
+}
+
+function go(dir) {
+  absIndex += dir;
+  currentIndex = ((absIndex % TOTAL) + TOTAL) % TOTAL;
+  updateTrack(true);
+  updateCenter();
+
+  // After animation, if we're in a clone set, silently snap to middle set
+  setTimeout(() => {
+    if (absIndex < TOTAL || absIndex >= TOTAL * 2) {
+      absIndex = TOTAL + currentIndex;
+      updateTrack(false);
+      // force reflow
+      track.getBoundingClientRect();
+      track.style.transition = '';
+    }
+  }, 460);
+}
+
+// ── DOTS ────────────────────────────────────────────────────────────
+mentors.forEach((_, i) => {
+  const d = document.createElement('div');
+  d.className = 'dot' + (i === 0 ? ' active' : '');
+  dotsEl.appendChild(d);
+});
+
+// ── ARROWS ──────────────────────────────────────────────────────────
+document.getElementById('arrowLeft').addEventListener('click', () => go(-1));
+document.getElementById('arrowRight').addEventListener('click', () => go(1));
+
+// ── KEYBOARD ────────────────────────────────────────────────────────
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowLeft') go(-1);
+  if (e.key === 'ArrowRight') go(1);
+});
+
+// ── FLIP ────────────────────────────────────────────────────────────
+track.addEventListener('click', e => {
+  const card = e.target.closest('.card');
+  if (!card) return;
+  if (e.target.closest('a')) return;
+  card.classList.toggle('flipped');
+});
+track.addEventListener('keydown', e => {
+  if (e.key !== 'Enter' && e.key !== ' ') return;
+  const card = e.target.closest('.card');
+  if (card) { e.preventDefault(); card.classList.toggle('flipped'); }
+});
+
+// ── TOUCH SWIPE ─────────────────────────────────────────────────────
+let touchStartX = 0;
+track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+track.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
+}, { passive: true });
+
+// ── INIT ────────────────────────────────────────────────────────────
+function init() {
+  updateTrack(false);
+  updateCenter();
+}
+if (document.readyState === 'complete') init();
+else window.addEventListener('load', init);
+window.addEventListener('resize', () => { updateTrack(false); });
 </script>
 </body>
 </html>
