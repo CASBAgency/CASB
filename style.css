@@ -2284,3 +2284,36 @@ body.js-loaded .fade-in.visible {
 }
 .ma-panel-empty svg { width: 32px; height: 32px; opacity: .25; }
 .ma-panel-empty p { font-size: 14px; }
+.section-sub-muted {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.contact-submit {
+  align-self: flex-start;
+  border: 0;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.nav-links a.is-active {
+  color: #E8C96A;
+}
+
+.form-success {
+  padding: 40px 0;
+  text-align: center;
+}
+
+.form-success-icon {
+  font-size: 36px;
+}
+
+.form-success h3 {
+  color: #fff;
+  font-size: 20px;
+  margin: 12px 0 8px;
+}
+
+.form-success p {
+  color: rgba(255, 255, 255, 0.6);
+}
