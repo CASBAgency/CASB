@@ -9,30 +9,30 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../style.css">
 <style>
-body { background: #070F1E; }
-.gallery-page { min-height: 100vh; padding: 52px 6% 92px; color: white; background: radial-gradient(circle at top right, rgba(232,201,106,.14), transparent 34%), linear-gradient(135deg, #070F1E 0%, var(--navy) 58%, #102848 100%); }
-.back-link { display: inline-block; color: rgba(255,255,255,.68); text-decoration: none; margin-bottom: 62px; font-size: 14px; letter-spacing: .04em; }
-.back-link:hover { color: var(--gold-light); }
+body { background: #f4f5f6; }
+.team-nav { background: rgba(7,15,30,.96); border-bottom: 1px solid rgba(184,146,42,.38); }
+.team-nav .nav-logo { color: #fff; }
+.team-nav .nav-links a[aria-current="page"] { color: var(--gold-light); }
+.gallery-page { min-height: 100vh; padding: 150px 6% 92px; color: var(--navy); background: linear-gradient(180deg, #f8f8f5 0%, #eef1f3 100%); }
 .agent-hero { max-width: 880px; margin: 0 auto 58px; text-align: center; }
-.agent-logo { height: 86px; margin-bottom: 24px; }
 .agent-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(42px, 6vw, 78px); line-height: 1.05; margin: 16px 0 18px; }
-.agent-hero p { max-width: 680px; margin: 0 auto; color: rgba(255,255,255,.64); font-size: 17px; line-height: 1.8; }
+.agent-hero p { max-width: 680px; margin: 0 auto; color: rgba(7,15,30,.62); font-size: 17px; line-height: 1.8; }
 .agent-grid { max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-.agent-card { background: rgba(255,255,255,.045); border: 1px solid rgba(184,146,42,.30); border-radius: 7px; overflow: hidden; box-shadow: 0 18px 42px rgba(0,0,0,.16); transition: transform .22s ease, border-color .22s ease, background .22s ease; }
-.agent-card:hover { transform: translateY(-5px); border-color: rgba(232,201,106,.62); background: rgba(184,146,42,.08); }
+.agent-card { background: #fff; border: 1px solid rgba(184,146,42,.48); border-radius: 7px; overflow: hidden; box-shadow: 0 18px 42px rgba(7,15,30,.10); transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease; }
+.agent-card:hover { transform: translateY(-5px); border-color: rgba(184,146,42,.78); box-shadow: 0 22px 52px rgba(7,15,30,.14); }
 .agent-photo { aspect-ratio: 4 / 5; background: #e7e8ea; border-bottom: 1px solid rgba(184,146,42,.24); position: relative; overflow: hidden; display: flex; align-items: flex-end; justify-content: center; }
 .agent-photo::before { content: none; }
 .agent-photo::after { content: none; }
 .agent-photo img { width: 100%; height: 100%; object-fit: contain; object-position: center bottom; display: block; padding: 18px 14px 0; position: relative; z-index: 1; }
 .agent-info { padding: 20px 20px 22px; }
-.agent-info small { color: var(--gold-light); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
-.agent-info h2 { font-family: 'Playfair Display', serif; margin-top: 8px; font-size: 23px; color: white; line-height: 1.2; }
-.agent-info p { margin-top: 8px; color: rgba(255,255,255,.56); font-size: 14px; line-height: 1.65; }
-.agent-note { max-width: 1240px; margin: 42px auto 0; background: rgba(255,255,255,.045); border: 1px solid rgba(184,146,42,.24); border-radius: 7px; padding: 28px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.agent-info small { color: var(--gold-dark); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
+.agent-info h2 { font-family: 'Playfair Display', serif; margin-top: 8px; font-size: 23px; color: var(--navy); line-height: 1.2; }
+.agent-info p { margin-top: 8px; color: rgba(7,15,30,.58); font-size: 14px; line-height: 1.65; }
+.agent-note { max-width: 1240px; margin: 42px auto 0; background: #fff; border: 1px solid rgba(184,146,42,.32); border-radius: 7px; padding: 28px; display: flex; align-items: center; justify-content: space-between; gap: 24px; box-shadow: 0 18px 42px rgba(7,15,30,.08); }
 .agent-note h2 { font-family: 'Playfair Display', serif; font-size: 28px; margin-bottom: 6px; }
-.agent-note p { color: rgba(255,255,255,.6); }
+.agent-note p { color: rgba(7,15,30,.62); }
 @media (max-width: 1100px) { .agent-grid { grid-template-columns: repeat(3, 1fr); } }
-@media (max-width: 760px) { .gallery-page { padding: 36px 5% 72px; } .agent-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; } .agent-note { flex-direction: column; align-items: flex-start; } }
+@media (max-width: 760px) { .gallery-page { padding: 118px 5% 72px; } .agent-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; } .agent-note { flex-direction: column; align-items: flex-start; } }
 @media (max-width: 520px) { .agent-grid { grid-template-columns: 1fr; } }
 </style>
 
@@ -43,10 +43,35 @@ body { background: #070F1E; }
 <link rel="manifest" href="../assets/favicon/site.webmanifest">
 </head>
 <body>
+<nav class="team-nav">
+ <a href="../index.html" class="nav-logo">
+  <img src="../assets/logo_casb.png" alt="CASB Agency">
+
+  <div class="logo-text">
+    <span class="logo-est">EST. 2006</span>
+  </div>
+</a>
+
+<button class="hamburger" aria-label="Open menu">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+
+  <ul class="nav-links">
+    <li><a href="../index.html#about">About Us</a></li>
+    <li><a href="./" aria-current="page">Our Team</a></li>
+    <li><a href="../index.html#achievements">Achievements</a></li>
+    <li><a href="../index.html#events">Events</a></li>
+    <li><a href="../insights/">Insights</a></li>
+    <li><a href="../index.html#branches">Branches</a></li>
+    <li><a href="../index.html#contact">Contact</a></li>
+    <li><a href="http://member.casb2u.com/" class="nav-cta">Agent Login</a></li>
+  </ul>
+</nav>
+
 <section class="gallery-page">
-  <a href="../index.html" class="back-link">Back to Homepage</a>
   <div class="agent-hero">
-    <img src="../assets/logo_casb.png" alt="CASB Agency Logo" class="agent-logo">
     <div class="section-tag">Our Team</div>
     <h1>CASB Agency Team</h1>
     <div class="gold-line" style="margin-left:auto;margin-right:auto"></div>
