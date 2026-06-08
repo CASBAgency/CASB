@@ -14,9 +14,13 @@ if (requestedYear) {
 }
 document.querySelectorAll('[data-carousel]').forEach((carousel) => {
   const slides = Array.from(carousel.querySelectorAll('img'));
-  if (slides.length <= 1) return;
+  if (!slides.length) return;
+
   let index = 0;
   slides[0].classList.add('active');
+
+  if (slides.length === 1) return;
+
   setInterval(() => {
     slides[index].classList.remove('active');
     index = (index + 1) % slides.length;
