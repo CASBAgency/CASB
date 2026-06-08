@@ -11,7 +11,6 @@ insights/
 ├── index.html          ← The insights listing page (filters, featured, grid)
 └── articles/
     ├── TEMPLATE.html   ← Copy this every time you write a new article
-    ├── cancer-without-critical-illness.html
     ├── medical-card-vs-critical-illness.html
     └── ... (your articles)
 ```
@@ -23,7 +22,7 @@ insights/
 1. Open `insights/articles/TEMPLATE.html`
 2. **Save a copy** with a new filename using lowercase words and hyphens:
    - ✅ `epf-retirement-shortfall.html`
-   - ✅ `private-hospital-costs-malaysia.html`
+   - ✅ `my-new-article-title.html`
    - ❌ `My New Article (2).html`
 3. Edit the sections marked with comments `<!-- EDIT ... -->`
 

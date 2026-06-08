@@ -49,3 +49,7 @@
 .lightbox img { max-width: min(760px, 94vw); max-height: 92vh; object-fit: contain; border-radius: 6px; box-shadow: 0 30px 80px rgba(0,0,0,.55); }
 .lightbox button { position: absolute; top: 20px; right: 22px; width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(255,255,255,.24); background: rgba(255,255,255,.12); color: #fff; font-size: 24px; cursor: pointer; }
 @media (max-width: 760px) { .achievement-page { padding: 118px 5% 72px; } .program-grid { grid-template-columns: 1fr; } .portrait-scroll { grid-auto-columns: minmax(220px, 78vw); } }
+
+
+.achievement-year-section { display: none; }
+.achievement-year-section.active { display: block; }

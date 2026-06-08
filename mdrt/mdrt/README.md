@@ -6,7 +6,4 @@ Current files referenced by the site:
 - mdrt-1.jpg
 - mdrt-2.jpg
 
-The homepage and MDRT gallery also reference a missing third poster. Upload it here as:
-- mdrt-3.jpg
-
-After upload, I can correct any broken paths and link the gallery card properly.
+To add another MDRT poster later, place the image in this folder and add a matching card in `../mdrt.html`.

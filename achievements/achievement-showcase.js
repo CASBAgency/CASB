@@ -1,3 +1,17 @@
+document.querySelectorAll('[data-year-link]').forEach((link) => {
+  link.addEventListener('click', (event) => {
+    event.preventDefault();
+    const year = link.dataset.yearLink;
+    document.querySelectorAll('[data-year-link]').forEach((item) => item.classList.toggle('active', item.dataset.yearLink === year));
+    document.querySelectorAll('[data-year-section]').forEach((section) => section.classList.toggle('active', section.dataset.yearSection === year));
+    history.replaceState(null, '', `#year-${year}`);
+  });
+});
+const requestedYear = location.hash.replace('#year-', '');
+if (requestedYear) {
+  const requestedLink = document.querySelector(`[data-year-link="${requestedYear}"]`);
+  if (requestedLink) requestedLink.click();
+}
 document.querySelectorAll('[data-carousel]').forEach((carousel) => {
   const slides = Array.from(carousel.querySelectorAll('img'));
   if (slides.length <= 1) return;
@@ -28,3 +42,4 @@ if (lightbox) {
   lightbox.addEventListener('click', (event) => { if (event.target === lightbox) lightbox.classList.remove('open'); });
   document.addEventListener('keydown', (event) => { if (event.key === 'Escape') lightbox.classList.remove('open'); });
 }
+

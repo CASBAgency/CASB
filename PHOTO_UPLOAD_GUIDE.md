@@ -61,9 +61,6 @@ After upload, I can link these into the Insights page or create individual artic
 
 ## MDRT poster
 
-Folder: `mdrt/mdrt/`
+Current MDRT images live in `mdrt/mdrt/` and are wired from `mdrt/mdrt.html`.
 
-The site currently references a missing third MDRT image. Upload it as:
-- `mdrt-3.jpg`
-
-After the photos are uploaded, ask Codex to link the uploaded photos and I will update the HTML paths and captions.
+To add another MDRT poster later, place the image in `mdrt/mdrt/` and add a matching card in `mdrt/mdrt.html`.
