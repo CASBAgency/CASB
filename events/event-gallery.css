@@ -1,6 +1,9 @@
+.events-nav { background: rgba(7,15,30,.96); border-bottom: 1px solid rgba(184,146,42,.38); }
+.events-nav .nav-logo { color: #fff; }
+.events-nav .nav-links a[aria-current="page"] { color: var(--gold-light); }
 .event-gallery-page {
   min-height: 100vh;
-  padding: 54px 0 88px;
+  padding: 150px 0 88px;
   background: var(--off-white);
 }
 
