@@ -92,6 +92,31 @@ window.addEventListener('scroll', () => {
   });
 });
 
+const MONTHLY_ACHIEVERS_FEATURED = {
+  label: 'May 2026 Recognition',
+  basePath: 'monthly-achievers/MAY2026/',
+  files: [
+    'MAY1.png', 'MAY2.png', 'MAY3.png', 'MAY4.png', 'MAY5.png', 'MAY6.png',
+    'MAY7.png', 'MAY8.png', 'MAY9.png', 'MAY10.png', 'MAY11.png', 'MAY12.png',
+    'MAY13.png', 'MAY14.png', 'MAY15.png', 'MAY16.png', 'MAY17.png', 'MAY18.png'
+  ]
+};
+
+const monthlyAchieversCarousel = document.querySelector('[data-monthly-achievers-carousel]');
+if (monthlyAchieversCarousel) {
+  const label = document.querySelector('[data-monthly-achievers-label]');
+  if (label) label.textContent = MONTHLY_ACHIEVERS_FEATURED.label;
+
+  const nextBtn = monthlyAchieversCarousel.querySelector('.next');
+  MONTHLY_ACHIEVERS_FEATURED.files.forEach((file, index) => {
+    const image = document.createElement('img');
+    image.src = `${MONTHLY_ACHIEVERS_FEATURED.basePath}${file}`;
+    image.alt = `CASB ${MONTHLY_ACHIEVERS_FEATURED.label} poster ${index + 1}`;
+    image.loading = index === 0 ? 'eager' : 'lazy';
+    if (index === 0) image.classList.add('active');
+    monthlyAchieversCarousel.insertBefore(image, nextBtn);
+  });
+}
 document.querySelectorAll('.ach-carousel').forEach((carousel) => {
   const slides = carousel.querySelectorAll('img');
   const prevBtn = carousel.querySelector('.prev');
