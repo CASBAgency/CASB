@@ -1,0 +1,51 @@
+.achievement-nav { background: rgba(7,15,30,.96); border-bottom: 1px solid rgba(184,146,42,.38); }
+.achievement-nav .nav-logo { color: #fff; }
+.achievement-nav .nav-links a[aria-current="page"] { color: var(--gold-light); }
+.achievement-page { min-height: 100vh; padding: 148px 6% 92px; background: #f6f5f1; color: var(--navy); }
+.achievement-page.dark { background: radial-gradient(circle at 50% 0%, rgba(232,201,106,.18), transparent 34%), linear-gradient(145deg, #060d1a, #0d1f3c 62%, #06101f); color: #fff; }
+.achievement-back { display: inline-flex; margin-bottom: 38px; color: var(--gold); text-decoration: none; font-size: 14px; }
+.dark .achievement-back { color: rgba(232,201,106,.88); }
+.achievement-hero { max-width: 900px; margin: 0 auto 44px; text-align: center; }
+.achievement-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(40px, 6vw, 74px); line-height: 1.05; margin: 14px 0 18px; }
+.achievement-hero p { max-width: 680px; margin: 0 auto; color: rgba(13,31,60,.62); font-size: 17px; line-height: 1.8; }
+.dark .achievement-hero p { color: rgba(255,255,255,.68); }
+.year-nav { display: flex; justify-content: center; gap: 10px; margin: 28px 0 34px; flex-wrap: wrap; }
+.year-nav a { padding: 8px 18px; border: 1px solid rgba(184,146,42,.35); border-radius: 999px; color: var(--gold); text-decoration: none; font-size: 13px; background: #fff; }
+.dark .year-nav a { background: rgba(255,255,255,.06); color: var(--gold-light); }
+.year-nav a.active { background: var(--navy); color: var(--gold-light); border-color: var(--navy); }
+.dark .year-nav a.active { background: var(--gold); color: #07101f; border-color: var(--gold); }
+.portrait-scroll { max-width: 1240px; margin: 0 auto; display: grid; grid-auto-flow: column; grid-auto-columns: clamp(230px, 25vw, 310px); gap: 22px; overflow-x: auto; padding: 4px 4px 24px; scroll-snap-type: x mandatory; }
+.portrait-scroll .achievement-card { scroll-snap-align: start; }
+.achievement-grid { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+.achievement-card { background: #fff; border: 1px solid rgba(184,146,42,.32); border-radius: 8px; overflow: hidden; box-shadow: 0 18px 42px rgba(7,15,30,.09); cursor: zoom-in; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+.achievement-card:hover { transform: translateY(-4px); border-color: rgba(184,146,42,.65); box-shadow: 0 22px 54px rgba(7,15,30,.14); }
+.dark .achievement-card { background: rgba(255,255,255,.055); border-color: rgba(232,201,106,.38); box-shadow: 0 24px 70px rgba(0,0,0,.24); }
+.achievement-image { aspect-ratio: 4 / 5; background: #e9e8e3; display: grid; place-items: center; overflow: hidden; }
+.achievement-image img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.portrait-scroll .achievement-image img { max-height: min(70vh, 680px); }
+.achievement-info { padding: 18px 18px 20px; }
+.achievement-info small { color: var(--gold); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
+.dark .achievement-info small { color: var(--gold-light); }
+.achievement-info h2 { margin-top: 8px; color: var(--navy); font-family: 'Playfair Display', serif; font-size: 21px; line-height: 1.25; }
+.dark .achievement-info h2 { color: #fff; }
+.hall-grid { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+.hall-grid .achievement-card { position: relative; border-color: rgba(232,201,106,.55); }
+.hall-grid .achievement-card::before { content: ''; position: absolute; inset: 0; pointer-events: none; border: 1px solid rgba(255,255,255,.08); border-radius: 8px; }
+.achievement-empty { min-height: 260px; display: grid; place-items: center; padding: 28px; color: rgba(13,31,60,.45); text-transform: uppercase; letter-spacing: .14em; font-size: 12px; text-align: center; background: linear-gradient(145deg, #fff, #edeae2); }
+.dark .achievement-empty { color: rgba(255,255,255,.45); background: rgba(255,255,255,.06); }
+.program-grid { max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
+.program-card { background: #fff; border: 1px solid rgba(184,146,42,.32); border-radius: 8px; overflow: hidden; color: inherit; text-decoration: none; box-shadow: 0 18px 42px rgba(7,15,30,.09); transition: transform .2s ease, box-shadow .2s ease; }
+.program-card:hover { transform: translateY(-4px); box-shadow: 0 24px 56px rgba(7,15,30,.14); }
+.program-carousel { position: relative; aspect-ratio: 4 / 5; background: #ece9e2; overflow: hidden; }
+.program-carousel img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; opacity: 0; transition: opacity .5s ease; }
+.program-carousel img.active { opacity: 1; }
+.program-empty { height: 100%; display: grid; place-items: center; color: rgba(13,31,60,.44); letter-spacing: .14em; text-transform: uppercase; font-size: 12px; text-align: center; padding: 24px; }
+.program-info { padding: 24px; }
+.program-info small { color: var(--gold); letter-spacing: .13em; text-transform: uppercase; font-size: 11px; }
+.program-info h2 { font-family: 'Playfair Display', serif; font-size: 34px; margin: 8px 0 10px; color: var(--navy); }
+.program-info p { color: var(--gray); line-height: 1.7; }
+.lightbox { display: none; position: fixed; inset: 0; z-index: 220; background: rgba(0,0,0,.88); align-items: center; justify-content: center; padding: 22px; }
+.lightbox.open { display: flex; }
+.lightbox img { max-width: min(760px, 94vw); max-height: 92vh; object-fit: contain; border-radius: 6px; box-shadow: 0 30px 80px rgba(0,0,0,.55); }
+.lightbox button { position: absolute; top: 20px; right: 22px; width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(255,255,255,.24); background: rgba(255,255,255,.12); color: #fff; font-size: 24px; cursor: pointer; }
+@media (max-width: 760px) { .achievement-page { padding: 118px 5% 72px; } .program-grid { grid-template-columns: 1fr; } .portrait-scroll { grid-auto-columns: minmax(220px, 78vw); } }
