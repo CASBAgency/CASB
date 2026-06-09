@@ -1,81 +1,51 @@
-# Monthly Achievers — How to Add New Posters
+# Monthly Achievers - How to Add New Posters
 
-## File Structure
+## Folder Structure
+
+Use one year folder, then one month folder:
 
 ```
 monthly-achievers/
-├── monthly.html          ← Year selector landing page
-├── 2026.html             ← 2026 month accordion
-├── 2025.html             ← 2025 month accordion
-├── 2024.html             ← 2024 month accordion
-├── MONTHLY_GUIDE.md      ← This file
-└── monthly-poster/       ← All poster images
-    ├── monthly-1.png     ← (existing — April 2026)
-    ├── monthly-2.png     ← (existing — April 2026)
-    └── ...
+|-- monthly.html
+|-- 2026.html
+|-- 2025.html
+|-- 2024.html
+|-- 2026/
+|   |-- JAN2026/
+|   |-- FEB2026/
+|   |-- MAR2026/
+|   |-- APR2026/
+|   `-- MAY2026/
+|-- 2025/
+|   |-- JAN2025/
+|   `-- ... DEC2025/
+`-- 2024/
+    |-- JAN2024/
+    `-- ... DEC2024/
 ```
 
----
+## Add Posters
 
-## How to Add a New Month's Posters
+1. Put the poster images into the matching month folder.
 
-### Step 1 — Upload the image
+Example:
+`monthly-achievers/2026/JUN2026/`
 
-Name it clearly:
-```
-2026-05-may-achievers.png
-2026-05-may-achievers-2.png   ← if multiple posters
-```
+2. Tell Codex to wire the new posters, or update the matching page manually:
 
-Upload to: `monthly-achievers/monthly-poster/`
+- `monthly-achievers/monthly.html`
+- `monthly-achievers/2026.html`, `2025.html`, or `2024.html`
 
----
+3. Commit and push.
 
-### Step 2 — Add to the correct year page
+## Naming
 
-Open the matching year file (e.g. `2026.html` for May 2026).
+Clear names are best, but the site can handle spaces. A tidy pattern is:
 
-Find the month you want inside `YEAR_DATA`. Example for adding May 2026:
+`JUN1.png`, `JUN2.png`, `JUN3.png`
 
-**Before:**
-```python
-(5, "May", []),
-```
+## Current Note
 
-**After:**
-```python
-(5, "May", [
-    "monthly-poster/2026-05-may-achievers.png",
-]),
-```
+The old flat poster folder has been retired. April 2026 now lives in:
 
-The month with posters will auto-expand on page load if it's the first one listed.
-
----
-
-### Step 3 — Commit and push
-
-GitHub Desktop:
-1. See changed files listed
-2. Commit message: `"Add May 2026 monthly achievers"`
-3. Commit to main → Push origin
-
----
-
-## Adding a New Year
-
-When 2027 arrives:
-
-1. Duplicate `2026.html`, rename to `2027.html`
-2. Update the year number and month data inside
-3. Add `2027` to the `YEARS` list in `monthly.html`
-4. Add a new `<a class="year-btn" href="2027.html">` button in `monthly.html`
-
----
-
-## Quick Checklist
-
-- [ ] Image uploaded to `monthly-poster/`
-- [ ] Filename is clear and dated
-- [ ] Entry added to the correct month in the correct year `.html`
-- [ ] Committed and pushed
+`monthly-achievers/2026/APR2026/`

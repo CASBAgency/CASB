@@ -94,7 +94,7 @@ window.addEventListener('scroll', () => {
 
 const MONTHLY_ACHIEVERS_FEATURED = {
   label: 'May 2026 Recognition',
-  basePath: 'monthly-achievers/MAY2026/',
+  basePath: 'monthly-achievers/2026/MAY2026/',
   files: [
     'MAY1.png', 'MAY2.png', 'MAY3.png', 'MAY4.png', 'MAY5.png', 'MAY6.png',
     'MAY7.png', 'MAY8.png', 'MAY9.png', 'MAY10.png', 'MAY11.png', 'MAY12.png',
