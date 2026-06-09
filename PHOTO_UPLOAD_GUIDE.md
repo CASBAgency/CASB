@@ -30,7 +30,6 @@ Folders:
 - `assets/photos/events/61st-ag-seminar-recognition-setia-city/`
 - `assets/photos/events/21st-action-group-leaders-conference-beijing/`
 - `assets/photos/events/allianz-pinnacle-incentive-trip-inner-mongolia/`
-- `assets/photos/events/allianz-charity-day-2022/`
 
 Suggested filenames for each event:
 - `cover.jpg`
