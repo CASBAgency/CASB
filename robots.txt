@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+Disallow: /insights/articles/TEMPLATE.html
+Disallow: /coming-soon.html
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+Sitemap: https://oikosadvisory.github.io/CASB/sitemap.xml

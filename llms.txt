@@ -1,0 +1,27 @@
+# CASB Agency
+
+CASB Agency Sdn Bhd is a Malaysian financial advisory agency established in 2006, serving clients through Kuala Lumpur, Ipoh and Sibu branches.
+
+## Key Pages
+
+- Home: https://oikosadvisory.github.io/CASB/
+- Team: https://oikosadvisory.github.io/CASB/team/index.html
+- Insights: https://oikosadvisory.github.io/CASB/insights/index.html
+- Events: https://oikosadvisory.github.io/CASB/events/index.html
+- Achievements: https://oikosadvisory.github.io/CASB/#achievements
+- Monthly Achievers: https://oikosadvisory.github.io/CASB/monthly-achievers/monthly.html
+- Select Your Mentor: https://oikosadvisory.github.io/CASB/select-your-mentor/index.html
+
+## Topics
+
+- Financial advisory in Malaysia
+- Insurance protection planning
+- Medical card and critical illness education
+- Wealth planning and advisor mentorship
+- CASB awards, events and monthly achiever recognition
+
+## Contact
+
+- Email: admin@casb2u.com
+- Phone: +60362799388
+- Headquarters: Kuala Lumpur, Malaysia
