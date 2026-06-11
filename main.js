@@ -102,6 +102,95 @@ const MONTHLY_ACHIEVERS_FEATURED = {
   ]
 };
 
+const homeEventsGrid = document.querySelector('[data-home-events-grid]');
+if (homeEventsGrid) {
+  const source = homeEventsGrid.dataset.eventsSource || 'events/index.html';
+  const sourceDir = source.includes('/') ? source.slice(0, source.lastIndexOf('/') + 1) : '';
+
+  function resolveEventUrl(value) {
+    if (!value || value.startsWith('http')) return value || 'events/';
+    if (value.startsWith('../')) return value.replace(/^(\.\.\/)+/, '');
+    return `${sourceDir}${value}`;
+  }
+
+  function normalizeRootPath(value) {
+    if (!value || value.startsWith('http')) return value || 'assets/hero-bg.png';
+    if (value.startsWith('../')) return value.replace(/^(\.\.\/)+/, '');
+    return `${sourceDir}${value}`;
+  }
+
+  function createHomeEventCard(event) {
+    const link = document.createElement('a');
+    link.href = event.href;
+    link.className = 'event-card-link';
+
+    const card = document.createElement('div');
+    card.className = 'event-card';
+
+    const imageWrap = document.createElement('div');
+    imageWrap.className = 'event-img';
+
+    const image = document.createElement('img');
+    image.loading = 'lazy';
+    image.src = event.image;
+    image.alt = event.alt || event.title;
+
+    const date = document.createElement('div');
+    date.className = 'event-date-badge';
+    date.textContent = event.date;
+
+    const body = document.createElement('div');
+    body.className = 'event-body';
+
+    const title = document.createElement('h3');
+    title.textContent = event.title;
+
+    const description = document.createElement('p');
+    description.textContent = event.description;
+
+    const readMore = document.createElement('span');
+    readMore.className = 'read-more';
+    readMore.textContent = 'View Event';
+
+    imageWrap.append(image, date);
+    body.append(title, description, readMore);
+    card.append(imageWrap, body);
+    link.append(card);
+
+    return link;
+  }
+
+  fetch(source)
+    .then((response) => {
+      if (!response.ok) throw new Error('Events source unavailable');
+      return response.text();
+    })
+    .then((html) => {
+      const doc = new DOMParser().parseFromString(html, 'text/html');
+      const events = Array.from(doc.querySelectorAll('.events-list .event-row'))
+        .slice(0, 3)
+        .map((row) => {
+          const image = row.querySelector('.event-thumb img');
+          return {
+            href: resolveEventUrl(row.getAttribute('href') || 'events/'),
+            image: normalizeRootPath(image?.getAttribute('src') || 'assets/hero-bg.png'),
+            alt: image?.getAttribute('alt') || '',
+            date: row.querySelector('.event-date strong')?.textContent?.trim() || '',
+            title: row.querySelector('.event-content h2')?.textContent?.trim() || '',
+            description: row.querySelector('.event-content p')?.textContent?.trim() || ''
+          };
+        })
+        .filter((event) => event.href && event.title && event.image);
+
+      if (!events.length) return;
+
+      homeEventsGrid.replaceChildren(...events.map(createHomeEventCard));
+    })
+    .catch(() => {
+      homeEventsGrid.dataset.eventsFallback = 'true';
+    });
+}
+
 const monthlyAchieversCarousel = document.querySelector('[data-monthly-achievers-carousel]');
 if (monthlyAchieversCarousel) {
   const label = document.querySelector('[data-monthly-achievers-label]');
