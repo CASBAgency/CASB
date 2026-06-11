@@ -17,19 +17,19 @@ These will be linked into `team/index.html`.
 ## Event detail pages
 
 Folders:
-- `assets/photos/events/agency-award-ceremony/`
-- `assets/photos/events/aglc-action-group-leader-conference/`
-- `assets/photos/events/sibu-business-conference-trip/`
-- `assets/photos/events/64th-ag-seminar-recognition-setia-city/`
-- `assets/photos/events/harbin-winter-il-incentive-trip/`
-- `assets/photos/events/nice-monte-carlo-sales-convention-2024-2025/`
-- `assets/photos/events/63rd-ag-seminar-recognition-genting-highlands/`
-- `assets/photos/events/allianz-productivity-conference-phu-quoc/`
-- `assets/photos/events/allianz-charity-day-2025/`
-- `assets/photos/events/team-building-1st-quarter-awards-night/`
-- `assets/photos/events/61st-ag-seminar-recognition-setia-city/`
-- `assets/photos/events/21st-action-group-leaders-conference-beijing/`
-- `assets/photos/events/allianz-pinnacle-incentive-trip-inner-mongolia/`
+- `assets/photos/events/AAC_260514_GentingHighland/`
+- `assets/photos/events/AGLC-22nd_260418_GuiLin/`
+- `assets/photos/events/Business-Conference-Trip_260313_Sibu/`
+- `assets/photos/events/AGs-64th_260301_SetiaCity/`
+- `assets/photos/events/IL-Incentive-Trip_260113_Harbin/`
+- `assets/photos/events/Sales-Convention_251110_Nice-MonteCarlo/`
+- `assets/photos/events/AGs-63rd_251028_GentingHighlands/`
+- `assets/photos/events/APC_250613_PhuQuoc/`
+- `assets/photos/events/Charity-Day_250607_Malaysia/`
+- `assets/photos/events/Team-Building_250516_CASBAgency/`
+- `assets/photos/events/AGs-61st_250401_SetiaCity/`
+- `assets/photos/events/AGLC-21st_250218_Beijing/`
+- `assets/photos/events/Allianz-Pinnacle-Incentive-Trip_250108_InnerMongolia/`
 
 Suggested filenames for each event:
 - `cover.jpg`
