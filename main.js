@@ -175,8 +175,8 @@ if (homeEventsGrid) {
             href: resolveEventUrl(row.getAttribute('href') || 'events/'),
             image: normalizeRootPath(image?.getAttribute('src') || 'assets/hero-bg.png'),
             alt: image?.getAttribute('alt') || '',
-            date: row.querySelector('.event-date strong')?.textContent?.trim() || '',
-            title: row.querySelector('.event-content h2')?.textContent?.trim() || '',
+            date: row.dataset.eventDate || '',
+            title: row.dataset.eventTitle || row.querySelector('.event-content h2')?.textContent?.trim() || '',
             description: row.querySelector('.event-content p')?.textContent?.trim() || ''
           };
         })

@@ -89,6 +89,16 @@
   line-height: 1.08;
 }
 
+.event-title-date {
+  display: inline-block;
+  margin-top: 12px;
+  color: var(--gold);
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(16px,2vw,22px);
+  font-weight: 600;
+  letter-spacing: .04em;
+}
+
 .event-gallery-intro p {
   color: var(--gray);
   font-size: 17px;
