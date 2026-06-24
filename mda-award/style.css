@@ -80,7 +80,8 @@
 
 .mda-card-info span {
   color: var(--gold);
-  font-size: 12px;
+  font-size: 18px;
+  font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
