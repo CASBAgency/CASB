@@ -87,25 +87,17 @@
 }
 
 .mda-year-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 34px;
-  padding: 7px 14px;
-  border: 1px solid rgba(184,146,42,0.52);
-  border-radius: 999px;
+  display: inline-block;
   color: var(--gold);
   font-size: 18px;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-decoration: none;
   text-transform: uppercase;
-  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  transition: color 0.2s ease;
 }
 
 .mda-year-button:hover {
-  background: rgba(184,146,42,0.16);
-  border-color: rgba(184,146,42,0.85);
   color: var(--gold-light);
 }
 
