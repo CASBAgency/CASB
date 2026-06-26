@@ -151,6 +151,12 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://oikosadvisory.github.io/CASB/mda-award/2026.html</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://oikosadvisory.github.io/CASB/mdrt/mdrt.html</loc>
     <lastmod>2026-06-11</lastmod>
     <changefreq>weekly</changefreq>
