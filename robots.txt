@@ -12,4 +12,13 @@ Allow: /
 User-agent: OAI-SearchBot
 Allow: /
 
-Sitemap: https://oikosadvisory.github.io/CASB/sitemap.xml
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+Sitemap: https://casb-six.vercel.app/sitemap.xml

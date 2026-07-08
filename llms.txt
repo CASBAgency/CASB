@@ -1,27 +1,56 @@
 # CASB Agency
 
-CASB Agency Sdn Bhd is a Malaysian financial advisory agency established in 2006, serving clients through Kuala Lumpur, Ipoh and Sibu branches.
+CASB Agency Sdn Bhd is a Malaysian financial advisory agency established in 2006. The agency serves clients through Kuala Lumpur, Ipoh and Sibu branches and focuses on insurance protection planning, medical card education, critical illness protection, wealth planning, advisor development, and agency recognition.
+
+## Primary Site
+
+- Website: https://casb-six.vercel.app/
+- Sitemap: https://casb-six.vercel.app/sitemap.xml
+- Contact email: admin@casb2u.com
+- Phone: +60362799388
+- WhatsApp enquiries: +60167238148
+- Headquarters: Kuala Lumpur, Malaysia
 
 ## Key Pages
 
-- Home: https://oikosadvisory.github.io/CASB/
-- Team: https://oikosadvisory.github.io/CASB/team/index.html
-- Insights: https://oikosadvisory.github.io/CASB/insights/index.html
-- Events: https://oikosadvisory.github.io/CASB/events/index.html
-- Achievements: https://oikosadvisory.github.io/CASB/#achievements
-- Monthly Achievers: https://oikosadvisory.github.io/CASB/monthly-achievers/monthly.html
-- Select Your Mentor: https://oikosadvisory.github.io/CASB/select-your-mentor/index.html
+- Home: https://casb-six.vercel.app/
+- Recruitment campaign: https://casb-six.vercel.app/campaigns/recruitment.html
+- Our Team: https://casb-six.vercel.app/team/index.html
+- Insights: https://casb-six.vercel.app/insights/index.html
+- News and Events: https://casb-six.vercel.app/events/index.html
+- Achievements: https://casb-six.vercel.app/#achievements
+- Million Dollar Agency Awards: https://casb-six.vercel.app/mda-award/mda-award.html
+- MDRT Recognition: https://casb-six.vercel.app/mdrt/mdrt.html
+- Monthly Achievers: https://casb-six.vercel.app/monthly-achievers/monthly.html
+- Select Your Mentor: https://casb-six.vercel.app/select-your-mentor/index.html
 
-## Topics
+## Current Insight Articles
+
+- Why Medical Cards Keep Getting More Expensive: https://casb-six.vercel.app/insights/articles/why-medical-cards-keep-getting-more-expensive.html
+- Why a Medical Card Alone Isn't Enough: https://casb-six.vercel.app/insights/articles/why-medical-card-alone-isnt-enough.html
+- The Hidden Cost of Surviving a Critical Illness: https://casb-six.vercel.app/insights/articles/hidden-cost-critical-illness.html
+- Medical Card vs Critical Illness Coverage: https://casb-six.vercel.app/insights/articles/medical-card-vs-critical-illness.html
+
+## Topics Covered
 
 - Financial advisory in Malaysia
 - Insurance protection planning
-- Medical card and critical illness education
-- Wealth planning and advisor mentorship
-- CASB awards, events and monthly achiever recognition
+- Medical card planning and healthcare cost education
+- Critical illness coverage and income protection
+- Wealth planning and family financial security
+- Allianz agency recognition, awards and events
+- Financial advisor recruitment, mentorship and career development
 
-## Contact
+## Entity Summary
 
-- Email: admin@casb2u.com
-- Phone: +60362799388
-- Headquarters: Kuala Lumpur, Malaysia
+Name: CASB Agency Sdn Bhd
+Short name: CASB Agency
+Founded: 2006
+Country: Malaysia
+Main branch: Kuala Lumpur
+Other branch locations: Ipoh and Sibu
+Social profiles:
+- Facebook: https://www.facebook.com/CASB-511140085567503/
+- Instagram: https://www.instagram.com/casb_agency/
+- LinkedIn: https://www.linkedin.com/company/112685124/
+- YouTube: https://www.youtube.com/@CASB-HQ

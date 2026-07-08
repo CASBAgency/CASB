@@ -1521,6 +1521,47 @@ h2.section-title.light {
   padding-left: 18px;
 }
 
+.campaign-faq-panel {
+  max-width: 1180px;
+  margin: 28px auto 0;
+  padding: 34px;
+  background: var(--white);
+  border: 1px solid rgba(184,146,42,.22);
+  border-radius: 6px;
+  box-shadow: 0 12px 34px rgba(13,31,60,.06);
+}
+
+.campaign-faq-panel h2 {
+  font-family: 'Playfair Display', serif;
+  color: var(--navy);
+  font-size: 30px;
+  margin-bottom: 22px;
+}
+
+.campaign-faq-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.campaign-faq-list article {
+  border-top: 2px solid rgba(184,146,42,.42);
+  padding-top: 18px;
+}
+
+.campaign-faq-list h3 {
+  color: var(--navy);
+  font-size: 17px;
+  line-height: 1.35;
+  margin-bottom: 10px;
+}
+
+.campaign-faq-list p {
+  color: var(--gray);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
 .campaign-form-panel {
   max-width: 1180px;
   margin: 28px auto 0;
@@ -2094,6 +2135,10 @@ body.js-loaded .fade-in.visible {
 
   .campaign-form-actions {
     justify-content: flex-start;
+  }
+
+  .campaign-faq-list {
+    grid-template-columns: 1fr;
   }
 
   .event-upload-strip {
