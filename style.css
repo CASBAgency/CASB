@@ -1552,6 +1552,10 @@ h2.section-title.light {
   line-height: 1.75;
 }
 
+.campaign-info-card p + p {
+  margin-top: 12px;
+}
+
 .campaign-info-card ul {
   padding-left: 18px;
 }
@@ -1570,7 +1574,7 @@ h2.section-title.light {
 }
 
 .campaign-check-list span::before {
-  content: '✓';
+  content: '\2713';
   position: absolute;
   left: 0;
   top: 0;
@@ -1581,29 +1585,37 @@ h2.section-title.light {
 .campaign-faq-panel {
   max-width: 1180px;
   margin: 28px auto 0;
-  padding: 34px;
+  padding: clamp(28px, 4vw, 46px);
   background: var(--white);
   border: 1px solid rgba(184,146,42,.22);
   border-radius: 6px;
   box-shadow: 0 12px 34px rgba(13,31,60,.06);
 }
 
+.campaign-faq-panel .section-tag {
+  margin-bottom: 12px;
+}
+
 .campaign-faq-panel h2 {
   font-family: 'Playfair Display', serif;
   color: var(--navy);
   font-size: 30px;
-  margin-bottom: 22px;
+  margin-bottom: 28px;
 }
 
 .campaign-faq-list {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 22px;
+  gap: 24px;
 }
 
 .campaign-faq-list article {
-  border-top: 2px solid rgba(184,146,42,.42);
-  padding-top: 18px;
+  min-height: 100%;
+  padding: 24px;
+  border: 1px solid rgba(184,146,42,.2);
+  border-top: 3px solid rgba(184,146,42,.52);
+  border-radius: 6px;
+  background: var(--off-white);
 }
 
 .campaign-faq-list h3 {
@@ -1617,6 +1629,12 @@ h2.section-title.light {
   color: var(--gray);
   font-size: 15px;
   line-height: 1.7;
+}
+
+@media (max-width: 1100px) {
+  .campaign-faq-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .campaign-form-panel {
