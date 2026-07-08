@@ -1152,14 +1152,14 @@ h2.section-title.light {
 }
 
 .current-campaign-card {
-  display: grid;
-  grid-template-columns: minmax(240px, 0.95fr) minmax(0, 1.05fr);
-  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  min-height: 430px;
 }
 
 .campaign-media {
   position: relative;
-  min-height: 100%;
+  min-height: 230px;
   background: var(--navy);
 }
 
@@ -1182,7 +1182,8 @@ h2.section-title.light {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: clamp(28px, 4vw, 46px);
+  flex: 1;
+  padding: clamp(26px, 3.4vw, 38px);
 }
 
 .campaign-kicker {
@@ -2097,7 +2098,6 @@ body.js-loaded .fade-in.visible {
 
   .about-top,
   .about-bottom,
-  .current-campaign-card,
   .campaign-hero,
   .campaign-section-grid,
   .campaign-form-panel,
