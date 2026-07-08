@@ -1465,7 +1465,15 @@ h2.section-title.light {
   color: var(--navy);
   font-size: clamp(42px, 5vw, 70px);
   line-height: 1.05;
-  margin-bottom: 22px;
+  margin-bottom: 12px;
+}
+
+.campaign-hero-subtitle {
+  color: var(--gold);
+  font-size: clamp(18px, 2.2vw, 26px);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  margin-bottom: 18px;
 }
 
 .campaign-hero-copy p {
@@ -1473,6 +1481,26 @@ h2.section-title.light {
   font-size: 17px;
   line-height: 1.8;
   margin-bottom: 28px;
+}
+
+.campaign-event-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin: 24px 0 28px;
+}
+
+.campaign-event-meta span {
+  min-width: 180px;
+  padding: 12px 18px;
+  border: 1px solid rgba(184,146,42,.34);
+  border-radius: 6px;
+  background: var(--white);
+  color: var(--navy);
+  font-size: 15px;
+  font-weight: 600;
+  box-shadow: 0 10px 24px rgba(13,31,60,.06);
 }
 
 .campaign-hero-media {
@@ -1528,6 +1556,28 @@ h2.section-title.light {
   padding-left: 18px;
 }
 
+.campaign-check-list {
+  display: grid;
+  gap: 10px;
+}
+
+.campaign-check-list span {
+  position: relative;
+  padding-left: 28px;
+  color: var(--gray);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.campaign-check-list span::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--gold);
+  font-weight: 700;
+}
+
 .campaign-faq-panel {
   max-width: 1180px;
   margin: 28px auto 0;
@@ -1547,7 +1597,7 @@ h2.section-title.light {
 
 .campaign-faq-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 22px;
 }
 
