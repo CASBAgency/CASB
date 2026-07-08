@@ -1592,6 +1592,10 @@ h2.section-title.light {
   box-shadow: 0 12px 34px rgba(13,31,60,.06);
 }
 
+.campaign-page > .campaign-faq-panel {
+  padding: clamp(28px, 4vw, 46px);
+}
+
 .campaign-faq-panel .section-tag {
   margin-bottom: 12px;
 }
@@ -1605,7 +1609,7 @@ h2.section-title.light {
 
 .campaign-faq-list {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 24px;
 }
 
@@ -1631,9 +1635,9 @@ h2.section-title.light {
   line-height: 1.7;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 700px) {
   .campaign-faq-list {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
   }
 }
 
@@ -1649,6 +1653,10 @@ h2.section-title.light {
   border: 1px solid rgba(232,201,106,.32);
   border-radius: 6px;
   color: var(--white);
+}
+
+.campaign-page > .campaign-form-panel {
+  padding: 34px;
 }
 
 .campaign-form-panel h2 {
