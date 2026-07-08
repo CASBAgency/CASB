@@ -82,9 +82,9 @@ html, body { height: 100%; overflow: hidden; background: #070D1A; color: #fff; f
 /* CARD */
 .card { flex-shrink:0; width:var(--cw); height:var(--ch); perspective:1000px; cursor:pointer; transition:transform .35s ease, opacity .35s ease, filter .35s ease; opacity:.58; filter:brightness(.7); }
 .card.is-center { transform:scale(1.08); opacity:1; filter:brightness(1); }
-.card-inner { width:100%; height:100%; transform-style:preserve-3d; transition:transform .65s cubic-bezier(.22,.8,.22,1); }
-.card.flipped .card-inner { transform:rotateY(180deg); }
-.card-face { position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden; border-radius:10px; overflow:hidden; border:1px solid rgba(232,201,106,.38); background:linear-gradient(180deg,#0F2244 0%,#060C1A 100%); box-shadow:0 0 0 1px rgba(255,255,255,.05),0 20px 50px rgba(0,0,0,.55),inset 0 1px 0 rgba(232,201,106,.15); }
+.card-inner { width:100%; height:100%; transform-style:preserve-3d; -webkit-transform-style:preserve-3d; transition:transform .65s cubic-bezier(.22,.8,.22,1); }
+.card.flipped .card-inner { transform:rotateY(180deg); -webkit-transform:rotateY(180deg); }
+.card-face { position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden; transform-style:preserve-3d; -webkit-transform-style:preserve-3d; border-radius:10px; overflow:hidden; border:1px solid rgba(232,201,106,.38); background:linear-gradient(180deg,#0F2244 0%,#060C1A 100%); box-shadow:0 0 0 1px rgba(255,255,255,.05),0 20px 50px rgba(0,0,0,.55),inset 0 1px 0 rgba(232,201,106,.15); }
 .card-face::before { content:''; position:absolute; inset:8px; border:1px solid rgba(232,201,106,.12); border-radius:7px; pointer-events:none; z-index:1; }
 .card-face::after { content:''; position:absolute; top:0; left:15%; right:15%; height:2px; background:linear-gradient(90deg,transparent,var(--gold-light),transparent); border-radius:999px; }
 .card.is-center .card-face { border-color:rgba(232,201,106,.65); box-shadow:0 0 0 1px rgba(232,201,106,.18),0 0 30px rgba(232,201,106,.15),0 24px 60px rgba(0,0,0,.6); }
@@ -107,7 +107,8 @@ html, body { height: 100%; overflow: hidden; background: #070D1A; color: #fff; f
 .tap-hint svg { width:12px; height:12px; }
 
 /* BACK */
-.card-back { transform:rotateY(180deg); display:flex; flex-direction:column; padding:18px 16px 16px; gap:10px; }
+.card-back { transform:rotateY(180deg) translateZ(1px); -webkit-transform:rotateY(180deg) translateZ(1px); display:flex; flex-direction:column; padding:18px 16px 16px; gap:10px; }
+.card-back > * { transform:translateZ(2px); -webkit-transform:translateZ(2px); }
 .back-name { font-family:'Playfair Display',serif; font-size:17px; color:var(--gold-light); font-weight:600; border-bottom:1px solid rgba(232,201,106,.2); padding-bottom:8px; }
 .back-bio { font-size:11px; color:rgba(255,255,255,.6); line-height:1.5; }
 .attrs { display:flex; flex-direction:column; gap:7px; flex:1; }
@@ -163,7 +164,7 @@ html, body { height: 100%; overflow: hidden; background: #070D1A; color: #fff; f
   <div class="hero">
     <div class="kicker">Choose Your Path</div>
     <h1>Select Your Mentor</h1>
-    <p>Tap a card to select. Tap again to reveal their profile.</p>
+    <p>Choose from CASB's Agency Development Managers. Tap a card to select, then tap again to reveal their profile.</p>
   </div>
 
   <div class="stage">
@@ -182,18 +183,21 @@ html, body { height: 100%; overflow: hidden; background: #070D1A; color: #fff; f
 <script>
 // ── DATA ─────────────────────────────────────────────────────────────
 const WA_SVG = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.09.543 4.058 1.494 5.771L.044 23.956l6.335-1.44A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.898 0-3.68-.51-5.215-1.397l-.374-.22-3.759.855.882-3.665-.244-.382A9.95 9.95 0 0 1 2 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>`;
-const GHOST  = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a7 7 0 0 1 7 7v7l2 2H3l2-2V9a7 7 0 0 1 7-7z"/><path d="M9 21a3 3 0 0 0 6 0"/></svg>`;
 const TAP_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4v5h5M20 20v-5h-5M4 9a8 8 0 0 1 13.9-2.9M20 15a8 8 0 0 1-13.9 2.9"/></svg>`;
 
 const MENTORS = [
-  { name:"Vincent Yang",   role:"Strategy Builder",    photo:"../assets/photos/team/Vincent%20Yang.jpg",                    bio:"Structured growth, business discipline, and agency leadership direction.",              attrs:[["Leadership",95],["Systems",92],["Growth",90]],    wa:"60XXXXXXXXX", waName:"Vincent" },
-  { name:"Asher Chong",    role:"Momentum Coach",      photo:"../assets/photos/team/Asher%20Chong_1.jpg",                  bio:"Energy, practical field guidance, and a confident first step into the industry.",      attrs:[["Field Skill",91],["Momentum",94],["Confidence",88]], wa:"60XXXXXXXXX", waName:"Asher" },
-  { name:"Alice Chong",    role:"Trust Builder",       photo:"../assets/photos/team/Alice_Chong%20Poh%20Chiang.jpg",       bio:"Long-term client relationships, care-led planning, and steady sustainable habits.",      attrs:[["Care",96],["Planning",89],["Trust",93]],           wa:"60XXXXXXXXX", waName:"Alice" },
-  { name:"William Choong", role:"Performance Guide",   photo:"../assets/photos/team/William_Choong%20Kei%20Foong.jpg",     bio:"Measurable targets, consistency, and turning daily activity into real results.",        attrs:[["Targets",93],["Discipline",90],["Results",92]],    wa:"60XXXXXXXXX", waName:"William" },
-  { name:"Anna Chow",      role:"Culture Mentor",      photo:"../assets/photos/team/Anna_Chow%20Mei%20Ying.jpg",           bio:"Encouragement, team connection, and a genuinely supportive learning environment.",      attrs:[["Teamwork",94],["Support",95],["Learning",88]],     wa:"60XXXXXXXXX", waName:"Anna" },
-  { name:"Steve Moh",      role:"Conversation Coach",  photo:"../assets/photos/team/Steve_Moh%20Hiong%20Ie.jpg",           bio:"Client conversations, presentation flow, and building real advisory confidence.",       attrs:[["Speaking",91],["Advisory",89],["Presence",90]],    wa:"60XXXXXXXXX", waName:"Steve" },
-  { placeholder:true },
-  { placeholder:true },
+  { name:"Alice Chong Poh Chiang", role:"Agency Development Manager", photo:"../assets/photos/team/AliceChong.png", bio:"Senior advisor mentorship with a steady focus on trust, care, and long-term client relationships.", attrs:[["Care",96],["Planning",90],["Trust",94]], wa:"60167238148", waName:"Alice" },
+  { name:"Allan Wong Tieng Hock", role:"Agency Development Manager", photo:"../assets/photos/team/AllanWong.png", bio:"Senior advisor guidance for structured activity, professional standards, and consistent agency growth.", attrs:[["Discipline",94],["Leadership",92],["Growth",90]], wa:"60167238148", waName:"Allan" },
+  { name:"Asher Chong Chin Yuen", role:"Agency Development Manager", photo:"../assets/photos/team/AsherChong.png", bio:"Senior advisor coaching for field momentum, confidence building, and practical advisory development.", attrs:[["Momentum",94],["Field Skill",91],["Confidence",90]], wa:"60167238148", waName:"Asher" },
+  { name:"Felix Teoh Cee Hon", role:"Agency Development Manager", photo:"../assets/photos/team/FelixTeoh.png", bio:"Senior advisor mentorship for focused execution, client conversations, and sustainable performance habits.", attrs:[["Execution",92],["Advisory",90],["Focus",91]], wa:"60167238148", waName:"Felix" },
+  { name:"Jess Lau Siew Chin", role:"Agency Development Manager", photo:"../assets/photos/team/JessLau.png", bio:"Senior advisor guidance with a people-first approach to learning, team culture, and client service.", attrs:[["Support",94],["Teamwork",92],["Service",93]], wa:"60167238148", waName:"Jess" },
+  { name:"Jolene Tan Lai Ti", role:"Agency Development Manager", photo:"../assets/photos/team/TanLaiTi.png", bio:"Senior advisor mentorship for disciplined follow-through, personal growth, and dependable advisory practice.", attrs:[["Consistency",93],["Growth",90],["Care",91]], wa:"60167238148", waName:"Jolene" },
+  { name:"Lai Siew Ching", role:"Agency Development Manager", photo:"../assets/photos/team/LaiSiewChing.png", bio:"Senior advisor coaching for professional confidence, client care, and long-term career development.", attrs:[["Confidence",92],["Care",94],["Development",91]], wa:"60167238148", waName:"Siew Ching" },
+  { name:"Jackie Ong Chow Leng", role:"Agency Development Manager", photo:"../assets/photos/team/JackieOng.png", bio:"Senior advisor mentorship for clear direction, steady action, and practical field experience.", attrs:[["Direction",92],["Action",91],["Experience",93]], wa:"60167238148", waName:"Jackie" },
+  { name:"Peri Tan Pei Li", role:"Agency Development Manager", photo:"../assets/photos/team/Peri.png", bio:"Senior advisor guidance for relationship building, personal discipline, and advisor confidence.", attrs:[["Relationships",94],["Discipline",90],["Confidence",91]], wa:"60167238148", waName:"Peri" },
+  { name:"Rock Ng Vin Kee", role:"Agency Development Manager", photo:"../assets/photos/team/RockNg.png", bio:"Senior advisor coaching for strong execution, performance mindset, and active business development.", attrs:[["Performance",94],["Execution",93],["Mindset",91]], wa:"60167238148", waName:"Rock" },
+  { name:"Vincent Yang See Wei", role:"Agency Development Manager", photo:"../assets/photos/team/VincentYang.png", bio:"Senior advisor mentorship for strategy, business systems, and agency leadership direction.", attrs:[["Leadership",95],["Systems",92],["Strategy",93]], wa:"60167238148", waName:"Vincent" },
+  { name:"Wong Yew Peng", role:"Agency Development Manager", photo:"../assets/photos/team/WongYewPeng.png", bio:"Senior advisor guidance for client trust, steady service, and long-term advisory professionalism.", attrs:[["Trust",93],["Service",92],["Professionalism",94]], wa:"60167238148", waName:"Yew Peng" },
 ];
 const N = MENTORS.length;
 
@@ -201,39 +205,26 @@ const N = MENTORS.length;
 function makeCard(m) {
   const el = document.createElement('div');
   el.className = 'card';
-  if (m.placeholder) {
-    el.innerHTML = `
-      <div class="card-inner">
-        <div class="card-face card-front">
-          <div class="card-photo empty"><div class="ghost-icon">${GHOST}</div></div>
-          <div class="card-nameplate"><div class="card-role">Coming Soon</div><div class="card-name ghost">Future Mentor</div></div>
-        </div>
-        <div class="card-face card-back">
-          <div class="coming-soon-back">${GHOST}<p>This mentor spot is reserved.<br>Stay tuned for the next addition to the CASB roster.</p></div>
-        </div>
-      </div>`;
-  } else {
-    const attrs = m.attrs.map(([l,s]) => `
-      <div class="attr-row">
-        <div class="attr-label"><span>${l}</span><b>${s}</b></div>
-        <div class="attr-bar"><div class="attr-fill"></div></div>
-      </div>`).join('');
-    const msg = encodeURIComponent(`Hi ${m.waName}, I'd like to join under your mentorship!`);
-    el.innerHTML = `
-      <div class="card-inner">
-        <div class="card-face card-front">
-          <div class="card-photo"><img src="${m.photo}" alt="${m.name}" loading="lazy"></div>
-          <div class="tap-hint">${TAP_ICON}Flip</div>
-          <div class="card-nameplate"><div class="card-role">${m.role}</div><div class="card-name">${m.name}</div></div>
-        </div>
-        <div class="card-face card-back">
-          <div class="back-name">${m.name}</div>
-          <div class="back-bio">${m.bio}</div>
-          <div class="attrs">${attrs}</div>
-          <a class="wa-btn" href="https://wa.me/${m.wa}?text=${msg}" target="_blank" rel="noopener">${WA_SVG} Choose ${m.waName}</a>
-        </div>
-      </div>`;
-  }
+  const attrs = m.attrs.map(([l,s]) => `
+    <div class="attr-row">
+      <div class="attr-label"><span>${l}</span><b>${s}</b></div>
+      <div class="attr-bar"><div class="attr-fill"></div></div>
+    </div>`).join('');
+  const msg = encodeURIComponent(`Hi ${m.waName}, I'd like to join under your mentorship!`);
+  el.innerHTML = `
+    <div class="card-inner">
+      <div class="card-face card-front">
+        <div class="card-photo"><img src="${m.photo}" alt="${m.name}" loading="lazy"></div>
+        <div class="tap-hint">${TAP_ICON}Flip</div>
+        <div class="card-nameplate"><div class="card-role">${m.role}</div><div class="card-name">${m.name}</div></div>
+      </div>
+      <div class="card-face card-back">
+        <div class="back-name">${m.name}</div>
+        <div class="back-bio">${m.bio}</div>
+        <div class="attrs">${attrs}</div>
+        <a class="wa-btn" href="https://wa.me/${m.wa}?text=${msg}" target="_blank" rel="noopener">${WA_SVG} Choose ${m.waName}</a>
+      </div>
+    </div>`;
   return el;
 }
 
