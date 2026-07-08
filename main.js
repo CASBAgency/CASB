@@ -102,10 +102,16 @@ const MONTHLY_ACHIEVERS_FEATURED = {
   ]
 };
 
-const homeEventsGrid = document.querySelector('[data-home-events-grid]');
-if (homeEventsGrid) {
-  const source = homeEventsGrid.dataset.eventsSource || 'events/index.html';
+const homeEventsCarousel = document.querySelector('[data-home-events-carousel]');
+if (homeEventsCarousel) {
+  const source = homeEventsCarousel.dataset.eventsSource || 'events/index.html';
   const sourceDir = source.includes('/') ? source.slice(0, source.lastIndexOf('/') + 1) : '';
+  const track = homeEventsCarousel.querySelector('.home-events-track');
+  const prevBtn = homeEventsCarousel.querySelector('.home-carousel-btn.prev');
+  const nextBtn = homeEventsCarousel.querySelector('.home-carousel-btn.next');
+  let eventSlides = [];
+  let eventIndex = 0;
+  let eventTimer;
 
   function resolveEventUrl(value) {
     if (!value || value.startsWith('http')) return value || 'events/';
@@ -122,7 +128,7 @@ if (homeEventsGrid) {
   function createHomeEventCard(event) {
     const link = document.createElement('a');
     link.href = event.href;
-    link.className = 'event-card-link';
+    link.className = 'event-card-link home-event-slide';
 
     const card = document.createElement('div');
     card.className = 'event-card';
@@ -160,6 +166,33 @@ if (homeEventsGrid) {
     return link;
   }
 
+  function showHomeEvent(nextIndex) {
+    if (!eventSlides.length) return;
+    eventIndex = (nextIndex + eventSlides.length) % eventSlides.length;
+    eventSlides.forEach((slide, slideIndex) => {
+      const active = slideIndex === eventIndex;
+      slide.classList.toggle('active', active);
+      slide.setAttribute('aria-hidden', active ? 'false' : 'true');
+    });
+  }
+
+  function startHomeEventAutoplay() {
+    window.clearInterval(eventTimer);
+    if (eventSlides.length > 1) {
+      eventTimer = window.setInterval(() => showHomeEvent(eventIndex + 1), 5200);
+    }
+  }
+
+  function moveHomeEvent(step) {
+    showHomeEvent(eventIndex + step);
+    startHomeEventAutoplay();
+  }
+
+  prevBtn?.addEventListener('click', () => moveHomeEvent(-1));
+  nextBtn?.addEventListener('click', () => moveHomeEvent(1));
+  homeEventsCarousel.addEventListener('mouseenter', () => window.clearInterval(eventTimer));
+  homeEventsCarousel.addEventListener('mouseleave', startHomeEventAutoplay);
+
   fetch(source)
     .then((response) => {
       if (!response.ok) throw new Error('Events source unavailable');
@@ -168,7 +201,7 @@ if (homeEventsGrid) {
     .then((html) => {
       const doc = new DOMParser().parseFromString(html, 'text/html');
       const events = Array.from(doc.querySelectorAll('.events-list .event-row'))
-        .slice(0, 3)
+        .slice(0, 8)
         .map((row) => {
           const image = row.querySelector('.event-thumb img');
           return {
@@ -184,10 +217,16 @@ if (homeEventsGrid) {
 
       if (!events.length) return;
 
-      homeEventsGrid.replaceChildren(...events.map(createHomeEventCard));
+      track.replaceChildren(...events.map(createHomeEventCard));
+      eventSlides = Array.from(track.querySelectorAll('.home-event-slide'));
+      showHomeEvent(0);
+      startHomeEventAutoplay();
     })
     .catch(() => {
-      homeEventsGrid.dataset.eventsFallback = 'true';
+      eventSlides = Array.from(track.querySelectorAll('.home-event-slide'));
+      showHomeEvent(0);
+      startHomeEventAutoplay();
+      homeEventsCarousel.dataset.eventsFallback = 'true';
     });
 }
 

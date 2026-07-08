@@ -205,6 +205,12 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://oikosadvisory.github.io/CASB/campaigns/recruitment.html</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://oikosadvisory.github.io/CASB/privacy-notice.html</loc>
     <lastmod>2026-06-11</lastmod>
     <changefreq>weekly</changefreq>
