@@ -547,7 +547,8 @@ const ARTICLES = [
     excerpt: "Can you start as a part-time insurance agent in Malaysia? Learn the realities, responsibilities, income potential, and contract considerations first.",
     readTime: "6 min read",
     date: "July 8, 2026",
-    href: "articles/part-time-insurance-agent-malaysia.html"
+    href: "articles/part-time-insurance-agent-malaysia.html",
+    image: "../assets/insights/insurance-career-malaysia.png"
   },
   {
     title: "Insurance Career in Malaysia: Is It Really Worth It?",
@@ -556,7 +557,8 @@ const ARTICLES = [
     excerpt: "An honest look at the pros and cons of an insurance career in Malaysia, including income potential, flexibility, rejection, AI, and long-term fit.",
     readTime: "6 min read",
     date: "July 8, 2026",
-    href: "articles/insurance-career-in-malaysia-is-it-worth-it.html"
+    href: "articles/insurance-career-in-malaysia-is-it-worth-it.html",
+    image: "../assets/insights/insurance-career-malaysia.png"
   },
   {
     title: "Why Young Adults Should Review Their Insurance Early",
@@ -565,7 +567,8 @@ const ARTICLES = [
     excerpt: "Young adults often delay insurance because they feel healthy, but reviewing protection early can preserve future options, eligibility, and financial stability.",
     readTime: "7 min read",
     date: "July 8, 2026",
-    href: "articles/why-young-adults-should-review-insurance-early.html"
+    href: "articles/why-young-adults-should-review-insurance-early.html",
+    image: "../assets/insights/young-adults-insurance-review.png"
   },
   {
     title: "Why Medical Cards Keep Getting More Expensive",
@@ -574,7 +577,8 @@ const ARTICLES = [
     excerpt: "Healthcare inflation keeps pushing medical card costs higher. Newer plan designs can offer more flexibility, cost control, and claim-free rewards.",
     readTime: "6 min read",
     date: "July 8, 2026",
-    href: "articles/why-medical-cards-keep-getting-more-expensive.html"
+    href: "articles/why-medical-cards-keep-getting-more-expensive.html",
+    image: "../assets/insights/insurance-financial-strategy.png"
   },
   {
     title: "Why a Medical Card Alone Isn't Enough to Protect Your Family",
@@ -583,7 +587,8 @@ const ARTICLES = [
     excerpt: "A medical card pays hospital bills, but it does not replace your income, mortgage payments, groceries, or children's expenses if you cannot work.",
     readTime: "5 min read",
     date: "July 8, 2026",
-    href: "articles/why-medical-card-alone-isnt-enough.html"
+    href: "articles/why-medical-card-alone-isnt-enough.html",
+    image: "../assets/insights/essential-insurance-everyone-should-have.png"
   },
   {
     title: "The Hidden Cost of Surviving a Critical Illness",
@@ -592,7 +597,8 @@ const ARTICLES = [
     excerpt: "A medical card can cover the hospital bill, but it does not replace lost income or protect monthly commitments during recovery.",
     readTime: "6 min read",
     date: "June 23, 2026",
-    href: "articles/hidden-cost-critical-illness.html"
+    href: "articles/hidden-cost-critical-illness.html",
+    image: "../assets/insights/prepared-today-better-tomorrow.png"
   },
   {
     title: "Medical Card vs Critical Illness: Malaysians Often Confuse These",
@@ -601,7 +607,8 @@ const ARTICLES = [
     excerpt: "A medical card pays the hospital. Critical illness pays you. Most Malaysians don't know the difference — until it's too late.",
     readTime: "7 min read",
     date: "May 18, 2026",
-    href: "articles/medical-card-vs-critical-illness.html"
+    href: "articles/medical-card-vs-critical-illness.html",
+    image: "../assets/insights/medical-card-vs-critical-illness.png"
   }
 ];
 
@@ -621,7 +628,7 @@ function renderFeatured(article) {
   el.innerHTML = `
     <div class="featured-img">
       <span class="feat-cat">${article.catLabel}</span>
-      ${CAT_ICONS[article.cat] || ''}
+      ${article.image ? `<img src="${article.image}" alt="${article.title}">` : (CAT_ICONS[article.cat] || '')}
     </div>
     <div class="featured-content">
       <h2>${article.title}</h2>
@@ -635,10 +642,12 @@ function renderGrid(articles) {
   const grid = document.getElementById('articleGrid');
   grid.innerHTML = articles.map((a, i) => {
     if (i === 0) return ''; // skip featured (index 0)
+    const thumbClass = a.image ? 'art-thumb' : 'art-thumb no-img';
+    const thumbMedia = a.image ? `<img src="${a.image}" alt="${a.title}">` : (CAT_ICONS[a.cat] || '');
     return `
     <a class="art-card" href="${a.href}" data-cat="${a.cat}" data-title="${a.title.toLowerCase()}">
-      <div class="art-thumb no-img">
-        ${CAT_ICONS[a.cat] || ''}
+      <div class="${thumbClass}">
+        ${thumbMedia}
         <div class="art-cat">${a.catLabel}</div>
       </div>
       <div class="art-body">
@@ -675,8 +684,8 @@ function applyFilters() {
   document.getElementById('noResults').classList.remove('show');
   grid.innerHTML = filtered.map(a => `
     <a class="art-card" href="${a.href}" data-cat="${a.cat}" data-title="${a.title.toLowerCase()}">
-      <div class="art-thumb no-img">
-        ${CAT_ICONS[a.cat] || ''}
+      <div class="${a.image ? 'art-thumb' : 'art-thumb no-img'}">
+        ${a.image ? `<img src="${a.image}" alt="${a.title}">` : (CAT_ICONS[a.cat] || '')}
         <div class="art-cat">${a.catLabel}</div>
       </div>
       <div class="art-body">
