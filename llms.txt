@@ -15,6 +15,7 @@ CASB Agency Sdn Bhd is a Malaysian financial advisory agency established in 2006
 
 - Home: https://casb-six.vercel.app/
 - Recruitment campaign: https://casb-six.vercel.app/campaigns/recruitment.html
+- Recruitment campaign booking form: https://casb-six.vercel.app/campaigns/recruitment-booking.html
 - Our Team: https://casb-six.vercel.app/team/index.html
 - Insights: https://casb-six.vercel.app/insights/index.html
 - News and Events: https://casb-six.vercel.app/events/index.html
