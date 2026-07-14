@@ -1730,16 +1730,70 @@ h2.section-title.light {
 
 .campaign-form-embed iframe {
   width: 100%;
-  min-height: 980px;
+  min-height: 1680px;
   display: block;
   border: 0;
   border-radius: 4px;
   background: var(--white);
+  overflow: hidden;
+}
+
+.campaign-form-fallback {
+  margin-top: 18px;
+  padding: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--off-white);
+  border: 1px solid rgba(184,146,42,.22);
+  border-radius: 6px;
+}
+
+.campaign-form-fallback p {
+  color: var(--gray);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.campaign-form-fallback .btn-outline {
+  color: var(--navy);
 }
 
 @media (max-width: 700px) {
+  .campaign-booking-page {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .campaign-booking-intro {
+    padding: 0 6%;
+  }
+
+  .campaign-booking-intro .campaign-event-meta span {
+    width: 100%;
+  }
+
+  .campaign-form-embed {
+    width: 100%;
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .campaign-page > .campaign-form-embed {
+    padding: 0;
+  }
+
   .campaign-form-embed iframe {
-    min-height: 1100px;
+    min-height: 1780px;
+    border-radius: 0;
+  }
+
+  .campaign-form-fallback {
+    margin: 14px 6% 0;
   }
 }
 
