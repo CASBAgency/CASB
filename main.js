@@ -1,5 +1,214 @@
-// Homepage interactions only. Page content and links live in index.html.
+// Shared CASB site interactions. Page content and links live in the HTML files.
 document.body.classList.add('js-loaded');
+
+const CASB_TRANSLATIONS = {
+  zh: {
+    common: [
+      ['.nav-links a[href$="#about"], .nav-links a[href="../index.html#about"], .nav-links a[href="../../index.html#about"]', '关于我们'],
+      ['.nav-links a[href$="team/"], .nav-links a[href="../team/"], .nav-links a[href="../../team/"]', '团队介绍'],
+      ['.nav-links a[href$="#achievements"], .nav-links a[href="../index.html#achievements"], .nav-links a[href="../../index.html#achievements"]', '荣誉成就'],
+      ['.nav-links a[href$="#events"], .nav-links a[href="../index.html#events"], .nav-links a[href="../../index.html#events"]', '活动'],
+      ['.nav-links a[href$="insights/"], .nav-links a[href="index.html"], .nav-links a[href="../insights/"], .nav-links a[href="../index.html"], .nav-links a[href="../../insights/"], .nav-links a[href="../../insights/index.html"]', '资讯'],
+      ['.nav-links a[href$="#branches"], .nav-links a[href="../index.html#branches"]', '分行'],
+      ['.nav-links a[href$="#contact"], .nav-links a[href="../index.html#contact"], .nav-links a[href="../../index.html#contact"]', '联络我们'],
+      ['.nav-links .nav-cta', '代理登录'],
+      ['.footer-column h4', { map: { 'Quick Links': '快速链接', 'Contact': '联络方式', 'Opening Hours': '营业时间' } }],
+      ['.footer-column a', {
+        map: {
+          'About Us': '关于我们',
+          'Our Team': '团队介绍',
+          'Achievements': '荣誉成就',
+          'Events': '活动',
+          'Insights': '资讯',
+          'Branches': '分行',
+          'Contact': '联络我们',
+          'Privacy Notice': '隐私声明',
+          'Terms of Use': '使用条款'
+        }
+      }]
+    ],
+    home: [
+      ['.hero h1', '自 2006 年起，您值得信赖的<em>财富</em>规划伙伴', 'html'],
+      ['.hero p', 'Care And Share Is Our Business。CASB Agency 是马来西亚领先的金融服务团队，全国服务超过 10,000 位客户。'],
+      ['.hero .btn-primary', '了解更多'],
+      ['.hero .btn-outline', '联系我们'],
+      ['.hero-stats > div:nth-child(1) .stat-label', '百万美元代理'],
+      ['.hero-stats > div:nth-child(2) .stat-label', '服务客户'],
+      ['.hero-stats > div:nth-child(3) .stat-label', '分行据点'],
+      ['.hero-stats > div:nth-child(4) .stat-label', '专业历程'],
+      ['#about .section-tag', '我们的公司'],
+      ['#about .section-title', 'CASB Agency Sdn Bhd'],
+      ['#about .about-badge span', '百万美元代理'],
+      ['#events .section-tag', '最新动态'],
+      ['#events .section-title', '新闻与活动'],
+      ['#branches .section-tag', '我们的据点'],
+      ['#branches .section-title', '分行网络'],
+      ['#contact .section-tag', '联系我们'],
+      ['#contact .section-title', '让我们开始交流']
+    ],
+    campaign: [
+      ['.campaign-actions .btn-primary, .campaign-form-actions .btn-primary', '我要预约'],
+      ['.campaign-whatsapp', 'WhatsApp 我们'],
+      ['.campaign-actions .btn-outline:not(.campaign-whatsapp), .campaign-form-actions .btn-outline', { map: { '查看地点': '查看地点', 'View Location': '查看地点' } }],
+      ['.campaign-info-card h2', { map: { 'Why Attend?': '为什么参加？', "You'll Learn": '您将了解', 'Event Details': '活动详情' } }],
+      ['#campaign-faq-title', '常见问题'],
+      ['#campaign-form-title', '准备了解更多？']
+    ],
+    insights: [
+      ['.ins-hero .kicker', 'CASB 资讯'],
+      ['.ins-hero h1', '建立信心的<br><em>金融资讯</em>', 'html'],
+      ['.ins-hero p', '阅读实用的保险、医疗卡、理赔、财富规划与事业发展文章，帮助您做出更清晰的财务决定。'],
+      ['.ins-stat:nth-child(1) span', '实用文章'],
+      ['.ins-stat:nth-child(2) span', '规划主题'],
+      ['.ins-stat:nth-child(3) span', '马来西亚内容'],
+      ['.tab-btn[data-filter="all"]', '全部'],
+      ['.tab-btn[data-filter="protection"]', '保障规划'],
+      ['.tab-btn[data-filter="medical"]', '医疗健康'],
+      ['.tab-btn[data-filter="wealth"]', '财富退休'],
+      ['.tab-btn[data-filter="planning"]', '规划基础'],
+      ['.tab-btn[data-filter="casestudy"]', '案例分享'],
+      ['#searchInput', { attr: 'placeholder', text: '搜索文章...' }],
+      ['.featured-label', '精选文章'],
+      ['.section-heading', '最新文章'],
+      ['.sidebar-title', {
+        map: {
+          'Popular Topics': '热门主题',
+          'Stay Informed': '订阅资讯',
+          'Talk to an Advisor': '联系顾问'
+        }
+      }],
+      ['.topic-item span:nth-child(2)', {
+        map: {
+          'Protection Planning': '保障规划',
+          'Medical & Health': '医疗健康',
+          'Wealth & Retirement': '财富退休',
+          'Planning Basics': '规划基础',
+          'Case Studies': '案例分享'
+        }
+      }],
+      ['#newsletterBtn', '订阅'],
+      ['#newsletterEmail', { attr: 'placeholder', text: '您的电邮地址' }]
+    ],
+    articles: [
+      ['.art-cta h3', { map: { 'Need Help Understanding a Claim?': '需要协助了解理赔流程？' } }],
+      ['.art-cta .cta-wa', 'WhatsApp 联系我们'],
+      ['.art-cta .cta-mentor', '选择顾问 →'],
+      ['.aside-title', { map: { 'In This Article': '本文目录', 'Share This Article': '分享文章' } }],
+      ['#copyLink', '复制链接'],
+      ['#shareWa', '分享']
+    ]
+  }
+};
+
+function createLanguageSwitcher() {
+  const navList = document.querySelector('.nav-links');
+  if (!navList || navList.querySelector('.language-switcher')) return;
+
+  const item = document.createElement('li');
+  item.className = 'language-switcher';
+  item.setAttribute('aria-label', 'Language selector');
+  item.innerHTML = `
+    <button type="button" data-lang-option="en" aria-label="Switch to English">EN</button>
+    <span aria-hidden="true">/</span>
+    <button type="button" data-lang-option="zh" aria-label="切换中文">中文</button>
+  `;
+
+  const ctaItem = navList.querySelector('.nav-cta')?.closest('li');
+  navList.insertBefore(item, ctaItem || null);
+
+  item.querySelectorAll('button').forEach((button) => {
+    button.addEventListener('click', () => setSiteLanguage(button.dataset.langOption));
+  });
+}
+
+function rememberOriginalContent(element) {
+  if (!element.dataset.langOriginalText) {
+    element.dataset.langOriginalText = element.textContent;
+  }
+  if (!element.dataset.langOriginalHtml) {
+    element.dataset.langOriginalHtml = element.innerHTML;
+  }
+}
+
+function applyTranslationEntry(entry, lang) {
+  const [selector, value, mode] = entry;
+  document.querySelectorAll(selector).forEach((element) => {
+    rememberOriginalContent(element);
+
+    if (lang === 'en') {
+      if (value?.attr) {
+        const originalAttrKey = `langOriginal${value.attr}`;
+        element.setAttribute(value.attr, element.dataset[originalAttrKey] || '');
+        return;
+      }
+      if (mode === 'html') {
+        element.innerHTML = element.dataset.langOriginalHtml;
+      } else {
+        element.textContent = element.dataset.langOriginalText;
+      }
+      return;
+    }
+
+    if (typeof value === 'string') {
+      if (mode === 'html') element.innerHTML = value;
+      else element.textContent = value;
+      return;
+    }
+
+    if (value?.attr) {
+      const originalAttrKey = `langOriginal${value.attr}`;
+      if (!element.dataset[originalAttrKey]) {
+        element.dataset[originalAttrKey] = element.getAttribute(value.attr) || '';
+      }
+      element.setAttribute(value.attr, value.text);
+      return;
+    }
+
+    if (value?.map) {
+      const original = element.dataset.langOriginalText.trim();
+      const translated = value.map[original];
+      if (translated) element.textContent = translated;
+    }
+  });
+}
+
+function setSiteLanguage(lang) {
+  const nextLang = lang === 'zh' ? 'zh' : 'en';
+  try {
+    localStorage.setItem('casbLanguage', nextLang);
+  } catch {
+    // Continue without persistence if the browser blocks local storage.
+  }
+  document.documentElement.lang = nextLang === 'zh' ? 'zh-Hans' : 'en';
+  document.body.classList.toggle('lang-zh', nextLang === 'zh');
+
+  document.querySelectorAll('.language-switcher button').forEach((button) => {
+    const active = button.dataset.langOption === nextLang;
+    button.classList.toggle('active', active);
+    button.setAttribute('aria-pressed', active ? 'true' : 'false');
+  });
+
+  const pageGroups = [CASB_TRANSLATIONS.zh.common];
+  if (document.querySelector('.hero')) pageGroups.push(CASB_TRANSLATIONS.zh.home);
+  if (document.querySelector('.campaign-page')) pageGroups.push(CASB_TRANSLATIONS.zh.campaign);
+  if (document.querySelector('.ins-hero')) pageGroups.push(CASB_TRANSLATIONS.zh.insights);
+  if (document.querySelector('.art-content')) pageGroups.push(CASB_TRANSLATIONS.zh.articles);
+
+  pageGroups.flat().forEach((entry) => applyTranslationEntry(entry, nextLang));
+}
+
+function initLanguageSwitcher() {
+  createLanguageSwitcher();
+  let savedLang = 'en';
+  try {
+    savedLang = localStorage.getItem('casbLanguage') || 'en';
+  } catch {
+    savedLang = 'en';
+  }
+  setSiteLanguage(savedLang);
+}
+
+initLanguageSwitcher();
 
 const fadeObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
