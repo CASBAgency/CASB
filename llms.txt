@@ -28,6 +28,7 @@ CASB Agency Sdn Bhd is a Malaysian financial advisory agency established in 2006
 ## Current Insight Articles
 
 - Part-Time Insurance Agent in Malaysia: What You Need to Know: https://casb-six.vercel.app/insights/articles/part-time-insurance-agent-malaysia.html
+- Cashless vs Reimbursement Medical Claims: What's the Difference?: https://casb-six.vercel.app/insights/articles/cashless-vs-reimbursement-medical-claims-malaysia.html
 - Why Was My Medical Card Guarantee Letter Declined?: https://casb-six.vercel.app/insights/articles/why-medical-card-guarantee-letter-declined.html
 - What Is a Guarantee Letter (GL)?: https://casb-six.vercel.app/insights/articles/guarantee-letter-gl-medical-insurance-malaysia.html
 - How to Make an Insurance Claim in Malaysia: https://casb-six.vercel.app/insights/articles/how-to-make-insurance-claim-malaysia.html
