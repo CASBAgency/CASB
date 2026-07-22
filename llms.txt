@@ -27,6 +27,7 @@ CASB Agency Sdn Bhd is a Malaysian financial advisory agency established in 2006
 
 ## Current Insight Articles
 
+- Panel Hospital vs Non-Panel Hospital: What’s the Difference?: https://casb-six.vercel.app/insights/articles/panel-vs-non-panel-hospital-malaysia.html
 - What Does an Insurance Agent Do in Malaysia?: https://casb-six.vercel.app/insights/articles/what-does-insurance-agent-do-malaysia.html
 - How Long Does an Insurance Claim Take in Malaysia?: https://casb-six.vercel.app/insights/articles/insurance-claim-processing-time-malaysia.html
 - What Documents Do You Need for an Insurance Claim?: https://casb-six.vercel.app/insights/articles/insurance-claim-documents-malaysia.html
