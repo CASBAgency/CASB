@@ -470,6 +470,15 @@ def add_english_language_seo(source: str, source_path: Path) -> str:
     return updated
 
 
+def preserve_homepage_beliefs(rendered: str, english_source: str) -> str:
+    pattern = re.compile(r'<section class="casb-belief-section">.*?</section>', re.S)
+    match = pattern.search(english_source)
+    if not match:
+        return rendered
+    belief_section = re.sub(r'(?:\.\./)*assets/', '/assets/', match.group(0))
+    return pattern.sub(lambda _: belief_section, rendered, count=1)
+
+
 def update_sitemap() -> None:
     sitemap_path = ROOT / "sitemap.xml"
     ET.register_namespace("", "http://www.sitemaps.org/schemas/sitemap/0.9")
@@ -518,6 +527,8 @@ def main() -> int:
             rendered = translate_article_data(rendered, translations)
             rendered = rendered.replace("Read Article →", "阅读文章 →")
         rendered = add_language_seo(rendered, source_path)
+        if source_path == ROOT / "index.html":
+            rendered = preserve_homepage_beliefs(rendered, english_source)
         target = output_path(source_path)
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_text(rendered, encoding="utf-8", newline="\n")
