@@ -49,6 +49,8 @@ PROTECTED_TERMS = {
 }
 
 CHINESE_NORMALISATION = {
+    "美国东部时间。 2006": "EST. 2006",
+    "美国东部时间。2006": "EST. 2006",
     "医疗卡": "医药卡",
     "担保信": "保证函",
     "保证信": "保证函",
@@ -476,7 +478,8 @@ def preserve_homepage_beliefs(rendered: str, english_source: str) -> str:
     if not match:
         return rendered
     belief_section = re.sub(r'(?:\.\./)*assets/', '/assets/', match.group(0))
-    return pattern.sub(lambda _: belief_section, rendered, count=1)
+    rendered = pattern.sub(lambda _: belief_section, rendered, count=1)
+    return rendered.replace("CASB Agency徽标", "CASB Agency Logo")
 
 
 def update_sitemap() -> None:
