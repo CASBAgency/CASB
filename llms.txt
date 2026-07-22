@@ -27,6 +27,7 @@ CASB Agency Sdn Bhd is a Malaysian financial advisory agency established in 2006
 
 ## Current Insight Articles
 
+- What Documents Do You Need for an Insurance Claim?: https://casb-six.vercel.app/insights/articles/insurance-claim-documents-malaysia.html
 - Insurance Career in Malaysia: Is It Still Worth Considering in 2026?: https://casb-six.vercel.app/insights/articles/insurance-career-malaysia-2026.html
 - Part-Time Insurance Agent in Malaysia: What You Need to Know: https://casb-six.vercel.app/insights/articles/part-time-insurance-agent-malaysia.html
 - Cashless vs Reimbursement Medical Claims: What's the Difference?: https://casb-six.vercel.app/insights/articles/cashless-vs-reimbursement-medical-claims-malaysia.html
