@@ -104,6 +104,9 @@ function createLanguageSwitcher() {
   const navList = document.querySelector('.nav-links');
   if (!navList || navList.querySelector('.language-switcher')) return;
 
+  // Only offer a language switch on pages with a complete, reviewed translation.
+  if (!document.documentElement.hasAttribute('data-bilingual')) return;
+
   const item = document.createElement('li');
   item.className = 'language-switcher';
   item.setAttribute('aria-label', 'Language selector');
@@ -199,6 +202,10 @@ function setSiteLanguage(lang) {
 
 function initLanguageSwitcher() {
   createLanguageSwitcher();
+  if (!document.documentElement.hasAttribute('data-bilingual')) {
+    setSiteLanguage('en');
+    return;
+  }
   let savedLang = 'en';
   try {
     savedLang = localStorage.getItem('casbLanguage') || 'en';
@@ -209,6 +216,33 @@ function initLanguageSwitcher() {
 }
 
 initLanguageSwitcher();
+
+function initArticleHeroCover() {
+  const hero = document.querySelector('.art-hero');
+  const cover = document.querySelector('meta[property="og:image"]')?.content;
+  if (!hero || !cover) return;
+
+  const coverUrl = new URL(cover, window.location.href);
+  const isLocalPreview = ['127.0.0.1', 'localhost'].includes(window.location.hostname);
+  const resolvedCover = isLocalPreview ? `${window.location.origin}${coverUrl.pathname}` : coverUrl.href;
+  hero.classList.add('art-hero-cover');
+  hero.style.backgroundImage = `linear-gradient(90deg, rgba(7, 19, 38, .94) 0%, rgba(10, 27, 52, .84) 52%, rgba(10, 27, 52, .58) 100%), url("${resolvedCover}")`;
+}
+
+initArticleHeroCover();
+
+function markArticleCoverShape(image) {
+  if (!image.matches('.featured-img img, .art-thumb img') || !image.naturalWidth) return;
+  image.classList.toggle('square-cover', image.naturalWidth / image.naturalHeight < 1.4);
+}
+
+document.addEventListener('load', (event) => {
+  if (event.target instanceof HTMLImageElement) markArticleCoverShape(event.target);
+}, true);
+
+document.querySelectorAll('.featured-img img, .art-thumb img').forEach((image) => {
+  if (image.complete) markArticleCoverShape(image);
+});
 
 const fadeObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {

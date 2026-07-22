@@ -169,6 +169,7 @@ body { background: #F7F6F3; }
   display: flex; align-items: center; justify-content: center;
 }
 .featured-img img { width: 100%; height: 100%; object-fit: cover; }
+.featured-img img.square-cover { object-fit: contain; padding: 12px; background: #edf0f4; }
 .featured-img .feat-cat {
   position: absolute; top: 18px; left: 18px;
   background: var(--gold); color: #fff;
@@ -223,6 +224,7 @@ body { background: #F7F6F3; }
   background: linear-gradient(135deg, #0D1F3C 0%, #1A3358 100%);
 }
 .art-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+.art-thumb img.square-cover { object-fit: contain; padding: 8px; background: #edf0f4; }
 .art-card:hover .art-thumb img { transform: scale(1.04); }
 .art-thumb .art-cat {
   position: absolute; bottom: 12px; left: 12px;
@@ -558,7 +560,7 @@ const ARTICLES = [
     readTime: "7 min read",
     date: "July 22, 2026",
     href: "articles/what-does-insurance-agent-do-malaysia.html",
-    image: "../assets/insights/insurance-career-malaysia.png"
+    image: "../assets/insights/insurance-agent-daily-work-malaysia.png"
   },
   {
     title: "How Long Does an Insurance Claim Take in Malaysia?",
@@ -588,7 +590,7 @@ const ARTICLES = [
     readTime: "7 min read",
     date: "July 22, 2026",
     href: "articles/insurance-career-malaysia-2026.html",
-    image: "../assets/insights/insurance-career-malaysia.png"
+    image: "../assets/insights/insurance-career-overview-malaysia.png"
   },
   {
     title: "Cashless vs Reimbursement Medical Claims: What's the Difference?",
@@ -598,7 +600,7 @@ const ARTICLES = [
     readTime: "8 min read",
     date: "July 21, 2026",
     href: "articles/cashless-vs-reimbursement-medical-claims-malaysia.html",
-    image: "../assets/insights/medical-card-vs-critical-illness.png"
+    image: "../assets/insights/cashless-vs-reimbursement-malaysia.png"
   },
   {
     title: "Why Was My Medical Card Guarantee Letter Declined?",
@@ -608,7 +610,7 @@ const ARTICLES = [
     readTime: "9 min read",
     date: "July 21, 2026",
     href: "articles/why-medical-card-guarantee-letter-declined.html",
-    image: "../assets/insights/medical-card-vs-critical-illness.png"
+    image: "../assets/insights/guarantee-letter-malaysia.png"
   },
   {
     title: "What Is a Guarantee Letter (GL)?",
@@ -618,7 +620,7 @@ const ARTICLES = [
     readTime: "7 min read",
     date: "July 17, 2026",
     href: "articles/guarantee-letter-gl-medical-insurance-malaysia.html",
-    image: "../assets/insights/medical-card-vs-critical-illness.png"
+    image: "../assets/insights/guarantee-letter-malaysia.png"
   },
   {
     title: "How to Make an Insurance Claim in Malaysia",
@@ -628,7 +630,7 @@ const ARTICLES = [
     readTime: "7 min read",
     date: "July 17, 2026",
     href: "articles/how-to-make-insurance-claim-malaysia.html",
-    image: "../assets/insights/medical-card-vs-critical-illness.png"
+    image: "../assets/insights/insurance-claim-document-checklist.png"
   },
   {
     title: "Part-Time Insurance Agent in Malaysia: What You Need to Know",

@@ -274,6 +274,16 @@ body.lang-zh .section-title {
   font-family: 'Noto Serif SC', 'Playfair Display', serif;
 }
 
+.art-hero.art-hero-cover {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.art-hero.art-hero-cover .art-hero-inner {
+  text-shadow: 0 2px 16px rgba(0, 0, 0, .42);
+}
+
 @media (min-width: 1181px) and (max-width: 1366px) {
   nav {
     padding: 0 3.5%;
