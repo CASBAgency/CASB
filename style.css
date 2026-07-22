@@ -23,6 +23,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
@@ -241,7 +242,8 @@ nav.nav-hidden {
   line-height: 72px;
 }
 
-.language-switcher button {
+.language-switcher button,
+.language-switcher a {
   border: 1px solid rgba(232,201,106,.35);
   border-radius: 4px;
   background: rgba(13,31,60,.24);
@@ -253,11 +255,14 @@ nav.nav-hidden {
   line-height: 1;
   padding: 7px 9px;
   cursor: pointer;
+  text-decoration: none;
   transition: color .2s, background .2s, border-color .2s;
 }
 
 .language-switcher button:hover,
-.language-switcher button.active {
+.language-switcher button.active,
+.language-switcher a:hover,
+.language-switcher a.active {
   color: var(--navy);
   background: var(--gold-light);
   border-color: var(--gold-light);
@@ -2471,7 +2476,8 @@ body.js-loaded .fade-in.visible {
     padding: 0 5px;
   }
 
-  .language-switcher button {
+  .language-switcher button,
+  .language-switcher a {
     padding: 6px 7px;
     font-size: 10px;
   }
@@ -2559,7 +2565,8 @@ body.js-loaded .fade-in.visible {
     order: 20;
   }
 
-  .language-switcher button {
+  .language-switcher button,
+  .language-switcher a {
     min-width: 76px;
     padding: 10px 12px;
     font-size: 12px;

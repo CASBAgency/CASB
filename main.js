@@ -104,23 +104,35 @@ function createLanguageSwitcher() {
   const navList = document.querySelector('.nav-links');
   if (!navList || navList.querySelector('.language-switcher')) return;
 
-  // Only offer a language switch on pages with a complete, reviewed translation.
-  if (!document.documentElement.hasAttribute('data-bilingual')) return;
+  const path = window.location.pathname;
+  const englishPath = path.replace(/^\/zh(?=\/|$)/, '') || '/';
+  const isBilingual = englishPath === '/' || englishPath === '/index.html' ||
+    englishPath === '/insights/' || englishPath === '/insights/index.html' ||
+    /^\/insights\/articles\/[^/]+\.html$/.test(englishPath);
+  if (!isBilingual) return;
+
+  const chinesePath = englishPath === '/' ? '/zh/index.html' : `/zh${englishPath}`;
 
   const item = document.createElement('li');
   item.className = 'language-switcher';
   item.setAttribute('aria-label', 'Language selector');
   item.innerHTML = `
-    <button type="button" data-lang-option="en" aria-label="Switch to English">EN</button>
+    <a data-lang-option="en" href="${englishPath}" aria-label="Switch to English">EN</a>
     <span aria-hidden="true">/</span>
-    <button type="button" data-lang-option="zh" aria-label="切换中文">中文</button>
+    <a data-lang-option="zh" href="${chinesePath}" aria-label="切换中文">中文</a>
   `;
 
   const ctaItem = navList.querySelector('.nav-cta')?.closest('li');
   navList.insertBefore(item, ctaItem || null);
 
-  item.querySelectorAll('button').forEach((button) => {
-    button.addEventListener('click', () => setSiteLanguage(button.dataset.langOption));
+  const currentLang = path.startsWith('/zh/') ? 'zh' : 'en';
+  item.querySelectorAll('[data-lang-option]').forEach((link) => {
+    const active = link.dataset.langOption === currentLang;
+    link.classList.toggle('active', active);
+    link.setAttribute('aria-current', active ? 'page' : 'false');
+    link.addEventListener('click', () => {
+      try { localStorage.setItem('casbLanguage', link.dataset.langOption); } catch {}
+    });
   });
 }
 
@@ -202,17 +214,6 @@ function setSiteLanguage(lang) {
 
 function initLanguageSwitcher() {
   createLanguageSwitcher();
-  if (!document.documentElement.hasAttribute('data-bilingual')) {
-    setSiteLanguage('en');
-    return;
-  }
-  let savedLang = 'en';
-  try {
-    savedLang = localStorage.getItem('casbLanguage') || 'en';
-  } catch {
-    savedLang = 'en';
-  }
-  setSiteLanguage(savedLang);
 }
 
 initLanguageSwitcher();

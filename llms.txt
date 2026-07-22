@@ -18,6 +18,8 @@ CASB Agency Sdn Bhd is a Malaysian financial advisory agency established in 2006
 - Recruitment campaign booking form: https://casb-six.vercel.app/campaigns/recruitment-booking.html
 - Our Team: https://casb-six.vercel.app/team/index.html
 - Insights: https://casb-six.vercel.app/insights/index.html
+- Chinese home: https://casb-six.vercel.app/zh/index.html
+- Chinese insights: https://casb-six.vercel.app/zh/insights/index.html
 - News and Events: https://casb-six.vercel.app/events/index.html
 - Achievements: https://casb-six.vercel.app/#achievements
 - Million Dollar Agency Awards: https://casb-six.vercel.app/mda-award/mda-award.html
@@ -44,6 +46,10 @@ CASB Agency Sdn Bhd is a Malaysian financial advisory agency established in 2006
 - Why a Medical Card Alone Isn't Enough: https://casb-six.vercel.app/insights/articles/why-medical-card-alone-isnt-enough.html
 - The Hidden Cost of Surviving a Critical Illness: https://casb-six.vercel.app/insights/articles/hidden-cost-critical-illness.html
 - Medical Card vs Critical Illness Coverage: https://casb-six.vercel.app/insights/articles/medical-card-vs-critical-illness.html
+
+## Chinese Content
+
+CASB provides complete Simplified Chinese versions of the homepage, Insights library, and every published Insight article. Chinese article URLs mirror the English paths under `/zh/insights/articles/`.
 
 ## Topics Covered
 
