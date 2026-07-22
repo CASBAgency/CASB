@@ -338,7 +338,7 @@ window.addEventListener('scroll', () => {
 
 const MONTHLY_ACHIEVERS_FEATURED = {
   label: 'June 2026 Recognition',
-  basePath: 'monthly-achievers/2026/JUN2026/',
+  basePath: '/monthly-achievers/2026/JUN2026/',
   files: [
     '1_TOP PRODUCERS (AFYP)_JUN26_LAI SIEW CHING_CHAMPION.png',
     '2_TOP PRODUCERS (AFYP)_JUN26_ESTHER TAN_FIRST RUNNER UP.png',
