@@ -431,6 +431,9 @@ def page_urls(source_path: Path) -> tuple[str, str]:
 
 def add_language_seo(rendered: str, source_path: Path) -> str:
     english_url, chinese_url = page_urls(source_path)
+    # CSS and JavaScript strings are not parsed as HTML attributes. Root-relative
+    # asset paths keep those images valid from every nested /zh/ route.
+    rendered = re.sub(r'(?:\.\./)+assets/', '/assets/', rendered)
     rendered = re.sub(r'<link rel="alternate" hreflang="[^"]+" href="[^"]+">\s*', "", rendered)
     rendered = rendered.replace("https://casb-six.vercel.app/insights/", "https://casb-six.vercel.app/zh/insights/")
     alternates = (
