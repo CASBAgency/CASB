@@ -73,7 +73,6 @@ const CASB_TRANSLATIONS = {
       ['.sidebar-title', {
         map: {
           'Popular Topics': '热门主题',
-          'Stay Informed': '订阅资讯',
           'Talk to an Advisor': '联系顾问'
         }
       }],
@@ -85,9 +84,7 @@ const CASB_TRANSLATIONS = {
           'Planning Basics': '规划基础',
           'Case Studies': '案例分享'
         }
-      }],
-      ['#newsletterBtn', '订阅'],
-      ['#newsletterEmail', { attr: 'placeholder', text: '您的电邮地址' }]
+      }]
     ],
     articles: [
       ['.art-cta h3', { map: { 'Need Help Understanding a Claim?': '需要协助了解理赔流程？' } }],

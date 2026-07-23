@@ -291,24 +291,6 @@ body { background: #F7F6F3; }
 .topic-arrow { font-size: 14px; color: var(--gold); opacity: 0; transition: opacity .2s; }
 .topic-item:hover .topic-arrow { opacity: 1; }
 
-/* Newsletter */
-.newsletter-input {
-  width: 100%; padding: 10px 14px; border: 1px solid rgba(0,0,0,.12);
-  border-radius: 6px; font-family: 'DM Sans', sans-serif; font-size: 13px;
-  margin-bottom: 10px; outline: none; background: var(--gray-light);
-  transition: border-color .2s;
-}
-.newsletter-input:focus { border-color: var(--gold); background: #fff; }
-.newsletter-btn {
-  width: 100%; padding: 11px; border: none; border-radius: 6px;
-  background: var(--ink); color: #fff;
-  font-family: 'DM Sans', sans-serif; font-size: 12px;
-  font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
-  cursor: pointer; transition: background .2s;
-}
-.newsletter-btn:hover { background: var(--gold); }
-.newsletter-note { font-size: 11px; color: var(--gray); margin-top: 8px; text-align: center; }
-
 /* Quick links */
 .quick-links { display: flex; flex-direction: column; gap: 8px; }
 .quick-link {
@@ -450,15 +432,6 @@ body { background: #F7F6F3; }
           <span class="topic-num">05</span><span>案例研究</span><span class="topic-arrow">→</span>
         </a>
       </div>
-    </div>
-
-    <!-- NEWSLETTER -->
-    <div class="sidebar-card">
-      <div class="sidebar-title">随时了解情况</div>
-      <p style="font-size:13px;color:var(--gray);line-height:1.6;margin-bottom:14px;">在收件箱中获取实用的财务提示。没有垃圾邮件，随时取消订阅。</p>
-      <input type="email" class="newsletter-input" placeholder="您的电子邮件地址" id="newsletterEmail">
-      <button class="newsletter-btn" id="newsletterBtn">订阅</button>
-      <div class="newsletter-note" id="newsletterMsg"></div>
     </div>
 
     <!-- QUICK LINKS -->
@@ -799,20 +772,6 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
 document.getElementById('searchInput').addEventListener('input', e => {
   searchTerm = e.target.value.toLowerCase().trim();
   applyFilters();
-});
-
-// ── NEWSLETTER ───────────────────────────────────────────────────────
-document.getElementById('newsletterBtn').addEventListener('click', () => {
-  const email = document.getElementById('newsletterEmail').value.trim();
-  const msg   = document.getElementById('newsletterMsg');
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    msg.textContent = 'Please enter a valid email.';
-    msg.style.color = '#e85d5d';
-    return;
-  }
-  msg.textContent = '✓ You\'re subscribed! Watch your inbox.';
-  msg.style.color = '#25D366';
-  document.getElementById('newsletterEmail').value = '';
 });
 
 </script>
