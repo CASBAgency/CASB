@@ -815,53 +815,6 @@ document.getElementById('newsletterBtn').addEventListener('click', () => {
   document.getElementById('newsletterEmail').value = '';
 });
 
-// ── AI ASK (Claude API) ──────────────────────────────────────────────
-document.getElementById('aiAskBtn')?.addEventListener('click', async () => {
-  const question = document.getElementById('aiQuestion').value.trim();
-  if (!question) return;
-
-  const btn      = document.getElementById('aiAskBtn');
-  const response = document.getElementById('aiResponse');
-
-  btn.disabled = true;
-  btn.innerHTML = '<span>Thinking</span><span style="display:flex;gap:4px;align-items:center"><span class="ai-dot"></span><span class="ai-dot"></span><span class="ai-dot"></span></span>';
-  response.classList.add('visible');
-  response.innerHTML = '<div class="ai-thinking"><div class="ai-dot"></div><div class="ai-dot"></div><div class="ai-dot"></div></div>';
-
-  try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        system: `You are a knowledgeable financial planning assistant for CASB Agency, a Malaysian financial advisory firm. 
-Answer questions about insurance, financial planning, protection, wealth, and retirement clearly and practically — focused on Malaysian context (EPF, Perkeso, private hospitals, ringgit costs, BNM regulations, Allianz products etc). 
-Keep answers concise (150-250 words), practical, and end with one specific actionable tip. 
-Never give specific product recommendations or claim to be giving personalised advice — always suggest speaking to a CASB advisor for personalised guidance.
-Format your response with short paragraphs. Use **bold** for key terms.`,
-        messages: [{ role: 'user', content: question }]
-      })
-    });
-
-    const data = await res.json();
-    const text = data.content?.[0]?.text || 'Sorry, I could not generate a response. Please try again.';
-
-    // Simple markdown bold
-    const formatted = text
-      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-      .replace(/\n\n/g, '</p><p>')
-      .replace(/\n/g, '<br>');
-
-    response.innerHTML = `<p>${formatted}</p><p style="margin-top:12px;font-size:11px;opacity:.5;font-style:italic">This is general information only, not personalised advice. Speak to a CASB advisor for guidance tailored to your situation.</p>`;
-  } catch (e) {
-    response.innerHTML = '<p style="color:rgba(255,100,100,.8)">Unable to connect. Please check your connection and try again.</p>';
-  }
-
-  btn.disabled = false;
-  btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4 20-7z"/></svg> Ask';
-});
-
 </script>
 <script type="module" src="../main.js"></script>
 </body>
