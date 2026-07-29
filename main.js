@@ -492,12 +492,22 @@ if (monthlyAchieversCarousel) {
   if (label) label.textContent = MONTHLY_ACHIEVERS_FEATURED.label;
 
   const nextBtn = monthlyAchieversCarousel.querySelector('.next');
+  const existingUrls = new Set(
+    Array.from(monthlyAchieversCarousel.querySelectorAll('img')).map((image) =>
+      new URL(image.getAttribute('src'), window.location.href).href
+    )
+  );
+
   MONTHLY_ACHIEVERS_FEATURED.files.forEach((file, index) => {
+    const imagePath = `${MONTHLY_ACHIEVERS_FEATURED.basePath}${file}`;
+    const imageUrl = new URL(imagePath, window.location.href).href;
+    if (existingUrls.has(imageUrl)) return;
+
     const image = document.createElement('img');
-    image.src = `${MONTHLY_ACHIEVERS_FEATURED.basePath}${file}`;
+    image.src = imagePath;
     image.alt = `CASB ${MONTHLY_ACHIEVERS_FEATURED.label} poster ${index + 1}`;
-    image.loading = index === 0 ? 'eager' : 'lazy';
-    if (index === 0) image.classList.add('active');
+    image.loading = 'lazy';
+    image.decoding = 'async';
     monthlyAchieversCarousel.insertBefore(image, nextBtn);
   });
 }
@@ -509,27 +519,54 @@ document.querySelectorAll('.ach-carousel').forEach((carousel) => {
   if (!slides.length || !prevBtn || !nextBtn) return;
 
   let index = 0;
+  let transitionPending = false;
 
-  function showSlide(nextIndex) {
-    index = (nextIndex + slides.length) % slides.length;
+  function activateSlide(nextIndex) {
+    index = nextIndex;
     slides.forEach((slide, slideIndex) => {
       slide.classList.toggle('active', slideIndex === index);
     });
   }
 
+  function preloadSlide(slideIndex) {
+    const slide = slides[slideIndex];
+    if (!slide || slide.complete) return;
+    slide.loading = 'eager';
+  }
+
+  async function showSlide(nextIndex) {
+    if (transitionPending) return;
+
+    const targetIndex = (nextIndex + slides.length) % slides.length;
+    const target = slides[targetIndex];
+    transitionPending = true;
+    target.loading = 'eager';
+
+    try {
+      if (!target.complete || !target.naturalWidth) await target.decode();
+      if (target.naturalWidth) activateSlide(targetIndex);
+    } catch {
+      // Keep the current poster visible if the next image cannot be loaded.
+    } finally {
+      transitionPending = false;
+      preloadSlide((index + 1) % slides.length);
+    }
+  }
+
   nextBtn.addEventListener('click', (event) => {
     event.preventDefault();
     event.stopPropagation();
-    showSlide(index + 1);
+    void showSlide(index + 1);
   });
 
   prevBtn.addEventListener('click', (event) => {
     event.preventDefault();
     event.stopPropagation();
-    showSlide(index - 1);
+    void showSlide(index - 1);
   });
 
-  window.setInterval(() => showSlide(index + 1), 4500);
+  preloadSlide((index + 1) % slides.length);
+  window.setInterval(() => void showSlide(index + 1), 4500);
 });
 
 document.querySelectorAll('.cover-slideshow').forEach((slideshow) => {
