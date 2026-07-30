@@ -4,6 +4,22 @@ Everything you need to post a new article, update the featured slot, and keep th
 
 ---
 
+## Mandatory bilingual release rule
+
+Every new Insights article is one bilingual release. Do not publish only one language.
+
+1. Create the English page in `insights/articles/`.
+2. Create the Chinese page in `zh/insights/articles/` using the exact same filename.
+3. Translate the full article accurately, including the title, metadata, breadcrumb, headings, body, FAQ, calls to action, table of contents, image alt text, and related-article labels.
+4. Keep factual meaning, figures, dates, disclaimers, links, images, and layout consistent between both versions.
+5. Add reciprocal `hreflang` links for `en-MY`, `zh-Hans-MY`, and `x-default`.
+6. Add matching entries to both `insights/index.html` and `zh/insights/index.html`.
+7. Test both pages on desktop and mobile before committing them together.
+
+The layout values in `TEMPLATE.html` are the website standard. New articles must preserve the `.art-layout`, `.art-content`, sidebar, and responsive rules unless a site-wide layout update is intentionally applied to every article.
+
+---
+
 ## Folder Structure
 
 ```
@@ -209,13 +225,19 @@ The site updates within ~2 minutes.
 ## Checklist before publishing
 
 - [ ] Filename is lowercase with hyphens, ends in `.html`
+- [ ] English and Chinese pages exist with the exact same filename
+- [ ] The Chinese page is a complete, accurate translation rather than a placeholder
+- [ ] Both pages use the current article template and layout dimensions
+- [ ] Reciprocal `hreflang` links point to the correct English and Chinese pages
 - [ ] `<title>` is filled in (not "YOUR ARTICLE TITLE HERE")
 - [ ] Meta description is filled in
 - [ ] Hero: category badge, title, date, read time all updated
 - [ ] Table of Contents matches the `<h2>` headings in the article
 - [ ] Related articles are relevant (update the 3 links)
 - [ ] Article added to `ARTICLES` array in `insights/index.html`
+- [ ] Translated article added to `ARTICLES` array in `zh/insights/index.html`
 - [ ] New article is the **first item** in the array (to become featured)
+- [ ] English and Chinese pages tested on desktop and mobile
 - [ ] Committed and pushed to GitHub
 
 ---
