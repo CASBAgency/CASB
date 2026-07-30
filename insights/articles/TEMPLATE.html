@@ -75,11 +75,11 @@ nav { background: rgba(13,31,60,.97); backdrop-filter: blur(8px); border-bottom:
 
 /* ── ARTICLE LAYOUT ── */
 .art-layout {
-  max-width: 1100px; margin: 0 auto;
-  padding: 56px 5% 80px;
+  max-width: 1320px; margin: 0 auto;
+  padding: 56px 32px 80px;
   display: grid;
-  grid-template-columns: 1fr 300px;
-  gap: 56px;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 48px;
   align-items: start;
 }
 
@@ -271,7 +271,7 @@ nav { background: rgba(13,31,60,.97); backdrop-filter: blur(8px); border-bottom:
 
 /* ── RESPONSIVE ── */
 @media (max-width: 860px) {
-  .art-layout { grid-template-columns: 1fr; gap: 32px; }
+  .art-layout { grid-template-columns: minmax(0, 1fr); gap: 32px; }
   .art-sidebar { position: static; }
   .art-content { padding: 28px 22px; }
   .art-hero { padding: 100px 6% 48px; }
