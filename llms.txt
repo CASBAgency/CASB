@@ -29,6 +29,7 @@ CASB Agency Sdn Bhd is a Malaysian financial advisory agency established in 2006
 
 ## Current Insight Articles
 
+- What Happens to Your Assets When You Die Without a Will in Malaysia?: https://casb-six.vercel.app/insights/articles/die-without-will-malaysia.html
 - How Much Critical Illness Coverage Do You Need in Malaysia?: https://casb-six.vercel.app/insights/articles/how-much-critical-illness-coverage-malaysia.html
 - Can You Have Two Medical Cards in Malaysia? How Multiple Policies and Claims Work: https://casb-six.vercel.app/insights/articles/two-medical-cards-malaysia.html
 - Medical Card Annual Limit Explained: What Happens When You Reach It?: https://casb-six.vercel.app/insights/articles/medical-card-annual-limit-malaysia.html
