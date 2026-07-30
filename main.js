@@ -215,6 +215,65 @@ function initLanguageSwitcher() {
 
 initLanguageSwitcher();
 
+function initTeamDropdown() {
+  const teamLinks = Array.from(document.querySelectorAll('.nav-links > li > a')).filter((link) => {
+    const href = link.getAttribute('href') || '';
+    return /(^|\/)team\/?$/.test(href) || href === './';
+  });
+
+  teamLinks.forEach((teamLink) => {
+    const item = teamLink.closest('li');
+    if (!item || item.classList.contains('nav-dropdown')) return;
+
+    const membersHref = teamLink.getAttribute('href') || '/team/';
+    const leaderboardHref = membersHref === './'
+      ? 'leaderboard.html'
+      : `${membersHref.replace(/\/?$/, '/')}leaderboard.html`;
+    const chinese = document.documentElement.lang.toLowerCase().startsWith('zh') ||
+      teamLink.textContent.includes('团队');
+    const onLeaderboard = /\/team\/leaderboard\.html$/.test(window.location.pathname);
+    const onMembers = !onLeaderboard && /\/team\/(?:index\.html)?$/.test(window.location.pathname);
+
+    item.classList.add('nav-dropdown');
+    item.innerHTML = `
+      <button class="nav-dropdown-toggle" type="button" aria-expanded="false">
+        <span>${chinese ? '我们的团队' : 'Our Team'}</span>
+        <span class="nav-dropdown-chevron" aria-hidden="true"></span>
+      </button>
+      <ul class="nav-dropdown-menu">
+        <li><a href="${membersHref}"${onMembers ? ' aria-current="page"' : ''}>${chinese ? '团队成员' : 'Members'}</a></li>
+        <li><a href="${leaderboardHref}"${onLeaderboard ? ' aria-current="page"' : ''}>${chinese ? '排行榜' : 'Leaderboard'}</a></li>
+      </ul>
+    `;
+
+    const toggle = item.querySelector('.nav-dropdown-toggle');
+    toggle.addEventListener('click', (event) => {
+      event.stopPropagation();
+      const open = item.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.nav-dropdown.open').forEach((item) => {
+      item.classList.remove('open');
+      item.querySelector('.nav-dropdown-toggle')?.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') return;
+    document.querySelectorAll('.nav-dropdown.open').forEach((item) => {
+      item.classList.remove('open');
+      const toggle = item.querySelector('.nav-dropdown-toggle');
+      toggle?.setAttribute('aria-expanded', 'false');
+      toggle?.focus();
+    });
+  });
+}
+
+initTeamDropdown();
+
 function initArticleHeroCover() {
   const hero = document.querySelector('.art-hero');
   const cover = document.querySelector('meta[property="og:image"]')?.content;

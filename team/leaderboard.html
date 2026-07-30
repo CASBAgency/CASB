@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Team Leaderboard | CASB Agency</title>
+<meta name="description" content="CASB Agency team leaderboard for monthly business production recognition. Verified results will be published after management review.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://casb-six.vercel.app/team/leaderboard.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://casb-six.vercel.app/team/leaderboard.html">
+<meta property="og:title" content="Team Leaderboard | CASB Agency">
+<meta property="og:description" content="Monthly CASB Agency production recognition and team leaderboard.">
+<meta property="og:image" content="https://casb-six.vercel.app/assets/hero-bg.png">
+<meta property="og:site_name" content="CASB Agency">
+<meta property="og:locale" content="en_MY">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<style>
+body { background: #f4f5f6; }
+.team-nav { background: rgba(7,15,30,.96); border-bottom: 1px solid rgba(184,146,42,.38); }
+.leaderboard-page { min-height: 100vh; padding: 142px 5% 90px; color: var(--navy); background: linear-gradient(180deg, #f8f8f5 0%, #eef1f3 100%); }
+.leaderboard-inner { width: min(1180px, 100%); margin: 0 auto; }
+.leaderboard-hero { max-width: 760px; margin: 0 auto 48px; text-align: center; }
+.leaderboard-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(40px, 5vw, 66px); line-height: 1.08; margin: 14px 0 16px; }
+.leaderboard-hero p { color: rgba(7,15,30,.64); font-size: 16px; line-height: 1.75; }
+.leaderboard-status { display: inline-flex; align-items: center; gap: 8px; margin-top: 20px; padding: 9px 13px; border: 1px solid rgba(184,146,42,.4); border-radius: 4px; background: #fff; color: var(--gold-dark); font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.leaderboard-status::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--gold); }
+.leaderboard-toolbar { margin-bottom: 30px; padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; gap: 20px; border-top: 1px solid rgba(184,146,42,.38); border-bottom: 1px solid rgba(184,146,42,.38); }
+.leaderboard-toolbar strong { font-family: 'Playfair Display', serif; font-size: 20px; }
+.leaderboard-toolbar span { color: rgba(7,15,30,.55); font-size: 13px; }
+.podium { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: end; margin-bottom: 26px; }
+.podium-card { min-height: 270px; padding: 30px 24px; background: #fff; border: 1px solid rgba(184,146,42,.38); border-radius: 7px; box-shadow: 0 16px 38px rgba(7,15,30,.08); text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.podium-card.first { min-height: 310px; border-color: rgba(184,146,42,.78); box-shadow: 0 20px 46px rgba(184,146,42,.15); }
+.podium-rank { width: 58px; height: 58px; border-radius: 50%; display: grid; place-items: center; margin-bottom: 18px; background: var(--navy); color: var(--gold-light); font-family: 'Playfair Display', serif; font-size: 25px; font-weight: 700; }
+.podium-card.first .podium-rank { width: 70px; height: 70px; background: var(--gold); color: #fff; font-size: 30px; }
+.podium-card h2 { font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 8px; }
+.podium-card p { color: rgba(7,15,30,.52); font-size: 13px; line-height: 1.55; }
+.ranking-list { background: #fff; border: 1px solid rgba(184,146,42,.32); border-radius: 7px; overflow: hidden; box-shadow: 0 16px 38px rgba(7,15,30,.07); }
+.ranking-row { min-height: 72px; padding: 14px 22px; display: grid; grid-template-columns: 54px 1fr auto; gap: 18px; align-items: center; border-bottom: 1px solid #eceae5; }
+.ranking-row:last-child { border-bottom: 0; }
+.ranking-position { color: var(--gold-dark); font-family: 'Playfair Display', serif; font-size: 21px; font-weight: 700; }
+.ranking-name { font-weight: 600; }
+.ranking-value { color: rgba(7,15,30,.48); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; }
+.leaderboard-note { margin-top: 26px; padding: 22px 24px; border-left: 3px solid var(--gold); background: #fff; color: rgba(7,15,30,.62); font-size: 13px; line-height: 1.7; }
+@media (max-width: 760px) {
+  .leaderboard-page { padding: 112px 5% 68px; }
+  .podium { grid-template-columns: 1fr; align-items: stretch; }
+  .podium-card, .podium-card.first { min-height: 220px; }
+  .podium-card.first { order: -1; }
+  .leaderboard-toolbar { align-items: flex-start; flex-direction: column; }
+}
+@media (max-width: 480px) {
+  .ranking-row { grid-template-columns: 42px 1fr; gap: 10px; }
+  .ranking-value { grid-column: 2; }
+}
+</style>
+<link rel="icon" type="image/x-icon" href="../assets/favicon/favicon.ico">
+<link rel="apple-touch-icon" href="../assets/favicon/apple-touch-icon.png">
+</head>
+<body>
+<nav class="team-nav">
+  <a href="../index.html" class="nav-logo">
+    <img src="../assets/logo_casb.png" alt="CASB Agency">
+    <div class="logo-text"><span class="logo-est">EST. 2006</span></div>
+  </a>
+  <button class="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  <ul class="nav-links">
+    <li><a href="../index.html#about">About Us</a></li>
+    <li><a href="./">Our Team</a></li>
+    <li><a href="../index.html#achievements">Achievements</a></li>
+    <li><a href="../index.html#events">Events</a></li>
+    <li><a href="../insights/">Insights</a></li>
+    <li><a href="../index.html#branches">Branches</a></li>
+    <li><a href="../index.html#contact">Contact</a></li>
+    <li><a href="http://member.casb2u.com/" class="nav-cta">Agent Login</a></li>
+  </ul>
+</nav>
+
+<main class="leaderboard-page">
+  <div class="leaderboard-inner">
+    <header class="leaderboard-hero">
+      <div class="section-tag">Team Recognition</div>
+      <h1>CASB Leaderboard</h1>
+      <div class="gold-line" style="margin-left:auto;margin-right:auto"></div>
+      <p>A dedicated space to recognise consistent activity, business production, and the people moving CASB forward.</p>
+      <div class="leaderboard-status">Data connection coming soon</div>
+    </header>
+
+    <div class="leaderboard-toolbar">
+      <strong>Monthly Production</strong>
+      <span>Reporting period and verified results will appear here.</span>
+    </div>
+
+    <section class="podium" aria-label="Top three leaderboard positions">
+      <article class="podium-card second">
+        <div class="podium-rank">2</div>
+        <h2>Second Place</h2>
+        <p>Agent result pending verified Daily Report data.</p>
+      </article>
+      <article class="podium-card first">
+        <div class="podium-rank">1</div>
+        <h2>First Place</h2>
+        <p>Agent result pending verified Daily Report data.</p>
+      </article>
+      <article class="podium-card third">
+        <div class="podium-rank">3</div>
+        <h2>Third Place</h2>
+        <p>Agent result pending verified Daily Report data.</p>
+      </article>
+    </section>
+
+    <section class="ranking-list" aria-label="Remaining leaderboard positions">
+      <div class="ranking-row"><span class="ranking-position">04</span><span class="ranking-name">Position available</span><span class="ranking-value">Awaiting results</span></div>
+      <div class="ranking-row"><span class="ranking-position">05</span><span class="ranking-name">Position available</span><span class="ranking-value">Awaiting results</span></div>
+      <div class="ranking-row"><span class="ranking-position">06</span><span class="ranking-name">Position available</span><span class="ranking-value">Awaiting results</span></div>
+      <div class="ranking-row"><span class="ranking-position">07</span><span class="ranking-name">Position available</span><span class="ranking-value">Awaiting results</span></div>
+      <div class="ranking-row"><span class="ranking-position">08</span><span class="ranking-name">Position available</span><span class="ranking-value">Awaiting results</span></div>
+      <div class="ranking-row"><span class="ranking-position">09</span><span class="ranking-name">Position available</span><span class="ranking-value">Awaiting results</span></div>
+      <div class="ranking-row"><span class="ranking-position">10</span><span class="ranking-name">Position available</span><span class="ranking-value">Awaiting results</span></div>
+    </section>
+
+    <p class="leaderboard-note">This is the leaderboard framework only. Rankings will be published after CASB management confirms the category, reporting period, calculation rules, and reviewed Daily Report output.</p>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-main">
+    <div class="footer-brand">
+      <img src="../assets/logo_casb.png" alt="CASB Agency Logo">
+      <p>CASB Agency Sdn Bhd is a financial advisory agency established in 2006, committed to professional service, leadership development, and long-term client care.</p>
+    </div>
+    <div class="footer-column">
+      <h4>Quick Links</h4>
+      <a href="../index.html#about">About Us</a>
+      <a href="./">Our Team</a>
+      <a href="leaderboard.html">Leaderboard</a>
+      <a href="../index.html#achievements">Achievements</a>
+      <a href="../index.html#events">Events</a>
+      <a href="../insights/">Insights</a>
+      <a href="../index.html#contact">Contact</a>
+    </div>
+    <div class="footer-column footer-contact">
+      <h4>Contact</h4>
+      <p><strong>Phone</strong><br><a href="tel:+60362799388">03-6279 9388</a></p>
+      <p><strong>Email</strong><br><a href="mailto:admin@casb2u.com">admin@casb2u.com</a></p>
+      <p><strong>Address</strong><br>B-5-32, Block B, Ativo Plaza,<br>Damansara Avenue, 52200 Kuala Lumpur</p>
+    </div>
+    <div class="footer-column footer-contact">
+      <h4>Opening Hours</h4>
+      <p><strong>Monday - Friday</strong><br>08:30 - 17:30</p>
+      <p><strong>Saturday, Sunday & Public Holidays</strong><br>Closed</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy;2026 CASB Agency Sdn Bhd. All rights reserved.</p>
+    <div class="footer-legal">
+      <a href="../privacy-notice.html">Privacy Notice</a>
+      <a href="../terms-of-use.html">Terms of Use</a>
+    </div>
+  </div>
+</footer>
+<script src="../main.js"></script>
+</body>
+</html>
