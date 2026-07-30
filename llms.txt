@@ -29,6 +29,7 @@ CASB Agency Sdn Bhd is a Malaysian financial advisory agency established in 2006
 
 ## Current Insight Articles
 
+- What Assets Are—and Aren’t—Covered by a Will in Malaysia?: https://casb-six.vercel.app/insights/articles/assets-covered-by-will-malaysia.html
 - Nominee vs Beneficiary in Malaysia: What’s the Difference?: https://casb-six.vercel.app/insights/articles/nominee-vs-beneficiary-malaysia.html
 - What Happens to Your Assets When You Die Without a Will in Malaysia?: https://casb-six.vercel.app/insights/articles/die-without-will-malaysia.html
 - How Much Critical Illness Coverage Do You Need in Malaysia?: https://casb-six.vercel.app/insights/articles/how-much-critical-illness-coverage-malaysia.html
