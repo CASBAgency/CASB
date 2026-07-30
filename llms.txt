@@ -29,6 +29,7 @@ CASB Agency Sdn Bhd is a Malaysian financial advisory agency established in 2006
 
 ## Current Insight Articles
 
+- Can You Have Two Medical Cards in Malaysia? How Multiple Policies and Claims Work: https://casb-six.vercel.app/insights/articles/two-medical-cards-malaysia.html
 - Medical Card Annual Limit Explained: What Happens When You Reach It?: https://casb-six.vercel.app/insights/articles/medical-card-annual-limit-malaysia.html
 - Insurance Claim Rejected in Malaysia? Common Reasons and What to Do Next: https://casb-six.vercel.app/insights/articles/insurance-claim-rejected-malaysia.html
 - Co-Insurance in Malaysian Medical Cards: What Do You Actually Pay When You Claim?: https://casb-six.vercel.app/insights/articles/co-insurance-medical-card-malaysia.html
