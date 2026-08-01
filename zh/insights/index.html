@@ -776,6 +776,7 @@ const CAT_ICONS = {
 // ── RENDER ────────────────────────────────────────────────────────────
 function renderFeatured(article) {
   const el = document.getElementById('featuredCard');
+  const publishYear = article.date.match(/\b\d{4}\b/)?.[0] || '';
   el.href = article.href;
   el.innerHTML = `
     <div class="featured-img">
@@ -785,7 +786,7 @@ function renderFeatured(article) {
     <div class="featured-content">
       <h2>${article.title}</h2>
       <p>${article.excerpt}</p>
-      <div class="meta"><span>${article.catLabel}</span> · ${article.readTime}</div>
+      <div class="meta"><span>${article.catLabel}</span> · ${article.readTime} · 发布于 ${publishYear} 年</div>
       <div class="reviewed-by">经 CASB 顾问团队审核</div>
       <span class="read-btn">阅读文章 →</span>
     </div>`;
@@ -795,6 +796,7 @@ function renderGrid(articles) {
   const grid = document.getElementById('articleGrid');
   grid.innerHTML = articles.map((a, i) => {
     if (i === 0) return ''; // skip featured (index 0)
+    const publishYear = a.date.match(/\b\d{4}\b/)?.[0] || '';
     const thumbClass = a.image ? 'art-thumb' : 'art-thumb no-img';
     const thumbMedia = a.image ? `<img src="${a.image}" alt="${a.title}" loading="lazy" decoding="async">` : (CAT_ICONS[a.cat] || '');
     return `
@@ -805,7 +807,7 @@ function renderGrid(articles) {
       </div>
       <div class="art-body">
         <h3>${a.title}</h3>
-        <div class="art-meta"><span>${a.readTime}</span></div>
+        <div class="art-meta"><span>${a.readTime}</span><span class="dot">·</span><span>发布于 ${publishYear} 年</span></div>
         <div class="reviewed-by">经 CASB 顾问团队审核</div>
         <span class="art-link">Read More →</span>
       </div>
@@ -836,7 +838,9 @@ function applyFilters() {
     return;
   }
   document.getElementById('noResults').classList.remove('show');
-  grid.innerHTML = filtered.map(a => `
+  grid.innerHTML = filtered.map(a => {
+    const publishYear = a.date.match(/\b\d{4}\b/)?.[0] || '';
+    return `
     <a class="art-card" href="${a.href}" data-cat="${a.cat}" data-title="${a.title.toLowerCase()}">
       <div class="${a.image ? 'art-thumb' : 'art-thumb no-img'}">
         ${a.image ? `<img src="${a.image}" alt="${a.title}" loading="lazy" decoding="async">` : (CAT_ICONS[a.cat] || '')}
@@ -844,11 +848,12 @@ function applyFilters() {
       </div>
       <div class="art-body">
         <h3>${a.title}</h3>
-        <div class="art-meta"><span>${a.readTime}</span></div>
+        <div class="art-meta"><span>${a.readTime}</span><span class="dot">·</span><span>发布于 ${publishYear} 年</span></div>
         <div class="reviewed-by">经 CASB 顾问团队审核</div>
         <span class="art-link">Read More →</span>
       </div>
-    </a>`).join('');
+    </a>`;
+  }).join('');
 }
 
 function filterBy(cat) {
