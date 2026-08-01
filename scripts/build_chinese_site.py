@@ -10,6 +10,7 @@ import time
 import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
+from datetime import date
 from html.parser import HTMLParser
 from pathlib import Path
 
@@ -49,6 +50,21 @@ PROTECTED_TERMS = {
 }
 
 CHINESE_NORMALISATION = {
+    "如果再次被录取怎么办？": "如果再次住院怎么办？",
+    "您政策的实际措辞控制着结果。": "最终结果取决于您保单的实际条款。",
+    "医疗政策可能会针对疾病、特定状况或新增福利规定等待期。": "医疗保单可能会针对疾病、特定状况或新增保障规定等待期。",
+    "所涉及的政策规定": "所涉及的保单条款",
+    "涉及的政策条款": "涉及的保单条款",
+    "取决于政策、事实和现行规则": "取决于保单条款、个案事实和现行规则",
+    "检查政策时间表和措辞": "查看保单附表和条款",
+    "医疗政策": "医疗保单",
+    "多种医疗政策": "多份医疗保单",
+    "两项医疗政策": "两份医疗保单",
+    "通用序列政策": "通用的保单使用顺序",
+    "影响录取": "影响核保结果",
+    "确认新政策已发布、有效、被理解且适用": "确认新保单已签发、生效、条款清楚并适合您的需要",
+    "如果计划有上限如果您的共同保险为每个保单年度 RM1,000": "如果计划将每个保单年度的共同保险上限设为 RM1,000",
+    "精确的计算始终取决于政策措辞": "确切计算仍须以保单条款为准",
     "美国东部时间。 2006": "EST. 2006",
     "美国东部时间。2006": "EST. 2006",
     "医疗卡": "医药卡",
@@ -458,14 +474,14 @@ def add_language_seo(rendered: str, source_path: Path) -> str:
 
 def add_english_language_seo(source: str, source_path: Path) -> str:
     updated = source
-    if 'hreflang="zh-Hans-MY"' not in updated:
-        english_url, chinese_url = page_urls(source_path)
-        alternates = (
-            f'<link rel="alternate" hreflang="en-MY" href="{english_url}">\n'
-            f'<link rel="alternate" hreflang="zh-Hans-MY" href="{chinese_url}">\n'
-            f'<link rel="alternate" hreflang="x-default" href="{english_url}">'
-        )
-        updated = re.sub(r'(<link rel="canonical" href="[^"]+">)', rf'\1\n{alternates}', updated, count=1)
+    english_url, chinese_url = page_urls(source_path)
+    alternates = (
+        f'<link rel="alternate" hreflang="en-MY" href="{english_url}">\n'
+        f'<link rel="alternate" hreflang="zh-Hans-MY" href="{chinese_url}">\n'
+        f'<link rel="alternate" hreflang="x-default" href="{english_url}">'
+    )
+    updated = re.sub(r'<link rel="alternate" hreflang="[^"]+" href="[^"]+">\s*', "", updated)
+    updated = re.sub(r'(<link rel="canonical" href="[^"]+">)', rf'\1\n{alternates}', updated, count=1)
     if source_path != ROOT / "index.html":
         updated = re.sub(r'<script(?![^>]*\btype=)([^>]*\bsrc="[^"]*main\.js"[^>]*)>',
                          r'<script type="module"\1>', updated)
@@ -495,7 +511,7 @@ def update_sitemap() -> None:
             continue
         url = ET.SubElement(root, f"{namespace}url")
         ET.SubElement(url, f"{namespace}loc").text = chinese_url
-        ET.SubElement(url, f"{namespace}lastmod").text = "2026-07-22"
+        ET.SubElement(url, f"{namespace}lastmod").text = date.today().isoformat()
         ET.SubElement(url, f"{namespace}changefreq").text = "monthly"
         ET.SubElement(url, f"{namespace}priority").text = "0.8" if "insights" in chinese_url else "1.0"
     ET.indent(tree, space="  ")
