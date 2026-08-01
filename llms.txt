@@ -29,6 +29,7 @@ CASB Agency Sdn Bhd is a Malaysian financial advisory agency established in 2006
 
 ## Current Insight Articles
 
+- MRTA vs MLTA vs Life Insurance in Malaysia: https://casb-six.vercel.app/insights/articles/mrta-mlta-life-insurance-malaysia.html
 - How Much Life Insurance Coverage Do You Need in Malaysia?: https://casb-six.vercel.app/insights/articles/how-much-life-insurance-coverage-malaysia.html
 - Insurance on a Limited Budget: What Should Malaysians Prioritise First?: https://casb-six.vercel.app/insights/articles/insurance-on-limited-budget-malaysia.html
 - What Is Probate in Malaysia, and How Long Does Estate Administration Take?: https://casb-six.vercel.app/insights/articles/probate-estate-administration-malaysia.html

@@ -379,22 +379,23 @@ nav { background: rgba(13,31,60,.97); border-bottom: 1px solid rgba(255,255,255,
 .featured-wrap { margin-bottom: 54px; }
 .featured-label, .section-heading, .sidebar-title { color: var(--ink); letter-spacing: .08em; font-size: 12px; }
 .featured-label::after, .section-heading::after { background: rgba(13,31,60,.18); }
-.featured-card { grid-template-columns: 1.15fr .85fr; border-radius: 0; border-top: 1px solid var(--ink); border-bottom: 1px solid rgba(13,31,60,.18); box-shadow: none; }
+.featured-card { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); border-radius: 0; border-top: 1px solid var(--ink); border-bottom: 1px solid rgba(13,31,60,.18); box-shadow: none; }
 .featured-card:hover { box-shadow: none; transform: none; }
-.featured-img { min-height: 330px; order: 2; }
+.featured-img { min-height: 0; aspect-ratio: 1; order: 1; }
 .featured-img img { object-fit: contain; background: #edf0f4; }
 .featured-img .feat-cat { top: 14px; left: 14px; }
-.featured-content { order: 1; padding: 36px 42px 36px 0; align-items: flex-start; }
+.featured-content { order: 2; padding: 36px 0 36px 42px; align-items: flex-start; }
 .featured-content h2 { font-size: clamp(28px, 3vw, 40px); line-height: 1.14; letter-spacing: -.018em; }
 .featured-content p { font-size: 15px; }
 .article-grid { display: flex; flex-direction: column; gap: 0; }
-.art-card { display: grid; grid-template-columns: minmax(0, 1fr) 190px; gap: 28px; padding: 24px 0; border-radius: 0; border-bottom: 1px solid rgba(13,31,60,.16); box-shadow: none; }
+.art-card, .art-card[data-cat] { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 26px; padding: 24px 0; border-radius: 0; border-bottom: 1px solid rgba(13,31,60,.16); box-shadow: none; }
 .art-card:first-child { border-top: 1px solid var(--ink); }
 .art-card:hover { box-shadow: none; transform: none; }
-.art-thumb { order: 2; height: 126px; border-radius: 2px; }
+.art-thumb { order: 1; height: auto; aspect-ratio: 1; border-radius: 2px; }
 .art-thumb img { object-fit: contain; padding: 4px; background: #edf0f4; }
-.art-body { order: 1; padding: 0; gap: 9px; }
+.art-body { order: 2; padding: 0; gap: 9px; }
 .art-body h3 { font-size: 22px; line-height: 1.25; letter-spacing: -.01em; flex: 0; }
+.art-excerpt { margin: 0; color: var(--gray); font-size: 13px; line-height: 1.5; }
 .art-link { margin-top: auto; }
 .art-card:hover .art-body h3 { color: var(--gold); }
 .art-card:hover .art-thumb img { transform: scale(1.025); }
@@ -412,9 +413,9 @@ nav { background: rgba(13,31,60,.97); border-bottom: 1px solid rgba(255,255,255,
   .ins-hero h1 { font-size: clamp(46px, 11vw, 72px); }
   .filter-inner { margin: 0; padding: 0 4%; }
   .tab-btn:first-child { padding-left: 16px; }
-  .ins-body { margin: 0; padding: 44px 6% 72px; }
-  .featured-card { grid-template-columns: 1fr; }
-  .featured-img { order: 1; min-height: 260px; }
+  .ins-body { margin: 0; padding: 44px 6% 72px; grid-template-columns: 1fr; }
+  .featured-card { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); }
+  .featured-img { order: 1; min-height: 0; }
   .featured-content { order: 2; padding: 28px 0; }
 }
 @media (max-width: 600px) {
@@ -422,10 +423,12 @@ nav { background: rgba(13,31,60,.97); border-bottom: 1px solid rgba(255,255,255,
   .ins-hero p { font-size: 16px; }
   .ins-stat { min-width: auto; padding-right: 18px; margin-right: 18px; }
   .ins-body { padding: 34px 5% 60px; }
-  .art-card { grid-template-columns: minmax(0, 1fr) 112px; gap: 16px; padding: 20px 0; }
-  .art-thumb { height: 86px; }
+  .featured-card { grid-template-columns: 1fr; }
+  .art-card, .art-card[data-cat] { grid-template-columns: 96px minmax(0, 1fr); gap: 16px; padding: 20px 0; }
+  .art-thumb { height: 96px; }
   .art-thumb .art-cat { display: none; }
   .art-body h3 { font-size: 17px; }
+  .art-excerpt { display: none; }
   .art-link, .art-card .reviewed-by { display: none; }
   .featured-content h2 { font-size: 28px; }
 }
@@ -609,6 +612,7 @@ nav { background: rgba(13,31,60,.97); border-bottom: 1px solid rgba(255,255,255,
 // TO PUBLISH A NEW ARTICLE: add an object to the TOP of this array.
 // The first item is always auto-promoted to the Featured slot.
 const ARTICLES = [
+  { title: "MRTA、MLTA 与人寿保险有什么不同？身故后房贷和房子会怎样？", cat: "financial", catLabel: "遗产规划", excerpt: "了解递减、水平及一般人寿保障，并说明清偿贷款为何不代表产业自动转名。", readTime: "7 分钟阅读", date: "2026 年 8 月 1 日", href: "articles/mrta-mlta-life-insurance-malaysia.html", image: "/assets/insights/mrta-mlta-life-insurance-malaysia.png" },
   { title: "在马来西亚，人寿保障需要多少才足够？", cat: "protection", catLabel: "保障规划", excerpt: "按家庭支援、债务、教育与家属需要，扣除储蓄及现有身故利益后估算保障缺口。", readTime: "7 分钟阅读", date: "2026 年 8 月 1 日", href: "articles/how-much-life-insurance-coverage-malaysia.html", image: "/assets/insights/how-much-life-insurance-coverage-malaysia.png" },
   {
     title: "预算有限怎么安排保险？马来西亚家庭的保障优先顺序",
@@ -890,6 +894,7 @@ function renderGrid(articles) {
       </div>
       <div class="art-body">
         <h3>${a.title}</h3>
+        <p class="art-excerpt">${a.excerpt}</p>
         <div class="art-meta"><span>${a.readTime}</span><span class="dot">·</span><span>发布于 ${publishYear} 年</span></div>
         <div class="reviewed-by">经 CASB 顾问团队审核</div>
         <span class="art-link">Read More →</span>
@@ -931,6 +936,7 @@ function applyFilters() {
       </div>
       <div class="art-body">
         <h3>${a.title}</h3>
+        <p class="art-excerpt">${a.excerpt}</p>
         <div class="art-meta"><span>${a.readTime}</span><span class="dot">·</span><span>发布于 ${publishYear} 年</span></div>
         <div class="reviewed-by">经 CASB 顾问团队审核</div>
         <span class="art-link">Read More →</span>
