@@ -47,7 +47,7 @@ body { background: #F7F6F3; }
 /* ── HERO ── */
 .ins-hero {
   background: linear-gradient(135deg, rgba(10,24,40,.88) 0%, rgba(13,31,60,.82) 55%, rgba(26,51,88,.72) 100%), url("/assets/insight.png") center/cover no-repeat;
-  padding: 120px 10% 80px;
+  padding: 104px 10% 64px;
   position: relative;
   overflow: hidden;
 }
@@ -101,9 +101,11 @@ body { background: #F7F6F3; }
 .filter-bar {
   background: var(--white);
   border-bottom: 1px solid rgba(0,0,0,.07);
-  position: sticky; top: 0; z-index: 50;
+  position: sticky; top: 72px; z-index: 50;
   box-shadow: 0 2px 12px rgba(0,0,0,.06);
+  transition: top .28s ease;
 }
+body:has(nav.nav-hidden) .filter-bar { top: 0; }
 .filter-inner {
   max-width: 1360px; margin: 0 auto;
   display: flex; align-items: center; justify-content: space-between;
@@ -140,7 +142,7 @@ body { background: #F7F6F3; }
 /* ── MAIN LAYOUT ── */
 .ins-body {
   max-width: 1360px; margin: 0 auto;
-  padding: 56px 32px 80px;
+  padding: 48px 32px 80px;
   display: grid;
   grid-template-columns: 1fr 320px;
   gap: 40px;
@@ -176,7 +178,7 @@ body { background: #F7F6F3; }
 .featured-img .feat-cat {
   position: absolute; top: 18px; left: 18px;
   background: var(--gold); color: #fff;
-  font-size: 10px; letter-spacing: .16em; text-transform: uppercase;
+  font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
   font-weight: 700; padding: 5px 12px; border-radius: 3px;
 }
 .featured-content {
@@ -190,6 +192,16 @@ body { background: #F7F6F3; }
 .featured-content p { font-size: 14px; color: var(--gray); line-height: 1.7; }
 .featured-content .meta { font-size: 12px; color: var(--gray); display: flex; gap: 8px; align-items: center; }
 .featured-content .meta span { color: var(--gold); }
+.reviewed-by {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 11px; color: var(--gray); line-height: 1.4;
+}
+.reviewed-by::before {
+  content: '✓'; display: inline-grid; place-items: center;
+  width: 16px; height: 16px; border-radius: 50%;
+  background: var(--gold-pale); color: var(--gold); font-size: 10px; font-weight: 700;
+  flex-shrink: 0;
+}
 .read-btn {
   display: inline-flex; align-items: center; gap: 8px;
   font-size: 12px; font-weight: 700; letter-spacing: .12em;
@@ -232,7 +244,7 @@ body { background: #F7F6F3; }
 .art-thumb .art-cat {
   position: absolute; bottom: 12px; left: 12px;
   background: rgba(13,31,60,.85); backdrop-filter: blur(4px);
-  color: var(--gold-light); font-size: 9px; letter-spacing: .16em;
+  color: var(--gold-light); font-size: 11px; letter-spacing: .13em;
   text-transform: uppercase; font-weight: 600; padding: 4px 10px; border-radius: 3px;
 }
 /* placeholder gradient when no image */
@@ -246,10 +258,10 @@ body { background: #F7F6F3; }
   font-size: 17px; line-height: 1.35; color: var(--ink);
   flex: 1;
 }
-.art-meta { font-size: 11px; color: var(--gray); display: flex; gap: 8px; }
+.art-meta { font-size: 12px; color: var(--gray); display: flex; gap: 8px; }
 .art-meta .dot { opacity: .4; }
 .art-link {
-  font-size: 11px; font-weight: 700; letter-spacing: .1em;
+  font-size: 12px; font-weight: 700; letter-spacing: .1em;
   text-transform: uppercase; color: var(--gold);
   display: inline-flex; align-items: center; gap: 6px;
   transition: gap .2s;
@@ -277,19 +289,20 @@ body { background: #F7F6F3; }
 
 
 
-/* Popular topics */
-.topic-list { display: flex; flex-direction: column; gap: 0; }
-.topic-item {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 12px 0; border-bottom: 1px solid var(--gray-light);
+/* Recommended reading */
+.recommended-list { display: flex; flex-direction: column; }
+.recommended-item {
+  display: grid; grid-template-columns: 30px 1fr; gap: 10px;
+  padding: 14px 0; border-bottom: 1px solid var(--gray-light);
   text-decoration: none; color: var(--ink);
-  font-size: 13px; transition: color .2s;
 }
-.topic-item:last-child { border-bottom: none; }
-.topic-item:hover { color: var(--gold); }
-.topic-num { font-size: 11px; color: var(--gray); font-weight: 600; width: 20px; flex-shrink: 0; }
-.topic-arrow { font-size: 14px; color: var(--gold); opacity: 0; transition: opacity .2s; }
-.topic-item:hover .topic-arrow { opacity: 1; }
+.recommended-item:first-child { padding-top: 2px; }
+.recommended-item:last-child { border-bottom: none; padding-bottom: 0; }
+.recommended-num { font-family: 'Playfair Display', serif; font-size: 18px; line-height: 1.25; color: var(--gold-light); }
+.recommended-copy { display: flex; flex-direction: column; gap: 5px; }
+.recommended-copy strong { font-size: 13px; line-height: 1.4; font-weight: 600; transition: color .2s; }
+.recommended-copy span { font-size: 11px; color: var(--gray); }
+.recommended-item:hover strong { color: var(--gold); }
 
 /* Quick links */
 .quick-links { display: flex; flex-direction: column; gap: 8px; }
@@ -301,6 +314,11 @@ body { background: #F7F6F3; }
 }
 .quick-link:hover { background: var(--gold-pale); color: var(--gold); }
 .quick-link svg { width: 16px; height: 16px; opacity: .5; flex-shrink: 0; }
+
+.mobile-advisor-cta { display: none; margin: -18px 0 40px; padding: 22px; border-radius: var(--card-radius); background: var(--ink); color: #fff; }
+.mobile-advisor-cta strong { display: block; font-family: 'Playfair Display', serif; font-size: 20px; margin-bottom: 6px; }
+.mobile-advisor-cta p { color: rgba(255,255,255,.68); font-size: 13px; line-height: 1.55; margin-bottom: 15px; }
+.mobile-advisor-cta a { display: inline-flex; padding: 10px 15px; border-radius: 5px; background: var(--gold); color: #fff; text-decoration: none; font-size: 12px; font-weight: 700; letter-spacing: .08em; }
 
 /* ── DISCLAIMER ── */
 .disclaimer {
@@ -321,10 +339,14 @@ body { background: #F7F6F3; }
   .filter-tabs { width: 100%; }
   .search-box { width: 100%; padding: 10px 4%; border-radius: 0; border-left: none; border-right: none; }
   .search-box input { width: 100%; }
+  .mobile-advisor-cta { display: block; }
 }
 @media (max-width: 600px) {
   .article-grid { grid-template-columns: 1fr; }
   .ins-hero-stats { gap: 24px; }
+  .ins-hero { padding: 92px 6% 48px; }
+  .ins-body { padding: 36px 18px 64px; }
+  .tab-btn { padding: 15px 14px; }
 }
 </style>
 </head>
@@ -365,7 +387,7 @@ body { background: #F7F6F3; }
     <p>实用指南，真实案例研究以及对财务规划的诚实观点——为马来西亚人的日常生活而写。</p>
     <div class="ins-hero-stats">
       <div class="ins-stat"><strong>20+</strong><span>文章</span></div>
-      <div class="ins-stat"><strong>5</strong><span>类别</span></div>
+      <div class="ins-stat"><strong>6</strong><span>类别</span></div>
       <div class="ins-stat"><strong>免费</strong><span>始终</span></div>
     </div>
   </div>
@@ -379,11 +401,12 @@ body { background: #F7F6F3; }
   <div class="filter-inner">
     <div class="filter-tabs" role="tablist">
       <button class="tab-btn active" data-filter="all" role="tab">所有</button>
-      <button class="tab-btn" data-filter="planning" role="tab">规划基础</button>
-      <button class="tab-btn" data-filter="protection" role="tab">保护</button>
-      <button class="tab-btn" data-filter="medical" role="tab">医疗 &amp; 健康</button>
-      <button class="tab-btn" data-filter="wealth" role="tab">财富</button>
-      <button class="tab-btn" data-filter="casestudy" role="tab">案例研究</button>
+      <button class="tab-btn" data-filter="protection" role="tab">保险与保障</button>
+      <button class="tab-btn" data-filter="financial" role="tab">财务规划</button>
+      <button class="tab-btn" data-filter="explained" role="tab">保险知识</button>
+      <button class="tab-btn" data-filter="claims" role="tab">理赔与支援</button>
+      <button class="tab-btn" data-filter="myths" role="tab">迷思与误解</button>
+      <button class="tab-btn" data-filter="careers" role="tab">保险事业</button>
     </div>
     <div class="search-box">
       <svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
@@ -715,6 +738,31 @@ const ARTICLES = [
     image: "/assets/insights/medical-card-vs-critical-illness.png"
   }
 ];
+
+// 集中管理文章分类，同时保持现有文章网址不变。
+const ARTICLE_CATEGORIES = {
+  financial: ['probate-estate-administration-malaysia.html', 'assets-covered-by-will-malaysia.html', 'nominee-vs-beneficiary-malaysia.html', 'die-without-will-malaysia.html'],
+  careers: ['what-does-insurance-agent-do-malaysia.html', 'insurance-career-malaysia-2026.html', 'part-time-insurance-agent-malaysia.html'],
+  claims: ['insurance-claim-rejected-malaysia.html', 'insurance-claim-processing-time-malaysia.html', 'insurance-claim-documents-malaysia.html', 'cashless-vs-reimbursement-medical-claims-malaysia.html', 'why-medical-card-guarantee-letter-declined.html', 'how-to-make-insurance-claim-malaysia.html'],
+  myths: ['two-medical-cards-malaysia.html', 'why-medical-cards-keep-getting-more-expensive.html', 'why-medical-card-alone-isnt-enough.html', 'hidden-cost-critical-illness.html', 'medical-card-vs-critical-illness.html'],
+  explained: ['medical-card-annual-limit-malaysia.html', 'co-insurance-medical-card-malaysia.html', 'medical-insurance-waiting-period-malaysia.html', 'panel-vs-non-panel-hospital-malaysia.html', 'guarantee-letter-gl-medical-insurance-malaysia.html']
+};
+
+Object.entries(ARTICLE_CATEGORIES).forEach(([category, filenames]) => {
+  ARTICLES.forEach(article => {
+    if (filenames.some(filename => article.href.endsWith(filename))) article.cat = category;
+  });
+});
+
+const TOPICS = [
+  ['protection', '保险与保障'], ['financial', '财务规划'],
+  ['explained', '保险知识'], ['claims', '理赔与支援'],
+  ['myths', '迷思与误解'], ['careers', '保险事业']
+];
+document.querySelector('.topic-list').innerHTML = TOPICS.map(([category, label], index) => `
+  <a class="topic-item" href="#" onclick="filterBy('${category}');return false;">
+    <span class="topic-num">${String(index + 1).padStart(2, '0')}</span><span>${label}</span><span class="topic-arrow">&rarr;</span>
+  </a>`).join('');
 
 // CAT ICON MAP
 const CAT_ICONS = {

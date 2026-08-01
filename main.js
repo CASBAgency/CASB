@@ -62,11 +62,12 @@ const CASB_TRANSLATIONS = {
       ['.ins-stat:nth-child(2) span', '规划主题'],
       ['.ins-stat:nth-child(3) span', '马来西亚内容'],
       ['.tab-btn[data-filter="all"]', '全部'],
-      ['.tab-btn[data-filter="protection"]', '保障规划'],
-      ['.tab-btn[data-filter="medical"]', '医疗健康'],
-      ['.tab-btn[data-filter="wealth"]', '财富退休'],
-      ['.tab-btn[data-filter="planning"]', '规划基础'],
-      ['.tab-btn[data-filter="casestudy"]', '案例分享'],
+      ['.tab-btn[data-filter="protection"]', '保险与保障'],
+      ['.tab-btn[data-filter="financial"]', '财务规划'],
+      ['.tab-btn[data-filter="explained"]', '保险知识'],
+      ['.tab-btn[data-filter="claims"]', '理赔与支援'],
+      ['.tab-btn[data-filter="myths"]', '迷思与误解'],
+      ['.tab-btn[data-filter="careers"]', '保险事业'],
       ['#searchInput', { attr: 'placeholder', text: '搜索文章...' }],
       ['.featured-label', '精选文章'],
       ['.section-heading', '最新文章'],
@@ -78,11 +79,12 @@ const CASB_TRANSLATIONS = {
       }],
       ['.topic-item span:nth-child(2)', {
         map: {
-          'Protection Planning': '保障规划',
-          'Medical & Health': '医疗健康',
-          'Wealth & Retirement': '财富退休',
-          'Planning Basics': '规划基础',
-          'Case Studies': '案例分享'
+          'Insurance & Protection': '保险与保障',
+          'Financial Planning': '财务规划',
+          'Insurance Explained': '保险知识',
+          'Claims & Support': '理赔与支援',
+          'Myths & Misconceptions': '迷思与误解',
+          'Careers': '保险事业'
         }
       }]
     ],
