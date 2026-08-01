@@ -427,6 +427,12 @@ body:has(nav.nav-hidden) .filter-bar { top: 0; }
       <a class="featured-card" id="featuredCard" href="#"></a>
     </div>
 
+    <div class="mobile-advisor-cta">
+      <strong>不确定该从哪里开始？</strong>
+      <p>与 CASB 顾问交流，把文章中的知识转化为适合您个人情况的规划。</p>
+      <a href="https://wa.me/60167238148?text=Hi%20CASB%2C%20I%20would%20like%20help%20with%20my%20financial%20planning." target="_blank" rel="noopener">咨询顾问</a>
+    </div>
+
     <!-- ARTICLE GRID -->
     <div class="section-heading">最新文章</div>
         <div class="article-grid" id="articleGrid"></div>
@@ -436,24 +442,18 @@ body:has(nav.nav-hidden) .filter-bar { top: 0; }
   <!-- SIDEBAR -->
   <aside class="sidebar">
 
-    <!-- POPULAR TOPICS -->
+    <!-- RECOMMENDED READING -->
     <div class="sidebar-card">
-      <div class="sidebar-title">热门话题</div>
-      <div class="topic-list">
-        <a class="topic-item" href="#" onclick="filterBy(&#x27;protection&#x27;);return false;">
-          <span class="topic-num">01</span><span>保障计划</span><span class="topic-arrow">→</span>
+      <div class="sidebar-title">推荐阅读</div>
+      <div class="recommended-list">
+        <a class="recommended-item" href="articles/how-much-critical-illness-coverage-malaysia.html">
+          <span class="recommended-num">01</span><span class="recommended-copy"><strong>重大疾病保障需要多少才足够？</strong><span>阅读约 7 分钟</span></span>
         </a>
-        <a class="topic-item" href="#" onclick="filterBy(&#x27;medical&#x27;);return false;">
-          <span class="topic-num">02</span><span>医疗 &amp; 健康</span><span class="topic-arrow">→</span>
+        <a class="recommended-item" href="articles/medical-card-annual-limit-malaysia.html">
+          <span class="recommended-num">02</span><span class="recommended-copy"><strong>您的医疗卡年度限额足够吗？</strong><span>阅读约 6 分钟</span></span>
         </a>
-        <a class="topic-item" href="#" onclick="filterBy(&#x27;wealth&#x27;);return false;">
-          <span class="topic-num">03</span><span>财富 &amp; 退休</span><span class="topic-arrow">→</span>
-        </a>
-        <a class="topic-item" href="#" onclick="filterBy(&#x27;planning&#x27;);return false;">
-          <span class="topic-num">04</span><span>规划基础</span><span class="topic-arrow">→</span>
-        </a>
-        <a class="topic-item" href="#" onclick="filterBy(&#x27;casestudy&#x27;);return false;">
-          <span class="topic-num">05</span><span>案例研究</span><span class="topic-arrow">→</span>
+        <a class="recommended-item" href="articles/nominee-vs-beneficiary-malaysia.html">
+          <span class="recommended-num">03</span><span class="recommended-copy"><strong>马来西亚的提名人与受益人有何不同？</strong><span>阅读约 6 分钟</span></span>
         </a>
       </div>
     </div>
@@ -527,6 +527,16 @@ body:has(nav.nav-hidden) .filter-bar { top: 0; }
 // TO PUBLISH A NEW ARTICLE: add an object to the TOP of this array.
 // The first item is always auto-promoted to the Featured slot.
 const ARTICLES = [
+  {
+    title: "预算有限怎么安排保险？马来西亚家庭的保障优先顺序",
+    cat: "protection",
+    catLabel: "保障规划",
+    excerpt: "按优先顺序安排医疗、收入、寿险、失能与危疾风险，同时维持家庭能够长期承担的保费。",
+    readTime: "7 分钟阅读",
+    date: "2026 年 8 月 1 日",
+    href: "articles/insurance-on-limited-budget-malaysia.html",
+    image: "/assets/insights/insurance-on-limited-budget-malaysia.png"
+  },
   {
     title: "马来西亚遗嘱认证是什么？遗产管理需要多久？",
     cat: "wealth",
@@ -754,16 +764,6 @@ Object.entries(ARTICLE_CATEGORIES).forEach(([category, filenames]) => {
   });
 });
 
-const TOPICS = [
-  ['protection', '保险与保障'], ['financial', '财务规划'],
-  ['explained', '保险知识'], ['claims', '理赔与支援'],
-  ['myths', '迷思与误解'], ['careers', '保险事业']
-];
-document.querySelector('.topic-list').innerHTML = TOPICS.map(([category, label], index) => `
-  <a class="topic-item" href="#" onclick="filterBy('${category}');return false;">
-    <span class="topic-num">${String(index + 1).padStart(2, '0')}</span><span>${label}</span><span class="topic-arrow">&rarr;</span>
-  </a>`).join('');
-
 // CAT ICON MAP
 const CAT_ICONS = {
   protection: `<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
@@ -780,12 +780,13 @@ function renderFeatured(article) {
   el.innerHTML = `
     <div class="featured-img">
       <span class="feat-cat">${article.catLabel}</span>
-      ${article.image ? `<img src="${article.image}" alt="${article.title}">` : (CAT_ICONS[article.cat] || '')}
+      ${article.image ? `<img src="${article.image}" alt="${article.title}" decoding="async" fetchpriority="high">` : (CAT_ICONS[article.cat] || '')}
     </div>
     <div class="featured-content">
       <h2>${article.title}</h2>
       <p>${article.excerpt}</p>
-      <div class="meta"><span>${article.catLabel}</span> · ${article.readTime} · ${article.date}</div>
+      <div class="meta"><span>${article.catLabel}</span> · ${article.readTime}</div>
+      <div class="reviewed-by">经 CASB 顾问团队审核</div>
       <span class="read-btn">阅读文章 →</span>
     </div>`;
 }
@@ -795,7 +796,7 @@ function renderGrid(articles) {
   grid.innerHTML = articles.map((a, i) => {
     if (i === 0) return ''; // skip featured (index 0)
     const thumbClass = a.image ? 'art-thumb' : 'art-thumb no-img';
-    const thumbMedia = a.image ? `<img src="${a.image}" alt="${a.title}">` : (CAT_ICONS[a.cat] || '');
+    const thumbMedia = a.image ? `<img src="${a.image}" alt="${a.title}" loading="lazy" decoding="async">` : (CAT_ICONS[a.cat] || '');
     return `
     <a class="art-card" href="${a.href}" data-cat="${a.cat}" data-title="${a.title.toLowerCase()}">
       <div class="${thumbClass}">
@@ -804,7 +805,8 @@ function renderGrid(articles) {
       </div>
       <div class="art-body">
         <h3>${a.title}</h3>
-        <div class="art-meta"><span>${a.readTime}</span><span class="dot">·</span><span>${a.date}</span></div>
+        <div class="art-meta"><span>${a.readTime}</span></div>
+        <div class="reviewed-by">经 CASB 顾问团队审核</div>
         <span class="art-link">Read More →</span>
       </div>
     </a>`;
@@ -837,12 +839,13 @@ function applyFilters() {
   grid.innerHTML = filtered.map(a => `
     <a class="art-card" href="${a.href}" data-cat="${a.cat}" data-title="${a.title.toLowerCase()}">
       <div class="${a.image ? 'art-thumb' : 'art-thumb no-img'}">
-        ${a.image ? `<img src="${a.image}" alt="${a.title}">` : (CAT_ICONS[a.cat] || '')}
+        ${a.image ? `<img src="${a.image}" alt="${a.title}" loading="lazy" decoding="async">` : (CAT_ICONS[a.cat] || '')}
         <div class="art-cat">${a.catLabel}</div>
       </div>
       <div class="art-body">
         <h3>${a.title}</h3>
-        <div class="art-meta"><span>${a.readTime}</span><span class="dot">·</span><span>${a.date}</span></div>
+        <div class="art-meta"><span>${a.readTime}</span></div>
+        <div class="reviewed-by">经 CASB 顾问团队审核</div>
         <span class="art-link">Read More →</span>
       </div>
     </a>`).join('');
