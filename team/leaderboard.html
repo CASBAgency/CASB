@@ -32,19 +32,28 @@ body { background: #f4f5f6; }
 .leaderboard-toolbar { margin-bottom: 30px; padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; gap: 20px; border-top: 1px solid rgba(184,146,42,.38); border-bottom: 1px solid rgba(184,146,42,.38); }
 .leaderboard-toolbar strong { font-family: 'Playfair Display', serif; font-size: 20px; }
 .leaderboard-toolbar span { color: rgba(7,15,30,.55); font-size: 13px; }
+.leaderboard-period { display: flex; flex-direction: column; gap: 4px; }
+.leaderboard-controls { display: inline-flex; padding: 4px; background: #e7e8e8; border-radius: 6px; }
+.leaderboard-control { min-width: 112px; padding: 10px 14px; border: 0; border-radius: 4px; background: transparent; color: rgba(7,15,30,.62); font: 600 12px 'DM Sans', sans-serif; cursor: pointer; }
+.leaderboard-control.active { background: var(--navy); color: #fff; box-shadow: 0 4px 12px rgba(7,15,30,.16); }
 .podium { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: end; margin-bottom: 26px; }
 .podium-card { min-height: 270px; padding: 30px 24px; background: #fff; border: 1px solid rgba(184,146,42,.38); border-radius: 7px; box-shadow: 0 16px 38px rgba(7,15,30,.08); text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
 .podium-card.first { min-height: 310px; border-color: rgba(184,146,42,.78); box-shadow: 0 20px 46px rgba(184,146,42,.15); }
+.podium-photo { width: 92px; height: 92px; margin: -8px 0 16px; border: 3px solid #f2e5bd; border-radius: 50%; overflow: hidden; background: var(--navy); color: var(--gold-light); display: grid; place-items: center; font: 700 24px 'Playfair Display', serif; }
+.podium-card.first .podium-photo { width: 112px; height: 112px; }
+.podium-photo img, .ranking-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
 .podium-rank { width: 58px; height: 58px; border-radius: 50%; display: grid; place-items: center; margin-bottom: 18px; background: var(--navy); color: var(--gold-light); font-family: 'Playfair Display', serif; font-size: 25px; font-weight: 700; }
 .podium-card.first .podium-rank { width: 70px; height: 70px; background: var(--gold); color: #fff; font-size: 30px; }
 .podium-card h2 { font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 8px; }
 .podium-card p { color: rgba(7,15,30,.52); font-size: 13px; line-height: 1.55; }
+.podium-value { color: var(--gold-dark); font-size: 17px; font-weight: 700; }
 .ranking-list { background: #fff; border: 1px solid rgba(184,146,42,.32); border-radius: 7px; overflow: hidden; box-shadow: 0 16px 38px rgba(7,15,30,.07); }
-.ranking-row { min-height: 72px; padding: 14px 22px; display: grid; grid-template-columns: 54px 1fr auto; gap: 18px; align-items: center; border-bottom: 1px solid #eceae5; }
+.ranking-row { min-height: 76px; padding: 12px 22px; display: grid; grid-template-columns: 48px 48px 1fr auto; gap: 16px; align-items: center; border-bottom: 1px solid #eceae5; }
 .ranking-row:last-child { border-bottom: 0; }
 .ranking-position { color: var(--gold-dark); font-family: 'Playfair Display', serif; font-size: 21px; font-weight: 700; }
+.ranking-photo { width: 44px; height: 44px; border-radius: 50%; overflow: hidden; background: #e9e7e1; color: var(--navy); display: grid; place-items: center; font-size: 12px; font-weight: 700; }
 .ranking-name { font-weight: 600; }
-.ranking-value { color: rgba(7,15,30,.48); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; }
+.ranking-value { color: var(--navy); font-size: 14px; font-weight: 700; text-align: right; }
 .leaderboard-note { margin-top: 26px; padding: 22px 24px; border-left: 3px solid var(--gold); background: #fff; color: rgba(7,15,30,.62); font-size: 13px; line-height: 1.7; }
 @media (max-width: 760px) {
   .leaderboard-page { padding: 112px 5% 68px; }
@@ -52,10 +61,13 @@ body { background: #f4f5f6; }
   .podium-card, .podium-card.first { min-height: 220px; }
   .podium-card.first { order: -1; }
   .leaderboard-toolbar { align-items: flex-start; flex-direction: column; }
+  .leaderboard-controls { width: 100%; }
+  .leaderboard-control { flex: 1; min-width: 0; }
 }
 @media (max-width: 480px) {
-  .ranking-row { grid-template-columns: 42px 1fr; gap: 10px; }
-  .ranking-value { grid-column: 2; }
+  .ranking-row { grid-template-columns: 36px 40px 1fr; gap: 9px; padding: 12px 14px; }
+  .ranking-photo { width: 38px; height: 38px; }
+  .ranking-value { grid-column: 3; text-align: left; font-size: 13px; }
 }
 </style>
 <link rel="icon" type="image/x-icon" href="../assets/favicon/favicon.ico">
@@ -86,44 +98,26 @@ body { background: #f4f5f6; }
       <div class="section-tag">Team Recognition</div>
       <h1>CASB Leaderboard</h1>
       <div class="gold-line" style="margin-left:auto;margin-right:auto"></div>
-      <p>A dedicated space to recognise consistent activity, business production, and the people moving CASB forward.</p>
-      <div class="leaderboard-status">Data connection coming soon</div>
+      <p>Recognising the people leading CASB's monthly business production through verified picked-up results.</p>
+      <div class="leaderboard-status">Verified Daily Report snapshot</div>
     </header>
 
     <div class="leaderboard-toolbar">
-      <strong>Monthly Production</strong>
-      <span>Reporting period and verified results will appear here.</span>
+      <div class="leaderboard-period">
+        <strong id="leaderboard-period">June 2026</strong>
+        <span id="leaderboard-date">Results as at 21 June 2026</span>
+      </div>
+      <div class="leaderboard-controls" aria-label="Leaderboard measurement">
+        <button class="leaderboard-control active" type="button" data-metric="afyp" aria-pressed="true">Picked-Up AFYP</button>
+        <button class="leaderboard-control" type="button" data-metric="cases" aria-pressed="false">Cases</button>
+      </div>
     </div>
 
-    <section class="podium" aria-label="Top three leaderboard positions">
-      <article class="podium-card second">
-        <div class="podium-rank">2</div>
-        <h2>Second Place</h2>
-        <p>Agent result pending verified Daily Report data.</p>
-      </article>
-      <article class="podium-card first">
-        <div class="podium-rank">1</div>
-        <h2>First Place</h2>
-        <p>Agent result pending verified Daily Report data.</p>
-      </article>
-      <article class="podium-card third">
-        <div class="podium-rank">3</div>
-        <h2>Third Place</h2>
-        <p>Agent result pending verified Daily Report data.</p>
-      </article>
-    </section>
+    <section class="podium" id="leaderboard-podium" aria-label="Top three leaderboard positions"></section>
 
-    <section class="ranking-list" aria-label="Remaining leaderboard positions">
-      <div class="ranking-row"><span class="ranking-position">04</span><span class="ranking-name">Position available</span><span class="ranking-value">Awaiting results</span></div>
-      <div class="ranking-row"><span class="ranking-position">05</span><span class="ranking-name">Position available</span><span class="ranking-value">Awaiting results</span></div>
-      <div class="ranking-row"><span class="ranking-position">06</span><span class="ranking-name">Position available</span><span class="ranking-value">Awaiting results</span></div>
-      <div class="ranking-row"><span class="ranking-position">07</span><span class="ranking-name">Position available</span><span class="ranking-value">Awaiting results</span></div>
-      <div class="ranking-row"><span class="ranking-position">08</span><span class="ranking-name">Position available</span><span class="ranking-value">Awaiting results</span></div>
-      <div class="ranking-row"><span class="ranking-position">09</span><span class="ranking-name">Position available</span><span class="ranking-value">Awaiting results</span></div>
-      <div class="ranking-row"><span class="ranking-position">10</span><span class="ranking-name">Position available</span><span class="ranking-value">Awaiting results</span></div>
-    </section>
+    <section class="ranking-list" id="leaderboard-list" aria-label="Leaderboard positions four to ten"></section>
 
-    <p class="leaderboard-note">This is the leaderboard framework only. Rankings will be published after CASB management confirms the category, reporting period, calculation rules, and reviewed Daily Report output.</p>
+    <p class="leaderboard-note"><strong>How this is measured:</strong> rankings use the Picked-Up AFYP and Picked-Up Cases recorded in the CASB Daily Report for the stated reporting period. Results are a reviewed snapshot, not a live feed, and will change when a newer verified report is published.</p>
   </div>
 </main>
 
@@ -163,6 +157,75 @@ body { background: #f4f5f6; }
     </div>
   </div>
 </footer>
+<script src="leaderboard-data.js"></script>
+<script>
+(function () {
+  const data = window.CASB_LEADERBOARD;
+  if (!data) return;
+
+  const podium = document.getElementById('leaderboard-podium');
+  const list = document.getElementById('leaderboard-list');
+  const photoRoot = '../assets/photos/team/';
+
+  document.getElementById('leaderboard-period').textContent = data.period;
+  document.getElementById('leaderboard-date').textContent = `Results as at ${data.asAt}`;
+
+  function initials(name) {
+    return name.split(/\s+/).slice(0, 2).map(part => part[0]).join('');
+  }
+
+  function photo(person, className) {
+    const content = person.photo
+      ? `<img src="${photoRoot}${encodeURIComponent(person.photo)}" alt="${person.name}">`
+      : `<span>${initials(person.name)}</span>`;
+    return `<div class="${className}">${content}</div>`;
+  }
+
+  function valueLabel(person, metric) {
+    return metric === 'afyp'
+      ? `RM ${person.value.toLocaleString('en-MY', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+      : `${person.value} ${person.value === 1 ? 'case' : 'cases'}`;
+  }
+
+  function render(metric) {
+    const rankings = data.rankings[metric];
+    const podiumOrder = [rankings[1], rankings[0], rankings[2]];
+    const classes = ['second', 'first', 'third'];
+    const ranks = [2, 1, 3];
+
+    podium.innerHTML = podiumOrder.map((person, index) => `
+      <article class="podium-card ${classes[index]}">
+        <div class="podium-rank">${ranks[index]}</div>
+        ${photo(person, 'podium-photo')}
+        <h2>${person.name}</h2>
+        <p class="podium-value">${valueLabel(person, metric)}</p>
+      </article>
+    `).join('');
+
+    list.innerHTML = rankings.slice(3).map((person, index) => `
+      <div class="ranking-row">
+        <span class="ranking-position">${String(index + 4).padStart(2, '0')}</span>
+        ${photo(person, 'ranking-photo')}
+        <span class="ranking-name">${person.name}</span>
+        <span class="ranking-value">${valueLabel(person, metric)}</span>
+      </div>
+    `).join('');
+  }
+
+  document.querySelectorAll('.leaderboard-control').forEach(button => {
+    button.addEventListener('click', () => {
+      document.querySelectorAll('.leaderboard-control').forEach(control => {
+        const active = control === button;
+        control.classList.toggle('active', active);
+        control.setAttribute('aria-pressed', String(active));
+      });
+      render(button.dataset.metric);
+    });
+  });
+
+  render('afyp');
+}());
+</script>
 <script src="../main.js"></script>
 </body>
 </html>
