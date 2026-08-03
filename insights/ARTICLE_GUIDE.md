@@ -219,7 +219,7 @@ The site updates within ~2 minutes.
 - **Read time:** Divide your word count by 200 to estimate minutes.
 - **Disclaimer:** Already included in every article template — don't remove it.
 - **Images:** Optional. If you don't have one, the template shows a clean icon placeholder.
-- **Source rule:** Editorial references may use only Allianz Malaysia and government, regulator, statutory-body or public-hospital sources. Do not cite competing insurers, banks, private media, comparison sites or private industry associations.
+- **Source rule:** Use Allianz Malaysia and government, regulator, statutory-body or public-hospital sources for policy, product and regulatory facts. Reputable news sources may be used for documented events and case reporting. Do not use competing insurers, banks, comparison sites or private industry associations as editorial authorities.
 
 ---
 
