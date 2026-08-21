@@ -3092,3 +3092,27 @@ body.js-loaded .fade-in.visible {
 .form-success p {
   color: rgba(255, 255, 255, 0.6);
 }
+
+/* Shared responsive lead image for Insights articles. */
+.art-img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin: 0 0 32px;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #edf0f4;
+}
+
+.art-img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 600px) {
+  .art-img {
+    margin-bottom: 24px;
+    border-radius: 6px;
+  }
+}
