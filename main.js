@@ -244,7 +244,7 @@ function initTeamDropdown() {
       </button>
       <ul class="nav-dropdown-menu">
         <li><a href="${membersHref}"${onMembers ? ' aria-current="page"' : ''}>${chinese ? '团队成员' : 'Members'}</a></li>
-        <li><a href="${leaderboardHref}"${onLeaderboard ? ' aria-current="page"' : ''}>${chinese ? '杰出表现榜' : 'Top Performers'}</a></li>
+        <li><a href="${leaderboardHref}"${onLeaderboard ? ' aria-current="page"' : ''}>${chinese ? '名人堂' : 'Hall of Fame'}</a></li>
       </ul>
     `;
 
