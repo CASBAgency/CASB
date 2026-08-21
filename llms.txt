@@ -4,8 +4,8 @@ CASB Agency Sdn Bhd is a Malaysian financial advisory agency established in 2006
 
 ## Primary Site
 
-- Website: https://casb-six.vercel.app/
-- Sitemap: https://casb-six.vercel.app/sitemap.xml
+- Website: https://www.casb2u.com/
+- Sitemap: https://www.casb2u.com/sitemap.xml
 - Contact email: admin@casb2u.com
 - Phone: +60362799388
 - WhatsApp enquiries: +60167238148
@@ -13,50 +13,50 @@ CASB Agency Sdn Bhd is a Malaysian financial advisory agency established in 2006
 
 ## Key Pages
 
-- Home: https://casb-six.vercel.app/
-- Recruitment campaign: https://casb-six.vercel.app/campaigns/recruitment.html
-- Recruitment campaign booking form: https://casb-six.vercel.app/campaigns/recruitment-booking.html
-- Our Team: https://casb-six.vercel.app/team/index.html
-- Insights: https://casb-six.vercel.app/insights/index.html
-- Chinese home: https://casb-six.vercel.app/zh/index.html
-- Chinese insights: https://casb-six.vercel.app/zh/insights/index.html
-- News and Events: https://casb-six.vercel.app/events/index.html
-- Achievements: https://casb-six.vercel.app/#achievements
-- Million Dollar Agency Awards: https://casb-six.vercel.app/mda-award/mda-award.html
-- MDRT Recognition: https://casb-six.vercel.app/mdrt/mdrt.html
-- Monthly Achievers: https://casb-six.vercel.app/monthly-achievers/monthly.html
-- Select Your Mentor: https://casb-six.vercel.app/select-your-mentor/index.html
+- Home: https://www.casb2u.com/
+- Recruitment campaign: https://www.casb2u.com/campaigns/recruitment.html
+- Recruitment campaign booking form: https://www.casb2u.com/campaigns/recruitment-booking.html
+- Our Team: https://www.casb2u.com/team/index.html
+- Insights: https://www.casb2u.com/insights/index.html
+- Chinese home: https://www.casb2u.com/zh/index.html
+- Chinese insights: https://www.casb2u.com/zh/insights/index.html
+- News and Events: https://www.casb2u.com/events/index.html
+- Achievements: https://www.casb2u.com/#achievements
+- Million Dollar Agency Awards: https://www.casb2u.com/mda-award/mda-award.html
+- MDRT Recognition: https://www.casb2u.com/mdrt/mdrt.html
+- Monthly Achievers: https://www.casb2u.com/monthly-achievers/monthly.html
+- Select Your Mentor: https://www.casb2u.com/select-your-mentor/index.html
 
 ## Current Insight Articles
 
-- MRTA vs MLTA vs Life Insurance in Malaysia: https://casb-six.vercel.app/insights/articles/mrta-mlta-life-insurance-malaysia.html
-- How Much Life Insurance Coverage Do You Need in Malaysia?: https://casb-six.vercel.app/insights/articles/how-much-life-insurance-coverage-malaysia.html
-- Insurance on a Limited Budget: What Should Malaysians Prioritise First?: https://casb-six.vercel.app/insights/articles/insurance-on-limited-budget-malaysia.html
-- What Is Probate in Malaysia, and How Long Does Estate Administration Take?: https://casb-six.vercel.app/insights/articles/probate-estate-administration-malaysia.html
-- What Assets Are—and Aren’t—Covered by a Will in Malaysia?: https://casb-six.vercel.app/insights/articles/assets-covered-by-will-malaysia.html
-- Nominee vs Beneficiary in Malaysia: What’s the Difference?: https://casb-six.vercel.app/insights/articles/nominee-vs-beneficiary-malaysia.html
-- What Happens to Your Assets When You Die Without a Will in Malaysia?: https://casb-six.vercel.app/insights/articles/die-without-will-malaysia.html
-- How Much Critical Illness Coverage Do You Need in Malaysia?: https://casb-six.vercel.app/insights/articles/how-much-critical-illness-coverage-malaysia.html
-- Can You Have Two Medical Cards in Malaysia? How Multiple Policies and Claims Work: https://casb-six.vercel.app/insights/articles/two-medical-cards-malaysia.html
-- Medical Card Annual Limit Explained: What Happens When You Reach It?: https://casb-six.vercel.app/insights/articles/medical-card-annual-limit-malaysia.html
-- Insurance Claim Rejected in Malaysia? Common Reasons and What to Do Next: https://casb-six.vercel.app/insights/articles/insurance-claim-rejected-malaysia.html
-- Co-Insurance in Malaysian Medical Cards: What Do You Actually Pay When You Claim?: https://casb-six.vercel.app/insights/articles/co-insurance-medical-card-malaysia.html
-- What Is a Waiting Period in Medical Insurance?: https://casb-six.vercel.app/insights/articles/medical-insurance-waiting-period-malaysia.html
-- Panel Hospital vs Non-Panel Hospital: What’s the Difference?: https://casb-six.vercel.app/insights/articles/panel-vs-non-panel-hospital-malaysia.html
-- What Does an Insurance Agent Do in Malaysia?: https://casb-six.vercel.app/insights/articles/what-does-insurance-agent-do-malaysia.html
-- How Long Does an Insurance Claim Take in Malaysia?: https://casb-six.vercel.app/insights/articles/insurance-claim-processing-time-malaysia.html
-- What Documents Do You Need for an Insurance Claim?: https://casb-six.vercel.app/insights/articles/insurance-claim-documents-malaysia.html
-- Insurance Career in Malaysia: Is It Still Worth Considering in 2026?: https://casb-six.vercel.app/insights/articles/insurance-career-malaysia-2026.html
-- Part-Time Insurance Agent in Malaysia: What You Need to Know: https://casb-six.vercel.app/insights/articles/part-time-insurance-agent-malaysia.html
-- Cashless vs Reimbursement Medical Claims: What's the Difference?: https://casb-six.vercel.app/insights/articles/cashless-vs-reimbursement-medical-claims-malaysia.html
-- Why Was My Medical Card Guarantee Letter Declined?: https://casb-six.vercel.app/insights/articles/why-medical-card-guarantee-letter-declined.html
-- What Is a Guarantee Letter (GL)?: https://casb-six.vercel.app/insights/articles/guarantee-letter-gl-medical-insurance-malaysia.html
-- How to Make an Insurance Claim in Malaysia: https://casb-six.vercel.app/insights/articles/how-to-make-insurance-claim-malaysia.html
-- Why Young Adults Should Review Their Insurance Early: https://casb-six.vercel.app/insights/articles/why-young-adults-should-review-insurance-early.html
-- Why Medical Cards Keep Getting More Expensive: https://casb-six.vercel.app/insights/articles/why-medical-cards-keep-getting-more-expensive.html
-- Why a Medical Card Alone Isn't Enough: https://casb-six.vercel.app/insights/articles/why-medical-card-alone-isnt-enough.html
-- The Hidden Cost of Surviving a Critical Illness: https://casb-six.vercel.app/insights/articles/hidden-cost-critical-illness.html
-- Medical Card vs Critical Illness Coverage: https://casb-six.vercel.app/insights/articles/medical-card-vs-critical-illness.html
+- MRTA vs MLTA vs Life Insurance in Malaysia: https://www.casb2u.com/insights/articles/mrta-mlta-life-insurance-malaysia.html
+- How Much Life Insurance Coverage Do You Need in Malaysia?: https://www.casb2u.com/insights/articles/how-much-life-insurance-coverage-malaysia.html
+- Insurance on a Limited Budget: What Should Malaysians Prioritise First?: https://www.casb2u.com/insights/articles/insurance-on-limited-budget-malaysia.html
+- What Is Probate in Malaysia, and How Long Does Estate Administration Take?: https://www.casb2u.com/insights/articles/probate-estate-administration-malaysia.html
+- What Assets Are—and Aren’t—Covered by a Will in Malaysia?: https://www.casb2u.com/insights/articles/assets-covered-by-will-malaysia.html
+- Nominee vs Beneficiary in Malaysia: What’s the Difference?: https://www.casb2u.com/insights/articles/nominee-vs-beneficiary-malaysia.html
+- What Happens to Your Assets When You Die Without a Will in Malaysia?: https://www.casb2u.com/insights/articles/die-without-will-malaysia.html
+- How Much Critical Illness Coverage Do You Need in Malaysia?: https://www.casb2u.com/insights/articles/how-much-critical-illness-coverage-malaysia.html
+- Can You Have Two Medical Cards in Malaysia? How Multiple Policies and Claims Work: https://www.casb2u.com/insights/articles/two-medical-cards-malaysia.html
+- Medical Card Annual Limit Explained: What Happens When You Reach It?: https://www.casb2u.com/insights/articles/medical-card-annual-limit-malaysia.html
+- Insurance Claim Rejected in Malaysia? Common Reasons and What to Do Next: https://www.casb2u.com/insights/articles/insurance-claim-rejected-malaysia.html
+- Co-Insurance in Malaysian Medical Cards: What Do You Actually Pay When You Claim?: https://www.casb2u.com/insights/articles/co-insurance-medical-card-malaysia.html
+- What Is a Waiting Period in Medical Insurance?: https://www.casb2u.com/insights/articles/medical-insurance-waiting-period-malaysia.html
+- Panel Hospital vs Non-Panel Hospital: What’s the Difference?: https://www.casb2u.com/insights/articles/panel-vs-non-panel-hospital-malaysia.html
+- What Does an Insurance Agent Do in Malaysia?: https://www.casb2u.com/insights/articles/what-does-insurance-agent-do-malaysia.html
+- How Long Does an Insurance Claim Take in Malaysia?: https://www.casb2u.com/insights/articles/insurance-claim-processing-time-malaysia.html
+- What Documents Do You Need for an Insurance Claim?: https://www.casb2u.com/insights/articles/insurance-claim-documents-malaysia.html
+- Insurance Career in Malaysia: Is It Still Worth Considering in 2026?: https://www.casb2u.com/insights/articles/insurance-career-malaysia-2026.html
+- Part-Time Insurance Agent in Malaysia: What You Need to Know: https://www.casb2u.com/insights/articles/part-time-insurance-agent-malaysia.html
+- Cashless vs Reimbursement Medical Claims: What's the Difference?: https://www.casb2u.com/insights/articles/cashless-vs-reimbursement-medical-claims-malaysia.html
+- Why Was My Medical Card Guarantee Letter Declined?: https://www.casb2u.com/insights/articles/why-medical-card-guarantee-letter-declined.html
+- What Is a Guarantee Letter (GL)?: https://www.casb2u.com/insights/articles/guarantee-letter-gl-medical-insurance-malaysia.html
+- How to Make an Insurance Claim in Malaysia: https://www.casb2u.com/insights/articles/how-to-make-insurance-claim-malaysia.html
+- Why Young Adults Should Review Their Insurance Early: https://www.casb2u.com/insights/articles/why-young-adults-should-review-insurance-early.html
+- Why Medical Cards Keep Getting More Expensive: https://www.casb2u.com/insights/articles/why-medical-cards-keep-getting-more-expensive.html
+- Why a Medical Card Alone Isn't Enough: https://www.casb2u.com/insights/articles/why-medical-card-alone-isnt-enough.html
+- The Hidden Cost of Surviving a Critical Illness: https://www.casb2u.com/insights/articles/hidden-cost-critical-illness.html
+- Medical Card vs Critical Illness Coverage: https://www.casb2u.com/insights/articles/medical-card-vs-critical-illness.html
 
 ## Chinese Content
 

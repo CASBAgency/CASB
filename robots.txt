@@ -21,4 +21,4 @@ Allow: /
 User-agent: Claude-SearchBot
 Allow: /
 
-Sitemap: https://casb-six.vercel.app/sitemap.xml
+Sitemap: https://www.casb2u.com/sitemap.xml
