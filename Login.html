@@ -106,6 +106,36 @@ body {
   justify-content: center;
 }
 
+.language-toggle {
+  align-self: flex-end;
+  display: inline-flex;
+  gap: 4px;
+  margin-bottom: 28px;
+  padding: 4px;
+  border: 1px solid rgba(7,24,47,0.14);
+  background: rgba(7,24,47,0.05);
+}
+
+.language-toggle button {
+  width: auto;
+  height: 34px;
+  padding: 0 13px;
+  background: transparent;
+  color: #607086;
+  font-size: 12px;
+  font-weight: 700;
+  box-shadow: none;
+  transform: none;
+}
+
+.language-toggle button:hover,
+.language-toggle button.active {
+  background: var(--navy);
+  color: var(--white);
+  box-shadow: none;
+  transform: none;
+}
+
 .login-card h2 {
   font-family: "Playfair Display", serif;
   font-size: 36px;
@@ -244,9 +274,14 @@ button:hover {
   </section>
 
   <section class="login-card">
-    <h2>Welcome</h2>
+    <div class="language-toggle" role="group" aria-label="Language">
+      <button type="button" class="active" data-language="en" aria-pressed="true">EN</button>
+      <button type="button" data-language="zh-TW" aria-pressed="false">中文</button>
+    </div>
 
-    <p class="subtitle">
+    <h2 data-i18n="welcome">Welcome</h2>
+
+    <p class="subtitle" data-i18n="subtitle">
       Sign in to continue to the CASB agent system.
     </p>
 
@@ -258,37 +293,93 @@ button:hover {
       <input type="hidden" name="s" value="">
       <input type="hidden" name="mid" value="">
       <input type="hidden" name="c" value="">
+      <input type="hidden" name="t_def_language_id" id="login-language" value="en">
 
       <div class="form-group">
-        <label for="username">Agent ID</label>
-        <input type="text" id="username" name="t_user_id" placeholder="Enter Agent ID" autocomplete="username" required>
+        <label for="username" data-i18n="agentId">Agent ID</label>
+        <input type="text" id="username" name="t_user_id" placeholder="Enter Agent ID" data-placeholder-i18n="agentIdPlaceholder" autocomplete="username" required>
       </div>
 
       <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" name="t_password" placeholder="Enter your password" autocomplete="current-password" required>
+        <label for="password" data-i18n="password">Password</label>
+        <input type="password" id="password" name="t_password" placeholder="Enter your password" data-placeholder-i18n="passwordPlaceholder" autocomplete="current-password" required>
       </div>
 
       <div class="login-options">
-        <span>Secure member access</span>
-        <a href="mailto:admin@casb2u.com?subject=CASB%20Agent%20Portal%20Password%20Help">Forgot password?</a>
+        <span data-i18n="secureAccess">Secure member access</span>
+        <a href="mailto:admin@casb2u.com?subject=CASB%20Agent%20Portal%20Password%20Help" data-i18n="forgotPassword">Forgot password?</a>
       </div>
 
-      <button type="submit">Login</button>
+      <button type="submit" data-i18n="login">Login</button>
     </form>
 
-    <div class="help-text">
+    <div class="help-text" data-i18n-html="help">
       Having trouble logging in?<br>
       Please contact CASB Admin at <a href="mailto:admin@casb2u.com">admin@casb2u.com</a>.
     </div>
 
-    <a href="index.html" class="back-link">
+    <a href="index.html" class="back-link" data-i18n="back">
       ← Back to CASB Website
     </a>
   </section>
 
 </div>
 
-<script src="main.js"></script>
+<script>
+const loginTranslations = {
+  en: {
+    welcome: "Welcome",
+    subtitle: "Sign in to continue to the CASB agent system.",
+    agentId: "Agent ID",
+    agentIdPlaceholder: "Enter Agent ID",
+    password: "Password",
+    passwordPlaceholder: "Enter your password",
+    secureAccess: "Secure member access",
+    forgotPassword: "Forgot password?",
+    login: "Login",
+    help: 'Having trouble logging in?<br>Please contact CASB Admin at <a href="mailto:admin@casb2u.com">admin@casb2u.com</a>.',
+    back: "← Back to CASB Website"
+  },
+  "zh-TW": {
+    welcome: "歡迎",
+    subtitle: "登入以繼續使用 CASB 代理系統。",
+    agentId: "代理編號",
+    agentIdPlaceholder: "輸入代理編號",
+    password: "密碼",
+    passwordPlaceholder: "輸入密碼",
+    secureAccess: "安全會員登入",
+    forgotPassword: "忘記密碼？",
+    login: "登入",
+    help: '登入時遇到問題？<br>請聯絡 CASB 管理員：<a href="mailto:admin@casb2u.com">admin@casb2u.com</a>。',
+    back: "← 返回 CASB 網站"
+  }
+};
+
+document.querySelectorAll(".language-toggle button").forEach((button) => {
+  button.addEventListener("click", () => {
+    const language = button.dataset.language;
+    const translations = loginTranslations[language];
+
+    document.documentElement.lang = language;
+    document.getElementById("login-language").value = language;
+
+    document.querySelectorAll("[data-i18n]").forEach((element) => {
+      element.textContent = translations[element.dataset.i18n];
+    });
+    document.querySelectorAll("[data-placeholder-i18n]").forEach((element) => {
+      element.placeholder = translations[element.dataset.placeholderI18n];
+    });
+    document.querySelectorAll("[data-i18n-html]").forEach((element) => {
+      element.innerHTML = translations[element.dataset.i18nHtml];
+    });
+
+    document.querySelectorAll(".language-toggle button").forEach((option) => {
+      const active = option === button;
+      option.classList.toggle("active", active);
+      option.setAttribute("aria-pressed", String(active));
+    });
+  });
+});
+</script>
 </body>
 </html>
