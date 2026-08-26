@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>CASB Agent Login</title>
 <meta name="description" content="CASB Agency agent portal login page for authorised team members.">
+<meta name="robots" content="noindex, nofollow">
 <link rel="canonical" href="https://www.casb2u.com/Login.html">
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -129,7 +130,8 @@ label {
   color: var(--navy);
 }
 
-input {
+input[type="text"],
+input[type="password"] {
   width: 100%;
   height: 52px;
   border: 1px solid rgba(7,24,47,0.16);
@@ -141,7 +143,8 @@ input {
   transition: 0.2s;
 }
 
-input:focus {
+input[type="text"]:focus,
+input[type="password"]:focus {
   border-color: var(--gold);
   box-shadow: 0 0 0 3px rgba(184,146,42,0.16);
 }
@@ -232,11 +235,7 @@ button:hover {
 
       <div class="est">EST. 2006</div>
 
-      <h1>Agent Portal</h1>
-
-      <p>
-        Access CASB internal tools, agency resources, reports and member information securely.
-      </p>
+      <h1>Agent Login</h1>
     </div>
 
     <div class="brand-footer">
@@ -245,29 +244,37 @@ button:hover {
   </section>
 
   <section class="login-card">
-    <h2>Welcome Back</h2>
+    <h2>Welcome</h2>
 
     <p class="subtitle">
       Sign in to continue to the CASB agent system.
     </p>
 
-    <form action="http://www.casb2u.com/system/admin/a_member_login.php" method="post">
+    <form action="https://www.casb2u.com/system/admin/a_member_login.php" method="post">
+      <input type="hidden" name="n_scr_step_tot" value="1">
+      <input type="hidden" name="n_scr_step" value="1">
+      <input type="hidden" name="t_scr_id" value="scr_member_login">
+      <input type="hidden" name="t_scr_user_type" value="m">
+      <input type="hidden" name="s" value="">
+      <input type="hidden" name="mid" value="">
+      <input type="hidden" name="c" value="">
+
       <div class="form-group">
-        <label for="username">Agent ID / Username</label>
-        <input type="text" id="username" name="username" placeholder="Enter your username">
+        <label for="username">Agent ID</label>
+        <input type="text" id="username" name="t_user_id" placeholder="Enter Agent ID" autocomplete="username" required>
       </div>
 
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" id="password" name="password" placeholder="Enter your password">
+        <input type="password" id="password" name="t_password" placeholder="Enter your password" autocomplete="current-password" required>
       </div>
 
       <div class="login-options">
         <span>Secure member access</span>
-        <a href="#">Forgot password?</a>
+        <a href="mailto:admin@casb2u.com?subject=CASB%20Agent%20Portal%20Password%20Help">Forgot password?</a>
       </div>
 
-      <button type="submit">Login to Portal</button>
+      <button type="submit">Login</button>
     </form>
 
     <div class="help-text">
