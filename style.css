@@ -163,6 +163,7 @@ nav.nav-hidden {
 
 .nav-logo img {
   height: 74px;
+  width: auto;
 }
 
 .logo-text {
@@ -415,7 +416,7 @@ body.lang-zh .section-title {
       rgba(13, 31, 60, 0.05) 68%,
       rgba(13, 31, 60, 0) 100%
     ),
-    url('assets/hero-bg.png') center/cover no-repeat;
+    url('assets/hero-bg.webp') center/cover no-repeat;
 
   display: flex;
   flex-direction: column;
@@ -2283,6 +2284,7 @@ h2.section-title.light {
 
 .footer-brand img {
   height: 66px;
+  width: auto;
   margin-bottom: 14px;
 }
 
@@ -2576,6 +2578,24 @@ body.js-loaded .fade-in.visible {
 
 /* Mobile nav */
 @media (max-width: 767px) {
+  .floating-socials {
+    display: none;
+  }
+
+  .hero {
+    background-image:
+      linear-gradient(
+        90deg,
+        rgba(7, 15, 30, 0.92) 0%,
+        rgba(13, 31, 60, 0.88) 22%,
+        rgba(13, 31, 60, 0.72) 38%,
+        rgba(13, 31, 60, 0.38) 52%,
+        rgba(13, 31, 60, 0.05) 68%,
+        rgba(13, 31, 60, 0) 100%
+      ),
+      url('assets/hero-bg-mobile.webp');
+  }
+
   nav {
     height: 66px;
     padding: 0 84px 0 24px;
