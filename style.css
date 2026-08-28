@@ -1850,34 +1850,32 @@ h2.section-title.light {
 
 .career-hero {
   position: relative;
-  min-height: min(760px, calc(100vh - 94px));
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-rows: minmax(420px, 58vh) auto;
   overflow: hidden;
   background: var(--navy);
 }
 
 .career-hero > img {
-  position: absolute;
-  inset: 0;
+  position: relative;
   width: 100%;
   height: 100%;
+  min-height: 420px;
   object-fit: cover;
-  object-position: center;
+  object-position: center 42%;
 }
 
 .career-hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, rgba(7,22,44,.98) 0%, rgba(7,22,44,.9) 34%, rgba(7,22,44,.35) 67%, rgba(7,22,44,.08) 100%);
+  display: none;
 }
 
 .career-hero-copy {
   position: relative;
   z-index: 1;
-  width: min(690px, 55%);
-  margin-left: max(6%, calc((100vw - 1320px) / 2));
-  padding: 70px 0;
+  width: min(920px, 88%);
+  margin: 0 auto;
+  padding: 64px 0 70px;
+  text-align: center;
   color: white;
 }
 
@@ -1892,15 +1890,15 @@ h2.section-title.light {
 }
 
 .career-hero-copy h1 {
-  max-width: 620px;
+  max-width: 900px;
   margin: 18px 0 22px;
-  font-size: clamp(42px, 4.2vw, 64px);
+  font-size: clamp(42px, 4.6vw, 66px);
   line-height: 1.13;
 }
 
 .career-hero-copy p {
-  max-width: 570px;
-  margin: 0 0 18px;
+  max-width: 720px;
+  margin: 0 auto 18px;
   color: rgba(255,255,255,.78);
   font-size: 17px;
   line-height: 1.85;
@@ -2012,10 +2010,9 @@ h2.section-title.light {
 
 @media (max-width: 900px) {
   .career-page { padding-top: 72px; }
-  .career-hero { min-height: 760px; align-items: flex-end; }
-  .career-hero > img { object-position: 62% center; }
-  .career-hero-overlay { background: linear-gradient(0deg, rgba(7,22,44,.99) 0%, rgba(7,22,44,.88) 48%, rgba(7,22,44,.14) 100%); }
-  .career-hero-copy { width: 88%; margin: 0 auto; padding: 55px 0; }
+  .career-hero { grid-template-rows: minmax(340px, 48vh) auto; }
+  .career-hero > img { min-height: 340px; object-position: 60% center; }
+  .career-hero-copy { width: 88%; margin: 0 auto; padding: 52px 0 60px; }
   .career-hero-copy h1 { font-size: clamp(38px, 10vw, 56px); }
   .career-option-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .career-option:nth-child(2) { border-right: 0; }
@@ -2028,7 +2025,8 @@ h2.section-title.light {
   .career-section,
   .career-definition,
   .career-support-section { padding-top: 72px; padding-bottom: 72px; }
-  .career-hero { min-height: 730px; }
+  .career-hero { grid-template-rows: 270px auto; }
+  .career-hero > img { min-height: 270px; }
   .career-hero-copy p { font-size: 15px; }
   .career-option-grid,
   .career-roadmap,
