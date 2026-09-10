@@ -2194,6 +2194,93 @@ h2.section-title.light {
   }
 }
 
+/* Shared article sharing controls. */
+.share-btns.casb-share {
+  position: relative;
+  display: block;
+}
+
+.casb-share-actions {
+  display: grid;
+  grid-template-columns: minmax(92px, .8fr) minmax(116px, 1.2fr);
+  gap: 8px;
+}
+
+.casb-share-actions button,
+.casb-share-menu a,
+.casb-share-menu button {
+  min-height: 44px;
+  border: 0;
+  border-radius: 6px;
+  padding: 10px 12px;
+  font: 600 13px 'DM Sans', sans-serif;
+  letter-spacing: 0;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.casb-share-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  background: #25d366;
+  color: #fff;
+}
+
+.casb-share-copy-link {
+  background: #f1f0ed;
+  color: #0d1f3c;
+}
+
+.casb-share-actions button:hover,
+.casb-share-menu a:hover,
+.casb-share-menu button:hover {
+  filter: brightness(.95);
+}
+
+.casb-share-menu {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 9px);
+  left: 0;
+  right: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  padding: 9px;
+  border: 1px solid #e5e1d8;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 14px 34px rgba(13, 31, 60, .16);
+}
+
+.casb-share-menu[hidden] {
+  display: none;
+}
+
+.casb-share-menu a,
+.casb-share-menu button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f4f1;
+  color: #0d1f3c;
+  text-align: center;
+}
+
+.casb-share-menu button {
+  width: 100%;
+}
+
+@media (max-width: 860px) {
+  .casb-share-menu {
+    position: static;
+    margin-top: 9px;
+    box-shadow: none;
+  }
+}
+
 .event-upload-detail .back {
   display: inline-block;
   color: var(--gold);

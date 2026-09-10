@@ -714,3 +714,122 @@ if (contactForm) {
     }
   });
 }
+
+// Upgrade article share blocks without requiring per-article markup changes.
+document.querySelectorAll('.share-btns').forEach((shareBlock) => {
+  const shareCard = shareBlock.closest('.aside-card');
+  if (!shareCard) return;
+
+  const isChinese = document.documentElement.lang.toLowerCase().startsWith('zh') ||
+    window.location.pathname.startsWith('/zh/');
+  const canonical = `https://www.casb2u.com${window.location.pathname}`;
+  const rawTitle = document.querySelector('meta[property="og:title"]')?.content || document.title;
+  const title = rawTitle.replace(/\s*\|\s*CASB Agency.*$/i, '').trim();
+  const description = document.querySelector('meta[property="og:description"]')?.content ||
+    document.querySelector('meta[name="description"]')?.content || '';
+  const caption = isChinese
+    ? `${title}\n\n${description}\n\n阅读全文：${canonical}\n\n#CASBAgency #保险规划 #理财规划`
+    : `${title}\n\n${description}\n\nRead the full article: ${canonical}\n\n#CASBAgency #InsuranceMalaysia #FinancialPlanningMalaysia`;
+  const labels = isChinese ? {
+    share: '分享', copyLink: '复制链接', copied: '已复制', copyCaption: '复制贴文文案',
+    captionCopied: '文案已复制', email: '电子邮件', instagram: 'Instagram（复制文案）'
+  } : {
+    share: 'Share', copyLink: 'Copy Link', copied: 'Copied', copyCaption: 'Copy Caption',
+    captionCopied: 'Caption Copied', email: 'Email', instagram: 'Instagram (Copy Caption)'
+  };
+
+  shareBlock.className = 'share-btns casb-share';
+  shareBlock.innerHTML = `
+    <div class="casb-share-actions">
+      <button class="casb-share-primary" type="button" aria-expanded="false">
+        <span aria-hidden="true">&#8599;</span>${labels.share}
+      </button>
+      <button class="casb-share-copy-link" type="button">${labels.copyLink}</button>
+    </div>
+    <div class="casb-share-menu" hidden>
+      <a data-platform="whatsapp" target="_blank" rel="noopener">WhatsApp</a>
+      <a data-platform="facebook" target="_blank" rel="noopener">Facebook</a>
+      <a data-platform="linkedin" target="_blank" rel="noopener">LinkedIn</a>
+      <a data-platform="x" target="_blank" rel="noopener">X</a>
+      <a data-platform="telegram" target="_blank" rel="noopener">Telegram</a>
+      <a data-platform="email">${labels.email}</a>
+      <button type="button" data-copy-caption>${labels.copyCaption}</button>
+      <button type="button" data-copy-instagram>${labels.instagram}</button>
+    </div>`;
+
+  const encodedUrl = encodeURIComponent(canonical);
+  const encodedTitle = encodeURIComponent(title);
+  const encodedCaption = encodeURIComponent(caption);
+  const destinations = {
+    whatsapp: `https://wa.me/?text=${encodedCaption}`,
+    facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
+    linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
+    x: `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`,
+    telegram: `https://t.me/share/url?url=${encodedUrl}&text=${encodedTitle}`,
+    email: `mailto:?subject=${encodedTitle}&body=${encodedCaption}`
+  };
+  Object.entries(destinations).forEach(([platform, href]) => {
+    shareBlock.querySelector(`[data-platform="${platform}"]`).href = href;
+  });
+
+  const primary = shareBlock.querySelector('.casb-share-primary');
+  const menu = shareBlock.querySelector('.casb-share-menu');
+  const copyLinkButton = shareBlock.querySelector('.casb-share-copy-link');
+
+  const copyText = async (text) => {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(text);
+      return;
+    }
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    textarea.remove();
+  };
+
+  const showFeedback = (button, message, original) => {
+    button.textContent = message;
+    window.setTimeout(() => { button.textContent = original; }, 1800);
+  };
+
+  const toggleMenu = (open) => {
+    menu.hidden = !open;
+    primary.setAttribute('aria-expanded', String(open));
+  };
+
+  primary.addEventListener('click', async () => {
+    const useNativeShare = window.matchMedia('(max-width: 860px)').matches && navigator.share;
+    if (useNativeShare) {
+      try {
+        await navigator.share({ title, text: description, url: canonical });
+      } catch (error) {
+        if (error.name !== 'AbortError') toggleMenu(true);
+      }
+      return;
+    }
+    toggleMenu(menu.hidden);
+  });
+
+  copyLinkButton.addEventListener('click', async () => {
+    await copyText(canonical);
+    showFeedback(copyLinkButton, labels.copied, labels.copyLink);
+  });
+
+  [shareBlock.querySelector('[data-copy-caption]'), shareBlock.querySelector('[data-copy-instagram]')]
+    .forEach((button) => button.addEventListener('click', async () => {
+      const original = button.textContent;
+      await copyText(caption);
+      showFeedback(button, labels.captionCopied, original);
+    }));
+
+  document.addEventListener('click', (event) => {
+    if (!shareBlock.contains(event.target)) toggleMenu(false);
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') toggleMenu(false);
+  });
+});
