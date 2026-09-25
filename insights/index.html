@@ -518,7 +518,7 @@ nav { background: rgba(13,31,60,.97); border-bottom: 1px solid rgba(255,255,255,
   <main>
 
     <!-- FEATURED -->
-    <div class="featured-wrap">
+    <div class="featured-wrap" id="featuredSection">
       <div class="featured-label">Featured Article</div>
       <a class="featured-card" id="featuredCard" href="#"></a>
     </div>
@@ -996,10 +996,15 @@ let activeFilter = 'all';
 let searchTerm   = '';
 
 function applyFilters() {
-  // Re-render grid filtered from ARTICLES array (skip index 0 = featured)
-  const filtered = ARTICLES.slice(1).filter(a => {
+  // Keep the featured card in its normal position until the visitor searches.
+  // During search, hide that pinned presentation and let the featured article
+  // participate in the results like every other article.
+  document.getElementById('featuredSection').hidden = Boolean(searchTerm);
+  const searchableArticles = searchTerm ? ARTICLES : ARTICLES.slice(1);
+  const filtered = searchableArticles.filter(a => {
     const catMatch    = activeFilter === 'all' || a.cat === activeFilter;
-    const searchMatch = !searchTerm || a.title.toLowerCase().includes(searchTerm);
+    const searchableText = `${a.title} ${a.excerpt} ${a.catLabel}`.toLowerCase();
+    const searchMatch = !searchTerm || searchableText.includes(searchTerm);
     return catMatch && searchMatch;
   });
   const grid = document.getElementById('articleGrid');

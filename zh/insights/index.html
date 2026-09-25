@@ -505,7 +505,7 @@ nav { background: rgba(13,31,60,.97); border-bottom: 1px solid rgba(255,255,255,
   <main>
 
     <!-- FEATURED -->
-    <div class="featured-wrap">
+    <div class="featured-wrap" id="featuredSection">
       <div class="featured-label">特色文章</div>
       <a class="featured-card" id="featuredCard" href="#"></a>
     </div>
@@ -947,10 +947,14 @@ let activeFilter = 'all';
 let searchTerm   = '';
 
 function applyFilters() {
-  // Re-render grid filtered from ARTICLES array (skip index 0 = featured)
-  const filtered = ARTICLES.slice(1).filter(a => {
+  // 一般浏览时保留特色文章；开始搜索后隐藏置顶展示，并让该文章
+  // 与其他文章一样参与搜索结果。
+  document.getElementById('featuredSection').hidden = Boolean(searchTerm);
+  const searchableArticles = searchTerm ? ARTICLES : ARTICLES.slice(1);
+  const filtered = searchableArticles.filter(a => {
     const catMatch    = activeFilter === 'all' || a.cat === activeFilter;
-    const searchMatch = !searchTerm || a.title.toLowerCase().includes(searchTerm);
+    const searchableText = `${a.title} ${a.excerpt} ${a.catLabel}`.toLowerCase();
+    const searchMatch = !searchTerm || searchableText.includes(searchTerm);
     return catMatch && searchMatch;
   });
   const grid = document.getElementById('articleGrid');
