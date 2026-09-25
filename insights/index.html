@@ -500,9 +500,8 @@ nav { background: rgba(13,31,60,.97); border-bottom: 1px solid rgba(255,255,255,
       <button class="tab-btn active" data-filter="all" role="tab">All</button>
       <button class="tab-btn" data-filter="protection" role="tab">Insurance &amp; Protection</button>
       <button class="tab-btn" data-filter="financial" role="tab">Financial Planning</button>
-      <button class="tab-btn" data-filter="explained" role="tab">Insurance Explained</button>
+      <button class="tab-btn" data-filter="medical" role="tab">Medical &amp; Insurance</button>
       <button class="tab-btn" data-filter="claims" role="tab">Claims &amp; Support</button>
-      <button class="tab-btn" data-filter="myths" role="tab">Myths &amp; Misconceptions</button>
       <button class="tab-btn" data-filter="careers" role="tab">Careers</button>
     </div>
     <div class="search-box">
@@ -628,30 +627,30 @@ const ARTICLES = [
   { title: "What Is a Medical Card in Malaysia? A Complete Beginner's Guide", cat: "medical", catLabel: "Medical & Health", excerpt: "Learn how medical cards work, what they may cover, and how cashless admission, limits, exclusions and cost-sharing affect a claim.", readTime: "11 min read", date: "September 11, 2026", href: "articles/what-is-medical-card-malaysia.html", image: "../assets/insights/what-is-medical-card-malaysia.jpg" },
   { title: "Pre- and Post-Hospitalisation Benefits: Which Outpatient Expenses Can Your Medical Card Cover?", cat: "medical", catLabel: "Medical & Health", excerpt: "Understand which consultations, tests, medicines and follow-ups may be reimbursed when they relate to the same eligible hospitalisation.", readTime: "6 min read", date: "September 10, 2026", href: "articles/pre-post-hospitalisation-medical-card-malaysia.html", image: "../assets/insights/pre-post-hospitalisation-medical-card-malaysia.png" },
   { title: "Accidental Outpatient Benefit Under Personal Accident Insurance: What Can You Claim?", cat: "claims", catLabel: "Claims & Support", excerpt: "A practical PA-only guide to clinic treatment, X-rays, stitches, follow-ups, deadlines, reimbursement limits and the documents agents should collect.", readTime: "5 min read", date: "August 27, 2026", href: "articles/accidental-outpatient-personal-accident-insurance-malaysia.html", image: "../assets/insights/accidental-outpatient-personal-accident-insurance-malaysia.png" },
-  { title: "Personal Accident vs Medical Card vs Life Insurance: Which One Pays After an Accident?", cat: "explained", catLabel: "Insurance Explained", excerpt: "Use six everyday accident scenarios to identify whether PA insurance, a medical card, life insurance—or more than one policy—may respond.", readTime: "6 min read", date: "August 27, 2026", href: "articles/personal-accident-vs-medical-card-vs-life-insurance-malaysia.html", image: "../assets/insights/personal-accident-vs-medical-card-vs-life-insurance-malaysia.png" },
+  { title: "Personal Accident vs Medical Card vs Life Insurance: Which One Pays After an Accident?", cat: "medical", catLabel: "Insurance Explained", excerpt: "Use six everyday accident scenarios to identify whether PA insurance, a medical card, life insurance—or more than one policy—may respond.", readTime: "6 min read", date: "August 27, 2026", href: "articles/personal-accident-vs-medical-card-vs-life-insurance-malaysia.html", image: "../assets/insights/personal-accident-vs-medical-card-vs-life-insurance-malaysia.png" },
   { title: "What Is Total and Permanent Disability (TPD) Insurance in Malaysia—and When Does It Pay?", cat: "protection", catLabel: "Protection Planning", excerpt: "Understand common TPD definitions, assessment periods, evidence, payout structures and why being unable to do your current job may not be enough.", readTime: "8 min read", date: "August 27, 2026", href: "articles/total-permanent-disability-insurance-malaysia.html", image: "../assets/insights/total-permanent-disability-insurance-malaysia.png" },
   { title: "The Insurer Asked You to Do a Medical Examination—Does That Mean Something Is Wrong?", cat: "protection", catLabel: "Protection", excerpt: "Why insurers request medical examinations, what tests to expect, how to prepare and the possible underwriting outcomes.", readTime: "7 min read", date: "August 21, 2026", href: "articles/insurance-medical-examination-underwriting-malaysia.html", image: "../assets/insights/insurance-medical-examination-underwriting-malaysia.png" },
   { title: "The Hospital No Longer Has Your Old Medical Records—Can You Still Apply for Insurance?", cat: "protection", catLabel: "Protection", excerpt: "How to disclose an old medical history, document an unsuccessful records search and prepare alternative evidence for underwriting.", readTime: "8 min read", date: "August 17, 2026", href: "articles/old-medical-records-unavailable-insurance-malaysia.html", image: "../assets/insights/old-medical-records-unavailable-insurance-malaysia.png" },
   { title: "After a Critical Illness Claim, Is Your Life Insurance Coverage Still Intact?", cat: "protection", catLabel: "Protection", excerpt: "Understand accelerated versus additional CI benefits—and whether a CI payout may reduce the life insurance amount remaining for your family.", readTime: "7 min read", date: "August 17, 2026", href: "articles/critical-illness-claim-reduce-life-insurance-malaysia.html", image: "../assets/insights/critical-illness-claim-reduce-life-insurance-malaysia.png" },
   { title: "Why Do People Underestimate Critical Illness Insurance Until It Happens Close to Home?", cat: "protection", catLabel: "Protection", excerpt: "Why good health, medical cards and employer benefits can hide the income and recovery gap created by a critical illness.", readTime: "8 min read", date: "August 5, 2026", href: "articles/why-people-underestimate-critical-illness-malaysia.html", image: "../assets/insights/why-people-underestimate-critical-illness-malaysia.png" },
-  { title: "Fish Bone Surgery Claim Initially Declined, Then Paid After a Diabetes Concern Was Clarified", cat: "casestudy", catLabel: "Case Study", excerpt: "A real anonymised CASB case showing how further medical evidence clarified a diabetes concern and supported a successful claim review.", readTime: "7 min read", date: "August 4, 2026", href: "articles/fish-bone-surgery-diabetes-claim-review-malaysia.html", image: "../assets/insights/fish-bone-surgery-diabetes-claim-review-malaysia.png" },
-  { title: "Can You Buy Insurance With High Blood Pressure, Diabetes or High Cholesterol in Malaysia?", cat: "explained", catLabel: "Insurance Explained", excerpt: "A diagnosis or medication does not automatically end an application—learn what control, complications and medical records may mean.", readTime: "8 min read", date: "August 3, 2026", href: "articles/high-blood-pressure-diabetes-cholesterol-insurance-malaysia.html", image: "../assets/insights/high-blood-pressure-diabetes-cholesterol-insurance-malaysia.png" },
-  { title: "Can You Buy Insurance After Childhood Heart Surgery? What Malaysian Underwriters May Review", cat: "explained", catLabel: "Insurance Explained", excerpt: "Childhood heart surgery does not automatically prevent an application—learn the possible outcomes and medical records that matter.", readTime: "8 min read", date: "August 3, 2026", href: "articles/childhood-heart-surgery-insurance-malaysia.html", image: "../assets/insights/childhood-heart-surgery-insurance-malaysia.png" },
+  { title: "Fish Bone Surgery Claim Initially Declined, Then Paid After a Diabetes Concern Was Clarified", cat: "claims", catLabel: "Case Study", excerpt: "A real anonymised CASB case showing how further medical evidence clarified a diabetes concern and supported a successful claim review.", readTime: "7 min read", date: "August 4, 2026", href: "articles/fish-bone-surgery-diabetes-claim-review-malaysia.html", image: "../assets/insights/fish-bone-surgery-diabetes-claim-review-malaysia.png" },
+  { title: "Can You Buy Insurance With High Blood Pressure, Diabetes or High Cholesterol in Malaysia?", cat: "medical", catLabel: "Insurance Explained", excerpt: "A diagnosis or medication does not automatically end an application—learn what control, complications and medical records may mean.", readTime: "8 min read", date: "August 3, 2026", href: "articles/high-blood-pressure-diabetes-cholesterol-insurance-malaysia.html", image: "../assets/insights/high-blood-pressure-diabetes-cholesterol-insurance-malaysia.png" },
+  { title: "Can You Buy Insurance After Childhood Heart Surgery? What Malaysian Underwriters May Review", cat: "medical", catLabel: "Insurance Explained", excerpt: "Childhood heart surgery does not automatically prevent an application—learn the possible outcomes and medical records that matter.", readTime: "8 min read", date: "August 3, 2026", href: "articles/childhood-heart-surgery-insurance-malaysia.html", image: "../assets/insights/childhood-heart-surgery-insurance-malaysia.png" },
   { title: "What Does Claim Deferment Mean? Is Your Insurance Claim Rejected or Still Under Review?", cat: "claims", catLabel: "Claims & Support", excerpt: "Understand why an insurer may postpone its decision, what documents may be outstanding and how deferment differs from rejection.", readTime: "7 min read", date: "August 3, 2026", href: "articles/insurance-claim-deferment-malaysia.html", image: "../assets/insights/insurance-claim-deferment-malaysia.png" },
   { title: "Thinking of Becoming an Insurance Agent in Malaysia? What the First 12 Months Really Look Like", cat: "careers", catLabel: "Career Opportunity", excerpt: "A realistic first-year roadmap—from qualification and training to prospecting, client service and building sustainable routines.", readTime: "8 min read", date: "August 3, 2026", href: "articles/insurance-agent-first-12-months-malaysia.html", image: "../assets/insights/insurance-agent-first-12-months-malaysia.png" },
-  { title: "Claim Rejected, Then Partly Paid: How a Medical Review Changed a Gallstone Case", cat: "casestudy", catLabel: "Case Study", excerpt: "A real FMOS case showing how medical evidence separated a covered gallstone condition from an excluded diagnosis and led to payment.", readTime: "6 min read", date: "August 3, 2026", href: "articles/gallstone-claim-policy-exclusion-success-malaysia.html", image: "../assets/insights/gallstone-claim-policy-exclusion-success-malaysia.png" },
-  { title: "What Does ‘Medically Necessary’ Mean? Why a Doctor’s Recommendation May Not Guarantee a Claim", cat: "explained", catLabel: "Insurance Explained", excerpt: "Understand why clinical recommendation and contractual medical-card eligibility are separate—and what evidence can support a review.", readTime: "8 min read", date: "August 3, 2026", href: "articles/medically-necessary-medical-card-claim-malaysia.html", image: "../assets/insights/medically-necessary-medical-card-claim-malaysia.png" },
-  { title: "What Is a Reasonable and Customary Charge? Why Your Medical Card May Not Pay the Full Bill", cat: "explained", catLabel: "Insurance Explained", excerpt: "Why hospital charges and approved claim amounts can differ—and how exclusions, limits and cost-sharing are not the same thing.", readTime: "8 min read", date: "August 3, 2026", href: "articles/reasonable-customary-charges-medical-card-malaysia.html", image: "../assets/insights/reasonable-customary-charges-medical-card-malaysia.png" },
-  { title: "How to Read a Private-Hospital Bill in Malaysia: What Are You Actually Paying For?", cat: "explained", catLabel: "Insurance Explained", excerpt: "Understand room charges, professional fees, package exclusions, insurer-approved amounts and your final patient balance.", readTime: "8 min read", date: "August 3, 2026", href: "articles/how-to-read-private-hospital-bill-malaysia.html", image: "../assets/insights/how-to-read-private-hospital-bill-malaysia.png" },
-  { title: "What Is DRG in Malaysia? Diagnosis-Related Group Payments Explained", cat: "explained", catLabel: "Insurance Explained", excerpt: "How DRG groups hospital cases, differs from itemised billing and may affect private healthcare costs and medical cards.", readTime: "8 min read", date: "August 3, 2026", href: "articles/diagnosis-related-group-drg-malaysia.html", image: "../assets/insights/diagnosis-related-group-drg-malaysia.png" },
-  { title: "What Is MediAsas? Malaysia's New Base MHIT Plan Explained", cat: "explained", catLabel: "Insurance Explained", excerpt: "A public-information guide to MediAsas, its pilot timeline, Teras and Fleksi options, and what Malaysians should do now.", readTime: "8 min read", date: "August 3, 2026", href: "articles/mediasas-base-mhit-malaysia.html", image: "../assets/insights/mediasas-base-mhit-malaysia.png" },
-  { title: "Doctor Says You Can Go Home—Why Does Medical-Card Discharge Still Take Hours?", cat: "explained", catLabel: "Insurance Explained", excerpt: "Understand the steps between medical clearance and financial discharge for a Malaysian medical-card admission.", readTime: "7 min read", date: "August 3, 2026", href: "articles/medical-card-hospital-discharge-delay-malaysia.html", image: "../assets/insights/medical-card-hospital-discharge-delay-malaysia.png" },
-  { title: "Your Medical Card Says RM200 Room and Board—What If the Room Costs RM300?", cat: "explained", catLabel: "Insurance Explained", excerpt: "Understand room-rate differences, co-payment, room unavailability and what to check before accepting a hospital-room upgrade.", readTime: "7 min read", date: "August 3, 2026", href: "articles/medical-card-room-board-upgrade-malaysia.html", image: "../assets/insights/medical-card-room-board-upgrade-malaysia.png" },
-  { title: "Mother's Medical GL Initially Declined: What Happened After a Second Review?", cat: "casestudy", catLabel: "Case Study", excerpt: "A real Malaysian family experience showing why an initial GL outcome may be reviewed—and how to prepare for hospital admission.", readTime: "7 min read", date: "August 3, 2026", href: "articles/medical-gl-declined-second-review-real-case-malaysia.html", image: "../assets/insights/medical-gl-declined-second-review-real-case-malaysia.png" },
-  { title: "Cancer Claim Rejected for Non-Disclosure: Why the High Court Reinstated the Policy", cat: "casestudy", catLabel: "Case Study", excerpt: "A real Malaysian court case on health declarations, alleged non-disclosure and why checking every application answer matters.", readTime: "6 min read", date: "August 3, 2026", href: "articles/cancer-claim-non-disclosure-high-court-malaysia.html", image: "../assets/insights/cancer-claim-non-disclosure-high-court-malaysia.png" },
-  { title: "Can You Claim an Emergency-Room Bill Without Being Admitted in Malaysia?", cat: "explained", catLabel: "Insurance Explained", excerpt: "Understand emergency outpatient treatment, accident versus illness, observation status, ambulance charges and what happens when A&E does not lead to admission.", readTime: "7 min read", date: "August 3, 2026", href: "articles/emergency-room-without-admission-medical-card-malaysia.html", image: "../assets/insights/emergency-room-without-admission-medical-card-malaysia.png" },
-  { title: "Can You Claim for Gout, High Uric Acid or Rheumatism Under a Malaysian Medical Card?", cat: "explained", catLabel: "Insurance Explained", excerpt: "Learn why a diagnosis does not automatically make every clinic visit, medicine or test claimable—and how outpatient and hospital benefits differ.", readTime: "7 min read", date: "August 3, 2026", href: "articles/gout-uric-acid-rheumatism-medical-card-malaysia.html", image: "../assets/insights/gout-uric-acid-rheumatism-medical-card-malaysia.png" },
-  { title: "What Does a Medical Card Cover in Malaysia—and What Might Not Be Covered?", cat: "explained", catLabel: "Insurance Explained", excerpt: "Understand common benefits and exclusions, including how robotic surgery, breast reconstruction, implants and individual hospital charges may be assessed.", readTime: "8 min read", date: "August 3, 2026", href: "articles/medical-card-coverage-exclusions-malaysia.html", image: "../assets/insights/medical-card-coverage-exclusions-malaysia.png" },
+  { title: "Claim Rejected, Then Partly Paid: How a Medical Review Changed a Gallstone Case", cat: "claims", catLabel: "Case Study", excerpt: "A real FMOS case showing how medical evidence separated a covered gallstone condition from an excluded diagnosis and led to payment.", readTime: "6 min read", date: "August 3, 2026", href: "articles/gallstone-claim-policy-exclusion-success-malaysia.html", image: "../assets/insights/gallstone-claim-policy-exclusion-success-malaysia.png" },
+  { title: "What Does ‘Medically Necessary’ Mean? Why a Doctor’s Recommendation May Not Guarantee a Claim", cat: "medical", catLabel: "Insurance Explained", excerpt: "Understand why clinical recommendation and contractual medical-card eligibility are separate—and what evidence can support a review.", readTime: "8 min read", date: "August 3, 2026", href: "articles/medically-necessary-medical-card-claim-malaysia.html", image: "../assets/insights/medically-necessary-medical-card-claim-malaysia.png" },
+  { title: "What Is a Reasonable and Customary Charge? Why Your Medical Card May Not Pay the Full Bill", cat: "medical", catLabel: "Insurance Explained", excerpt: "Why hospital charges and approved claim amounts can differ—and how exclusions, limits and cost-sharing are not the same thing.", readTime: "8 min read", date: "August 3, 2026", href: "articles/reasonable-customary-charges-medical-card-malaysia.html", image: "../assets/insights/reasonable-customary-charges-medical-card-malaysia.png" },
+  { title: "How to Read a Private-Hospital Bill in Malaysia: What Are You Actually Paying For?", cat: "medical", catLabel: "Insurance Explained", excerpt: "Understand room charges, professional fees, package exclusions, insurer-approved amounts and your final patient balance.", readTime: "8 min read", date: "August 3, 2026", href: "articles/how-to-read-private-hospital-bill-malaysia.html", image: "../assets/insights/how-to-read-private-hospital-bill-malaysia.png" },
+  { title: "What Is DRG in Malaysia? Diagnosis-Related Group Payments Explained", cat: "medical", catLabel: "Insurance Explained", excerpt: "How DRG groups hospital cases, differs from itemised billing and may affect private healthcare costs and medical cards.", readTime: "8 min read", date: "August 3, 2026", href: "articles/diagnosis-related-group-drg-malaysia.html", image: "../assets/insights/diagnosis-related-group-drg-malaysia.png" },
+  { title: "What Is MediAsas? Malaysia's New Base MHIT Plan Explained", cat: "medical", catLabel: "Insurance Explained", excerpt: "A public-information guide to MediAsas, its pilot timeline, Teras and Fleksi options, and what Malaysians should do now.", readTime: "8 min read", date: "August 3, 2026", href: "articles/mediasas-base-mhit-malaysia.html", image: "../assets/insights/mediasas-base-mhit-malaysia.png" },
+  { title: "Doctor Says You Can Go Home—Why Does Medical-Card Discharge Still Take Hours?", cat: "claims", catLabel: "Insurance Explained", excerpt: "Understand the steps between medical clearance and financial discharge for a Malaysian medical-card admission.", readTime: "7 min read", date: "August 3, 2026", href: "articles/medical-card-hospital-discharge-delay-malaysia.html", image: "../assets/insights/medical-card-hospital-discharge-delay-malaysia.png" },
+  { title: "Your Medical Card Says RM200 Room and Board—What If the Room Costs RM300?", cat: "medical", catLabel: "Insurance Explained", excerpt: "Understand room-rate differences, co-payment, room unavailability and what to check before accepting a hospital-room upgrade.", readTime: "7 min read", date: "August 3, 2026", href: "articles/medical-card-room-board-upgrade-malaysia.html", image: "../assets/insights/medical-card-room-board-upgrade-malaysia.png" },
+  { title: "Mother's Medical GL Initially Declined: What Happened After a Second Review?", cat: "claims", catLabel: "Case Study", excerpt: "A real Malaysian family experience showing why an initial GL outcome may be reviewed—and how to prepare for hospital admission.", readTime: "7 min read", date: "August 3, 2026", href: "articles/medical-gl-declined-second-review-real-case-malaysia.html", image: "../assets/insights/medical-gl-declined-second-review-real-case-malaysia.png" },
+  { title: "Cancer Claim Rejected for Non-Disclosure: Why the High Court Reinstated the Policy", cat: "claims", catLabel: "Case Study", excerpt: "A real Malaysian court case on health declarations, alleged non-disclosure and why checking every application answer matters.", readTime: "6 min read", date: "August 3, 2026", href: "articles/cancer-claim-non-disclosure-high-court-malaysia.html", image: "../assets/insights/cancer-claim-non-disclosure-high-court-malaysia.png" },
+  { title: "Can You Claim an Emergency-Room Bill Without Being Admitted in Malaysia?", cat: "medical", catLabel: "Insurance Explained", excerpt: "Understand emergency outpatient treatment, accident versus illness, observation status, ambulance charges and what happens when A&E does not lead to admission.", readTime: "7 min read", date: "August 3, 2026", href: "articles/emergency-room-without-admission-medical-card-malaysia.html", image: "../assets/insights/emergency-room-without-admission-medical-card-malaysia.png" },
+  { title: "Can You Claim for Gout, High Uric Acid or Rheumatism Under a Malaysian Medical Card?", cat: "medical", catLabel: "Insurance Explained", excerpt: "Learn why a diagnosis does not automatically make every clinic visit, medicine or test claimable—and how outpatient and hospital benefits differ.", readTime: "7 min read", date: "August 3, 2026", href: "articles/gout-uric-acid-rheumatism-medical-card-malaysia.html", image: "../assets/insights/gout-uric-acid-rheumatism-medical-card-malaysia.png" },
+  { title: "What Does a Medical Card Cover in Malaysia—and What Might Not Be Covered?", cat: "medical", catLabel: "Insurance Explained", excerpt: "Understand common benefits and exclusions, including how robotic surgery, breast reconstruction, implants and individual hospital charges may be assessed.", readTime: "8 min read", date: "August 3, 2026", href: "articles/medical-card-coverage-exclusions-malaysia.html", image: "../assets/insights/medical-card-coverage-exclusions-malaysia.png" },
   { title: "MRTA vs MLTA vs Life Insurance: What Happens to Your Home Loan When You Die?", cat: "financial", catLabel: "Estate Planning", excerpt: "Understand reducing, level and general life protection—and why settling the loan does not automatically transfer the property.", readTime: "7 min read", date: "August 1, 2026", href: "articles/mrta-mlta-life-insurance-malaysia.html", image: "../assets/insights/mrta-mlta-life-insurance-malaysia.png" },
   { title: "How Much Life Insurance Coverage Do You Need in Malaysia?", cat: "protection", catLabel: "Protection Planning", excerpt: "Estimate the family support, debts, education and dependant needs that remain after savings and existing death benefits.", readTime: "7 min read", date: "August 1, 2026", href: "articles/how-much-life-insurance-coverage-malaysia.html", image: "../assets/insights/how-much-life-insurance-coverage-malaysia.png" },
   {
@@ -666,7 +665,7 @@ const ARTICLES = [
   },
   {
     title: "What Is Probate in Malaysia, and How Long Does Estate Administration Take?",
-    cat: "wealth",
+    cat: "financial",
     catLabel: "Estate Planning",
     excerpt: "Understand the authority, documents, stages and realistic timeline involved in administering a Malaysian estate after death.",
     readTime: "7 min read",
@@ -676,7 +675,7 @@ const ARTICLES = [
   },
   {
     title: "What Assets Are—and Aren’t—Covered by a Will in Malaysia?",
-    cat: "wealth",
+    cat: "financial",
     catLabel: "Estate Planning",
     excerpt: "Map which assets may pass through a will and which may follow nominations, joint ownership, trusts or other transfer arrangements.",
     readTime: "6 min read",
@@ -686,7 +685,7 @@ const ARTICLES = [
   },
   {
     title: "Nominee vs Beneficiary in Malaysia: What’s the Difference?",
-    cat: "wealth",
+    cat: "financial",
     catLabel: "Estate Planning",
     excerpt: "Learn how nominee, beneficiary and administrator roles differ across EPF, life insurance and family takaful—and why the product rules matter.",
     readTime: "6 min read",
@@ -696,7 +695,7 @@ const ARTICLES = [
   },
   {
     title: "What Happens to Your Assets When You Die Without a Will in Malaysia?",
-    cat: "wealth",
+    cat: "financial",
     catLabel: "Estate Planning",
     excerpt: "Understand intestacy, temporary asset access, estate administration, debts and how distribution frameworks differ for Muslim and non-Muslim estates.",
     readTime: "6 min read",
@@ -736,7 +735,7 @@ const ARTICLES = [
   },
   {
     title: "Insurance Claim Rejected in Malaysia? Common Reasons and What to Do Next",
-    cat: "medical",
+    cat: "claims",
     catLabel: "Medical & Health",
     excerpt: "Understand common rejection reasons, how to review the decision, prepare an evidence-led appeal and when an eligible dispute may be referred to FMOS.",
     readTime: "7 min read",
@@ -776,7 +775,7 @@ const ARTICLES = [
   },
   {
     title: "What Does an Insurance Agent Do in Malaysia?",
-    cat: "planning",
+    cat: "careers",
     catLabel: "Career",
     excerpt: "A realistic look at client meetings, protection reviews, applications, policy servicing, claims support and the daily responsibilities behind the career.",
     readTime: "7 min read",
@@ -786,7 +785,7 @@ const ARTICLES = [
   },
   {
     title: "How Long Does an Insurance Claim Take in Malaysia?",
-    cat: "medical",
+    cat: "claims",
     catLabel: "Medical & Health",
     excerpt: "Understand the stages of an insurance claim, what affects processing time, why delays happen, and how to follow up effectively.",
     readTime: "28 min read",
@@ -796,7 +795,7 @@ const ARTICLES = [
   },
   {
     title: "What Documents Do You Need for an Insurance Claim?",
-    cat: "medical",
+    cat: "claims",
     catLabel: "Medical & Health",
     excerpt: "A complete Malaysian checklist for medical, critical illness, accident, disability and death claim documents, plus practical ways to prevent delays.",
     readTime: "25 min read",
@@ -806,7 +805,7 @@ const ARTICLES = [
   },
   {
     title: "Insurance Career in Malaysia: Is It Still Worth Considering in 2026?",
-    cat: "planning",
+    cat: "careers",
     catLabel: "Career",
     excerpt: "A practical introduction to what an insurance career involves, who it suits, its challenges, and what support to look for before you begin.",
     readTime: "8 min read",
@@ -816,7 +815,7 @@ const ARTICLES = [
   },
   {
     title: "Cashless vs Reimbursement Medical Claims: What's the Difference?",
-    cat: "medical",
+    cat: "claims",
     catLabel: "Medical & Health",
     excerpt: "Understand cashless hospital admission versus reimbursement medical claims, including GL approval, documents needed and when each method applies.",
     readTime: "8 min read",
@@ -826,7 +825,7 @@ const ARTICLES = [
   },
   {
     title: "Why Was My Medical Card Guarantee Letter Declined?",
-    cat: "medical",
+    cat: "claims",
     catLabel: "Medical & Health",
     excerpt: "Learn common reasons a medical card GL may be declined, what a declined Guarantee Letter means, and what steps you can take next.",
     readTime: "9 min read",
@@ -836,27 +835,27 @@ const ARTICLES = [
   },
   {
     title: "What Is a Guarantee Letter (GL)?",
-    cat: "medical",
+    cat: "claims",
     catLabel: "Medical & Health",
     excerpt: "Learn what a Guarantee Letter is, how cashless hospital admission works, why a GL may be delayed or declined, and what to do next.",
     readTime: "7 min read",
     date: "July 17, 2026",
     href: "articles/guarantee-letter-gl-medical-insurance-malaysia.html",
-    image: "../assets/insights/guarantee-letter-malaysia.png"
+    image: "../assets/insights/why-medical-card-guarantee-letter-declined.png"
   },
   {
     title: "How to Make an Insurance Claim in Malaysia",
-    cat: "medical",
+    cat: "claims",
     catLabel: "Medical & Health",
     excerpt: "A step-by-step guide to medical card, hospitalisation, Guarantee Letter, reimbursement, critical illness and life insurance claims in Malaysia.",
     readTime: "7 min read",
     date: "July 17, 2026",
     href: "articles/how-to-make-insurance-claim-malaysia.html",
-    image: "../assets/insights/insurance-claim-document-checklist.png"
+    image: "../assets/insights/how-to-make-insurance-claim-malaysia.png"
   },
   {
     title: "Part-Time Insurance Agent in Malaysia: What You Need to Know",
-    cat: "planning",
+    cat: "careers",
     catLabel: "Planning Basics",
     excerpt: "Can you start as a part-time insurance agent in Malaysia? Learn the realities, responsibilities, income potential, and contract considerations first.",
     readTime: "6 min read",
@@ -916,13 +915,17 @@ const ARTICLES = [
   }
 ];
 
-// Keep article URLs stable while assigning the editorial categories in one place.
+// Normalise legacy editorial labels to the five filters shown above.
+ARTICLES.forEach(article => {
+  if (article.cat === 'explained') article.cat = 'medical';
+  if (article.cat === 'wealth' || article.cat === 'planning') article.cat = 'financial';
+  if (article.cat === 'casestudy') article.cat = 'claims';
+});
+
+// Keep article URLs stable while assigning special-topic categories in one place.
 const ARTICLE_CATEGORIES = {
-  financial: ['probate-estate-administration-malaysia.html', 'assets-covered-by-will-malaysia.html', 'nominee-vs-beneficiary-malaysia.html', 'die-without-will-malaysia.html'],
-  careers: ['what-does-insurance-agent-do-malaysia.html', 'insurance-career-malaysia-2026.html', 'part-time-insurance-agent-malaysia.html'],
-  claims: ['insurance-claim-rejected-malaysia.html', 'insurance-claim-processing-time-malaysia.html', 'insurance-claim-documents-malaysia.html', 'cashless-vs-reimbursement-medical-claims-malaysia.html', 'why-medical-card-guarantee-letter-declined.html', 'how-to-make-insurance-claim-malaysia.html'],
-  myths: ['two-medical-cards-malaysia.html', 'why-medical-cards-keep-getting-more-expensive.html', 'why-medical-card-alone-isnt-enough.html', 'hidden-cost-critical-illness.html', 'medical-card-vs-critical-illness.html'],
-  explained: ['medical-card-annual-limit-malaysia.html', 'co-insurance-medical-card-malaysia.html', 'medical-insurance-waiting-period-malaysia.html', 'panel-vs-non-panel-hospital-malaysia.html', 'guarantee-letter-gl-medical-insurance-malaysia.html']
+  careers: ['what-does-insurance-agent-do-malaysia.html', 'insurance-career-malaysia-2026.html', 'part-time-insurance-agent-malaysia.html', 'insurance-agent-first-12-months-malaysia.html'],
+  claims: ['insurance-claim-rejected-malaysia.html', 'insurance-claim-processing-time-malaysia.html', 'insurance-claim-documents-malaysia.html', 'cashless-vs-reimbursement-medical-claims-malaysia.html', 'why-medical-card-guarantee-letter-declined.html', 'guarantee-letter-gl-medical-insurance-malaysia.html', 'how-to-make-insurance-claim-malaysia.html', 'medical-card-hospital-discharge-delay-malaysia.html', 'insurance-claim-deferment-malaysia.html', 'accidental-outpatient-personal-accident-insurance-malaysia.html', 'cancer-claim-non-disclosure-high-court-malaysia.html', 'medical-gl-declined-second-review-real-case-malaysia.html', 'gallstone-claim-policy-exclusion-success-malaysia.html', 'fish-bone-surgery-diabetes-claim-review-malaysia.html']
 };
 
 Object.entries(ARTICLE_CATEGORIES).forEach(([category, filenames]) => {

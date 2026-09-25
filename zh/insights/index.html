@@ -487,9 +487,8 @@ nav { background: rgba(13,31,60,.97); border-bottom: 1px solid rgba(255,255,255,
       <button class="tab-btn active" data-filter="all" role="tab">所有</button>
       <button class="tab-btn" data-filter="protection" role="tab">保险与保障</button>
       <button class="tab-btn" data-filter="financial" role="tab">财务规划</button>
-      <button class="tab-btn" data-filter="explained" role="tab">保险知识</button>
+      <button class="tab-btn" data-filter="medical" role="tab">医疗与保险知识</button>
       <button class="tab-btn" data-filter="claims" role="tab">理赔与支援</button>
-      <button class="tab-btn" data-filter="myths" role="tab">迷思与误解</button>
       <button class="tab-btn" data-filter="careers" role="tab">保险事业</button>
     </div>
     <div class="search-box">
@@ -615,34 +614,34 @@ const ARTICLES = [
   { title: "马来西亚医药卡是什么？新手完整指南", cat: "medical", catLabel: "医疗与健康", excerpt: "了解医药卡如何运作、可能保障什么，以及免现金入院、限额、除外责任和费用分担如何影响索赔。", readTime: "11 分钟阅读", date: "2026 年 9 月 11 日", href: "articles/what-is-medical-card-malaysia.html", image: "/assets/insights/what-is-medical-card-malaysia.jpg" },
   { title: "住院前后门诊利益：医药卡可以报销哪些费用？", cat: "medical", catLabel: "医疗与健康", excerpt: "了解哪些诊症、检查、药物及复诊费用，在关联同一次合资格住院时可能获得报销。", readTime: "6 分钟阅读", date: "2026 年 9 月 10 日", href: "articles/pre-post-hospitalisation-medical-card-malaysia.html", image: "/assets/insights/pre-post-hospitalisation-medical-card-malaysia.png" },
   { title: "个人意外险的意外门诊利益：哪些费用可以Claim？", cat: "claims", catLabel: "理赔与支援", excerpt: "PA专属实用指南：诊所治疗、X光、缝针、复诊、期限、报销限额，以及代理应该收集的文件。", readTime: "5 分钟阅读", date: "2026 年 8 月 27 日", href: "articles/accidental-outpatient-personal-accident-insurance-malaysia.html", image: "/assets/insights/accidental-outpatient-personal-accident-insurance-malaysia.png" },
-  { title: "个人意外险、医药卡与人寿保险：发生意外后哪一个会赔？", cat: "explained", catLabel: "保险知识", excerpt: "通过六个日常意外情况，判断PA、医药卡、人寿保险，或多份保单是否可能分别处理不同损失。", readTime: "6 分钟阅读", date: "2026 年 8 月 27 日", href: "articles/personal-accident-vs-medical-card-vs-life-insurance-malaysia.html", image: "/assets/insights/personal-accident-vs-medical-card-vs-life-insurance-malaysia.png" },
+  { title: "个人意外险、医药卡与人寿保险：发生意外后哪一个会赔？", cat: "medical", catLabel: "保险知识", excerpt: "通过六个日常意外情况，判断PA、医药卡、人寿保险，或多份保单是否可能分别处理不同损失。", readTime: "6 分钟阅读", date: "2026 年 8 月 27 日", href: "articles/personal-accident-vs-medical-card-vs-life-insurance-malaysia.html", image: "/assets/insights/personal-accident-vs-medical-card-vs-life-insurance-malaysia.png" },
   { title: "马来西亚完全及永久残疾（TPD）保险是什么？什么时候会赔？", cat: "protection", catLabel: "保障规划", excerpt: "了解常见TPD定义、评估期、理赔证据、赔付结构，以及为什么不能做原本工作未必已经符合条件。", readTime: "8 分钟阅读", date: "2026 年 8 月 27 日", href: "articles/total-permanent-disability-insurance-malaysia.html", image: "/assets/insights/total-permanent-disability-insurance-malaysia.png" },
   { title: "保险公司要求体检，是不是要拒保了？", cat: "protection", catLabel: "保障规划", excerpt: "了解保险公司为何要求体检、常见检查、准备方法及可能的核保结果。", readTime: "7 分钟阅读", date: "2026 年 8 月 21 日", href: "articles/insurance-medical-examination-underwriting-malaysia.html", image: "/assets/insights/insurance-medical-examination-underwriting-malaysia.png" },
   { title: "医院找不到多年前的病历，还可以买保险吗？", cat: "protection", catLabel: "保障规划", excerpt: "了解如何披露旧病史、证明曾经索取记录，并以替代文件及当前检查支持核保。", readTime: "8 分钟阅读", date: "2026 年 8 月 17 日", href: "articles/old-medical-records-unavailable-insurance-malaysia.html", image: "/assets/insights/old-medical-records-unavailable-insurance-malaysia.png" },
   { title: "重大疾病赔了RM200,000，身故保障还剩RM500,000吗？", cat: "protection", catLabel: "保障规划", excerpt: "了解加速式与额外式CI的分别，以及CI赔付是否会减少留给家人的人寿保险保额。", readTime: "7 分钟阅读", date: "2026 年 8 月 17 日", href: "articles/critical-illness-claim-reduce-life-insurance-malaysia.html", image: "/assets/insights/critical-illness-claim-reduce-life-insurance-malaysia.png" },
   { title: "为什么很多人要等到身边有人患重病，才发现CI的重要性？", cat: "protection", catLabel: "保障规划", excerpt: "健康、医药卡与公司福利如何掩盖重大疾病造成的收入中断与康复缺口。", readTime: "8 分钟阅读", date: "2026 年 8 月 5 日", href: "articles/why-people-underestimate-critical-illness-malaysia.html", image: "/assets/insights/why-people-underestimate-critical-illness-malaysia.png" },
-  { title: "鱼骨手术一度不能Claim：澄清糖尿病疑点后成功获赔", cat: "casestudy", catLabel: "真实案例", excerpt: "CASB匿名真实案例：进一步医疗证据澄清糖尿病疑点，并支持鱼骨手术理赔成功复核。", readTime: "7 分钟阅读", date: "2026 年 8 月 4 日", href: "articles/fish-bone-surgery-diabetes-claim-review-malaysia.html", image: "/assets/insights/fish-bone-surgery-diabetes-claim-review-malaysia.png" },
-  { title: "有“三高”还可以买保险吗？高血压、糖尿病与高胆固醇的核保结果", cat: "explained", catLabel: "保险知识", excerpt: "确诊或服药不自动终止申请；了解控制程度、并发症及医疗记录在核保中可能代表什么。", readTime: "8 分钟阅读", date: "2026 年 8 月 3 日", href: "articles/high-blood-pressure-diabetes-cholesterol-insurance-malaysia.html", image: "/assets/insights/high-blood-pressure-diabetes-cholesterol-insurance-malaysia.png" },
-  { title: "小时候做过心脏手术，还可以买保险吗？核保结果与准备文件详解", cat: "explained", catLabel: "保险知识", excerpt: "童年心脏手术不自动阻止投保申请；了解可能的核保结果及哪些医疗记录最重要。", readTime: "8 分钟阅读", date: "2026 年 8 月 3 日", href: "articles/childhood-heart-surgery-insurance-malaysia.html", image: "/assets/insights/childhood-heart-surgery-insurance-malaysia.png" },
+  { title: "鱼骨手术一度不能Claim：澄清糖尿病疑点后成功获赔", cat: "claims", catLabel: "真实案例", excerpt: "CASB匿名真实案例：进一步医疗证据澄清糖尿病疑点，并支持鱼骨手术理赔成功复核。", readTime: "7 分钟阅读", date: "2026 年 8 月 4 日", href: "articles/fish-bone-surgery-diabetes-claim-review-malaysia.html", image: "/assets/insights/fish-bone-surgery-diabetes-claim-review-malaysia.png" },
+  { title: "有“三高”还可以买保险吗？高血压、糖尿病与高胆固醇的核保结果", cat: "medical", catLabel: "保险知识", excerpt: "确诊或服药不自动终止申请；了解控制程度、并发症及医疗记录在核保中可能代表什么。", readTime: "8 分钟阅读", date: "2026 年 8 月 3 日", href: "articles/high-blood-pressure-diabetes-cholesterol-insurance-malaysia.html", image: "/assets/insights/high-blood-pressure-diabetes-cholesterol-insurance-malaysia.png" },
+  { title: "小时候做过心脏手术，还可以买保险吗？核保结果与准备文件详解", cat: "medical", catLabel: "保险知识", excerpt: "童年心脏手术不自动阻止投保申请；了解可能的核保结果及哪些医疗记录最重要。", readTime: "8 分钟阅读", date: "2026 年 8 月 3 日", href: "articles/childhood-heart-surgery-insurance-malaysia.html", image: "/assets/insights/childhood-heart-surgery-insurance-malaysia.png" },
   { title: "保险理赔被延后决定是什么意思？是拒赔，还是仍在审核？", cat: "claims", catLabel: "理赔与支援", excerpt: "了解保险公司为何可能暂缓决定、欠缺哪些文件，以及延后决定与拒赔有什么不同。", readTime: "7 分钟阅读", date: "2026 年 8 月 3 日", href: "articles/insurance-claim-deferment-malaysia.html", image: "/assets/insights/insurance-claim-deferment-malaysia.png" },
   { title: "想在马来西亚成为保险代理？入行首12个月真实会经历什么？", cat: "careers", catLabel: "职业机会", excerpt: "现实的首年路线图：从资格与培训，到客户开发、售后服务及建立可持续工作规律。", readTime: "8 分钟阅读", date: "2026 年 8 月 3 日", href: "articles/insurance-agent-first-12-months-malaysia.html", image: "/assets/insights/insurance-agent-first-12-months-malaysia.png" },
-  { title: "理赔被拒后获部分赔付：医疗复核如何改变一宗胆结石个案", cat: "casestudy", catLabel: "真实案例", excerpt: "一宗真实 FMOS 个案：医疗证据把受保的胆结石与除外诊断区分开来，最终促成相关部分获赔。", readTime: "6 分钟阅读", date: "2026 年 8 月 3 日", href: "articles/gallstone-claim-policy-exclusion-success-malaysia.html", image: "/assets/insights/gallstone-claim-policy-exclusion-success-malaysia.png" },
-  { title: "什么是“医疗上必要”？为什么医生建议治疗不代表医药卡一定赔付？", cat: "explained", catLabel: "保险知识", excerpt: "了解临床建议与医药卡合约赔付资格为何是两个不同问题，以及哪些证据可支持复核。", readTime: "8 分钟阅读", date: "2026 年 8 月 3 日", href: "articles/medically-necessary-medical-card-claim-malaysia.html", image: "/assets/insights/medically-necessary-medical-card-claim-malaysia.png" },
+  { title: "理赔被拒后获部分赔付：医疗复核如何改变一宗胆结石个案", cat: "claims", catLabel: "真实案例", excerpt: "一宗真实 FMOS 个案：医疗证据把受保的胆结石与除外诊断区分开来，最终促成相关部分获赔。", readTime: "6 分钟阅读", date: "2026 年 8 月 3 日", href: "articles/gallstone-claim-policy-exclusion-success-malaysia.html", image: "/assets/insights/gallstone-claim-policy-exclusion-success-malaysia.png" },
+  { title: "什么是“医疗上必要”？为什么医生建议治疗不代表医药卡一定赔付？", cat: "medical", catLabel: "保险知识", excerpt: "了解临床建议与医药卡合约赔付资格为何是两个不同问题，以及哪些证据可支持复核。", readTime: "8 分钟阅读", date: "2026 年 8 月 3 日", href: "articles/medically-necessary-medical-card-claim-malaysia.html", image: "/assets/insights/medically-necessary-medical-card-claim-malaysia.png" },
   { title: "马来西亚医药卡共同保险：索赔时您实际支付什么？", cat: "medical", catLabel: "医疗与健康", excerpt: "了解共同保险百分比、最高上限、自付额、索赔计算，以及仍可能需要自行承担的医院费用。", readTime: "12 分钟阅读", date: "2026 年 7 月 30 日", href: "articles/co-insurance-medical-card-malaysia.html", image: "/assets/insights/co-insurance-medical-card-malaysia.png" },
-  { title: "保险索赔被拒怎么办？常见原因与下一步", cat: "medical", catLabel: "医疗与健康", excerpt: "了解常见拒赔原因、如何审查决定、准备有证据的申诉，以及何时可寻求独立争议解决。", readTime: "7 分钟阅读", date: "2026 年 7 月 30 日", href: "articles/insurance-claim-rejected-malaysia.html", image: "/assets/insights/insurance-claim-rejected-malaysia.png" },
+  { title: "保险索赔被拒怎么办？常见原因与下一步", cat: "claims", catLabel: "医疗与健康", excerpt: "了解常见拒赔原因、如何审查决定、准备有证据的申诉，以及何时可寻求独立争议解决。", readTime: "7 分钟阅读", date: "2026 年 7 月 30 日", href: "articles/insurance-claim-rejected-malaysia.html", image: "/assets/insights/insurance-claim-rejected-malaysia.png" },
   { title: "医药卡年度限额是什么？用完后会怎样？", cat: "medical", catLabel: "医疗与健康", excerpt: "了解年度限额如何计算、多次索赔如何累积，以及达到限额后可能需要承担的费用。", readTime: "6 分钟阅读", date: "2026 年 7 月 30 日", href: "articles/medical-card-annual-limit-malaysia.html", image: "/assets/insights/medical-card-annual-limit-malaysia.png" },
   { title: "在马来西亚可以拥有两张医药卡吗？", cat: "medical", catLabel: "医疗与健康", excerpt: "了解两份医疗保单、雇主福利、免现金入院与报销索赔如何协调，同时避免重复赔付。", readTime: "6 分钟阅读", date: "2026 年 7 月 30 日", href: "articles/two-medical-cards-malaysia.html", image: "/assets/insights/two-medical-cards-malaysia.png" },
-  { title: "什么是“合理与惯常收费”？为什么医疗卡未必支付全部医院账单？", cat: "explained", catLabel: "保险知识", excerpt: "了解医院收费与批准理赔金额为何不同，以及除外责任、限额和费用分担之间的区别。", readTime: "8 分钟阅读", date: "2026 年 8 月 3 日", href: "articles/reasonable-customary-charges-medical-card-malaysia.html", image: "../../assets/insights/reasonable-customary-charges-medical-card-malaysia.png" },
-  { title: "马来西亚私人医院账单怎么看？你到底在付什么费用？", cat: "explained", catLabel: "保险知识", excerpt: "了解病房费、医生专业费、配套除外项目、保险批准金额和最终病人余额。", readTime: "8 分钟阅读", date: "2026 年 8 月 3 日", href: "articles/how-to-read-private-hospital-bill-malaysia.html", image: "../../assets/insights/how-to-read-private-hospital-bill-malaysia.png" },
-  { title: "马来西亚 DRG 是什么？按诊断相关组付费详解", cat: "explained", catLabel: "保险知识", excerpt: "了解 DRG 如何为住院病例分组、与逐项收费的区别，以及对私人医疗费用和医疗卡的潜在影响。", readTime: "8 分钟阅读", date: "2026 年 8 月 3 日", href: "articles/diagnosis-related-group-drg-malaysia.html", image: "../../assets/insights/diagnosis-related-group-drg-malaysia.png" },
-  { title: "什么是 MediAsas？马来西亚全新基础医疗保险／回教保险计划", cat: "explained", catLabel: "保险知识", excerpt: "MediAsas 公共资料指南：目的、试行时间、Teras 与 Fleksi 选择，以及目前应注意的事项。", readTime: "8 分钟阅读", date: "2026 年 8 月 3 日", href: "articles/mediasas-base-mhit-malaysia.html", image: "/assets/insights/mediasas-base-mhit-malaysia.png" },
-  { title: "医生说可以出院了，为什么医药卡手续还要等几个小时？", cat: "explained", catLabel: "保险知识", excerpt: "了解马来西亚医药卡入院从医疗批准出院到财务结算之间的各项步骤。", readTime: "7 分钟阅读", date: "2026 年 8 月 3 日", href: "articles/medical-card-hospital-discharge-delay-malaysia.html", image: "/assets/insights/medical-card-hospital-discharge-delay-malaysia.png" },
-  { title: "医药卡病房限额 RM200，但医院房间 RM300，会发生什么？", cat: "explained", catLabel: "保险知识", excerpt: "了解房价差额、共同支付、房间不足，以及接受较高收费医院房间前应核对的事项。", readTime: "7 分钟阅读", date: "2026 年 8 月 3 日", href: "articles/medical-card-room-board-upgrade-malaysia.html", image: "/assets/insights/medical-card-room-board-upgrade-malaysia.png" },
-  { title: "母亲入院时医药卡 GL 被拒：重新审核后发生了什么？", cat: "casestudy", catLabel: "真实案例", excerpt: "一宗真实马来西亚家庭经历，说明最初的 GL 结果可能被重新审核，以及入院前为何需要备用安排。", readTime: "7 分钟阅读", date: "2026 年 8 月 3 日", href: "articles/medical-gl-declined-second-review-real-case-malaysia.html", image: "/assets/insights/medical-gl-declined-second-review-real-case-malaysia.png" },
-  { title: "癌症索赔因未披露资料被拒：高庭为何恢复保单？", cat: "casestudy", catLabel: "真实案例", excerpt: "一宗真实马来西亚法院案例，说明健康声明、被指未披露资料，以及为何必须核对每项投保答案。", readTime: "6 分钟阅读", date: "2026 年 8 月 3 日", href: "articles/cancer-claim-non-disclosure-high-court-malaysia.html", image: "/assets/insights/cancer-claim-non-disclosure-high-court-malaysia.png" },
-  { title: "去急诊室但没有住院，医药卡可以索赔吗？", cat: "explained", catLabel: "保险知识", excerpt: "了解急诊门诊、意外与疾病、留院观察、救护车费用，以及急症部治疗后没有入院时应如何判断保障。", readTime: "7 分钟阅读", date: "2026 年 8 月 3 日", href: "articles/emergency-room-without-admission-medical-card-malaysia.html", image: "/assets/insights/emergency-room-without-admission-medical-card-malaysia.png" },
-  { title: "风湿、痛风、尿酸高可以用医药卡索赔吗？", cat: "explained", catLabel: "保险知识", excerpt: "患有疾病不代表每次问诊、药物或检查都可索赔；了解普通门诊、日间治疗与住院利益的分别。", readTime: "7 分钟阅读", date: "2026 年 8 月 3 日", href: "articles/gout-uric-acid-rheumatism-medical-card-malaysia.html", image: "/assets/insights/gout-uric-acid-rheumatism-medical-card-malaysia.png" },
-  { title: "马来西亚医药卡涵盖什么？哪些治疗可能不受保？", cat: "explained", catLabel: "保险知识", excerpt: "了解常见保障与除外责任，以及机器人手术、乳房重建、植入物和个别医院收费可能如何被审核。", readTime: "8 分钟阅读", date: "2026 年 8 月 3 日", href: "articles/medical-card-coverage-exclusions-malaysia.html", image: "/assets/insights/medical-card-coverage-exclusions-malaysia.png" },
+  { title: "什么是“合理与惯常收费”？为什么医疗卡未必支付全部医院账单？", cat: "medical", catLabel: "保险知识", excerpt: "了解医院收费与批准理赔金额为何不同，以及除外责任、限额和费用分担之间的区别。", readTime: "8 分钟阅读", date: "2026 年 8 月 3 日", href: "articles/reasonable-customary-charges-medical-card-malaysia.html", image: "../../assets/insights/reasonable-customary-charges-medical-card-malaysia.png" },
+  { title: "马来西亚私人医院账单怎么看？你到底在付什么费用？", cat: "medical", catLabel: "保险知识", excerpt: "了解病房费、医生专业费、配套除外项目、保险批准金额和最终病人余额。", readTime: "8 分钟阅读", date: "2026 年 8 月 3 日", href: "articles/how-to-read-private-hospital-bill-malaysia.html", image: "../../assets/insights/how-to-read-private-hospital-bill-malaysia.png" },
+  { title: "马来西亚 DRG 是什么？按诊断相关组付费详解", cat: "medical", catLabel: "保险知识", excerpt: "了解 DRG 如何为住院病例分组、与逐项收费的区别，以及对私人医疗费用和医疗卡的潜在影响。", readTime: "8 分钟阅读", date: "2026 年 8 月 3 日", href: "articles/diagnosis-related-group-drg-malaysia.html", image: "../../assets/insights/diagnosis-related-group-drg-malaysia.png" },
+  { title: "什么是 MediAsas？马来西亚全新基础医疗保险／回教保险计划", cat: "medical", catLabel: "保险知识", excerpt: "MediAsas 公共资料指南：目的、试行时间、Teras 与 Fleksi 选择，以及目前应注意的事项。", readTime: "8 分钟阅读", date: "2026 年 8 月 3 日", href: "articles/mediasas-base-mhit-malaysia.html", image: "/assets/insights/mediasas-base-mhit-malaysia.png" },
+  { title: "医生说可以出院了，为什么医药卡手续还要等几个小时？", cat: "claims", catLabel: "保险知识", excerpt: "了解马来西亚医药卡入院从医疗批准出院到财务结算之间的各项步骤。", readTime: "7 分钟阅读", date: "2026 年 8 月 3 日", href: "articles/medical-card-hospital-discharge-delay-malaysia.html", image: "/assets/insights/medical-card-hospital-discharge-delay-malaysia.png" },
+  { title: "医药卡病房限额 RM200，但医院房间 RM300，会发生什么？", cat: "medical", catLabel: "保险知识", excerpt: "了解房价差额、共同支付、房间不足，以及接受较高收费医院房间前应核对的事项。", readTime: "7 分钟阅读", date: "2026 年 8 月 3 日", href: "articles/medical-card-room-board-upgrade-malaysia.html", image: "/assets/insights/medical-card-room-board-upgrade-malaysia.png" },
+  { title: "母亲入院时医药卡 GL 被拒：重新审核后发生了什么？", cat: "claims", catLabel: "真实案例", excerpt: "一宗真实马来西亚家庭经历，说明最初的 GL 结果可能被重新审核，以及入院前为何需要备用安排。", readTime: "7 分钟阅读", date: "2026 年 8 月 3 日", href: "articles/medical-gl-declined-second-review-real-case-malaysia.html", image: "/assets/insights/medical-gl-declined-second-review-real-case-malaysia.png" },
+  { title: "癌症索赔因未披露资料被拒：高庭为何恢复保单？", cat: "claims", catLabel: "真实案例", excerpt: "一宗真实马来西亚法院案例，说明健康声明、被指未披露资料，以及为何必须核对每项投保答案。", readTime: "6 分钟阅读", date: "2026 年 8 月 3 日", href: "articles/cancer-claim-non-disclosure-high-court-malaysia.html", image: "/assets/insights/cancer-claim-non-disclosure-high-court-malaysia.png" },
+  { title: "去急诊室但没有住院，医药卡可以索赔吗？", cat: "medical", catLabel: "保险知识", excerpt: "了解急诊门诊、意外与疾病、留院观察、救护车费用，以及急症部治疗后没有入院时应如何判断保障。", readTime: "7 分钟阅读", date: "2026 年 8 月 3 日", href: "articles/emergency-room-without-admission-medical-card-malaysia.html", image: "/assets/insights/emergency-room-without-admission-medical-card-malaysia.png" },
+  { title: "风湿、痛风、尿酸高可以用医药卡索赔吗？", cat: "medical", catLabel: "保险知识", excerpt: "患有疾病不代表每次问诊、药物或检查都可索赔；了解普通门诊、日间治疗与住院利益的分别。", readTime: "7 分钟阅读", date: "2026 年 8 月 3 日", href: "articles/gout-uric-acid-rheumatism-medical-card-malaysia.html", image: "/assets/insights/gout-uric-acid-rheumatism-medical-card-malaysia.png" },
+  { title: "马来西亚医药卡涵盖什么？哪些治疗可能不受保？", cat: "medical", catLabel: "保险知识", excerpt: "了解常见保障与除外责任，以及机器人手术、乳房重建、植入物和个别医院收费可能如何被审核。", readTime: "8 分钟阅读", date: "2026 年 8 月 3 日", href: "articles/medical-card-coverage-exclusions-malaysia.html", image: "/assets/insights/medical-card-coverage-exclusions-malaysia.png" },
   { title: "MRTA、MLTA 与人寿保险有什么不同？身故后房贷和房子会怎样？", cat: "financial", catLabel: "遗产规划", excerpt: "了解递减、水平及一般人寿保障，并说明清偿贷款为何不代表产业自动转名。", readTime: "7 分钟阅读", date: "2026 年 8 月 1 日", href: "articles/mrta-mlta-life-insurance-malaysia.html", image: "/assets/insights/mrta-mlta-life-insurance-malaysia.png" },
   { title: "在马来西亚，人寿保障需要多少才足够？", cat: "protection", catLabel: "保障规划", excerpt: "按家庭支援、债务、教育与家属需要，扣除储蓄及现有身故利益后估算保障缺口。", readTime: "7 分钟阅读", date: "2026 年 8 月 1 日", href: "articles/how-much-life-insurance-coverage-malaysia.html", image: "/assets/insights/how-much-life-insurance-coverage-malaysia.png" },
   {
@@ -657,7 +656,7 @@ const ARTICLES = [
   },
   {
     title: "马来西亚遗嘱认证是什么？遗产管理需要多久？",
-    cat: "wealth",
+    cat: "financial",
     catLabel: "遗产规划",
     excerpt: "了解身故后处理遗产所需的法律权限、文件、办理阶段，以及合理的时间预期。",
     readTime: "7 分钟阅读",
@@ -667,7 +666,7 @@ const ARTICLES = [
   },
   {
     title: "马来西亚遗嘱涵盖哪些资产，又不涵盖哪些？",
-    cat: "wealth",
+    cat: "financial",
     catLabel: "遗产规划",
     excerpt: "整理哪些资产可透过遗嘱分配，以及哪些按提名、联名所有权、信托或其他安排转移。",
     readTime: "6 分钟阅读",
@@ -677,7 +676,7 @@ const ARTICLES = [
   },
   {
     title: "马来西亚提名人与受益人有什么区别？",
-    cat: "wealth",
+    cat: "financial",
     catLabel: "遗产规划",
     excerpt: "了解公积金、人寿保险与家庭伊斯兰保险中，提名人、受益人及管理人的不同角色。",
     readTime: "6 分钟阅读",
@@ -687,7 +686,7 @@ const ARTICLES = [
   },
   {
     title: "在马来西亚没有遗嘱离世，资产会怎样？",
-    cat: "wealth",
+    cat: "financial",
     catLabel: "遗产规划",
     excerpt: "了解无遗嘱继承、遗产管理、债务处理，以及穆斯林与非穆斯林遗产分配框架的区别。",
     readTime: "6 分钟阅读",
@@ -727,7 +726,7 @@ const ARTICLES = [
   },
   {
     title: "保险代理员在马来西亚做什么？",
-    cat: "planning",
+    cat: "careers",
     catLabel: "职业",
     excerpt: "现实地审视客户会议、保护审查、申请、保单服务、索赔支持以及职业背后的日常职责。",
     readTime: "7 分钟阅读",
@@ -737,7 +736,7 @@ const ARTICLES = [
   },
   {
     title: "在马来西亚保险索赔需要多长时间？",
-    cat: "medical",
+    cat: "claims",
     catLabel: "医疗与健康",
     excerpt: "了解保险索赔的各个阶段、影响处理时间的因素、发生延误的原因以及如何有效跟进。",
     readTime: "28 分钟阅读",
@@ -747,7 +746,7 @@ const ARTICLES = [
   },
   {
     title: "保险索赔需要哪些文件？",
-    cat: "medical",
+    cat: "claims",
     catLabel: "医疗与健康",
     excerpt: "完整的马来西亚医疗、危重疾病、事故、残疾和死亡索赔文件清单，以及防止延误的实用方法。",
     readTime: "25 分钟阅读",
@@ -757,7 +756,7 @@ const ARTICLES = [
   },
   {
     title: "马来西亚的保险职业：2026 年还值得考虑吗？",
-    cat: "planning",
+    cat: "careers",
     catLabel: "职业",
     excerpt: "实用介绍保险职业涉及什么、它适合谁、它的挑战以及在开始之前需要寻求什么支持。",
     readTime: "7 分钟阅读",
@@ -767,7 +766,7 @@ const ARTICLES = [
   },
   {
     title: "无现金与报销医疗索赔：有什么区别？",
-    cat: "medical",
+    cat: "claims",
     catLabel: "医疗与健康",
     excerpt: "了解无现金住院与报销医疗索赔，包括 GL 批准、所需文件以及每种方法何时适用。",
     readTime: "8 分钟阅读",
@@ -777,7 +776,7 @@ const ARTICLES = [
   },
   {
     title: "为什么我的医药卡保证函被拒绝？",
-    cat: "medical",
+    cat: "claims",
     catLabel: "医疗与健康",
     excerpt: "了解医药卡 GL 可能被拒绝的常见原因、被拒绝的保证函意味着什么以及您接下来可以采取的步骤。",
     readTime: "9 分钟阅读",
@@ -787,27 +786,27 @@ const ARTICLES = [
   },
   {
     title: "什么是保函 (GL)？",
-    cat: "medical",
+    cat: "claims",
     catLabel: "医疗与健康",
     excerpt: "了解什么是保证函、免现金入院如何运作、为什么 GL 可能会被延迟或拒绝，以及下一步该做什么。",
     readTime: "7 分钟阅读",
     date: "2026 年 7 月 17 日",
     href: "articles/guarantee-letter-gl-medical-insurance-malaysia.html",
-    image: "/assets/insights/guarantee-letter-malaysia.png"
+    image: "/assets/insights/why-medical-card-guarantee-letter-declined.png"
   },
   {
     title: "如何在马来西亚提出保险索赔",
-    cat: "medical",
+    cat: "claims",
     catLabel: "医疗与健康",
     excerpt: "马来西亚医药卡、住院、保证书、报销、危疾和人寿保险索赔的分步指南。",
     readTime: "7 分钟阅读",
     date: "2026 年 7 月 17 日",
     href: "articles/how-to-make-insurance-claim-malaysia.html",
-    image: "/assets/insights/insurance-claim-document-checklist.png"
+    image: "/assets/insights/how-to-make-insurance-claim-malaysia.png"
   },
   {
     title: "马来西亚兼职保险代理员：您需要了解什么",
-    cat: "planning",
+    cat: "careers",
     catLabel: "规划基础",
     excerpt: "您可以在马来西亚开始担任兼职保险代理员吗？首先了解现实、责任、收入潜力和合同注意事项。",
     readTime: "6 分钟阅读",
@@ -867,13 +866,17 @@ const ARTICLES = [
   }
 ];
 
-// 集中管理文章分类，同时保持现有文章网址不变。
+// 将旧的编辑分类统一为页面上显示的五个筛选类别。
+ARTICLES.forEach(article => {
+  if (article.cat === 'explained') article.cat = 'medical';
+  if (article.cat === 'wealth' || article.cat === 'planning') article.cat = 'financial';
+  if (article.cat === 'casestudy') article.cat = 'claims';
+});
+
+// 保持文章网址不变，并在这里统一指定特殊主题的分类。
 const ARTICLE_CATEGORIES = {
-  financial: ['probate-estate-administration-malaysia.html', 'assets-covered-by-will-malaysia.html', 'nominee-vs-beneficiary-malaysia.html', 'die-without-will-malaysia.html'],
-  careers: ['what-does-insurance-agent-do-malaysia.html', 'insurance-career-malaysia-2026.html', 'part-time-insurance-agent-malaysia.html'],
-  claims: ['insurance-claim-rejected-malaysia.html', 'insurance-claim-processing-time-malaysia.html', 'insurance-claim-documents-malaysia.html', 'cashless-vs-reimbursement-medical-claims-malaysia.html', 'why-medical-card-guarantee-letter-declined.html', 'how-to-make-insurance-claim-malaysia.html'],
-  myths: ['two-medical-cards-malaysia.html', 'why-medical-cards-keep-getting-more-expensive.html', 'why-medical-card-alone-isnt-enough.html', 'hidden-cost-critical-illness.html', 'medical-card-vs-critical-illness.html'],
-  explained: ['medical-card-annual-limit-malaysia.html', 'co-insurance-medical-card-malaysia.html', 'medical-insurance-waiting-period-malaysia.html', 'panel-vs-non-panel-hospital-malaysia.html', 'guarantee-letter-gl-medical-insurance-malaysia.html']
+  careers: ['what-does-insurance-agent-do-malaysia.html', 'insurance-career-malaysia-2026.html', 'part-time-insurance-agent-malaysia.html', 'insurance-agent-first-12-months-malaysia.html'],
+  claims: ['insurance-claim-rejected-malaysia.html', 'insurance-claim-processing-time-malaysia.html', 'insurance-claim-documents-malaysia.html', 'cashless-vs-reimbursement-medical-claims-malaysia.html', 'why-medical-card-guarantee-letter-declined.html', 'guarantee-letter-gl-medical-insurance-malaysia.html', 'how-to-make-insurance-claim-malaysia.html', 'medical-card-hospital-discharge-delay-malaysia.html', 'insurance-claim-deferment-malaysia.html', 'accidental-outpatient-personal-accident-insurance-malaysia.html', 'cancer-claim-non-disclosure-high-court-malaysia.html', 'medical-gl-declined-second-review-real-case-malaysia.html', 'gallstone-claim-policy-exclusion-success-malaysia.html', 'fish-bone-surgery-diabetes-claim-review-malaysia.html']
 };
 
 Object.entries(ARTICLE_CATEGORIES).forEach(([category, filenames]) => {
